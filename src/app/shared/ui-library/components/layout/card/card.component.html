@@ -1,0 +1,18 @@
+<div [class]="classes.join(' ')">
+  @if (title || subtitle) {
+    <div class="ui-card__header">
+      @if (title) {
+        <h3 class="ui-card__title">{{ title }}</h3>
+      }
+      @if (subtitle) {
+        <p class="ui-card__subtitle">{{ subtitle }}</p>
+      }
+    </div>
+  }
+  
+  <div class="ui-card__content">
+    <ng-content></ng-content>
+  </div>
+  
+  <ng-content select="[footer]"></ng-content>
+</div>

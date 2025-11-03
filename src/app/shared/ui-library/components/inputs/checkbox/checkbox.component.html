@@ -1,0 +1,15 @@
+<label class="ui-checkbox" [class.ui-checkbox--disabled]="disabled">
+  <input
+    type="checkbox"
+    class="ui-checkbox__input"
+    [checked]="checked"
+    [disabled]="disabled"
+    [indeterminate]="indeterminate"
+    (change)="toggle()" />
+  <span class="ui-checkbox__box">
+    <span class="ui-checkbox__checkmark"></span>
+  </span>
+  @if (label) {
+    <span class="ui-checkbox__label">{{ label }}</span>
+  }
+</label>

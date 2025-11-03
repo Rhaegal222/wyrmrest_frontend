@@ -1,0 +1,15 @@
+<div [class]="classes.join(' ')">
+  @if (src && !imageError) {
+    <img
+      [src]="src"
+      [alt]="alt"
+      class="ui-avatar__image"
+      (error)="onImageError()" />
+  } @else {
+    <span class="ui-avatar__initials">{{ displayInitials }}</span>
+  }
+  
+  @if (status) {
+    <span class="ui-avatar__status ui-avatar__status--{{ status }}"></span>
+  }
+</div>

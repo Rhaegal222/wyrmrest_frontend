@@ -1,0 +1,14 @@
+<label [class]="classes.join(' ')">
+  <input
+    type="checkbox"
+    class="ui-toggle__input"
+    [checked]="checked"
+    [disabled]="disabled"
+    (change)="toggle()" />
+  <span class="ui-toggle__track">
+    <span class="ui-toggle__thumb"></span>
+  </span>
+  @if (label) {
+    <span class="ui-toggle__label">{{ label }}</span>
+  }
+</label>

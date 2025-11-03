@@ -1,0 +1,11 @@
+<div class="ui-progress-bar">
+  <div class="ui-progress-bar__track">
+    <div
+      [class]="barClasses.join(' ')"
+      [style.width.%]="percentage">
+      @if (showLabel) {
+        <span class="ui-progress-bar__label">{{ percentage.toFixed(0) }}%</span>
+      }
+    </div>
+  </div>
+</div>

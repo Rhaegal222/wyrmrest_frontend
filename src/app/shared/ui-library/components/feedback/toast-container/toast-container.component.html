@@ -1,0 +1,9 @@
+<div class="ui-toast-container">
+  @for (toast of toasts(); track toast.id) {
+    <div class="ui-toast ui-toast--{{ toast.type }}" [class.ui-toast--{{ toast.position }}]="toast.position">
+      <span class="ui-toast__icon">{{ getIcon(toast.type) }}</span>
+      <span class="ui-toast__message">{{ toast.message }}</span>
+      <button class="ui-toast__close" (click)="remove(toast.id)">✕</button>
+    </div>
+  }
+</div>

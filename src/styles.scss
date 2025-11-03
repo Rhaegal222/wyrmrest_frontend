@@ -1,1 +1,97 @@
-/* You can add global styles to this file, and also import other style files */
+// ===== GLOBAL STYLES =====
+@use './app/shared/ui-library/styles/variables' as *;
+@use './app/shared/ui-library/styles/theme' as *;
+@use './app/shared/ui-library/styles/animations' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+// ===== LIGHT THEME =====
+body.theme-light,
+body.wyrmrest.theme-light {
+  --color-background: #ffffff;
+  --color-surface: #f8f9fa;
+  --color-text: #1a1a1a;
+  --color-text-secondary: #6b7280;
+  --color-muted: #9ca3af;
+  --color-border: #e5e7eb;
+  --primary-50: #f0f9ff;
+  --primary-500: #3b82f6;
+  --accent-500: #f5b42a;
+}
+
+// ===== DARK THEME =====
+body.theme-dark,
+body.wyrmrest.theme-dark {
+  --color-background: #0f172a;
+  --color-surface: #1e293b;
+  --color-text: #f8fafc;
+  --color-text-secondary: #cbd5e1;
+  --color-muted: #64748b;
+  --color-border: #334155;
+  --primary-50: #0c1222;
+  --primary-500: #60a5fa;
+  --accent-500: #fbbf24;
+}
+
+// ===== GLOBAL COMPONENTS =====
+button, input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+a {
+  color: var(--primary-500);
+  text-decoration: none;
+  transition: color var(--transition-base);
+
+  &:hover {
+    color: var(--primary-600);
+  }
+}
+
+// ===== SCROLLBAR =====
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-md);
+
+  &:hover {
+    background: var(--color-muted);
+  }
+}

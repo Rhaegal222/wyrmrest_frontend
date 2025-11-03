@@ -1,0 +1,12 @@
+<button
+  [class]="classes.join(' ')"
+  [uiTooltip]="tooltip || ''"
+  (click)="onClickHandler($event)"
+  uiRipple>
+  <span class="ui-fab__icon">{{ icon }}</span>
+  @if (extended) {
+    <span class="ui-fab__label">
+      <ng-content></ng-content>
+    </span>
+  }
+</button>

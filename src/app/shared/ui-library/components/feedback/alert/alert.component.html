@@ -1,0 +1,16 @@
+<div [class]="classes.join(' ')">
+  <span class="ui-alert__icon">{{ defaultIcon }}</span>
+  
+  <div class="ui-alert__content">
+    @if (title) {
+      <strong class="ui-alert__title">{{ title }}</strong>
+    }
+    <div class="ui-alert__message">
+      <ng-content></ng-content>
+    </div>
+  </div>
+  
+  @if (closeable) {
+    <button class="ui-alert__close" (click)="close()">✕</button>
+  }
+</div>

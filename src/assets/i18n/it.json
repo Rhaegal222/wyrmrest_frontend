@@ -1,0 +1,33 @@
+{
+  "catalog": {
+    "title": "Catalogo Componenti",
+    "search": "Cerca componenti (es. button, select, table, input...)",
+    "clearSearch": "Cancella ricerca"
+  },
+  "hero": {
+    "title": "UI Components",
+    "subtitle": "Wyrmrest",
+    "description": "Una libreria di componenti Angular completa e pronta all'uso, costruita con design tokens, tema scuro/chiaro, accessibilità integrata e performance ottimizzata.",
+    "explore": "Inizia a esplorare",
+    "documentation": "Documentazione"
+  },
+  "nav": {
+    "actions": "Actions",
+    "inputs": "Inputs",
+    "layout": "Layout",
+    "feedback": "Feedback",
+    "informational": "Informational"
+  },
+  "components": {
+    "button": {
+      "name": "Button",
+      "description": "Pulsante con varianti, dimensioni, stati e icone."
+    },
+    "link": {
+      "name": "Link",
+      "description": "Collegamenti esterni e interni con underline opzionale."
+    },
+    "search": "Cerca componenti...",
+    "clearSearch": "Cancella"
+  }
+}

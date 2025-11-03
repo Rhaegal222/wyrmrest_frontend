@@ -1,0 +1,11 @@
+@if (overlay) {
+  <div class="ui-spinner-overlay">
+    <div [class]="classes.join(' ')">
+      <div class="ui-spinner__circle"></div>
+    </div>
+  </div>
+} @else {
+  <div [class]="classes.join(' ')">
+    <div class="ui-spinner__circle"></div>
+  </div>
+}

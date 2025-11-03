@@ -1,0 +1,8 @@
+<button
+  [class]="classes.join(' ')"
+  [disabled]="disabled"
+  [uiTooltip]="tooltip || ''"
+  (click)="onClickHandler($event)"
+  uiRipple>
+  <span class="ui-icon-button__icon">{{ icon }}</span>
+</button>

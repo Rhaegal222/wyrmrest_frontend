@@ -1,0 +1,18 @@
+@if (isExternal) {
+  <a
+    [href]="href"
+    [target]="target"
+    [class.ui-link--underline]="underline"
+    [class.ui-link--disabled]="disabled"
+    class="ui-link">
+    <ng-content></ng-content>
+  </a>
+} @else {
+  <a
+    [routerLink]="routerLink"
+    [class.ui-link--underline]="underline"
+    [class.ui-link--disabled]="disabled"
+    class="ui-link">
+    <ng-content></ng-content>
+  </a>
+}

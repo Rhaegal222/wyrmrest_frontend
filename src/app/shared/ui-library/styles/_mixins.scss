@@ -1,0 +1,54 @@
+/* src/app/shared/ui-library/styles/mixins.scss */
+/* Mixin namespaced per Angular + Sass modules */
+
+@function c($name) {
+  @return var(--#{$name});
+}
+
+@mixin focus-ring($color: var(--primary-500)) {
+  outline: 2px solid $color;
+  outline-offset: 2px;
+}
+
+@mixin elevation($level) {
+  @if $level == 0 { box-shadow: var(--shadow-0); }
+  @else if $level == 1 { box-shadow: var(--shadow-1); }
+  @else if $level == 2 { box-shadow: var(--shadow-2); }
+  @else if $level == 3 { box-shadow: var(--shadow-3); }
+}
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border-width: 0 !important;
+}
+
+@mixin interactive-surface(
+  $radius: var(--radius-md),
+  $py: 8px,
+  $px: 12px,
+  $bg: var(--color-surface),
+  $border: var(--color-border)
+) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: $py $px;
+  border-radius: $radius;
+  background: $bg;
+  border: 1px solid $border;
+  transition: background var(--transition-base), box-shadow var(--transition-base), transform var(--transition-fast);
+}

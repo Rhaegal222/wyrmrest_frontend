@@ -1,0 +1,4669 @@
+// GENERATED BUNDLE — DO NOT EDIT BY HAND
+// Source: .\src
+// Date: 2025-11-03 01:49:47
+// Files: 84
+
+
+
+// ================================================================
+// FILE: src\app\app.component.html
+// ================================================================
+
+<div class="catalog-container">
+  <!-- ===== HERO SECTION ===== -->
+  <div class="catalog-hero">
+    <div class="catalog-hero__content">
+      <h1>{{ 'hero.title' | translate }} <span class="highlight">{{ 'hero.subtitle' | translate }}</span></h1>
+      <p>{{ 'hero.description' | translate }}</p>
+      <div class="catalog-hero__cta">
+        <button class="primary">{{ 'hero.explore' | translate }}</button>
+        <button class="secondary">{{ 'hero.documentation' | translate }}</button>
+      </div>
+    </div>
+    <div class="catalog-hero__visual">
+      <app-icon icon="star" [size]="150" color="var(--primary-500)"></app-icon>
+    </div>
+  </div>
+
+  <!-- ===== HEADER PRINCIPALE ===== -->
+  <div class="catalog-header">
+    <div class="catalog-header__top">
+      <h1>{{ 'catalog.title' | translate }}</h1>
+      <div style="display: flex; gap: var(--space-2); align-items: center;">
+        <!-- Language Toggle -->
+        <button class="language-toggle" (click)="toggleLanguage()" title="Toggle language">
+          <span style="font-weight: 700;">{{ currentLanguage() | uppercase }}</span>
+        </button>
+        
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" (click)="toggleTheme()" [class.theme-toggle--dark]="isDarkMode()">
+          <app-icon [icon]="isDarkMode() ? 'sun' : 'moon'" [size]="18"></app-icon>
+          <span class="theme-toggle__track">
+            <span class="theme-toggle__thumb"></span>
+          </span>
+          <span class="theme-toggle__label">{{ isDarkMode() ? 'Light' : 'Dark' }}</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search centralizzata -->
+    <div class="catalog-search-wrapper">
+      <app-icon icon="search" [size]="20" color="var(--color-muted)" class="catalog-search__icon"></app-icon>
+    <!-- <input 
+      type="search" 
+      class="catalog-search__input"
+      [placeholder]="'catalog.search' | translate"
+      [value]="searchValue()"
+      (input)="onSearchInput($event)"
+      aria-label="Search components"
+    /> -->
+      <button 
+        *ngIf="searchValue()" 
+        class="catalog-search__clear" 
+        (click)="clearSearch()"
+        [title]="'catalog.clearSearch' | translate"
+        aria-label="Clear search">
+        <app-icon icon="close" [size]="18"></app-icon>
+      </button>
+    </div>
+
+    <!-- Navigazione sezioni -->
+    <nav class="catalog-nav">
+      <a 
+        href="#actions" 
+        class="catalog-nav__link"
+        [class.active]="isSectionActive('actions')"
+        (click)="scrollToSection('actions'); $event.preventDefault()">
+        <app-icon icon="arrow" [size]="16"></app-icon>
+        <span>{{ 'nav.actions' | translate }}</span>
+      </a>
+      <a 
+        href="#inputs" 
+        class="catalog-nav__link"
+        [class.active]="isSectionActive('inputs')"
+        (click)="scrollToSection('inputs'); $event.preventDefault()">
+        <app-icon icon="input" [size]="16"></app-icon>
+        <span>{{ 'nav.inputs' | translate }}</span>
+      </a>
+      <a 
+        href="#layout" 
+        class="catalog-nav__link"
+        [class.active]="isSectionActive('layout')"
+        (click)="scrollToSection('layout'); $event.preventDefault()">
+        <app-icon icon="grid" [size]="16"></app-icon>
+        <span>{{ 'nav.layout' | translate }}</span>
+      </a>
+      <a 
+        href="#feedback" 
+        class="catalog-nav__link"
+        [class.active]="isSectionActive('feedback')"
+        (click)="scrollToSection('feedback'); $event.preventDefault()">
+        <app-icon icon="alert" [size]="16"></app-icon>
+        <span>{{ 'nav.feedback' | translate }}</span>
+      </a>
+      <a 
+        href="#informational" 
+        class="catalog-nav__link"
+        [class.active]="isSectionActive('informational')"
+        (click)="scrollToSection('informational'); $event.preventDefault()">
+        <app-icon icon="info" [size]="16"></app-icon>
+        <span>{{ 'nav.informational' | translate }}</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- ===== ACTIONS SECTION ===== -->
+  <section id="actions">
+    <h2><app-icon icon="arrow" [size]="20"></app-icon> <span class="highlight">{{ 'nav.actions' | translate }}</span></h2>
+    <p>{{ 'components.button.description' | translate }}</p>
+    
+    <!-- Filter pills -->
+    <div class="filter-pills">
+      <button class="filter-pill" (click)="setSearchFilter('button')" [class.filter-pill--active]="searchValue() === 'button'">
+        <app-icon icon="plus" [size]="14"></app-icon> {{ 'components.button.name' | translate }}
+      </button>
+      <button class="filter-pill" (click)="setSearchFilter('link')" [class.filter-pill--active]="searchValue() === 'link'">
+        <app-icon icon="link" [size]="14"></app-icon> {{ 'components.link.name' | translate }}
+      </button>
+      <button class="filter-pill" (click)="setSearchFilter('icon')" [class.filter-pill--active]="searchValue() === 'icon'">
+        <app-icon icon="star" [size]="14"></app-icon> Icon
+      </button>
+      <button class="filter-pill" (click)="setSearchFilter('fab')" [class.filter-pill--active]="searchValue() === 'fab'">
+        <app-icon icon="search" [size]="14"></app-icon> {{ 'components.fab.name' | translate }}
+      </button>
+    </div>
+
+    <div class="components-grid">
+      <!-- Button Card -->
+      <div class="component-card" *ngIf="shouldShowCard('button action primary secondary danger success loading')">
+        <h3>{{ 'components.button.name' | translate }}</h3>
+        <p class="component-description">{{ 'components.button.description' | translate }}</p>
+        <div class="component-examples">
+          <ui-button variant="primary" size="medium">Primary</ui-button>
+          <ui-button variant="success" size="medium">Success</ui-button>
+          <ui-button variant="danger" size="medium">Danger</ui-button>
+          <ui-button variant="warning" size="medium" [loading]="true">Loading</ui-button>
+          <ui-button variant="primary" size="small" [disabled]="true">Disabled</ui-button>
+        </div>
+        <div class="component-footer">
+          Varianti, dimensioni, stato loading, disabilitato.
+        </div>
+      </div>
+
+      <!-- Link Card -->
+      <div class="component-card" *ngIf="shouldShowCard('link anchor routerlink navigation external')">
+        <h3>{{ 'components.link.name' | translate }}</h3>
+        <p class="component-description">{{ 'components.link.description' | translate }}</p>
+        <div class="component-examples">
+          <ui-link href="https://angular.dev" target="_blank">External</ui-link>
+          <ui-link [routerLink]="['/']">Internal</ui-link>
+          <ui-link [disabled]="true">Disabled</ui-link>
+        </div>
+        <div class="component-footer">
+          Link esterno, router link, disabilitato.
+        </div>
+      </div>
+
+      <!-- IconButton Card -->
+      <div class="component-card" *ngIf="shouldShowCard('icon button tooltip ripple')">
+        <h3>{{ 'components.iconButton.name' | translate }}</h3>
+        <p class="component-description">{{ 'components.iconButton.description' | translate }}</p>
+        <div class="component-examples">
+          <ui-icon-button icon="★" variant="primary" tooltip="Preferiti"></ui-icon-button>
+          <ui-icon-button icon="✎" variant="secondary" tooltip="Modifica"></ui-icon-button>
+          <ui-icon-button icon="🗑" variant="danger" tooltip="Elimina"></ui-icon-button>
+        </div>
+        <div class="component-footer">
+          Azioni contestuali con tooltip.
+        </div>
+      </div>
+
+      <!-- FAB Card -->
+      <div class="component-card" *ngIf="shouldShowCard('fab floating action button extended')">
+        <h3>{{ 'components.fab.name' | translate }}</h3>
+        <p class="component-description">{{ 'components.fab.description' | translate }}</p>
+        <div class="component-examples">
+          <ui-fab icon="+" size="medium"></ui-fab>
+          <ui-fab icon="+" size="large" [extended]="true">Nuovo</ui-fab>
+        </div>
+        <div class="component-footer">
+          FAB standard ed esteso.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== INPUTS SECTION ===== -->
+  <section id="inputs">
+    <h2><app-icon icon="input" [size]="20"></app-icon> <span class="highlight">{{ 'nav.inputs' | translate }}</span></h2>
+    <p>{{ 'components.textInput.description' | translate }}</p>
+
+    <!-- Filter pills -->
+    <div class="filter-pills">
+      <button class="filter-pill" (click)="setSearchFilter('text')" [class.filter-pill--active]="searchValue() === 'text'">
+        <app-icon icon="input" [size]="14"></app-icon> Text
+      </button>
+      <button class="filter-pill" (click)="setSearchFilter('checkbox')" [class.filter-pill--active]="searchValue() === 'checkbox'">
+        <app-icon icon="checkbox" [size]="14"></app-icon> Checkbox
+      </button>
+      <button class="filter-pill" (click)="setSearchFilter('toggle')" [class.filter-pill--active]="searchValue() === 'toggle'">
+        <app-icon icon="toggle" [size]="14"></app-icon> Toggle
+      </button>
+      <button class="filter-pill" (click)="setSearchFilter('select')" [class.filter-pill--active]="searchValue() === 'select'">
+        <app-icon icon="grid" [size]="14"></app-icon> Select
+      </button>
+    </div>
+
+    <div class="components-grid">
+      <!-- TextInput Card -->
+      <div class="component-card" *ngIf="shouldShowCard('text input field label')">
+        <h3>{{ 'components.textInput.name' | translate }}</h3>
+        <p class="component-description">{{ 'components.textInput.description' | translate }}</p>
+        <div class="component-examples" style="flex-direction: column; align-items: stretch;">
+          <ui-text-input label="Nome" placeholder="Inserisci il nome" [required]="true" hint="Obbligatorio"></ui-text-input>
+        </div>
+        <div class="component-footer">
+          Required, hint, error, readonly, disabled.
+        </div>
+      </div>
+
+      <!-- Checkbox Card -->
+      <div class="component-card" *ngIf="shouldShowCard('checkbox boolean selection')">
+        <h3>{{ 'components.checkbox.name' | translate }}</h3>
+        <p class="component-description">{{ 'components.checkbox.description' | translate }}</p>
+        <div class="component-examples" style="flex-direction: column; align-items: flex-start;">
+          <ui-checkbox label="Accetto i termini"></ui-checkbox>
+          <ui-checkbox label="Iscriviti"></ui-checkbox>
+          <ui-checkbox label="Disabilitato" [disabled]="true"></ui-checkbox>
+        </div>
+        <div class="component-footer">
+          Attivo, disabilitato, indeterminate.
+        </div>
+      </div>
+
+      <!-- Toggle Card -->
+      <div class="component-card" *ngIf="shouldShowCard('toggle switch boolean')">
+        <h3>{{ 'components.toggle.name' | translate }}</h3>
+        <p class="component-description">{{ 'components.toggle.description' | translate }}</p>
+        <div class="component-examples" style="flex-direction: column; align-items: flex-start; gap: var(--space-3);">
+          <ui-toggle label="Notifiche" size="small"></ui-toggle>
+          <ui-toggle label="Modalità scura" size="medium"></ui-toggle>
+          <ui-toggle label="Tracciamento" size="large" [disabled]="true"></ui-toggle>
+        </div>
+        <div class="component-footer">
+          Small, medium, large, disabled.
+        </div>
+      </div>
+
+      <!-- Select Card -->
+      <div class="component-card" *ngIf="shouldShowCard('select dropdown')">
+        <h3>{{ 'components.select.name' | translate }}</h3>
+        <p class="component-description">{{ 'components.select.description' | translate }}</p>
+        <div class="component-examples" style="flex-direction: column; align-items: stretch;">
+          <ui-select label="Ruolo" placeholder="Seleziona"></ui-select>
+        </div>
+        <div class="component-footer">
+          Placeholder, required, error.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== LAYOUT SECTION ===== -->
+  <section id="layout">
+    <h2><app-icon icon="grid" [size]="20"></app-icon> <span class="highlight">{{ 'nav.layout' | translate }}</span></h2>
+    <p>{{ 'components.card.description' | translate }}</p>
+
+    <!-- Filter pills -->
+    <div class="filter-pills">
+      <button class="filter-pill" (click)="setSearchFilter('card')" [class.filter-pill--active]="searchValue() === 'card'">
+        <app-icon icon="grid" [size]="14"></app-icon> Card
+      </button>
+      <button class="filter-pill" (click)="setSearchFilter('container')" [class.filter-pill--active]="searchValue() === 'container'">
+        <app-icon icon="grid" [size]="14"></app-icon> Container
+      </button>
+      <button class="filter-pill" (click)="setSearchFilter('divider')" [class.filter-pill--active]="searchValue() === 'divider'">
+        <app-icon icon="arrow" [size]="14"></app-icon> Divider
+      </button>
+    </div>
+
+    <div class="components-grid">
+      <!-- Card Card -->
+      <div class="component-card" *ngIf="shouldShowCard('card elevation')">
+        <h3>{{ 'components.card.name' | translate }}</h3>
+        <p class="component-description">{{ 'components.card.description' | translate }}</p>
+        <div class="component-examples" style="flex-direction: column; align-items: stretch;">
+          <ui-card [elevation]="1" padding="medium" [hoverable]="true">
+            <h4 style="margin: 0;">Titolo Card</h4>
+            <p style="margin: 8px 0; color: var(--color-muted); font-size: var(--fs-sm);">Contenuto di esempio.</p>
+          </ui-card>
+        </div>
+        <div class="component-footer">
+          Card con elevazione, padding, hover.
+        </div>
+      </div>
+
+      <!-- Container Card -->
+      <div class="component-card" *ngIf="shouldShowCard('container max width')">
+        <h3>{{ 'components.container.name' | translate }}</h3>
+        <p class="component-description">{{ 'components.container.description' | translate }}</p>
+        <div class="component-examples" style="flex-direction: column; align-items: stretch;">
+          <ui-container maxWidth="md" [padding]="true">
+            <div style="background: rgba(245, 180, 42, 0.1); padding: 12px; border-radius: 6px; text-align: center; font-size: var(--fs-sm);">
+              Contenuto in container
+            </div>
+          </ui-container>
+        </div>
+        <div class="component-footer">
+          Layout responsivo xs/sm/md/lg/xl/full.
+        </div>
+      </div>
+
+      <!-- Divider Card -->
+      <div class="component-card" *ngIf="shouldShowCard('divider separator')">
+        <h3>{{ 'components.divider.name' | translate }}</h3>
+        <p class="component-description">{{ 'components.divider.description' | translate }}</p>
+        <div class="component-examples" style="flex-direction: column; align-items: stretch;">
+          <ui-divider orientation="horizontal" spacing="small" text="Sezione"></ui-divider>
+        </div>
+        <div class="component-footer">
+          Orizzontale, verticale con testo.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== FEEDBACK SECTION ===== -->
+  <section id="feedback">
+    <h2><app-icon icon="alert" [size]="20"></app-icon> <span class="highlight">{{ 'nav.feedback' | translate }}</span></h2>
+    <p>{{ 'components.alert.description' | translate }}</p>
+
+    <!-- Filter pills -->
+    <div class="filter-pills">
+      <button class="filter-pill" (click)="setSearchFilter('alert')" [class.filter-pill--active]="searchValue() === 'alert'">
+        <app-icon icon="alert" [size]="14"></app-icon> Alert
+      </button>
+      <button class="filter-pill" (click)="setSearchFilter('spinner')" [class.filter-pill--active]="searchValue() === 'spinner'">
+        <app-icon icon="loader" [size]="14"></app-icon> Spinner
+      </button>
+      <button class="filter-pill" (click)="setSearchFilter('progress')" [class.filter-pill--active]="searchValue() === 'progress'">
+        <app-icon icon="arrow" [size]="14"></app-icon> Progress
+      </button>
+      <button class="filter-pill" (click)="setSearchFilter('toast')" [class.filter-pill--active]="searchValue() === 'toast'">
+        <app-icon icon="bell" [size]="14"></app-icon> Toast
+      </button>
+    </div>
+
+    <div class="components-grid">
+      <!-- Alert Card -->
+      <div class="component-card" *ngIf="shouldShowCard('alert success error')">
+        <h3>{{ 'components.alert.name' | translate }}</h3>
+        <p class="component-description">{{ 'components.alert.description' | translate }}</p>
+        <div class="component-examples" style="flex-direction: column; align-items: stretch; gap: var(--space-2);">
+          <ui-alert type="success" title="Successo">Operazione completata.</ui-alert>
+          <ui-alert type="error" title="Errore">Qualcosa non va.</ui-alert>
+          <ui-alert type="warning" title="Attenzione">Controlla i dati.</ui-alert>
+        </div>
+        <div class="component-footer">
+          Success, error, warning, info.
+        </div>
+      </div>
+
+      <!-- Spinner Card -->
+      <div class="component-card" *ngIf="shouldShowCard('spinner loader loading')">
+        <h3>{{ 'components.spinner.name' | translate }}</h3>
+        <p class="component-description">{{ 'components.spinner.description' | translate }}</p>
+        <div class="component-examples">
+          <ui-spinner size="small" color="primary"></ui-spinner>
+          <ui-spinner size="medium" color="secondary"></ui-spinner>
+          <ui-spinner size="large" color="primary"></ui-spinner>
+        </div>
+        <div class="component-footer">
+          Small/medium/large con colori.
+        </div>
+      </div>
+
+      <!-- Progress Bar Card -->
+      <div class="component-card" *ngIf="shouldShowCard('progress bar')">
+        <h3>{{ 'components.progress.name' | translate }}</h3>
+        <p class="component-description">{{ 'components.progress.description' | translate }}</p>
+        <div class="component-examples" style="flex-direction: column; align-items: stretch; gap: var(--space-3);">
+          <ui-progress-bar [value]="25" [showLabel]="true"></ui-progress-bar>
+          <ui-progress-bar [value]="60" color="success" [striped]="true"></ui-progress-bar>
+          <ui-progress-bar [value]="85" color="warning" [striped]="true" [animated]="true"></ui-progress-bar>
+        </div>
+        <div class="component-footer">
+          Label, striped, animated.
+        </div>
+      </div>
+
+      <!-- Toast Card -->
+      <div class="component-card" *ngIf="shouldShowCard('toast notification')">
+        <h3>{{ 'components.toast.name' | translate }}</h3>
+        <p class="component-description">{{ 'components.toast.description' | translate }}</p>
+        <div class="component-examples" style="min-height: 100px;">
+          <ui-toast-container></ui-toast-container>
+        </div>
+        <div class="component-footer">
+          Integra ToastService per mostrare notifiche.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== INFORMATIONAL SECTION ===== -->
+  <section id="informational">
+    <h2><app-icon icon="info" [size]="20"></app-icon> <span class="highlight">{{ 'nav.informational' | translate }}</span></h2>
+    <p>{{ 'components.badge.description' | translate }}</p>
+
+    <!-- Filter pills -->
+    <div class="filter-pills">
+      <button class="filter-pill" (click)="setSearchFilter('badge')" [class.filter-pill--active]="searchValue() === 'badge'">
+        <app-icon icon="star" [size]="14"></app-icon> Badge
+      </button>
+      <button class="filter-pill" (click)="setSearchFilter('avatar')" [class.filter-pill--active]="searchValue() === 'avatar'">
+        <app-icon icon="users" [size]="14"></app-icon> Avatar
+      </button>
+      <button class="filter-pill" (click)="setSearchFilter('table')" [class.filter-pill--active]="searchValue() === 'table'">
+        <app-icon icon="table" [size]="14"></app-icon> Table
+      </button>
+    </div>
+
+    <div class="components-grid">
+      <!-- Badge Card -->
+      <div class="component-card" *ngIf="shouldShowCard('badge tag label')">
+        <h3>{{ 'components.badge.name' | translate }}</h3>
+        <p class="component-description">{{ 'components.badge.description' | translate }}</p>
+        <div class="component-examples">
+          <ui-badge variant="primary">Primary</ui-badge>
+          <ui-badge variant="success">Success</ui-badge>
+          <ui-badge variant="warning">Warning</ui-badge>
+          <ui-badge variant="danger">Danger</ui-badge>
+        </div>
+        <div class="component-footer">
+          Varianti, outlined, dot.
+        </div>
+      </div>
+
+      <!-- Avatar Card -->
+      <div class="component-card" *ngIf="shouldShowCard('avatar profile')">
+        <h3>{{ 'components.avatar.name' | translate }}</h3>
+        <p class="component-description">{{ 'components.avatar.description' | translate }}</p>
+        <div class="component-examples">
+          <ui-avatar alt="Mario Rossi" size="medium" shape="circle" status="online"></ui-avatar>
+          <ui-avatar alt="Giulia Bianchi" size="medium" shape="circle" status="away"></ui-avatar>
+          <ui-avatar alt="AB" size="medium" shape="square" status="offline"></ui-avatar>
+        </div>
+        <div class="component-footer">
+          Immagine, iniziali, forme, status.
+        </div>
+      </div>
+
+      <!-- Table Card -->
+      <div class="component-card" *ngIf="shouldShowCard('table data grid')">
+        <h3>{{ 'components.table.name' | translate }}</h3>
+        <p class="component-description">{{ 'components.table.description' | translate }}</p>
+        <div class="component-examples" style="flex-direction: column; align-items: stretch;">
+          <ui-table
+            [columns]="[
+              { field: 'name', header: 'Nome' },
+              { field: 'role', header: 'Ruolo' }
+            ]"
+            [data]="[
+              { name: 'Alice', role: 'Admin' },
+              { name: 'Bruno', role: 'Editor' }
+            ]"
+            [striped]="true"
+            [hoverable]="true">
+          </ui-table>
+        </div>
+        <div class="component-footer">
+          Ordinamento, striped, hoverable.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <div class="catalog-footer">
+    <p>
+      🐉 <strong>Wyrmrest UI Library</strong> – {{ 'footer.text' | translate }}
+    </p>
+    <p>
+      {{ 'footer.details' | translate }}
+    </p>
+  </div>
+</div>
+
+
+
+
+// ================================================================
+// FILE: src\app\app.component.scss
+// ================================================================
+
+@use './shared/ui-library/styles/mixins' as m;
+
+:host {
+  display: block;
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  transition: background var(--transition-base), color var(--transition-base);
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+.catalog-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--space-6);
+}
+
+/* ===== HERO SECTION ===== */
+.catalog-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: center;
+  margin-bottom: var(--space-8);
+  padding: var(--space-8);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, 
+    rgba(209, 74, 46, 0.08) 0%, 
+    rgba(245, 180, 42, 0.05) 50%, 
+    rgba(63, 90, 169, 0.08) 100%);
+  border: 1px solid rgba(209, 74, 46, 0.2);
+  @include m.elevation(2);
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(209, 74, 46, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+}
+
+.catalog-hero__content {
+  position: relative;
+  z-index: 1;
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0 0 var(--space-3) 0;
+    color: var(--color-text);
+
+    .highlight {
+      background: linear-gradient(90deg, var(--primary-500) 0%, var(--accent-500) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 900;
+    }
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: var(--color-muted);
+    line-height: 1.7;
+    margin: 0 0 var(--space-4) 0;
+    max-width: 90%;
+  }
+}
+
+.catalog-hero__cta {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin: var(--space-4) 0 0;
+
+  button {
+    padding: 14px 28px;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all var(--transition-base);
+    @include m.elevation(1);
+
+    &.primary {
+      background: linear-gradient(135deg, var(--primary-500) 0%, #c93e23 100%);
+      color: #fff;
+
+      &:hover {
+        @include m.elevation(3);
+        transform: translateY(-3px);
+        background: linear-gradient(135deg, #da5a38 0%, var(--primary-500) 100%);
+      }
+    }
+
+    &.secondary {
+      background: transparent;
+      border: 2px solid var(--primary-500);
+      color: var(--primary-500);
+
+      &:hover {
+        background: var(--primary-50);
+        border-color: #c93e23;
+        color: #c93e23;
+      }
+    }
+  }
+}
+
+.catalog-hero__visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8);
+  background: radial-gradient(circle at 50% 50%, rgba(209, 74, 46, 0.15) 0%, transparent 70%);
+  border-radius: var(--radius-lg);
+  min-height: 350px;
+  position: relative;
+  z-index: 1;
+
+  app-icon {
+    opacity: 0.9;
+    filter: drop-shadow(0 20px 40px rgba(209, 74, 46, 0.3));
+  }
+}
+
+/* ===== HEADER PRINCIPALE ===== */
+.catalog-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
+  background: linear-gradient(135deg, 
+    rgba(209, 74, 46, 0.04) 0%,
+    rgba(245, 180, 42, 0.02) 100%);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  @include m.elevation(1);
+}
+
+.catalog-header__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+
+  h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-text);
+    flex: 1;
+  }
+}
+
+/* ===== THEME TOGGLE ===== */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  color: var(--color-text);
+  position: relative;
+
+  &:hover {
+    border-color: var(--accent-500);
+    background: rgba(245, 180, 42, 0.08);
+    @include m.elevation(1);
+  }
+
+  app-icon {
+    font-size: 1.2rem;
+    transition: transform var(--transition-base);
+  }
+
+  &--dark app-icon {
+    transform: rotate(180deg);
+  }
+
+  .theme-toggle__track {
+    display: inline-flex;
+    width: 36px;
+    height: 20px;
+    background: var(--color-muted);
+    border-radius: var(--radius-full);
+    position: relative;
+    align-items: center;
+    transition: background var(--transition-base);
+  }
+
+  .theme-toggle__thumb {
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    left: 2px;
+    transition: left var(--transition-base);
+    @include m.elevation(1);
+  }
+
+  &--dark .theme-toggle__track {
+    background: var(--primary-500);
+  }
+
+  &--dark .theme-toggle__thumb {
+    left: 18px;
+  }
+
+  .theme-toggle__label {
+    min-width: 40px;
+    text-align: center;
+  }
+}
+
+/* ===== SEARCH CENTRALIZZATA ===== */
+.catalog-search-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+  @include m.elevation(1);
+
+  &:focus-within {
+    border-color: var(--primary-500);
+    @include m.elevation(2);
+    box-shadow: 0 0 0 3px rgba(209, 74, 46, 0.1);
+  }
+
+  .catalog-search__icon {
+    flex-shrink: 0;
+  }
+
+  .catalog-search__input {
+    flex: 1;
+    padding: 12px 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--color-text);
+    font-size: 1rem;
+    font-family: var(--font-family);
+
+    &::placeholder {
+      color: var(--color-muted);
+    }
+  }
+
+  .catalog-search__clear {
+    flex-shrink: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--color-muted);
+    transition: color var(--transition-base);
+    padding: 4px;
+    display: inline-flex;
+    align-items: center;
+
+    &:hover {
+      color: var(--primary-500);
+    }
+  }
+}
+
+/* ===== NAVIGAZIONE SEZIONI ===== */
+.catalog-nav {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.catalog-nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: all var(--transition-base);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  border: 1px solid transparent;
+
+  &:hover,
+  &.active {
+    color: var(--primary-500);
+    background: var(--primary-50);
+    border-color: var(--primary-500);
+    @include m.elevation(1);
+  }
+
+  app-icon {
+    font-size: 1rem;
+  }
+}
+
+/* ===== SECTION STYLING ===== */
+section {
+  margin: var(--space-8) 0;
+
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin: 0 0 var(--space-3) 0;
+    padding-bottom: var(--space-3);
+    border-bottom: 3px solid var(--primary-500);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    letter-spacing: -0.5px;
+
+    .highlight {
+      color: var(--accent-500);
+    }
+
+    app-icon {
+      font-size: 1.5rem;
+    }
+  }
+
+  > p {
+    color: var(--color-muted);
+    line-height: 1.6;
+    margin: var(--space-2) 0 var(--space-4) 0;
+    font-size: 1rem;
+  }
+}
+
+.section-divider {
+  margin: var(--space-8) 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-border) 50%, transparent 100%);
+}
+
+/* ===== COMPONENTS GRID ===== */
+.components-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-4) 0;
+}
+
+.component-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  @include m.elevation(1);
+  transition: all var(--transition-base);
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-500), transparent);
+    transition: left var(--transition-base);
+  }
+
+  &:hover {
+    border-color: var(--primary-500);
+    @include m.elevation(3);
+    transform: translateY(-6px);
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &[hidden] {
+    display: none;
+  }
+
+  h3 {
+    margin: 0 0 var(--space-2) 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .component-description {
+    color: var(--color-muted);
+    font-size: var(--fs-sm);
+    margin-bottom: var(--space-4);
+    line-height: 1.6;
+  }
+
+  .component-examples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: var(--space-4) 0;
+    padding: var(--space-4);
+    background: rgba(245, 180, 42, 0.08);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(245, 180, 42, 0.15);
+    min-height: 70px;
+    align-items: center;
+    justify-content: flex-start;
+
+    &[style*="flex-direction: column"] {
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+    }
+  }
+
+  .component-footer {
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--fs-sm);
+    color: var(--color-muted);
+  }
+}
+
+/* ===== FOOTER ===== */
+.catalog-footer {
+  margin-top: var(--space-8);
+  padding: var(--space-6);
+  text-align: center;
+  border-top: 2px solid var(--color-border);
+  background: linear-gradient(135deg, rgba(209, 74, 46, 0.05) 0%, rgba(63, 90, 169, 0.05) 100%);
+  border-radius: var(--radius-lg);
+  color: var(--color-muted);
+
+  p {
+    margin: 0 0 var(--space-2) 0;
+    line-height: 1.7;
+
+    strong {
+      color: var(--primary-500);
+      font-weight: 700;
+    }
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .catalog-container {
+    padding: var(--space-4);
+  }
+
+  .catalog-hero {
+    padding: var(--space-4);
+  }
+
+  .catalog-header {
+    padding: var(--space-4);
+  }
+
+  .catalog-header__top {
+    flex-direction: column;
+    align-items: flex-start;
+
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .catalog-nav {
+    justify-content: flex-start;
+  }
+
+  .components-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .catalog-hero h1 {
+    font-size: 2rem;
+  }
+
+  .catalog-search-wrapper {
+    .catalog-search__input {
+      font-size: 0.9rem;
+
+      &::placeholder {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\app.component.spec.ts
+// ================================================================
+
+import { TestBed } from '@angular/core/testing';
+import { AppComponent } from './app.component';
+
+describe('AppComponent', () => {
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [AppComponent],
+    }).compileComponents();
+  });
+
+  it('should create the app', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
+  });
+
+  it(`should have the 'wyrmrest_frontend' title`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('wyrmrest_frontend');
+  });
+
+  it('should render title', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, wyrmrest_frontend');
+  });
+});
+
+
+
+
+// ================================================================
+// FILE: src\app\app.component.ts
+// ================================================================
+
+import { Component, Renderer2, Inject, signal, computed, inject } from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { UiLibraryModule } from './shared/ui-library/ui-library.module';
+import { IconComponent } from './shared/components/icon/icon.component';
+import { TranslatePipe } from './shared/pipes/translate.pipe';
+import { TranslationService } from './shared/services/translation.service';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [
+    CommonModule,
+    TranslatePipe,
+    UiLibraryModule,
+    IconComponent
+  ],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  // ===== SERVICES =====
+  private readonly translationService = inject(TranslationService);
+
+  // ===== SIGNALS =====
+  readonly title = 'Wyrmrest UI Library';
+  readonly isDarkMode = signal(false);
+  readonly searchValue = signal<string>('');
+  readonly activeSection = signal<string | null>(null);
+  readonly currentLanguage = this.translationService.getLanguage();
+
+  readonly searchValueLower = computed(() => 
+    this.searchValue().toLowerCase().trim()
+  );
+
+  // ===== CONSTRUCTOR =====
+  constructor(
+    @Inject(DOCUMENT) private readonly doc: Document,
+    private readonly r: Renderer2
+  ) {
+    this.initTheme();
+  }
+
+  // ===== THEME INITIALIZATION =====
+  private initTheme(): void {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('wyrmrest-theme');
+    const isDark = savedTheme ? savedTheme === 'dark' : prefersDark;
+    this.setTheme(isDark);
+  }
+
+  // ===== THEME TOGGLE =====
+  toggleTheme(): void {
+    const newDarkMode = !this.isDarkMode();
+    this.setTheme(newDarkMode);
+    localStorage.setItem('wyrmrest-theme', newDarkMode ? 'dark' : 'light');
+  }
+
+  private setTheme(isDark: boolean): void {
+    this.isDarkMode.set(isDark);
+    
+    if (isDark) {
+      this.r.addClass(this.doc.body, 'theme-dark');
+      this.r.removeClass(this.doc.body, 'theme-light');
+    } else {
+      this.r.addClass(this.doc.body, 'theme-light');
+      this.r.removeClass(this.doc.body, 'theme-dark');
+    }
+    
+    this.r.addClass(this.doc.body, 'wyrmrest');
+  }
+
+  // ===== LANGUAGE TOGGLE =====
+  toggleLanguage(): void {
+    this.translationService.toggleLanguage();
+  }
+
+  // ===== SEARCH FUNCTIONALITY =====
+  onSearchInput(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      this.searchValue.set(target.value);
+    }
+  }
+
+  shouldShowCard(keywords: string): boolean {
+    const search = this.searchValueLower();
+    if (!search) return true;
+    return keywords.toLowerCase().includes(search);
+  }
+
+  clearSearch(): void {
+    this.searchValue.set('');
+  }
+
+  setSearchFilter(keyword: string): void {
+    if (this.searchValue() === keyword) {
+      this.searchValue.set('');
+    } else {
+      this.searchValue.set(keyword);
+    }
+  }
+
+  // ===== NAVIGATION =====
+  scrollToSection(sectionId: string): void {
+    this.activeSection.set(sectionId);
+    setTimeout(() => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 0);
+  }
+
+  isSectionActive(sectionId: string): boolean {
+    return this.activeSection() === sectionId;
+  }
+
+  isSearchActive(): boolean {
+    return this.searchValueLower().length > 0;
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\app.config.ts
+// ================================================================
+
+import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { provideRouter } from '@angular/router';
+
+import { routes } from './app.routes';
+
+export const appConfig: ApplicationConfig = {
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]
+};
+
+
+
+
+// ================================================================
+// FILE: src\app\app.routes.ts
+// ================================================================
+
+import { Routes } from '@angular/router';
+
+export const routes: Routes = [];
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\components\icon\icon.component.ts
+// ================================================================
+
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HugeiconsIconComponent } from '@hugeicons/angular';
+import { WYRMREST_ICONS, IconKey } from '../../services/icon.service';
+
+@Component({
+  selector: 'app-icon',
+  standalone: true,
+  imports: [CommonModule, HugeiconsIconComponent],
+  template: `
+    <hugeicons-icon
+      *ngIf="iconObject"
+      [icon]="iconObject"
+      [size]="size"
+      [strokeWidth]="strokeWidth"
+      [class]="customClass"
+      [attr.style]="'color:' + color"
+    ></hugeicons-icon>
+  `,
+  styles: [`
+    :host {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  `]
+})
+export class IconComponent {
+  @Input() icon: IconKey = 'home';
+  @Input() size: number = 24;
+  @Input() color: string = 'currentColor';
+  @Input() strokeWidth: number = 2;
+  @Input() customClass: string = '';
+
+  get iconObject() {
+    return WYRMREST_ICONS[this.icon];
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\pipes\translate.pipe.ts
+// ================================================================
+
+import { Pipe, PipeTransform, inject } from '@angular/core';
+import { TranslationService } from '../services/translation.service';
+
+@Pipe({
+  name: 'translate',
+  standalone: true
+})
+export class TranslatePipe implements PipeTransform {
+  private translationService = inject(TranslationService);
+
+  transform(key: string): string {
+    return this.translationService.get(key);
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\services\icon.service.ts
+// ================================================================
+
+// src/app/shared/services/icon.service.ts
+import {
+  Home01Icon,
+  Search01Icon,
+  Settings01Icon,
+  Notification01Icon, // Corretto (era BellIcon)
+  CheckmarkCircleIcon, // Corretto (era CheckmarkCircle01Icon)
+  AlertCircleIcon, // Corretto (era AlertCircle01Icon)
+  CircleIcon,
+  Cancel01Icon, // Corretto (era CloseIcon)
+  Add01Icon, // Corretto (era Plus01Icon)
+  Edit02Icon,
+  Delete01Icon, // Corretto (era Trash01Icon)
+  Download01Icon, // Corretto (era ChartDownloadIcon)
+  Layers01Icon,
+  Sun01Icon,
+  Moon01Icon,
+  Menu01Icon,
+  StarIcon, // Corretto (era Star01Icon)
+  UserGroupIcon, // Corretto (era Users01Icon)
+  LayoutGridIcon,
+  TypeCursorIcon, // Corretto (era Type01Icon)
+  ToggleOnIcon,
+  Tick01Icon, // Corretto (era CheckIcon)
+  Edit04Icon,
+  TableIcon,
+  ArrowRight01Icon,
+  Share01Icon,
+  CallDisabled02Icon,
+  AlertDiamondIcon, // Corretto (era AlertTriangleIcon)
+  RankingIcon,
+  EyeIcon, // Corretto (era Eye01Icon)
+  ViewOffIcon, // Corretto (era EyeOff01Icon)
+  LockIcon, // Corretto (era Lock01Icon)
+  FilterIcon, // Corretto (era Filter01Icon)
+  Sorting01Icon, // Corretto (era Sort01Icon)
+  Copy01Icon,
+  Upload01Icon,
+  Calendar01Icon,
+  Clock01Icon,
+  SmartPhone01Icon, // Corretto (era Mobile01Icon)
+  LaptopIcon, // Corretto (era Laptop01Icon)
+  ComputerIcon, // Corretto (era Monitor01Icon)
+  HeadphonesIcon, // Corretto (era Headphone01Icon)
+  VolumeHighIcon, // Corretto (era Volume01Icon)
+  Mic01Icon,
+  MicOff01Icon,
+  PlayIcon,
+  PauseIcon,
+  Folder01Icon,
+  Mail01Icon,
+  Pen01Icon,
+  Link01Icon,
+  Archive01Icon,
+  Xls01Icon,
+  Cash02Icon,
+  Copy02Icon,
+  Share02Icon,
+  MoreVerticalIcon,
+  MoreHorizontalIcon,
+  Logout01Icon,
+  Login01Icon,
+  MailSend01Icon, // Aggiunto per 'send' e 'message'
+  ListViewIcon, // Aggiunto per 'list'
+  MusicNote01Icon, // Aggiunto per 'music'
+} from '@hugeicons/core-free-icons';
+
+export const WYRMREST_ICONS = {
+  // Navigation & UI
+  home: Home01Icon,
+  search: Search01Icon,
+  settings: Settings01Icon,
+  bell: Notification01Icon,
+  menu: Menu01Icon,
+  close: Cancel01Icon,
+  download: Download01Icon,
+  share: Share01Icon,
+  more: MoreVerticalIcon,
+  moreHorizontal: MoreHorizontalIcon,
+  logout: Logout01Icon, // Corretto (typo LogOut)
+  login: Login01Icon, // Corretto (typo LogIn)
+
+  // Status & Feedback
+  success: CheckmarkCircleIcon,
+  error: AlertCircleIcon,
+  warning: AlertDiamondIcon,
+  info: CircleIcon,
+  alert: AlertDiamondIcon,
+  loader: Layers01Icon,
+
+  // Actions
+  plus: Add01Icon,
+  edit: Edit02Icon,
+  delete: Delete01Icon,
+  star: StarIcon,
+  trash: Delete01Icon,
+  copy: Copy01Icon,
+  link: Link01Icon,
+  archive: Archive01Icon,
+  send: MailSend01Icon,
+
+  // Theme
+  sun: Sun01Icon,
+  moon: Moon01Icon,
+
+  // Components showcase
+  users: UserGroupIcon,
+  grid: LayoutGridIcon,
+  list: ListViewIcon,
+  type: TypeCursorIcon,
+  toggle: ToggleOnIcon,
+  checkbox: Tick01Icon,
+  input: Edit04Icon,
+  table: TableIcon,
+  arrow: ArrowRight01Icon,
+
+  // Vision
+  eye: EyeIcon,
+  eyeOff: ViewOffIcon,
+
+  // Security
+  lock: LockIcon,
+
+  // Filtering & Sorting
+  filter: FilterIcon,
+  sort: Sorting01Icon,
+
+  // File & Folder
+  folder: Folder01Icon,
+  upload: Upload01Icon,
+  mail: Mail01Icon,
+
+  // Communication
+  message: MailSend01Icon,
+
+  // Date & Time
+  calendar: Calendar01Icon,
+  clock: Clock01Icon,
+
+  // Devices
+  mobile: SmartPhone01Icon,
+  laptop: LaptopIcon,
+  monitor: ComputerIcon,
+
+  // Audio
+  headphone: HeadphonesIcon,
+  volume: VolumeHighIcon,
+  mic: Mic01Icon,
+  micOff: MicOff01Icon,
+
+  // Media
+  music: MusicNote01Icon,
+  play: PlayIcon, // Corretto (era Play01Icon)
+  pause: PauseIcon, // Corretto (era Pause01Icon)
+};
+
+export type IconKey = keyof typeof WYRMREST_ICONS;
+
+
+
+// ================================================================
+// FILE: src\app\shared\services\translation.service.ts
+// ================================================================
+
+import { Injectable, signal } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class TranslationService {
+  private translations = {
+    it: {
+      'catalog.title': 'Catalogo Componenti',
+      'catalog.search': 'Cerca componenti (es. button, select, table, input...)',
+      'catalog.clearSearch': 'Cancella ricerca',
+      'hero.title': 'UI Components',
+      'hero.subtitle': 'Wyrmrest',
+      'hero.description': 'Una libreria di componenti Angular completa e pronta all\'uso, costruita con design tokens, tema scuro/chiaro, accessibilità integrata e performance ottimizzata.',
+      'hero.explore': 'Inizia a esplorare',
+      'hero.documentation': 'Documentazione',
+      'nav.actions': 'Actions',
+      'nav.inputs': 'Inputs',
+      'nav.layout': 'Layout',
+      'nav.feedback': 'Feedback',
+      'nav.informational': 'Informational',
+      'components.button.name': 'Button',
+      'components.button.description': 'Pulsante con varianti, dimensioni, stati e icone.',
+      'components.link.name': 'Link',
+      'components.link.description': 'Collegamenti esterni e interni con underline opzionale.',
+      'components.iconButton.name': 'IconButton',
+      'components.iconButton.description': 'Pulsante icona con tooltip e ripple effect.',
+      'components.fab.name': 'Floating Action Button',
+      'components.fab.description': 'Pulsante flottante per azione primaria.',
+      'components.textInput.name': 'TextInput',
+      'components.textInput.description': 'Campo testo con label, hint, error e icone.',
+      'components.checkbox.name': 'Checkbox',
+      'components.checkbox.description': 'Selettore booleano con stato indeterminate.',
+      'components.toggle.name': 'Toggle',
+      'components.toggle.description': 'Interruttore on/off in più dimensioni.',
+      'components.select.name': 'Select',
+      'components.select.description': 'Selettore a menu con placeholder e validazione.',
+      'components.card.name': 'Card',
+      'components.card.description': 'Contenitore con header, contenuto e footer.',
+      'components.container.name': 'Container',
+      'components.container.description': 'Contenitore responsivo con max-width.',
+      'components.divider.name': 'Divider',
+      'components.divider.description': 'Separatore orizzontale/verticale con testo.',
+      'components.alert.name': 'Alert',
+      'components.alert.description': 'Messaggi informativi per status e avvisi.',
+      'components.spinner.name': 'Spinner',
+      'components.spinner.description': 'Indicatore di caricamento in vari size/colori.',
+      'components.progress.name': 'Progress Bar',
+      'components.progress.description': 'Avanzamento con valore e animazione.',
+      'components.toast.name': 'Toast Container',
+      'components.toast.description': 'Contenitore notifiche non-modale.',
+      'components.badge.name': 'Badge',
+      'components.badge.description': 'Etichette compatte per stato e conteggio.',
+      'components.avatar.name': 'Avatar',
+      'components.avatar.description': 'Immagini profilo con iniziali e stato.',
+      'components.table.name': 'Table',
+      'components.table.description': 'Tabella con colonne ordinabili e hover.',
+      'footer.text': 'Una collezione completa di componenti Angular per costruire interfacce moderne.',
+      'footer.details': 'Tema scuro/chiaro dinamico, design tokens centralizzati, accessibilità e performance ottimizzate.'
+    },
+    en: {
+      'catalog.title': 'Component Catalog',
+      'catalog.search': 'Search components (e.g. button, select, table, input...)',
+      'catalog.clearSearch': 'Clear search',
+      'hero.title': 'UI Components',
+      'hero.subtitle': 'Wyrmrest',
+      'hero.description': 'A complete and ready-to-use Angular component library, built with design tokens, light/dark theme, integrated accessibility and optimized performance.',
+      'hero.explore': 'Start exploring',
+      'hero.documentation': 'Documentation',
+      'nav.actions': 'Actions',
+      'nav.inputs': 'Inputs',
+      'nav.layout': 'Layout',
+      'nav.feedback': 'Feedback',
+      'nav.informational': 'Informational',
+      'components.button.name': 'Button',
+      'components.button.description': 'Button with variants, sizes, states and icons.',
+      'components.link.name': 'Link',
+      'components.link.description': 'External and internal links with optional underline.',
+      'components.iconButton.name': 'IconButton',
+      'components.iconButton.description': 'Icon button with tooltip and ripple effect.',
+      'components.fab.name': 'Floating Action Button',
+      'components.fab.description': 'Floating button for primary action.',
+      'components.textInput.name': 'TextInput',
+      'components.textInput.description': 'Text field with label, hint, error and icons.',
+      'components.checkbox.name': 'Checkbox',
+      'components.checkbox.description': 'Boolean selector with indeterminate state.',
+      'components.toggle.name': 'Toggle',
+      'components.toggle.description': 'On/off switch in multiple sizes.',
+      'components.select.name': 'Select',
+      'components.select.description': 'Menu selector with placeholder and validation.',
+      'components.card.name': 'Card',
+      'components.card.description': 'Container with header, content and footer.',
+      'components.container.name': 'Container',
+      'components.container.description': 'Responsive container with max-width.',
+      'components.divider.name': 'Divider',
+      'components.divider.description': 'Horizontal/vertical separator with text.',
+      'components.alert.name': 'Alert',
+      'components.alert.description': 'Informational messages for status and warnings.',
+      'components.spinner.name': 'Spinner',
+      'components.spinner.description': 'Loading indicator in various sizes/colors.',
+      'components.progress.name': 'Progress Bar',
+      'components.progress.description': 'Progress with value and animation.',
+      'components.toast.name': 'Toast Container',
+      'components.toast.description': 'Non-modal notification container.',
+      'components.badge.name': 'Badge',
+      'components.badge.description': 'Compact labels for status and count.',
+      'components.avatar.name': 'Avatar',
+      'components.avatar.description': 'Profile images with initials and status.',
+      'components.table.name': 'Table',
+      'components.table.description': 'Table with sortable columns and hover.',
+      'footer.text': 'A complete collection of Angular components for building modern interfaces.',
+      'footer.details': 'Dynamic light/dark theme, centralized design tokens, accessibility and optimized performance.'
+    }
+  };
+
+  readonly currentLanguage = signal<'it' | 'en'>('it');
+
+  constructor() {
+    const saved = localStorage.getItem('app-language');
+    if (saved === 'en' || saved === 'it') {
+      this.currentLanguage.set(saved);
+    }
+  }
+
+  /**
+   * Ottiene una stringa tradotta dalla chiave
+   * @param key - Chiave della traduzione (es. 'hero.title')
+   * @returns La stringa tradotta
+   */
+  get(key: string): string {
+    const keys = key.split('.');
+    let value: any = this.translations[this.currentLanguage()];
+    
+    for (const k of keys) {
+      value = value?.[k];
+    }
+    
+    return value || key;
+  }
+
+  /**
+   * Imposta la lingua corrente
+   * @param lang - Lingua ('it' o 'en')
+   */
+  setLanguage(lang: 'it' | 'en'): void {
+    this.currentLanguage.set(lang);
+    localStorage.setItem('app-language', lang);
+  }
+
+  /**
+   * Alterna la lingua tra italiano e inglese
+   */
+  toggleLanguage(): void {
+    const newLang = this.currentLanguage() === 'it' ? 'en' : 'it';
+    this.setLanguage(newLang);
+  }
+
+  /**
+   * Ottiene la lingua corrente come signal
+   */
+  getLanguage() {
+    return this.currentLanguage;
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\actions\button\button.component.html
+// ================================================================
+
+<button
+  [type]="type"
+  [class]="classes.join(' ')"
+  [disabled]="disabled || loading"
+  (click)="onClickHandler($event)"
+  uiRipple>
+  
+  @if (loading) {
+    <span class="ui-button__spinner"></span>
+  }
+  
+  @if (iconLeft && !loading) {
+    <span class="ui-button__icon ui-button__icon--left">{{ iconLeft }}</span>
+  }
+  
+  <span class="ui-button__content">
+    <ng-content></ng-content>
+  </span>
+  
+  @if (iconRight && !loading) {
+    <span class="ui-button__icon ui-button__icon--right">{{ iconRight }}</span>
+  }
+</button>
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\actions\button\button.component.scss
+// ================================================================
+
+/* src/app/shared/ui-library/components/actions/button/button.component.scss */
+@use '../../../styles/theme' as *;
+@use '../../../styles/mixins' as m;
+
+.ui-button {
+  --btn-bg: var(--primary-500);
+  --btn-bg-hover: var(--primary-600);
+  --btn-fg: #fff;
+  --btn-radius: var(--radius-md);
+  --btn-padding-y: 8px;
+  --btn-padding-x: 14px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  border: 1px solid transparent;
+  border-radius: var(--btn-radius);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  cursor: pointer;
+  transition: background var(--transition-base), box-shadow var(--transition-base), transform var(--transition-fast);
+  @include m.elevation(1);
+
+  &:hover { background: var(--btn-bg-hover); }
+  &:active { transform: translateY(1px); }
+  &:disabled,
+  &.ui-button--loading {
+    opacity: .6;
+    cursor: not-allowed;
+    @include m.elevation(0);
+  }
+
+  &--full-width { width: 100%; }
+
+  /* Sizes */
+  &--small { --btn-padding-y: 6px; --btn-padding-x: 12px; font-size: var(--fs-sm); }
+  &--medium { font-size: var(--fs-base); }
+  &--large { --btn-padding-y: 12px; --btn-padding-x: 18px; font-size: var(--fs-lg); }
+
+  /* Variants */
+  &--primary   { --btn-bg: var(--primary-500); --btn-bg-hover: var(--primary-600); }
+  &--secondary { --btn-bg: var(--secondary-500); --btn-bg-hover: var(--secondary-600); }
+  &--success   { --btn-bg: var(--success-500);   --btn-bg-hover: #12893e; }
+  &--warning   { --btn-bg: var(--warning-500);   --btn-bg-hover: #b45309; }
+  &--danger    { --btn-bg: var(--danger-500);    --btn-bg-hover: var(--danger-600); }
+  &--info      { --btn-bg: var(--info-500);      --btn-bg-hover: #0891b2; }
+
+  .ui-button__spinner {
+    width: 1em; height: 1em; border: 2px solid rgba(255,255,255,.35);
+    border-top-color: currentColor; border-radius: 50%; animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Icon Button */
+.ui-icon-button {
+  display: inline-grid; place-items: center;
+  width: 36px; height: 36px; border-radius: var(--radius-full);
+  background: var(--primary-50); color: var(--primary-600); border: 1px solid var(--color-border);
+  transition: background var(--transition-base), color var(--transition-base), box-shadow var(--transition-base);
+  @include m.elevation(0);
+
+  &:hover { background: var(--primary-50); @include m.elevation(1); }
+  &:disabled { opacity: .6; cursor: not-allowed; }
+
+  &--secondary { background: #f3f4f6; color: var(--secondary-600); }
+  &--danger    { background: var(--danger-50); color: var(--danger-600); }
+}
+
+/* FAB */
+.ui-fab {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  border: none; color: #fff; background: var(--primary-500);
+  border-radius: var(--radius-full); padding: 12px 16px; @include m.elevation(2);
+  &:hover { background: var(--primary-600); }
+  &--extended { padding: 12px 18px; }
+  &--small { padding: 8px 10px; }
+  &--large { padding: 14px 20px; }
+}
+
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\actions\button\button.component.ts
+// ================================================================
+
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ButtonVariant, ButtonSize } from '../../../models/component-theme.model';
+import { RippleDirective } from '../../../directives/ripple.directive';
+
+@Component({
+  selector: 'ui-button',
+  standalone: true,
+  imports: [CommonModule, RippleDirective],
+  templateUrl: './button.component.html',
+  styleUrls: ['./button.component.scss']
+})
+export class ButtonComponent {
+  @Input() variant: ButtonVariant = 'primary';
+  @Input() size: ButtonSize = 'medium';
+  @Input() disabled = false;
+  @Input() loading = false;
+  @Input() fullWidth = false;
+  @Input() type: 'button' | 'submit' | 'reset' = 'button';
+  @Input() iconLeft?: string;
+  @Input() iconRight?: string;
+  
+  @Output() clicked = new EventEmitter<MouseEvent>();
+
+  onClickHandler(event: MouseEvent): void {
+    if (!this.disabled && !this.loading) {
+      this.clicked.emit(event);
+    }
+  }
+
+  get classes(): string[] {
+    return [
+      'ui-button',
+      'ui-button--' + this.variant,
+      'ui-button--' + this.size,
+      this.fullWidth ? 'ui-button--full-width' : '',
+      this.loading ? 'ui-button--loading' : ''
+    ].filter(Boolean);
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\actions\fab\fab.component.html
+// ================================================================
+
+<button
+  [class]="classes.join(' ')"
+  [uiTooltip]="tooltip || ''"
+  (click)="onClickHandler($event)"
+  uiRipple>
+  <span class="ui-fab__icon">{{ icon }}</span>
+  @if (extended) {
+    <span class="ui-fab__label">
+      <ng-content></ng-content>
+    </span>
+  }
+</button>
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\actions\fab\fab.component.scss
+// ================================================================
+
+@use '../../../styles/mixins' as m;
+
+.ui-fab {
+  // Stili verranno generati successivamente
+}
+
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\actions\fab\fab.component.ts
+// ================================================================
+
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RippleDirective } from '../../../directives/ripple.directive';
+import { TooltipDirective } from '../../../directives/tooltip.directive';
+
+@Component({
+  selector: 'ui-fab',
+  standalone: true,
+  imports: [CommonModule, RippleDirective, TooltipDirective],
+  templateUrl: './fab.component.html',
+  styleUrls: ['./fab.component.scss']
+})
+export class FabComponent {
+  @Input() icon!: string;
+  @Input() position: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left' = 'bottom-right';
+  @Input() size: 'small' | 'medium' | 'large' = 'medium';
+  @Input() tooltip?: string;
+  @Input() extended = false;
+  
+  @Output() clicked = new EventEmitter<MouseEvent>();
+
+  onClickHandler(event: MouseEvent): void {
+    this.clicked.emit(event);
+  }
+
+  get classes(): string[] {
+    return [
+      'ui-fab',
+      'ui-fab--',
+      'ui-fab--',
+      this.extended ? 'ui-fab--extended' : ''
+    ].filter(Boolean);
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\actions\icon-button\icon-button.component.html
+// ================================================================
+
+<button
+  [class]="classes.join(' ')"
+  [disabled]="disabled"
+  [uiTooltip]="tooltip || ''"
+  (click)="onClickHandler($event)"
+  uiRipple>
+  <span class="ui-icon-button__icon">{{ icon }}</span>
+</button>
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\actions\icon-button\icon-button.component.scss
+// ================================================================
+
+@use '../../../styles/mixins' as m;
+
+.ui-icon-button {
+  // Stili verranno generati successivamente
+}
+
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\actions\icon-button\icon-button.component.ts
+// ================================================================
+
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RippleDirective } from '../../../directives/ripple.directive';
+import { TooltipDirective } from '../../../directives/tooltip.directive';
+import { ButtonVariant, ButtonSize } from '../../../models/component-theme.model';
+
+@Component({
+  selector: 'ui-icon-button',
+  standalone: true,
+  imports: [CommonModule, RippleDirective, TooltipDirective],
+  templateUrl: './icon-button.component.html',
+  styleUrls: ['./icon-button.component.scss']
+})
+export class IconButtonComponent {
+  @Input() icon!: string;
+  @Input() variant: ButtonVariant = 'primary';
+  @Input() size: ButtonSize = 'medium';
+  @Input() disabled = false;
+  @Input() rounded = true;
+  @Input() tooltip?: string;
+  
+  @Output() clicked = new EventEmitter<MouseEvent>();
+
+  onClickHandler(event: MouseEvent): void {
+    if (!this.disabled) {
+      this.clicked.emit(event);
+    }
+  }
+
+  get classes(): string[] {
+    return [
+      'ui-icon-button',
+      'ui-icon-button--',
+      'ui-icon-button--',
+      this.rounded ? 'ui-icon-button--rounded' : ''
+    ].filter(Boolean);
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\actions\link\link.component.html
+// ================================================================
+
+@if (isExternal) {
+  <a
+    [href]="href"
+    [target]="target"
+    [class.ui-link--underline]="underline"
+    [class.ui-link--disabled]="disabled"
+    class="ui-link">
+    <ng-content></ng-content>
+  </a>
+} @else {
+  <a
+    [routerLink]="routerLink"
+    [class.ui-link--underline]="underline"
+    [class.ui-link--disabled]="disabled"
+    class="ui-link">
+    <ng-content></ng-content>
+  </a>
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\actions\link\link.component.scss
+// ================================================================
+
+@use '../../../styles/mixins' as m;
+
+.ui-link {
+  // Stili verranno generati successivamente
+}
+
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\actions\link\link.component.ts
+// ================================================================
+
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
+@Component({
+  selector: 'ui-link',
+  standalone: true,
+  imports: [CommonModule, RouterModule],
+  templateUrl: './link.component.html',
+  styleUrls: ['./link.component.scss']
+})
+export class LinkComponent {
+  @Input() href?: string;
+  @Input() routerLink?: string | any[];
+  @Input() target: '_blank' | '_self' | '_parent' | '_top' = '_self';
+  @Input() underline = true;
+  @Input() disabled = false;
+
+  get isExternal(): boolean {
+    return !!this.href;
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\feedback\alert\alert.component.html
+// ================================================================
+
+<div [class]="classes.join(' ')">
+  <span class="ui-alert__icon">{{ defaultIcon }}</span>
+  
+  <div class="ui-alert__content">
+    @if (title) {
+      <strong class="ui-alert__title">{{ title }}</strong>
+    }
+    <div class="ui-alert__message">
+      <ng-content></ng-content>
+    </div>
+  </div>
+  
+  @if (closeable) {
+    <button class="ui-alert__close" (click)="close()">✕</button>
+  }
+</div>
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\feedback\alert\alert.component.scss
+// ================================================================
+
+@use '../../../styles/mixins' as m;
+
+/* Alert */
+.ui-alert {
+  display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-3);
+  align-items: start; padding: var(--space-3); border-radius: var(--radius-md); border: 1px solid var(--color-border);
+  &--success { background: var(--success-50); }
+  &--error   { background: var(--danger-50); }
+  &--warning { background: var(--warning-50); }
+  &--info    { background: var(--info-50); }
+  &__icon { font-weight: 600; }
+  &__title { margin: 0 0 4px 0; }
+  &__close { background: transparent; border: none; cursor: pointer; color: var(--color-muted); }
+}
+
+/* Spinner */
+.ui-spinner {
+  &__circle {
+    width: 28px; height: 28px; border: 3px solid rgba(0,0,0,.1);
+    border-top-color: currentColor; border-radius: 50%; animation: spin 1s linear infinite;
+  }
+  &--small .ui-spinner__circle { width: 18px; height: 18px; }
+  &--large .ui-spinner__circle { width: 36px; height: 36px; }
+  &--primary { color: var(--primary-500); }
+  &--secondary { color: var(--secondary-500); }
+  &--white { color: #fff; }
+  &--overlay { position: fixed; inset: 0; display: grid; place-items: center; background: rgba(0,0,0,.1); }
+}
+
+/* Progress Bar */
+.ui-progress-bar {
+  &__track {
+    width: 100%; height: 10px; background: #e5e7eb; border-radius: var(--radius-full); overflow: hidden;
+  }
+  &__fill {
+    height: 100%; display: grid; place-items: center; color: #fff; font-size: var(--fs-sm);
+    background: var(--primary-500); transition: width var(--transition-base) ease;
+    &--success { background: var(--success-500); }
+    &--warning { background: var(--warning-500); }
+    &--danger  { background: var(--danger-500); }
+    &--striped { background-image: linear-gradient(45deg, rgba(255,255,255,.25) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.25) 50%, rgba(255,255,255,.25) 75%, transparent 75%, transparent); background-size: 1rem 1rem; }
+    &--animated { animation: pb 1s linear infinite; }
+  }
+}
+@keyframes pb { 0% { background-position: 0 0; } 100% { background-position: 1rem 0; } }
+
+/* Toasts */
+.ui-toast-container {
+  position: fixed; right: 16px; bottom: 16px; display: grid; gap: var(--space-2); z-index: 9998;
+}
+.ui-toast {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--space-2);
+  background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-3); @include m.elevation(2);
+  &--success { border-color: var(--success-500); }
+  &--error   { border-color: var(--danger-500); }
+  &--warning { border-color: var(--warning-500); }
+  &--info    { border-color: var(--info-500); }
+  &__icon { font-weight: 600; }
+  &__message { }
+  &__close { background: transparent; border: none; cursor: pointer; color: var(--color-muted); }
+}
+
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\feedback\alert\alert.component.ts
+// ================================================================
+
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AlertType } from '../../../models/component-theme.model';
+
+@Component({
+  selector: 'ui-alert',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './alert.component.html',
+  styleUrls: ['./alert.component.scss']
+})
+export class AlertComponent {
+  @Input() type: AlertType = 'info';
+  @Input() title?: string;
+  @Input() closeable = false;
+  @Input() icon?: string;
+  
+  @Output() closed = new EventEmitter<void>();
+
+  get defaultIcon(): string {
+    const icons: Record<AlertType, string> = {
+      success: '✓',
+      error: '✕',
+      warning: '⚠',
+      info: 'ℹ'
+    };
+    return this.icon || icons[this.type];
+  }
+
+  close(): void {
+    this.closed.emit();
+  }
+
+  get classes(): string[] {
+    return [
+      'ui-alert',
+      'ui-alert--'
+    ];
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\feedback\progress-bar\progress-bar.component.html
+// ================================================================
+
+<div class="ui-progress-bar">
+  <div class="ui-progress-bar__track">
+    <div
+      [class]="barClasses.join(' ')"
+      [style.width.%]="percentage">
+      @if (showLabel) {
+        <span class="ui-progress-bar__label">{{ percentage.toFixed(0) }}%</span>
+      }
+    </div>
+  </div>
+</div>
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\feedback\progress-bar\progress-bar.component.scss
+// ================================================================
+
+@use '../../../styles/mixins' as m;
+
+.ui-progress-bar {
+  // Stili verranno generati successivamente
+}
+
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\feedback\progress-bar\progress-bar.component.ts
+// ================================================================
+
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'ui-progress-bar',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './progress-bar.component.html',
+  styleUrls: ['./progress-bar.component.scss']
+})
+export class ProgressBarComponent {
+  @Input() value = 0;
+  @Input() max = 100;
+  @Input() showLabel = false;
+  @Input() color: 'primary' | 'success' | 'warning' | 'danger' = 'primary';
+  @Input() striped = false;
+  @Input() animated = false;
+
+  get percentage(): number {
+    return Math.min(100, Math.max(0, (this.value / this.max) * 100));
+  }
+
+  get barClasses(): string[] {
+    return [
+      'ui-progress-bar__fill',
+      'ui-progress-bar__fill--',
+      this.striped ? 'ui-progress-bar__fill--striped' : '',
+      this.animated ? 'ui-progress-bar__fill--animated' : ''
+    ].filter(Boolean);
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\feedback\spinner\spinner.component.html
+// ================================================================
+
+@if (overlay) {
+  <div class="ui-spinner-overlay">
+    <div [class]="classes.join(' ')">
+      <div class="ui-spinner__circle"></div>
+    </div>
+  </div>
+} @else {
+  <div [class]="classes.join(' ')">
+    <div class="ui-spinner__circle"></div>
+  </div>
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\feedback\spinner\spinner.component.scss
+// ================================================================
+
+.ui-spinner {
+  // Stili verranno generati successivamente
+}
+
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\feedback\spinner\spinner.component.ts
+// ================================================================
+
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'ui-spinner',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './spinner.component.html',
+  styleUrls: ['./spinner.component.scss']
+})
+export class SpinnerComponent {
+  @Input() size: 'small' | 'medium' | 'large' = 'medium';
+  @Input() color: 'primary' | 'secondary' | 'white' = 'primary';
+  @Input() overlay = false;
+
+  get classes(): string[] {
+    return [
+      'ui-spinner',
+      'ui-spinner--',
+      'ui-spinner--',
+      this.overlay ? 'ui-spinner--overlay' : ''
+    ].filter(Boolean);
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\feedback\toast-container\toast-container.component.html
+// ================================================================
+
+<div class="ui-toast-container">
+  @for (toast of toasts(); track toast.id) {
+    <div class="ui-toast ui-toast--{{ toast.type }}" [class.ui-toast--{{ toast.position }}]="toast.position">
+      <span class="ui-toast__icon">{{ getIcon(toast.type) }}</span>
+      <span class="ui-toast__message">{{ toast.message }}</span>
+      <button class="ui-toast__close" (click)="remove(toast.id)">✕</button>
+    </div>
+  }
+</div>
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\feedback\toast-container\toast-container.component.scss
+// ================================================================
+
+.ui-toast-container {
+  // Stili verranno generati successivamente
+}
+
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\feedback\toast-container\toast-container.component.ts
+// ================================================================
+
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ToastService } from '../../../services/toast.service';
+
+@Component({
+  selector: 'ui-toast-container',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './toast-container.component.html',
+  styleUrls: ['./toast-container.component.scss']
+})
+export class ToastContainerComponent {
+  private toastService = inject(ToastService);
+  
+  toasts = this.toastService.toasts$;
+
+  remove(id: string): void {
+    this.toastService.remove(id);
+  }
+
+  getIcon(type: string): string {
+    const icons: Record<string, string> = {
+      success: '✓',
+      error: '✕',
+      warning: '⚠',
+      info: 'ℹ'
+    };
+    return icons[type] || icons['info'];
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\informational\avatar\avatar.component.html
+// ================================================================
+
+<div [class]="classes.join(' ')">
+  @if (src && !imageError) {
+    <img
+      [src]="src"
+      [alt]="alt"
+      class="ui-avatar__image"
+      (error)="onImageError()" />
+  } @else {
+    <span class="ui-avatar__initials">{{ displayInitials }}</span>
+  }
+  
+  @if (status) {
+    <span class="ui-avatar__status ui-avatar__status--{{ status }}"></span>
+  }
+</div>
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\informational\avatar\avatar.component.scss
+// ================================================================
+
+.ui-avatar {
+  // Stili verranno generati successivamente
+}
+
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\informational\avatar\avatar.component.ts
+// ================================================================
+
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'ui-avatar',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './avatar.component.html',
+  styleUrls: ['./avatar.component.scss']
+})
+export class AvatarComponent {
+  @Input() src?: string;
+  @Input() alt = '';
+  @Input() initials?: string;
+  @Input() size: 'small' | 'medium' | 'large' | 'xlarge' = 'medium';
+  @Input() shape: 'circle' | 'square' = 'circle';
+  @Input() status?: 'online' | 'offline' | 'away' | 'busy';
+
+  imageError = false;
+
+  onImageError(): void {
+    this.imageError = true;
+  }
+
+  get displayInitials(): string {
+    if (this.initials) return this.initials;
+    if (this.alt) {
+      return this.alt
+        .split(' ')
+        .map(word => word[0])
+        .join('')
+        .substring(0, 2)
+        .toUpperCase();
+    }
+    return '?';
+  }
+
+  get classes(): string[] {
+    return [
+      'ui-avatar',
+      'ui-avatar--',
+      'ui-avatar--',
+      this.status ? 'ui-avatar--with-status' : ''
+    ].filter(Boolean);
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\informational\badge\badge.component.html
+// ================================================================
+
+<span [class]="classes.join(' ')">
+  <ng-content></ng-content>
+</span>
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\informational\badge\badge.component.scss
+// ================================================================
+
+/* Badge */
+.ui-badge {
+  display: inline-flex; align-items: center; gap: 6px; border-radius: var(--radius-full);
+  padding: 2px 8px; font-size: var(--fs-sm); border: 1px solid transparent;
+  &--primary   { background: var(--primary-50); color: var(--primary-600); }
+  &--secondary { background: #f3f4f6; color: var(--secondary-600); }
+  &--success   { background: var(--success-50); color: var(--success-500); }
+  &--warning   { background: var(--warning-50); color: var(--warning-500); }
+  &--danger    { background: var(--danger-50);  color: var(--danger-500); }
+  &--info      { background: var(--info-50);    color: var(--info-500); }
+  &--outlined  { background: transparent; border-color: currentColor; }
+  &--dot::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+}
+
+/* Avatar */
+.ui-avatar {
+  position: relative; display: inline-grid; place-items: center; overflow: hidden; background: #e5e7eb;
+  &--small { width: 28px; height: 28px; }
+  &--medium { width: 36px; height: 36px; }
+  &--large { width: 48px; height: 48px; }
+  &--xlarge { width: 64px; height: 64px; }
+  &--circle { border-radius: var(--radius-full); }
+  &--square { border-radius: var(--radius-md); }
+  &__image { width: 100%; height: 100%; object-fit: cover; }
+  &__initials { font-weight: 600; color: var(--color-text); }
+  &__status {
+    position: absolute; right: -2px; bottom: -2px; width: 12px; height: 12px; border-radius: var(--radius-full); border: 2px solid var(--color-surface);
+    &--online  { background: var(--success-500); }
+    &--offline { background: #9ca3af; }
+    &--away    { background: var(--warning-500); }
+    &--busy    { background: var(--danger-500); }
+  }
+}
+
+/* Table */
+.ui-table-wrapper { width: 100%; overflow-x: auto; }
+.ui-table {
+  width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; background: var(--color-surface);
+  &__head { background: #f8fafc; }
+  &__header-cell { text-align: left; padding: 10px 12px; font-weight: 600; color: var(--color-muted); cursor: default; }
+  &__header-cell--sortable { cursor: pointer; }
+  &__body .ui-table__row:nth-child(odd).ui-table--striped &,
+  &--striped .ui-table__row:nth-child(odd) { background: #fafafa; }
+  &__row:hover.ui-table--hoverable &,
+  &--hoverable .ui-table__row:hover { background: var(--primary-50); }
+  &__cell { padding: 10px 12px; border-top: 1px solid var(--color-border); }
+  &__empty { padding: 16px; text-align: center; color: var(--color-muted); }
+}
+
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\informational\badge\badge.component.ts
+// ================================================================
+
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ButtonVariant } from '../../../models/component-theme.model';
+
+@Component({
+  selector: 'ui-badge',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './badge.component.html',
+  styleUrls: ['./badge.component.scss']
+})
+export class BadgeComponent {
+  @Input() variant: ButtonVariant = 'primary';
+  @Input() size: 'small' | 'medium' | 'large' = 'medium';
+  @Input() dot = false;
+  @Input() outlined = false;
+
+  get classes(): string[] {
+    return [
+      'ui-badge',
+      'ui-badge--',
+      'ui-badge--',
+      this.dot ? 'ui-badge--dot' : '',
+      this.outlined ? 'ui-badge--outlined' : ''
+    ].filter(Boolean);
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\informational\table\table.component.html
+// ================================================================
+
+<div class="ui-table-wrapper">
+  <table [class]="tableClasses.join(' ')">
+    <thead class="ui-table__head">
+      <tr>
+        @for (column of columns; track column.field) {
+          <th
+            class="ui-table__header-cell"
+            [class.ui-table__header-cell--sortable]="column.sortable"
+            (click)="onSort(column)">
+            {{ column.header }}
+            @if (column.sortable && sortColumn() === column.field) {
+              <span class="ui-table__sort-icon">
+                {{ sortDirection() === 'asc' ? '▲' : '▼' }}
+              </span>
+            }
+          </th>
+        }
+      </tr>
+    </thead>
+    <tbody class="ui-table__body">
+      @for (row of getSortedData(); track row) {
+        <tr class="ui-table__row" (click)="onRowClick(row)">
+          @for (column of columns; track column.field) {
+            <td class="ui-table__cell">{{ row[column.field] }}</td>
+          }
+        </tr>
+      }
+      @empty {
+        <tr>
+          <td [attr.colspan]="columns.length" class="ui-table__empty">
+            Nessun dato disponibile
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\informational\table\table.component.scss
+// ================================================================
+
+.ui-table {
+  // Stili verranno generati successivamente
+}
+
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\informational\table\table.component.ts
+// ================================================================
+
+import { Component, Input, Output, EventEmitter, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { TableColumn } from '../../../models/component-theme.model';
+
+@Component({
+  selector: 'ui-table',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.scss']
+})
+export class TableComponent {
+  @Input() columns: TableColumn[] = [];
+  @Input() data: any[] = [];
+  @Input() striped = false;
+  @Input() hoverable = true;
+  @Input() bordered = false;
+  
+  @Output() rowClick = new EventEmitter<any>();
+
+  sortColumn = signal<string | null>(null);
+  sortDirection = signal<'asc' | 'desc'>('asc');
+
+  onSort(column: TableColumn): void {
+    if (!column.sortable) return;
+
+    if (this.sortColumn() === column.field) {
+      this.sortDirection.update(dir => dir === 'asc' ? 'desc' : 'asc');
+    } else {
+      this.sortColumn.set(column.field);
+      this.sortDirection.set('asc');
+    }
+  }
+
+  getSortedData(): any[] {
+    const col = this.sortColumn();
+    if (!col) return this.data;
+
+    return [...this.data].sort((a, b) => {
+      const aVal = a[col];
+      const bVal = b[col];
+      const modifier = this.sortDirection() === 'asc' ? 1 : -1;
+
+      if (aVal < bVal) return -1 * modifier;
+      if (aVal > bVal) return 1 * modifier;
+      return 0;
+    });
+  }
+
+  onRowClick(row: any): void {
+    this.rowClick.emit(row);
+  }
+
+  get tableClasses(): string[] {
+    return [
+      'ui-table',
+      this.striped ? 'ui-table--striped' : '',
+      this.hoverable ? 'ui-table--hoverable' : '',
+      this.bordered ? 'ui-table--bordered' : ''
+    ].filter(Boolean);
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\inputs\checkbox\checkbox.component.html
+// ================================================================
+
+<label class="ui-checkbox" [class.ui-checkbox--disabled]="disabled">
+  <input
+    type="checkbox"
+    class="ui-checkbox__input"
+    [checked]="checked"
+    [disabled]="disabled"
+    [indeterminate]="indeterminate"
+    (change)="toggle()" />
+  <span class="ui-checkbox__box">
+    <span class="ui-checkbox__checkmark"></span>
+  </span>
+  @if (label) {
+    <span class="ui-checkbox__label">{{ label }}</span>
+  }
+</label>
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\inputs\checkbox\checkbox.component.scss
+// ================================================================
+
+.ui-checkbox {
+  // Stili verranno generati successivamente
+}
+
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\inputs\checkbox\checkbox.component.ts
+// ================================================================
+
+import { Component, Input, forwardRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+@Component({
+  selector: 'ui-checkbox',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './checkbox.component.html',
+  styleUrls: ['./checkbox.component.scss'],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => CheckboxComponent),
+    multi: true
+  }]
+})
+export class CheckboxComponent implements ControlValueAccessor {
+  @Input() label?: string;
+  @Input() disabled = false;
+  @Input() indeterminate = false;
+
+  checked = false;
+  private onChange: (value: boolean) => void = () => {};
+  private onTouched: () => void = () => {};
+
+  writeValue(value: boolean): void {
+    this.checked = value || false;
+  }
+
+  registerOnChange(fn: (value: boolean) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
+  toggle(): void {
+    if (!this.disabled) {
+      this.checked = !this.checked;
+      this.onChange(this.checked);
+      this.onTouched();
+    }
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\inputs\select\select.component.html
+// ================================================================
+
+<div class="ui-select" [class.ui-select--disabled]="disabled" [class.ui-select--error]="error">
+  @if (label) {
+    <label class="ui-select__label">
+      {{ label }}
+      @if (required) {
+        <span class="ui-select__required">*</span>
+      }
+    </label>
+  }
+  
+  <div class="ui-select__control" (click)="toggleDropdown()">
+    <span class="ui-select__value">{{ getSelectedLabel() }}</span>
+    <span class="ui-select__arrow" [class.ui-select__arrow--open]="isOpen()">▼</span>
+  </div>
+  
+  @if (isOpen()) {
+    <div class="ui-select__dropdown">
+      @for (option of options; track option.value) {
+        <div
+          class="ui-select__option"
+          [class.ui-select__option--selected]="option.value === value"
+          [class.ui-select__option--disabled]="option.disabled"
+          (click)="selectOption(option)">
+          {{ option.label }}
+        </div>
+      }
+    </div>
+  }
+  
+  @if (error) {
+    <span class="ui-select__error-message">{{ error }}</span>
+  }
+</div>
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\inputs\select\select.component.scss
+// ================================================================
+
+.ui-select {
+  // Stili verranno generati successivamente
+}
+
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\inputs\select\select.component.ts
+// ================================================================
+
+import { Component, Input, forwardRef, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { SelectOption } from '../../../models/component-theme.model';
+
+@Component({
+  selector: 'ui-select',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './select.component.html',
+  styleUrls: ['./select.component.scss'],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => SelectComponent),
+    multi: true
+  }]
+})
+export class SelectComponent implements ControlValueAccessor {
+  @Input() label?: string;
+  @Input() placeholder = 'Seleziona...';
+  @Input() options: SelectOption[] = [];
+  @Input() disabled = false;
+  @Input() required = false;
+  @Input() error?: string;
+
+  value: any = null;
+  isOpen = signal(false);
+  
+  private onChange: (value: any) => void = () => {};
+  private onTouched: () => void = () => {};
+
+  writeValue(value: any): void {
+    this.value = value;
+  }
+
+  registerOnChange(fn: (value: any) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
+  toggleDropdown(): void {
+    if (!this.disabled) {
+      this.isOpen.update(v => !v);
+    }
+  }
+
+  selectOption(option: SelectOption): void {
+    if (!option.disabled) {
+      this.value = option.value;
+      this.onChange(this.value);
+      this.onTouched();
+      this.isOpen.set(false);
+    }
+  }
+
+  getSelectedLabel(): string {
+    const selected = this.options.find(opt => opt.value === this.value);
+    return selected ? selected.label : this.placeholder;
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\inputs\text-input\text-input.component.html
+// ================================================================
+
+<div class="ui-text-input" [class.ui-text-input--error]="hasError" [class.ui-text-input--disabled]="disabled">
+  @if (label) {
+    <label class="ui-text-input__label">
+      {{ label }}
+      @if (required) {
+        <span class="ui-text-input__required">*</span>
+      }
+    </label>
+  }
+  
+  <div class="ui-text-input__wrapper">
+    @if (prefixIcon) {
+      <span class="ui-text-input__icon ui-text-input__icon--prefix">{{ prefixIcon }}</span>
+    }
+    
+    <input
+      class="ui-text-input__field"
+      [type]="type"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [required]="required"
+      [value]="value"
+      (input)="onInputChange($any($event.target).value)"
+      (blur)="onBlur()" />
+    
+    @if (suffixIcon) {
+      <span class="ui-text-input__icon ui-text-input__icon--suffix">{{ suffixIcon }}</span>
+    }
+  </div>
+  
+  @if (error) {
+    <span class="ui-text-input__error-message">{{ error }}</span>
+  } @else if (hint) {
+    <span class="ui-text-input__hint">{{ hint }}</span>
+  }
+</div>
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\inputs\text-input\text-input.component.scss
+// ================================================================
+
+@use '../../../styles/mixins' as m;
+
+/* TextInput */
+.ui-text-input {
+  display: grid; gap: var(--space-2);
+
+  &__label { font-size: var(--fs-sm); color: var(--color-muted); }
+  &__required { color: var(--danger-500); margin-left: 2px; }
+
+  &__wrapper {
+    position: relative; display: flex; align-items: center; gap: var(--space-2);
+    border: 1px solid var(--color-border); border-radius: var(--radius-md);
+    background: var(--color-surface); padding: 8px 10px;
+  }
+
+  &__field {
+    flex: 1 1 auto; border: 0; outline: none; background: transparent; color: var(--color-text);
+    &::placeholder { color: var(--color-muted); }
+    &:focus-visible { outline: none; }
+  }
+
+  &__icon { color: var(--color-muted); }
+  &__error-message { color: var(--danger-500); font-size: var(--fs-sm); }
+  &__hint { color: var(--color-muted); font-size: var(--fs-sm); }
+
+  &--error .ui-text-input__wrapper { border-color: var(--danger-500); background: var(--danger-50); }
+  &--disabled { opacity: .6; pointer-events: none; }
+}
+
+/* Checkbox */
+.ui-checkbox {
+  display: inline-flex; align-items: center; gap: var(--space-2); cursor: pointer;
+  &--disabled { opacity: .6; cursor: not-allowed; }
+  &__input { position: absolute; opacity: 0; pointer-events: none; }
+  &__box {
+    width: 18px; height: 18px; border-radius: 4px; border: 1px solid var(--color-border);
+    display: grid; place-items: center; background: var(--color-surface);
+  }
+  &__checkmark { width: 10px; height: 10px; background: transparent; }
+
+  input:checked + .ui-checkbox__box { background: var(--primary-500); border-color: var(--primary-500); }
+  input:checked + .ui-checkbox__box .ui-checkbox__checkmark { background: #fff; }
+}
+
+/* Toggle */
+.ui-toggle {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  &__input { position: absolute; opacity: 0; pointer-events: none; }
+  &__track {
+    width: 44px; height: 24px; background: #cbd5e1; border-radius: var(--radius-full); position: relative; transition: background var(--transition-base);
+  }
+  &__thumb {
+    position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; background: #fff; border-radius: var(--radius-full); transition: transform var(--transition-base);
+    box-shadow: var(--shadow-1);
+  }
+  &--small .ui-toggle__track { width: 36px; height: 20px; }
+  &--small .ui-toggle__thumb { width: 14px; height: 14px; top: 3px; left: 3px; }
+  &--large .ui-toggle__track { width: 56px; height: 30px; }
+  &--large .ui-toggle__thumb { width: 24px; height: 24px; top: 3px; left: 3px; }
+
+  input:checked ~ .ui-toggle__track { background: var(--primary-500); }
+  input:checked ~ .ui-toggle__track .ui-toggle__thumb { transform: translateX(20px); }
+  &--disabled { opacity: .6; cursor: not-allowed; }
+}
+
+/* Select */
+.ui-select {
+  display: grid; gap: var(--space-2);
+  &__label { font-size: var(--fs-sm); color: var(--color-muted); }
+  &__control {
+    display: flex; align-items: center; justify-content: space-between;
+    border: 1px solid var(--color-border); border-radius: var(--radius-md);
+    background: var(--color-surface); padding: 8px 10px; cursor: pointer;
+  }
+  &__value { color: var(--color-text); }
+  &__arrow { color: var(--color-muted); transition: transform var(--transition-base); }
+  &__arrow--open { transform: rotate(180deg); }
+
+  &__dropdown {
+    margin-top: 6px; border: 1px solid var(--color-border); border-radius: var(--radius-md);
+    background: var(--color-surface); overflow: hidden; @include m.elevation(2);
+  }
+  &__option {
+    padding: 10px 12px; cursor: pointer;
+    &:hover { background: var(--primary-50); }
+    &--selected { background: var(--primary-50); color: var(--primary-600); }
+    &--disabled { opacity: .6; cursor: not-allowed; }
+  }
+  &__error-message { color: var(--danger-500); font-size: var(--fs-sm); }
+  &--error .ui-select__control { border-color: var(--danger-500); background: var(--danger-50); }
+  &--disabled { opacity: .6; pointer-events: none; }
+}
+
+/* Alert */
+.ui-alert {
+  display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-3);
+  align-items: start; padding: var(--space-3); border-radius: var(--radius-md); border: 1px solid var(--color-border);
+  &--success { background: var(--success-50); }
+  &--error   { background: var(--danger-50); }
+  &--warning { background: var(--warning-50); }
+  &--info    { background: var(--info-50); }
+  &__icon { font-weight: 600; }
+  &__title { margin: 0 0 4px 0; }
+  &__close { background: transparent; border: none; cursor: pointer; color: var(--color-muted); }
+}
+
+/* Spinner */
+.ui-spinner {
+  &__circle {
+    width: 28px; height: 28px; border: 3px solid rgba(0,0,0,.1);
+    border-top-color: currentColor; border-radius: 50%; animation: spin 1s linear infinite;
+  }
+  &--small .ui-spinner__circle { width: 18px; height: 18px; }
+  &--large .ui-spinner__circle { width: 36px; height: 36px; }
+  &--primary { color: var(--primary-500); }
+  &--secondary { color: var(--secondary-500); }
+  &--white { color: #fff; }
+  &--overlay { position: fixed; inset: 0; display: grid; place-items: center; background: rgba(0,0,0,.1); }
+}
+
+/* Progress Bar */
+.ui-progress-bar {
+  &__track {
+    width: 100%; height: 10px; background: #e5e7eb; border-radius: var(--radius-full); overflow: hidden;
+  }
+  &__fill {
+    height: 100%; display: grid; place-items: center; color: #fff; font-size: var(--fs-sm);
+    background: var(--primary-500); transition: width var(--transition-base) ease;
+    &--success { background: var(--success-500); }
+    &--warning { background: var(--warning-500); }
+    &--danger  { background: var(--danger-500); }
+    &--striped { background-image: linear-gradient(45deg, rgba(255,255,255,.25) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.25) 50%, rgba(255,255,255,.25) 75%, transparent 75%, transparent); background-size: 1rem 1rem; }
+    &--animated { animation: pb 1s linear infinite; }
+  }
+}
+@keyframes pb { 0% { background-position: 0 0; } 100% { background-position: 1rem 0; } }
+
+/* Toasts */
+.ui-toast-container {
+  position: fixed; right: 16px; bottom: 16px; display: grid; gap: var(--space-2); z-index: 9998;
+}
+.ui-toast {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--space-2);
+  background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-3); @include m.elevation(2);
+  &--success { border-color: var(--success-500); }
+  &--error   { border-color: var(--danger-500); }
+  &--warning { border-color: var(--warning-500); }
+  &--info    { border-color: var(--info-500); }
+  &__icon { font-weight: 600; }
+  &__message { }
+  &__close { background: transparent; border: none; cursor: pointer; color: var(--color-muted); }
+}
+
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\inputs\text-input\text-input.component.ts
+// ================================================================
+
+import { Component, Input, forwardRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { InputType } from '../../../models/component-theme.model';
+
+@Component({
+  selector: 'ui-text-input',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './text-input.component.html',
+  styleUrls: ['./text-input.component.scss'],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => TextInputComponent),
+    multi: true
+  }]
+})
+export class TextInputComponent implements ControlValueAccessor {
+  @Input() label?: string;
+  @Input() placeholder = '';
+  @Input() type: InputType = 'text';
+  @Input() disabled = false;
+  @Input() readonly = false;
+  @Input() required = false;
+  @Input() error?: string;
+  @Input() hint?: string;
+  @Input() prefixIcon?: string;
+  @Input() suffixIcon?: string;
+
+  value = '';
+  private onChange: (value: string) => void = () => {};
+  private onTouched: () => void = () => {};
+
+  writeValue(value: string): void {
+    this.value = value || '';
+  }
+
+  registerOnChange(fn: (value: string) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
+  onInputChange(value: string): void {
+    this.value = value;
+    this.onChange(value);
+  }
+
+  onBlur(): void {
+    this.onTouched();
+  }
+
+  get hasError(): boolean {
+    return !!this.error;
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\inputs\toggle\toggle.component.html
+// ================================================================
+
+<label [class]="classes.join(' ')">
+  <input
+    type="checkbox"
+    class="ui-toggle__input"
+    [checked]="checked"
+    [disabled]="disabled"
+    (change)="toggle()" />
+  <span class="ui-toggle__track">
+    <span class="ui-toggle__thumb"></span>
+  </span>
+  @if (label) {
+    <span class="ui-toggle__label">{{ label }}</span>
+  }
+</label>
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\inputs\toggle\toggle.component.scss
+// ================================================================
+
+.ui-toggle {
+  // Stili verranno generati successivamente
+}
+
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\inputs\toggle\toggle.component.ts
+// ================================================================
+
+import { Component, Input, forwardRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+@Component({
+  selector: 'ui-toggle',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './toggle.component.html',
+  styleUrls: ['./toggle.component.scss'],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => ToggleComponent),
+    multi: true
+  }]
+})
+export class ToggleComponent implements ControlValueAccessor {
+  @Input() label?: string;
+  @Input() disabled = false;
+  @Input() size: 'small' | 'medium' | 'large' = 'medium';
+
+  checked = false;
+  private onChange: (value: boolean) => void = () => {};
+  private onTouched: () => void = () => {};
+
+  writeValue(value: boolean): void {
+    this.checked = value || false;
+  }
+
+  registerOnChange(fn: (value: boolean) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
+  toggle(): void {
+    if (!this.disabled) {
+      this.checked = !this.checked;
+      this.onChange(this.checked);
+      this.onTouched();
+    }
+  }
+
+  get classes(): string[] {
+    return [
+      'ui-toggle',
+      'ui-toggle--',
+      this.disabled ? 'ui-toggle--disabled' : '',
+      this.checked ? 'ui-toggle--checked' : ''
+    ].filter(Boolean);
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\layout\card\card.component.html
+// ================================================================
+
+<div [class]="classes.join(' ')">
+  @if (title || subtitle) {
+    <div class="ui-card__header">
+      @if (title) {
+        <h3 class="ui-card__title">{{ title }}</h3>
+      }
+      @if (subtitle) {
+        <p class="ui-card__subtitle">{{ subtitle }}</p>
+      }
+    </div>
+  }
+  
+  <div class="ui-card__content">
+    <ng-content></ng-content>
+  </div>
+  
+  <ng-content select="[footer]"></ng-content>
+</div>
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\layout\card\card.component.scss
+// ================================================================
+
+@use '../../../styles/mixins' as m;
+
+/* Card */
+.ui-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  padding: var(--space-4);
+  @include m.elevation(1);
+
+  &--elevation-0 { @include m.elevation(0); }
+  &--elevation-1 { @include m.elevation(1); }
+  &--elevation-2 { @include m.elevation(2); }
+  &--elevation-3 { @include m.elevation(3); }
+
+  &--padding-none  { padding: 0; }
+  &--padding-small { padding: var(--space-3); }
+  &--padding-medium{ padding: var(--space-4); }
+  &--padding-large { padding: var(--space-6); }
+
+  &--hoverable:hover { @include m.elevation(2); }
+
+  &__title { margin: 0 0 var(--space-2) 0; }
+  &__subtitle { margin: 0 0 var(--space-3) 0; color: var(--color-muted); }
+  &__content { display: block; }
+}
+
+/* Container */
+.ui-container {
+  width: 100%;
+  margin-inline: auto;
+  &--xs { max-width: 480px; }
+  &--sm { max-width: 640px; }
+  &--md { max-width: 768px; }
+  &--lg { max-width: 1024px; }
+  &--xl { max-width: 1280px; }
+  &--full { max-width: 100%; }
+  &--padded { padding-inline: var(--space-4); }
+}
+
+/* Divider */
+.ui-divider {
+  &--horizontal {
+    width: 100%; height: 1px; background: var(--color-border); position: relative; margin: var(--space-4) 0;
+    &.ui-divider--with-text {
+      text-align: center; line-height: 1; background: none; height: auto;
+      &::before { content: ''; display: block; height: 1px; background: var(--color-border); }
+      .ui-divider__text { display: inline-block; padding: 0 var(--space-3); color: var(--color-muted); transform: translateY(-50%); background: var(--color-bg); }
+    }
+  }
+  &--vertical { width: 1px; height: 100%; background: var(--color-border); }
+}
+
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\layout\card\card.component.ts
+// ================================================================
+
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'ui-card',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './card.component.html',
+  styleUrls: ['./card.component.scss']
+})
+export class CardComponent {
+  @Input() title?: string;
+  @Input() subtitle?: string;
+  @Input() elevation: 0 | 1 | 2 | 3 = 1;
+  @Input() padding: 'none' | 'small' | 'medium' | 'large' = 'medium';
+  @Input() hoverable = false;
+
+  get classes(): string[] {
+    return [
+      'ui-card',
+      'ui-card--elevation-',
+      'ui-card--padding-',
+      this.hoverable ? 'ui-card--hoverable' : ''
+    ].filter(Boolean);
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\layout\container\container.component.html
+// ================================================================
+
+<div [class]="classes.join(' ')">
+  <ng-content></ng-content>
+</div>
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\layout\container\container.component.scss
+// ================================================================
+
+.ui-container {
+  // Stili verranno generati successivamente
+}
+
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\layout\container\container.component.ts
+// ================================================================
+
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'ui-container',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './container.component.html',
+  styleUrls: ['./container.component.scss']
+})
+export class ContainerComponent {
+  @Input() maxWidth: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full' = 'lg';
+  @Input() padding = true;
+
+  get classes(): string[] {
+    return [
+      'ui-container',
+      'ui-container--',
+      this.padding ? 'ui-container--padded' : ''
+    ].filter(Boolean);
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\layout\divider\divider.component.html
+// ================================================================
+
+<div [class]="classes.join(' ')">
+  @if (text) {
+    <span class="ui-divider__text">{{ text }}</span>
+  }
+</div>
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\layout\divider\divider.component.scss
+// ================================================================
+
+.ui-divider {
+  // Stili verranno generati successivamente
+}
+
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\components\layout\divider\divider.component.ts
+// ================================================================
+
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'ui-divider',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './divider.component.html',
+  styleUrls: ['./divider.component.scss']
+})
+export class DividerComponent {
+  @Input() orientation: 'horizontal' | 'vertical' = 'horizontal';
+  @Input() spacing: 'small' | 'medium' | 'large' = 'medium';
+  @Input() text?: string;
+
+  get classes(): string[] {
+    return [
+      'ui-divider',
+      'ui-divider--',
+      'ui-divider--spacing-',
+      this.text ? 'ui-divider--with-text' : ''
+    ].filter(Boolean);
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\directives\highlight.directive.ts
+// ================================================================
+
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+
+@Directive({
+  selector: '[uiHighlight]',
+  standalone: true
+})
+export class HighlightDirective {
+  @Input() highlightColor = '#ffeb3b';
+  private originalColor = '';
+
+  constructor(private el: ElementRef) {}
+
+  @HostListener('mouseenter')
+  onMouseEnter(): void {
+    this.originalColor = this.el.nativeElement.style.backgroundColor;
+    this.el.nativeElement.style.backgroundColor = this.highlightColor;
+  }
+
+  @HostListener('mouseleave')
+  onMouseLeave(): void {
+    this.el.nativeElement.style.backgroundColor = this.originalColor;
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\directives\ripple.directive.ts
+// ================================================================
+
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+
+@Directive({
+  selector: '[uiRipple]',
+  standalone: true
+})
+export class RippleDirective {
+  @Input() rippleColor = 'rgba(255, 255, 255, 0.5)';
+
+  constructor(private el: ElementRef) {
+    this.el.nativeElement.style.position = 'relative';
+    this.el.nativeElement.style.overflow = 'hidden';
+  }
+
+  @HostListener('click', ['$event'])
+  onClick(event: MouseEvent): void {
+    const ripple = document.createElement('span');
+    const rect = this.el.nativeElement.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+    ripple.style.position = 'absolute';
+    ripple.style.borderRadius = '50%';
+    ripple.style.backgroundColor = this.rippleColor;
+    ripple.style.pointerEvents = 'none';
+    ripple.style.animation = 'ripple-animation 0.6s ease-out';
+
+    this.el.nativeElement.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 600);
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\directives\tooltip.directive.ts
+// ================================================================
+
+import { Directive, ElementRef, HostListener, Input, OnDestroy } from '@angular/core';
+
+@Directive({
+  selector: '[uiTooltip]',
+  standalone: true
+})
+export class TooltipDirective implements OnDestroy {
+  @Input('uiTooltip') tooltipText = '';
+  @Input() tooltipPosition: 'top' | 'bottom' | 'left' | 'right' = 'top';
+  
+  private tooltipElement: HTMLElement | null = null;
+
+  constructor(private el: ElementRef) {}
+
+  @HostListener('mouseenter')
+  onMouseEnter(): void {
+    if (!this.tooltipText) return;
+    
+    this.tooltipElement = document.createElement('div');
+    this.tooltipElement.className = 'ui-tooltip';
+    this.tooltipElement.textContent = this.tooltipText;
+    document.body.appendChild(this.tooltipElement);
+
+    const hostRect = this.el.nativeElement.getBoundingClientRect();
+    const tooltipRect = this.tooltipElement.getBoundingClientRect();
+
+    let top = 0;
+    let left = 0;
+
+    switch (this.tooltipPosition) {
+      case 'top':
+        top = hostRect.top - tooltipRect.height - 8;
+        left = hostRect.left + (hostRect.width - tooltipRect.width) / 2;
+        break;
+      case 'bottom':
+        top = hostRect.bottom + 8;
+        left = hostRect.left + (hostRect.width - tooltipRect.width) / 2;
+        break;
+      case 'left':
+        top = hostRect.top + (hostRect.height - tooltipRect.height) / 2;
+        left = hostRect.left - tooltipRect.width - 8;
+        break;
+      case 'right':
+        top = hostRect.top + (hostRect.height - tooltipRect.height) / 2;
+        left = hostRect.right + 8;
+        break;
+    }
+
+    this.tooltipElement.style.top = top + 'px';
+    this.tooltipElement.style.left = left + 'px';
+  }
+
+  @HostListener('mouseleave')
+  onMouseLeave(): void {
+    if (this.tooltipElement) {
+      this.tooltipElement.remove();
+      this.tooltipElement = null;
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.tooltipElement) {
+      this.tooltipElement.remove();
+    }
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\models\component-theme.model.ts
+// ================================================================
+
+export type ButtonVariant = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info';
+export type ButtonSize = 'small' | 'medium' | 'large';
+export type AlertType = 'success' | 'error' | 'warning' | 'info';
+export type ToastPosition = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center';
+export type InputType = 'text' | 'email' | 'number' | 'tel' | 'url';
+
+export interface ComponentTheme {
+  primaryColor: string;
+  secondaryColor: string;
+  successColor: string;
+  dangerColor: string;
+  warningColor: string;
+  infoColor: string;
+}
+
+export interface ToastConfig {
+  message: string;
+  type: AlertType;
+  duration?: number;
+  position?: ToastPosition;
+}
+
+export interface ModalConfig {
+  title?: string;
+  content?: string;
+  confirmText?: string;
+  cancelText?: string;
+  showCloseButton?: boolean;
+}
+
+export interface SelectOption {
+  label: string;
+  value: any;
+  disabled?: boolean;
+}
+
+export interface TableColumn {
+  field: string;
+  header: string;
+  sortable?: boolean;
+  filterable?: boolean;
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\pipes\format-date.pipe.ts
+// ================================================================
+
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'formatDate',
+  standalone: true
+})
+export class FormatDatePipe implements PipeTransform {
+  transform(value: Date | string, format: string = 'dd/MM/yyyy'): string {
+    if (!value) return '';
+    
+    const date = typeof value === 'string' ? new Date(value) : value;
+    
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
+    return format
+      .replace('dd', day)
+      .replace('MM', month)
+      .replace('yyyy', String(year))
+      .replace('HH', hours)
+      .replace('mm', minutes);
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\pipes\truncate.pipe.ts
+// ================================================================
+
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'truncate',
+  standalone: true
+})
+export class TruncatePipe implements PipeTransform {
+  transform(value: string, limit: number = 50, ellipsis: string = '...'): string {
+    if (!value) return '';
+    return value.length > limit ? value.substring(0, limit) + ellipsis : value;
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\public-api.ts
+// ================================================================
+
+// Models
+export * from './models/component-theme.model';
+
+// Services
+export * from './services/theme.service';
+export * from './services/toast.service';
+export * from './services/modal.service';
+
+// Components - Actions
+export * from './components/actions/button/button.component';
+export * from './components/actions/link/link.component';
+export * from './components/actions/icon-button/icon-button.component';
+export * from './components/actions/fab/fab.component';
+
+// Components - Inputs
+export * from './components/inputs/text-input/text-input.component';
+export * from './components/inputs/checkbox/checkbox.component';
+export * from './components/inputs/toggle/toggle.component';
+export * from './components/inputs/select/select.component';
+
+// Components - Layout
+export * from './components/layout/card/card.component';
+export * from './components/layout/container/container.component';
+export * from './components/layout/divider/divider.component';
+
+// Components - Feedback
+export * from './components/feedback/alert/alert.component';
+export * from './components/feedback/spinner/spinner.component';
+export * from './components/feedback/progress-bar/progress-bar.component';
+export * from './components/feedback/toast-container/toast-container.component';
+
+// Components - Informational
+export * from './components/informational/badge/badge.component';
+export * from './components/informational/avatar/avatar.component';
+export * from './components/informational/table/table.component';
+
+// Directives
+export * from './directives/ripple.directive';
+export * from './directives/tooltip.directive';
+export * from './directives/highlight.directive';
+
+// Pipes
+export * from './pipes/truncate.pipe';
+export * from './pipes/format-date.pipe';
+
+// Module
+export * from './ui-library.module';
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\services\modal.service.ts
+// ================================================================
+
+import { Injectable, signal } from '@angular/core';
+import { ModalConfig } from '../models/component-theme.model';
+
+export interface ModalInstance {
+  id: string;
+  config: ModalConfig;
+  resolve: (result: boolean) => void;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ModalService {
+  private modals = signal<ModalInstance[]>([]);
+  
+  modals$ = this.modals.asReadonly();
+
+  open(config: ModalConfig): Promise<boolean> {
+    return new Promise((resolve) => {
+      const id = this.generateId();
+      const modal: ModalInstance = { id, config, resolve };
+      this.modals.update(modals => [...modals, modal]);
+    });
+  }
+
+  close(id: string, result: boolean): void {
+    const modal = this.modals().find(m => m.id === id);
+    if (modal) {
+      modal.resolve(result);
+      this.modals.update(modals => modals.filter(m => m.id !== id));
+    }
+  }
+
+  closeAll(): void {
+    this.modals().forEach(modal => modal.resolve(false));
+    this.modals.set([]);
+  }
+
+  private generateId(): string {
+    return 'modal-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\services\theme.service.ts
+// ================================================================
+
+import { Injectable, signal } from '@angular/core';
+import { ComponentTheme } from '../models/component-theme.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ThemeService {
+  private currentTheme = signal<ComponentTheme>({
+    primaryColor: '#007bff',
+    secondaryColor: '#6c757d',
+    successColor: '#28a745',
+    dangerColor: '#dc3545',
+    warningColor: '#ffc107',
+    infoColor: '#17a2b8'
+  });
+
+  theme = this.currentTheme.asReadonly();
+
+  setTheme(theme: Partial<ComponentTheme>): void {
+    this.currentTheme.update(current => ({ ...current, ...theme }));
+  }
+
+  resetTheme(): void {
+    this.setTheme({
+      primaryColor: '#007bff',
+      secondaryColor: '#6c757d',
+      successColor: '#28a745',
+      dangerColor: '#dc3545',
+      warningColor: '#ffc107',
+      infoColor: '#17a2b8'
+    });
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\services\toast.service.ts
+// ================================================================
+
+import { Injectable, signal } from '@angular/core';
+import { ToastConfig, AlertType } from '../models/component-theme.model';
+
+export interface Toast extends ToastConfig {
+  id: string;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ToastService {
+  private toasts = signal<Toast[]>([]);
+  
+  toasts$ = this.toasts.asReadonly();
+
+  show(config: ToastConfig): void {
+    const id = this.generateId();
+    const toast: Toast = { ...config, id, duration: config.duration || 3000 };
+    
+    this.toasts.update(toasts => [...toasts, toast]);
+
+    if (toast.duration && toast.duration > 0) {
+      setTimeout(() => this.remove(id), toast.duration);
+    }
+  }
+
+  success(message: string, duration?: number): void {
+    this.show({ message, type: 'success', duration });
+  }
+
+  error(message: string, duration?: number): void {
+    this.show({ message, type: 'error', duration });
+  }
+
+  warning(message: string, duration?: number): void {
+    this.show({ message, type: 'warning', duration });
+  }
+
+  info(message: string, duration?: number): void {
+    this.show({ message, type: 'info', duration });
+  }
+
+  remove(id: string): void {
+    this.toasts.update(toasts => toasts.filter(t => t.id !== id));
+  }
+
+  clear(): void {
+    this.toasts.set([]);
+  }
+
+  private generateId(): string {
+    return 'toast-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\styles\_animations.scss
+// ================================================================
+
+/* src/app/shared/ui-library/styles/animations.scss */
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slide-in {
+  from { transform: translateY(-8px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ripple-animation {
+  from { transform: scale(0); opacity: .35; }
+  to   { transform: scale(4); opacity: 0; }
+}
+
+@keyframes pb-stripes {
+  0%   { background-position: 0 0; }
+  100% { background-position: 1rem 0; }
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\styles\_mixins.scss
+// ================================================================
+
+/* src/app/shared/ui-library/styles/mixins.scss */
+/* Mixin namespaced per Angular + Sass modules */
+
+@function c($name) {
+  @return var(--#{$name});
+}
+
+@mixin focus-ring($color: var(--primary-500)) {
+  outline: 2px solid $color;
+  outline-offset: 2px;
+}
+
+@mixin elevation($level) {
+  @if $level == 0 { box-shadow: var(--shadow-0); }
+  @else if $level == 1 { box-shadow: var(--shadow-1); }
+  @else if $level == 2 { box-shadow: var(--shadow-2); }
+  @else if $level == 3 { box-shadow: var(--shadow-3); }
+}
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border-width: 0 !important;
+}
+
+@mixin interactive-surface(
+  $radius: var(--radius-md),
+  $py: 8px,
+  $px: 12px,
+  $bg: var(--color-surface),
+  $border: var(--color-border)
+) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: $py $px;
+  border-radius: $radius;
+  background: $bg;
+  border: 1px solid $border;
+  transition: background var(--transition-base), box-shadow var(--transition-base), transform var(--transition-fast);
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\styles\_tokens.scss
+// ================================================================
+
+/* tokens.scss – Wyrmrest Theme */
+:root,
+.theme-light.wyrmrest {
+  /* Palette base */
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-text: #1f2937;
+  --color-muted: #6b7280;
+  --color-border: #e5e7eb;
+
+  /* Brand */
+  --primary-50:  #ffe7df;
+  --primary-500: #d14a2e;
+  --primary-600: #b63e25;
+
+  --secondary-500: #1f2937;
+  --secondary-600: #111827;
+
+  --accent-500: #f5b42a;
+  --accent-600: #da9e1f;
+
+  --tertiary-500: #3f5aa9;
+
+  /* Stati */
+  --success-50:  #ecfdf5;
+  --success-500: #16a34a;
+  --warning-50:  #fffbeb;
+  --warning-500: #d97706;
+  --danger-50:   #fef2f2;
+  --danger-500:  #dc2626;
+  --danger-600:  #b91c1c;
+  --info-50:     #ecfeff;
+  --info-500:    #0ea5e9;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Radius / Type / Shadow */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  --font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.125rem;
+
+  --shadow-0: none;
+  --shadow-1: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+  --shadow-2: 0 4px 6px rgba(0,0,0,.10), 0 2px 4px rgba(0,0,0,.06);
+  --shadow-3: 0 10px 15px rgba(0,0,0,.12), 0 4px 6px rgba(0,0,0,.08);
+
+  --transition-fast: 150ms;
+  --transition-base: 200ms;
+}
+
+/* Dark variant */
+.theme-dark.wyrmrest {
+  --color-bg: #0b1220;
+  --color-surface: #111827;
+  --color-text: #e5e7eb;
+  --color-muted: #9ca3af;
+  --color-border: #253046;
+
+  /* Brand nel dark: più luminanza per leggibilità */
+  --primary-50:  #40231e;
+  --primary-500: #e45b3d;
+  --primary-600: #ff6b47;
+
+  --secondary-500: #c7d0de;
+  --secondary-600: #e5e7eb;
+
+  --accent-500: #f6c24e;
+  --accent-600: #ffd36a;
+
+  --tertiary-500: #5f79d1;
+
+  --shadow-1: 0 1px 3px rgba(0,0,0,.35), 0 1px 2px rgba(0,0,0,.30);
+  --shadow-2: 0 4px 6px rgba(0,0,0,.40), 0 2px 4px rgba(0,0,0,.30);
+  --shadow-3: 0 10px 15px rgba(0,0,0,.45), 0 4px 6px rgba(0,0,0,.35);
+}
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\styles\_variables.scss
+// ================================================================
+
+/* src/app/shared/ui-library/styles/variables.scss */
+/* Mappa SCSS -> CSS variables: utile quando vuoi usare var() dentro calc() o funzioni SCSS */
+
+$color-bg: var(--color-bg);
+$color-surface: var(--color-surface);
+$color-text: var(--color-text);
+$color-muted: var(--color-muted);
+$color-border: var(--color-border);
+
+$primary-50: var(--primary-50);
+$primary-500: var(--primary-500);
+$primary-600: var(--primary-600);
+
+$secondary-500: var(--secondary-500);
+$secondary-600: var(--secondary-600);
+
+$success-50: var(--success-50);
+$success-500: var(--success-500);
+
+$warning-50: var(--warning-50);
+$warning-500: var(--warning-500);
+
+$danger-50: var(--danger-50);
+$danger-500: var(--danger-500);
+$danger-600: var(--danger-600);
+
+$info-50: var(--info-50);
+$info-500: var(--info-500);
+
+$space-1: var(--space-1);
+$space-2: var(--space-2);
+$space-3: var(--space-3);
+$space-4: var(--space-4);
+$space-5: var(--space-5);
+$space-6: var(--space-6);
+$space-8: var(--space-8);
+
+$radius-sm: var(--radius-sm);
+$radius-md: var(--radius-md);
+$radius-lg: var(--radius-lg);
+$radius-full: var(--radius-full);
+
+$fs-sm: var(--fs-sm);
+$fs-base: var(--fs-base);
+$fs-lg: var(--fs-lg);
+
+$shadow-0: var(--shadow-0);
+$shadow-1: var(--shadow-1);
+$shadow-2: var(--shadow-2);
+$shadow-3: var(--shadow-3);
+
+$transition-fast: var(--transition-fast);
+$transition-base: var(--transition-base);
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\styles\theme.scss
+// ================================================================
+
+/* Base + reset minimale */
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-size: var(--fs-base);
+  line-height: 1.45;
+}
+
+/* Utilities essenziali */
+.u-flex { display: flex; }
+.u-grid { display: grid; }
+.u-center { display: grid; place-items: center; }
+.u-gap-2 { gap: var(--space-2); }
+.u-gap-3 { gap: var(--space-3); }
+.u-gap-4 { gap: var(--space-4); }
+.u-p-3 { padding: var(--space-3); }
+.u-p-4 { padding: var(--space-4); }
+.u-mb-3 { margin-bottom: var(--space-3); }
+.u-mb-4 { margin-bottom: var(--space-4); }
+
+.ui-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Tooltip globale usato dalla tooltip.directive */
+.ui-tooltip {
+  position: fixed;
+  z-index: 9999;
+  background: rgba(17, 24, 39, .92);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  animation: fade-in var(--transition-fast) ease-out;
+}
+
+/* Helper per ripple (direttiva) */
+.ui-ripple-container {
+  position: relative;
+  overflow: hidden;
+}
+.ui-ripple {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: ripple-animation .6s ease-out;
+}
+
+/* Helpers per striped progress bar */
+.pb-striped {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255,255,255,.25) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255,255,255,.25) 50%,
+    rgba(255,255,255,.25) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 1rem 1rem;
+}
+.pb-animated { animation: pb-stripes 1s linear infinite; }
+
+
+
+
+// ================================================================
+// FILE: src\app\shared\ui-library\ui-library.module.ts
+// ================================================================
+
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+// Actions
+import { ButtonComponent } from './components/actions/button/button.component';
+import { LinkComponent } from './components/actions/link/link.component';
+import { IconButtonComponent } from './components/actions/icon-button/icon-button.component';
+import { FabComponent } from './components/actions/fab/fab.component';
+
+// Inputs
+import { TextInputComponent } from './components/inputs/text-input/text-input.component';
+import { CheckboxComponent } from './components/inputs/checkbox/checkbox.component';
+import { ToggleComponent } from './components/inputs/toggle/toggle.component';
+import { SelectComponent } from './components/inputs/select/select.component';
+
+// Layout
+import { CardComponent } from './components/layout/card/card.component';
+import { ContainerComponent } from './components/layout/container/container.component';
+import { DividerComponent } from './components/layout/divider/divider.component';
+
+// Feedback
+import { AlertComponent } from './components/feedback/alert/alert.component';
+import { SpinnerComponent } from './components/feedback/spinner/spinner.component';
+import { ProgressBarComponent } from './components/feedback/progress-bar/progress-bar.component';
+import { ToastContainerComponent } from './components/feedback/toast-container/toast-container.component';
+
+// Informational
+import { BadgeComponent } from './components/informational/badge/badge.component';
+import { AvatarComponent } from './components/informational/avatar/avatar.component';
+import { TableComponent } from './components/informational/table/table.component';
+
+// Directives
+import { RippleDirective } from './directives/ripple.directive';
+import { TooltipDirective } from './directives/tooltip.directive';
+import { HighlightDirective } from './directives/highlight.directive';
+
+// Pipes
+import { TruncatePipe } from './pipes/truncate.pipe';
+import { FormatDatePipe } from './pipes/format-date.pipe';
+
+const COMPONENTS = [
+  // Actions
+  ButtonComponent,
+  LinkComponent,
+  IconButtonComponent,
+  FabComponent,
+  // Inputs
+  TextInputComponent,
+  CheckboxComponent,
+  ToggleComponent,
+  SelectComponent,
+  // Layout
+  CardComponent,
+  ContainerComponent,
+  DividerComponent,
+  // Feedback
+  AlertComponent,
+  SpinnerComponent,
+  ProgressBarComponent,
+  ToastContainerComponent,
+  // Informational
+  BadgeComponent,
+  AvatarComponent,
+  TableComponent
+];
+
+const DIRECTIVES = [
+  RippleDirective,
+  TooltipDirective,
+  HighlightDirective
+];
+
+const PIPES = [
+  TruncatePipe,
+  FormatDatePipe
+];
+
+@NgModule({
+  imports: [
+    CommonModule,
+    ...COMPONENTS,
+    ...DIRECTIVES,
+    ...PIPES
+  ],
+  exports: [
+    ...COMPONENTS,
+    ...DIRECTIVES,
+    ...PIPES
+  ]
+})
+export class UiLibraryModule { }
+
+
+
+
+// ================================================================
+// FILE: src\assets\i18n\it.json
+// ================================================================
+
+{
+  "catalog": {
+    "title": "Catalogo Componenti",
+    "search": "Cerca componenti (es. button, select, table, input...)",
+    "clearSearch": "Cancella ricerca"
+  },
+  "hero": {
+    "title": "UI Components",
+    "subtitle": "Wyrmrest",
+    "description": "Una libreria di componenti Angular completa e pronta all'uso, costruita con design tokens, tema scuro/chiaro, accessibilità integrata e performance ottimizzata.",
+    "explore": "Inizia a esplorare",
+    "documentation": "Documentazione"
+  },
+  "nav": {
+    "actions": "Actions",
+    "inputs": "Inputs",
+    "layout": "Layout",
+    "feedback": "Feedback",
+    "informational": "Informational"
+  },
+  "components": {
+    "button": {
+      "name": "Button",
+      "description": "Pulsante con varianti, dimensioni, stati e icone."
+    },
+    "link": {
+      "name": "Link",
+      "description": "Collegamenti esterni e interni con underline opzionale."
+    },
+    "search": "Cerca componenti...",
+    "clearSearch": "Cancella"
+  }
+}
+
+
+
+
+// ================================================================
+// FILE: src\index.html
+// ================================================================
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>WyrmrestFrontend</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <app-root></app-root>
+</body>
+</html>
+
+
+
+
+// ================================================================
+// FILE: src\main.ts
+// ================================================================
+
+import { bootstrapApplication } from '@angular/platform-browser';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { AppComponent } from './app/app.component';
+import { appConfig } from './app/app.config';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideAnimations(),
+    ...appConfig.providers
+  ]
+}).catch(err => console.error(err));
+
+
+
+
+// ================================================================
+// FILE: src\styles.scss
+// ================================================================
+
+/* You can add global styles to this file, and also import other style files */
+/* src/styles.scss */
+@use 'app/shared/ui-library/styles/theme' as *;
+
+
+
+
+
+
+// ================================================================
+// DIRECTORY TREE
+// ================================================================
+// Generato con: tree /a /f
+// Directory: .\src
+// Data: 2025-11-03 01:49:52
+// ================================================================
+
+// Elenco del percorso delle cartelle
+// Numero di serie del volume: A4F5-0480
+// C:.
+// |   index.html
+// |   main.ts
+// |   styles.scss
+// |   
+// +---app
+// |   |   app.component.html
+// |   |   app.component.scss
+// |   |   app.component.spec.ts
+// |   |   app.component.ts
+// |   |   app.config.ts
+// |   |   app.routes.ts
+// |   |   
+// |   \---shared
+// |       +---components
+// |       |   \---icon
+// |       |           icon.component.ts
+// |       |           
+// |       +---pipes
+// |       |       translate.pipe.ts
+// |       |       
+// |       +---services
+// |       |       icon.service.ts
+// |       |       translation.service.ts
+// |       |       
+// |       \---ui-library
+// |           |   public-api.ts
+// |           |   ui-library.module.ts
+// |           |   
+// |           +---components
+// |           |   +---actions
+// |           |   |   +---button
+// |           |   |   |       button.component.html
+// |           |   |   |       button.component.scss
+// |           |   |   |       button.component.ts
+// |           |   |   |       
+// |           |   |   +---fab
+// |           |   |   |       fab.component.html
+// |           |   |   |       fab.component.scss
+// |           |   |   |       fab.component.ts
+// |           |   |   |       
+// |           |   |   +---icon-button
+// |           |   |   |       icon-button.component.html
+// |           |   |   |       icon-button.component.scss
+// |           |   |   |       icon-button.component.ts
+// |           |   |   |       
+// |           |   |   \---link
+// |           |   |           link.component.html
+// |           |   |           link.component.scss
+// |           |   |           link.component.ts
+// |           |   |           
+// |           |   +---feedback
+// |           |   |   +---alert
+// |           |   |   |       alert.component.html
+// |           |   |   |       alert.component.scss
+// |           |   |   |       alert.component.ts
+// |           |   |   |       
+// |           |   |   +---progress-bar
+// |           |   |   |       progress-bar.component.html
+// |           |   |   |       progress-bar.component.scss
+// |           |   |   |       progress-bar.component.ts
+// |           |   |   |       
+// |           |   |   +---spinner
+// |           |   |   |       spinner.component.html
+// |           |   |   |       spinner.component.scss
+// |           |   |   |       spinner.component.ts
+// |           |   |   |       
+// |           |   |   \---toast-container
+// |           |   |           toast-container.component.html
+// |           |   |           toast-container.component.scss
+// |           |   |           toast-container.component.ts
+// |           |   |           
+// |           |   +---informational
+// |           |   |   +---avatar
+// |           |   |   |       avatar.component.html
+// |           |   |   |       avatar.component.scss
+// |           |   |   |       avatar.component.ts
+// |           |   |   |       
+// |           |   |   +---badge
+// |           |   |   |       badge.component.html
+// |           |   |   |       badge.component.scss
+// |           |   |   |       badge.component.ts
+// |           |   |   |       
+// |           |   |   \---table
+// |           |   |           table.component.html
+// |           |   |           table.component.scss
+// |           |   |           table.component.ts
+// |           |   |           
+// |           |   +---inputs
+// |           |   |   +---checkbox
+// |           |   |   |       checkbox.component.html
+// |           |   |   |       checkbox.component.scss
+// |           |   |   |       checkbox.component.ts
+// |           |   |   |       
+// |           |   |   +---select
+// |           |   |   |       select.component.html
+// |           |   |   |       select.component.scss
+// |           |   |   |       select.component.ts
+// |           |   |   |       
+// |           |   |   +---text-input
+// |           |   |   |       text-input.component.html
+// |           |   |   |       text-input.component.scss
+// |           |   |   |       text-input.component.ts
+// |           |   |   |       
+// |           |   |   \---toggle
+// |           |   |           toggle.component.html
+// |           |   |           toggle.component.scss
+// |           |   |           toggle.component.ts
+// |           |   |           
+// |           |   +---layout
+// |           |   |   +---card
+// |           |   |   |       card.component.html
+// |           |   |   |       card.component.scss
+// |           |   |   |       card.component.ts
+// |           |   |   |       
+// |           |   |   +---container
+// |           |   |   |       container.component.html
+// |           |   |   |       container.component.scss
+// |           |   |   |       container.component.ts
+// |           |   |   |       
+// |           |   |   \---divider
+// |           |   |           divider.component.html
+// |           |   |           divider.component.scss
+// |           |   |           divider.component.ts
+// |           |   |           
+// |           |   \---structural
+// |           +---directives
+// |           |       highlight.directive.ts
+// |           |       ripple.directive.ts
+// |           |       tooltip.directive.ts
+// |           |       
+// |           +---models
+// |           |       component-theme.model.ts
+// |           |       
+// |           +---pipes
+// |           |       format-date.pipe.ts
+// |           |       truncate.pipe.ts
+// |           |       
+// |           +---services
+// |           |       modal.service.ts
+// |           |       theme.service.ts
+// |           |       toast.service.ts
+// |           |       
+// |           \---styles
+// |                   theme.scss
+// |                   _animations.scss
+// |                   _mixins.scss
+// |                   _tokens.scss
+// |                   _variables.scss
+// |                   
+// \---assets
+//     \---i18n
+//             it.json
+
+// ================================================================
