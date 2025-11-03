@@ -1,25 +1,29 @@
-@use "../../../styles/mixins" as m;
+@use '../../../styles/mixins' as m;
 
+/* ========== BUTTON STANDARD ========== */
 .ui-button {
+  /* Variabili locali per variant e size */
   --btn-bg: var(--primary-500);
   --btn-bg-hover: var(--primary-600);
   --btn-fg: #fff;
+  --btn-h: 2.5rem;        /* 40px - default = md */
+  --btn-px: 1rem;         /* 16px */
+  --btn-fs: var(--fs-base);
   --btn-radius: var(--radius-md);
-  --btn-padding-y: 10px;
-  --btn-padding-x: 16px;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  padding: var(--btn-padding-y) var(--btn-padding-x);
-  border: 1px solid transparent;
+  height: var(--btn-h);
+  padding: 0 var(--btn-px);
+  border: 0.0625rem solid transparent; /* 1px */
   border-radius: var(--btn-radius);
   background: var(--btn-bg);
   color: var(--btn-fg);
-  cursor: pointer;
+  font-size: var(--btn-fs);
   font-weight: 600;
-  font-size: var(--fs-base);
+  cursor: pointer;
   transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
@@ -28,7 +32,7 @@
   &:hover:not(:disabled):not(.ui-button--loading) {
     background: var(--btn-bg-hover);
     @include m.elevation(2);
-    transform: translateY(-2px);
+    transform: translateY(-0.125rem); /* -2px */
   }
 
   &:active:not(:disabled):not(.ui-button--loading) {
@@ -47,26 +51,30 @@
     width: 100%;
   }
 
-  /* Sizes */
-  &--small {
-    --btn-padding-y: 6px;
-    --btn-padding-x: 12px;
-    font-size: var(--fs-sm);
+  /* ===== Sizes (bootstrap-like) ===== */
+  &--sm {
+    --btn-h: 2rem;       /* 32px */
+    --btn-px: 0.75rem;   /* 12px */
+    --btn-fs: var(--fs-sm);
   }
 
-  &--medium {
-    --btn-padding-y: 10px;
-    --btn-padding-x: 16px;
-    font-size: var(--fs-base);
+  &--md {
+    /* default già impostato sopra */
   }
 
-  &--large {
-    --btn-padding-y: 12px;
-    --btn-padding-x: 20px;
-    font-size: var(--fs-lg);
+  &--lg {
+    --btn-h: 2.875rem;   /* 46px */
+    --btn-px: 1.125rem;  /* 18px */
+    --btn-fs: var(--fs-lg);
   }
 
-  /* Variants */
+  &--xl {
+    --btn-h: 3.25rem;    /* 52px */
+    --btn-px: 1.375rem;  /* 22px */
+    --btn-fs: var(--fs-xl);
+  }
+
+  /* ===== Variants ===== */
   &--primary {
     --btn-bg: var(--primary-500);
     --btn-bg-hover: var(--primary-600);
@@ -81,13 +89,13 @@
 
   &--success {
     --btn-bg: var(--success-500);
-    --btn-bg-hover: #12893e;
+    --btn-bg-hover: var(--success-600);
     --btn-fg: #fff;
   }
 
   &--warning {
     --btn-bg: var(--warning-500);
-    --btn-bg-hover: #b45309;
+    --btn-bg-hover: var(--warning-600);
     --btn-fg: #fff;
   }
 
@@ -99,32 +107,32 @@
 
   &--info {
     --btn-bg: var(--info-500);
-    --btn-bg-hover: #0891b2;
+    --btn-bg-hover: var(--info-600);
     --btn-fg: #fff;
   }
 
-  /* Spinner */
+  /* ===== Loading spinner ===== */
   .ui-button__spinner {
     width: 1em;
     height: 1em;
-    border: 2px solid rgba(255, 255, 255, 0.35);
+    border: 0.125rem solid rgba(255, 255, 255, 0.35); /* 2px */
     border-top-color: currentColor;
     border-radius: 50%;
     animation: spin 1s linear infinite;
   }
 
-  /* Icons */
+  /* ===== Icon helpers ===== */
   .ui-button__icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
     &--left {
-      margin-right: -4px;
+      margin-right: -0.25rem; /* -4px */
     }
 
     &--right {
-      margin-left: -4px;
+      margin-left: -0.25rem;
     }
   }
 
@@ -137,89 +145,5 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
-  }
-}
-
-/* Icon Button */
-.ui-icon-button {
-  display: inline-grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-full);
-  background: var(--primary-50);
-  color: var(--primary-600);
-  border: 1px solid var(--color-border);
-  cursor: pointer;
-  transition: all var(--transition-base);
-  @include m.elevation(0);
-
-  &:hover:not(:disabled) {
-    background: var(--primary-100);
-    @include m.elevation(1);
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-
-  &--secondary {
-    background: #f3f4f6;
-    color: var(--secondary-600);
-  }
-
-  &--danger {
-    background: var(--danger-50);
-    color: var(--danger-600);
-  }
-
-  .ui-icon-button__icon {
-    font-size: 1.25rem;
-  }
-}
-
-/* FAB */
-.ui-fab {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  border: none;
-  color: #fff;
-  background: var(--primary-500);
-  border-radius: var(--radius-full);
-  padding: 14px 18px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all var(--transition-base);
-  @include m.elevation(2);
-
-  &:hover {
-    background: var(--primary-600);
-    @include m.elevation(3);
-    transform: translateY(-2px);
-  }
-
-  &--extended {
-    padding: 14px 24px;
-  }
-
-  &--small {
-    padding: 10px 14px;
-    font-size: var(--fs-sm);
-  }
-
-  &--large {
-    padding: 16px 22px;
-    font-size: var(--fs-lg);
-  }
-
-  .ui-fab__icon {
-    font-size: 1.25rem;
-  }
-
-  .ui-fab__label {
-    font-weight: 600;
   }
 }

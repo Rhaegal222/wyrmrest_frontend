@@ -1,11 +1,15 @@
-<div class="ui-progress-bar">
+<div
+  [class]="hostClasses.join(' ')"
+  role="progressbar"
+  [attr.aria-valuemin]="0"
+  [attr.aria-valuemax]="100"
+  [attr.aria-valuenow]="percentage"
+>
   <div class="ui-progress-bar__track">
-    <div
-      [class]="barClasses.join(' ')"
-      [style.width.%]="percentage">
-      @if (showLabel) {
-        <span class="ui-progress-bar__label">{{ percentage.toFixed(0) }}%</span>
-      }
+    <div [class]="barClasses.join(' ')" [style.width.%]="percentage">
+      <span class="ui-progress-bar__label" *ngIf="showLabel">
+        {{ percentage | number: '1.0-0' }}%
+      </span>
     </div>
   </div>
 </div>

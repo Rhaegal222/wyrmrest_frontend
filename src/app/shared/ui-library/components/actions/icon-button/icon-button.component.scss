@@ -1,47 +1,25 @@
-@use "../../../styles/mixins" as m;
+@use '../../../styles/mixins' as m;
 
 .ui-icon-button {
+  /* Variabili locali per colore */
+  --icon-btn-bg: var(--primary-50);
+  --icon-btn-bg-hover: var(--primary-100);
+  --icon-btn-fg: var(--primary-600);
+
   display: inline-grid;
   place-items: center;
-  width: 40px; height: 40px;
+  width: 2.5rem;   /* 40px */
+  height: 2.5rem;
   border-radius: var(--radius-full);
-  background: var(--primary-50);
-  color: var(--primary-600);
-  border: 1px solid var(--color-border);
-  cursor: pointer;
-  transition: all var(--transition-base);
-
-  &:hover:not(:disabled) { background: var(--primary-100); }
-  &:disabled { opacity: .6; cursor: not-allowed; }
-
-  &--secondary { background: #f3f4f6; color: var(--secondary-600); }
-  &--danger   { background: var(--danger-50); color: var(--danger-600); }
-
-  .ui-icon-button__icon { font-size: 1.25rem; }
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Icon Button */
-.ui-icon-button {
-  display: inline-grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-full);
-  background: var(--primary-50);
-  color: var(--primary-600);
-  border: 1px solid var(--color-border);
+  background: var(--icon-btn-bg);
+  color: var(--icon-btn-fg);
+  border: 0.0625rem solid var(--color-border); /* 1px */
   cursor: pointer;
   transition: all var(--transition-base);
   @include m.elevation(0);
 
   &:hover:not(:disabled) {
-    background: var(--primary-100);
+    background: var(--icon-btn-bg-hover);
     @include m.elevation(1);
   }
 
@@ -50,62 +28,45 @@
     cursor: not-allowed;
   }
 
+  /* ===== Variants ===== */
+  &--primary {
+    /* già applicato sopra come default */
+  }
+
   &--secondary {
-    background: #f3f4f6;
-    color: var(--secondary-600);
+    --icon-btn-bg: #eef2ff;
+    --icon-btn-bg-hover: #dce4ff;
+    --icon-btn-fg: var(--secondary-600);
   }
 
   &--danger {
-    background: var(--danger-50);
-    color: var(--danger-600);
+    --icon-btn-bg: var(--danger-50);
+    --icon-btn-bg-hover: #fecaca;
+    --icon-btn-fg: var(--danger-600);
   }
 
   .ui-icon-button__icon {
-    font-size: 1.25rem;
+    font-size: 1.25rem; /* 20px */
   }
 }
 
-/* FAB */
-.ui-fab {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  border: none;
-  color: #fff;
-  background: var(--primary-500);
-  border-radius: var(--radius-full);
-  padding: 14px 18px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all var(--transition-base);
-  @include m.elevation(2);
+/* ===== Dark mode override ===== */
+:root.dark .ui-icon-button,
+.theme-dark .ui-icon-button {
+  --icon-btn-bg: #202938;
+  --icon-btn-bg-hover: #2a3446;
+  --icon-btn-fg: var(--primary-300);
+  border-color: #2f3a52;
 
-  &:hover {
-    background: var(--primary-600);
-    @include m.elevation(3);
-    transform: translateY(-2px);
+  &--secondary {
+    --icon-btn-bg: #1e2838;
+    --icon-btn-bg-hover: #28344a;
+    --icon-btn-fg: var(--secondary-500);
   }
 
-  &--extended {
-    padding: 14px 24px;
-  }
-
-  &--small {
-    padding: 10px 14px;
-    font-size: var(--fs-sm);
-  }
-
-  &--large {
-    padding: 16px 22px;
-    font-size: var(--fs-lg);
-  }
-
-  .ui-fab__icon {
-    font-size: 1.25rem;
-  }
-
-  .ui-fab__label {
-    font-weight: 600;
+  &--danger {
+    --icon-btn-bg: #2d1f1f;
+    --icon-btn-bg-hover: #3d2828;
+    --icon-btn-fg: var(--danger-500);
   }
 }

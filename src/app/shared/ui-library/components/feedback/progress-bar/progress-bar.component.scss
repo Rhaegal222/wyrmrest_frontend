@@ -1,19 +1,76 @@
 @use '../../../styles/mixins' as m;
-
+/* Progress bar a tema drago — rem, anti-schiacciamento e taglie */
 .ui-progress-bar {
-  &__track {
-    width: 100%; height: 10px; background: #e5e7eb; border-radius: var(--radius-full); overflow: hidden;
-  }
-  &__fill {
-    height: 100%; display: grid; place-items: center; color: #fff; font-size: var(--fs-sm);
-    background: var(--primary-500); transition: width var(--transition-base) ease;
-    &--success { background: var(--success-500); }
-    &--warning { background: var(--warning-500); }
-    &--danger  { background: var(--danger-500); }
-    &--striped { background-image: linear-gradient(45deg, rgba(255,255,255,.25) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.25) 50%, rgba(255,255,255,.25) 75%, transparent 75%, transparent); background-size: 1rem 1rem; }
-    &--animated { animation: pb 1s linear infinite; }
-  }
+  /* altezze basate su rem */
+  --pb-h-sm: 0.625rem;  /* 10px */
+  --pb-h-md: 0.75rem;   /* 12px */
+  --pb-h-lg: 1rem;      /* 16px */
+
+  /* track e bordi */
+  --pb-track-bg: var(--color-border);
+  --pb-radius: var(--radius-full);
+
+  inline-size: 100%;
+  flex: 0 0 auto;              /* evita lo schiacciamento in flex/grid */
+  min-block-size: var(--pb-h-md);
+  contain: layout paint;       /* micro-ottimizzazione */
 }
-@keyframes pb { 0% { background-position: 0 0; } 100% { background-position: 1rem 0; } }
 
+.ui-progress-bar__track {
+  inline-size: 100%;
+  block-size: var(--pb-h-md);
+  background: var(--pb-track-bg);
+  border-radius: var(--pb-radius);
+  overflow: hidden;
+  box-shadow: inset 0 0 0.0625rem rgba(0,0,0,.12);
+}
 
+.ui-progress-bar--sm .ui-progress-bar__track { block-size: var(--pb-h-sm); }
+.ui-progress-bar--md .ui-progress-bar__track { block-size: var(--pb-h-md); }
+.ui-progress-bar--lg .ui-progress-bar__track { block-size: var(--pb-h-lg); }
+
+.ui-progress-bar__fill {
+  block-size: 100%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  white-space: nowrap;
+  text-shadow: 0 0.0625rem 0.125rem rgba(0,0,0,.35);
+  transition: inline-size var(--transition-base) ease, width var(--transition-base) ease;
+  background: var(--primary-500);
+}
+
+/* colori */
+.ui-progress-bar__fill--primary { background: var(--primary-600); }
+.ui-progress-bar__fill--success { background: var(--success-500); }
+.ui-progress-bar__fill--warning { background: var(--warning-500); color: #111827; text-shadow: none; }
+.ui-progress-bar__fill--danger  { background: var(--danger-500); }
+
+/* stripes/animazione */
+.ui-progress-bar__fill--striped {
+  background-image:
+    linear-gradient(45deg, rgba(255,255,255,.25) 25%, transparent 25%, transparent 50%,
+                           rgba(255,255,255,.25) 50%, rgba(255,255,255,.25) 75%, transparent 75%, transparent);
+  background-size: 1rem 1rem;
+}
+@keyframes pb-stripes { to { background-position: 1rem 0; } }
+.ui-progress-bar__fill--animated { animation: pb-stripes 1s linear infinite; }
+
+/* tema drago: squame + glow d’ambra sul fill */
+.ui-progress-bar--dragon .ui-progress-bar__fill {
+  background-image:
+    linear-gradient(90deg, var(--primary-600), var(--accent-600)),
+    radial-gradient(circle at 0.5rem 0.5rem, rgba(255,255,255,.14) 0.25rem, transparent 0.26rem);
+  background-size: 100% 100%, 1rem 1rem;
+  background-blend-mode: overlay;
+  box-shadow:
+    inset 0 0 0.125rem rgba(0,0,0,.35),
+    0 0 0.75rem rgba(245,180,42,.22);
+}
+
+/* tema drago: track più “ferroso” in dark */
+:root.dark .ui-progress-bar {
+  --pb-track-bg: #2a3446;
+}

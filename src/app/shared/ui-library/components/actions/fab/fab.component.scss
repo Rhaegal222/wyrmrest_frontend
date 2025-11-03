@@ -1,6 +1,76 @@
 @use '../../../styles/mixins' as m;
 
 .ui-fab {
-  // Stili verranno generati successivamente
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: 2.75rem;               /* 44px */
+  padding: 0 1rem;               /* 16px */
+  border: 0.0625rem solid color-mix(in srgb, var(--primary-700) 70%, transparent);
+  border-radius: var(--radius-full);
+  background: var(--primary-500);
+  color: #fff;
+  font-size: var(--fs-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  @include m.elevation(2);
+
+  &:hover {
+    background: var(--primary-600);
+    @include m.elevation(3);
+    transform: translateY(-0.125rem); /* -2px */
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 0.125rem solid color-mix(in srgb, #fff 70%, var(--primary-300)); /* 2px */
+    outline-offset: 0.125rem;
+  }
+
+  /* ===== Extended con label ===== */
+  &--extended {
+    padding: 0 1.125rem; /* 18px */
+  }
+
+  /* ===== Sizes (opzionale) ===== */
+  &--small {
+    height: 2.25rem;      /* 36px */
+    padding: 0 0.875rem;  /* 14px */
+    font-size: var(--fs-sm);
+  }
+
+  &--medium {
+    /* default già impostato sopra */
+  }
+
+  &--large {
+    height: 3rem;         /* 48px */
+    padding: 0 1.25rem;   /* 20px */
+    font-size: var(--fs-lg);
+  }
+
+  .ui-fab__icon {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1;
+  }
+
+  .ui-fab__label {
+    font-weight: 600;
+  }
 }
 
+/* ===== Dark mode fine-tune ===== */
+:root.dark .ui-fab,
+.theme-dark .ui-fab {
+  box-shadow: 0 0.625rem 1.5rem rgba(0, 0, 0, 0.45);
+  border-color: color-mix(in srgb, var(--primary-800) 75%, transparent);
+
+  &:hover {
+    box-shadow: 0 0.75rem 1.875rem rgba(0, 0, 0, 0.55);
+  }
+}
