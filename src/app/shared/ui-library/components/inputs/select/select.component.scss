@@ -1,4 +1,116 @@
-.ui-select {
-  // Stili verranno generati successivamente
-}
+@use "../../../styles/mixins" as m;
 
+.ui-select {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  position: relative;
+  width: 100%;
+
+  &__label {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  &__required {
+    color: var(--danger-500);
+    font-weight: 700;
+  }
+
+  &__control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    @include m.elevation(0);
+
+    &:hover:not(.ui-select--disabled) {
+      border-color: var(--primary-500);
+      @include m.elevation(1);
+    }
+  }
+
+  &__value {
+    color: var(--color-text);
+    font-size: var(--fs-base);
+    flex: 1;
+  }
+
+  &__arrow {
+    color: var(--color-muted);
+    transition: transform var(--transition-base);
+    margin-left: var(--space-2);
+    flex-shrink: 0;
+
+    &--open {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    margin-top: 4px;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    overflow: hidden;
+    z-index: 1000;
+    @include m.elevation(2);
+    max-height: 250px;
+    overflow-y: auto;
+  }
+
+  &__option {
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-size: var(--fs-base);
+    color: var(--color-text);
+
+    &:hover:not(&--disabled) {
+      background: var(--primary-50);
+      color: var(--primary-600);
+    }
+
+    &--selected {
+      background: var(--primary-50);
+      color: var(--primary-600);
+      font-weight: 600;
+    }
+
+    &--disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  &__error-message {
+    color: var(--danger-500);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+  }
+
+  &--error &__control {
+    border-color: var(--danger-500);
+    background: var(--danger-50);
+  }
+
+  &--disabled {
+    opacity: 0.6;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+}

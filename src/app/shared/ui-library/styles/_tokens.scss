@@ -1,4 +1,4 @@
-/* tokens.scss – Wyrmrest Theme */
+/* tokens.scss - Wyrmrest Theme */
 :root,
 .theme-light.wyrmrest {
   /* Palette base */
@@ -9,7 +9,7 @@
   --color-border: #e5e7eb;
 
   /* Brand */
-  --primary-50:  #ffe7df;
+  --primary-50: #ffe7df;
   --primary-500: #d14a2e;
   --primary-600: #b63e25;
 
@@ -22,15 +22,15 @@
   --tertiary-500: #3f5aa9;
 
   /* Stati */
-  --success-50:  #ecfdf5;
+  --success-50: #ecfdf5;
   --success-500: #16a34a;
-  --warning-50:  #fffbeb;
+  --warning-50: #fffbeb;
   --warning-500: #d97706;
-  --danger-50:   #fef2f2;
-  --danger-500:  #dc2626;
-  --danger-600:  #b91c1c;
-  --info-50:     #ecfeff;
-  --info-500:    #0ea5e9;
+  --danger-50: #fef2f2;
+  --danger-500: #dc2626;
+  --danger-600: #b91c1c;
+  --info-50: #ecfeff;
+  --info-500: #0ea5e9;
 
   /* Spacing */
   --space-1: 4px;
@@ -47,15 +47,16 @@
   --radius-lg: 14px;
   --radius-full: 9999px;
 
-  --font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    sans-serif;
   --fs-sm: 0.875rem;
   --fs-base: 1rem;
   --fs-lg: 1.125rem;
 
   --shadow-0: none;
-  --shadow-1: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
-  --shadow-2: 0 4px 6px rgba(0,0,0,.10), 0 2px 4px rgba(0,0,0,.06);
-  --shadow-3: 0 10px 15px rgba(0,0,0,.12), 0 4px 6px rgba(0,0,0,.08);
+  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-2: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-3: 0 10px 15px rgba(0, 0, 0, 0.12), 0 4px 6px rgba(0, 0, 0, 0.08);
 
   --transition-fast: 150ms;
   --transition-base: 200ms;
@@ -70,7 +71,7 @@
   --color-border: #253046;
 
   /* Brand nel dark: più luminanza per leggibilità */
-  --primary-50:  #40231e;
+  --primary-50: #40231e;
   --primary-500: #e45b3d;
   --primary-600: #ff6b47;
 
@@ -82,7 +83,7 @@
 
   --tertiary-500: #5f79d1;
 
-  --shadow-1: 0 1px 3px rgba(0,0,0,.35), 0 1px 2px rgba(0,0,0,.30);
-  --shadow-2: 0 4px 6px rgba(0,0,0,.40), 0 2px 4px rgba(0,0,0,.30);
-  --shadow-3: 0 10px 15px rgba(0,0,0,.45), 0 4px 6px rgba(0,0,0,.35);
+  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-2: 0 4px 6px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-3: 0 10px 15px rgba(0, 0, 0, 0.45), 0 4px 6px rgba(0, 0, 0, 0.35);
 }

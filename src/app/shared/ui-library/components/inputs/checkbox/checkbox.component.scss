@@ -1,4 +1,91 @@
-.ui-checkbox {
-  // Stili verranno generati successivamente
-}
+@use "../../../styles/mixins" as m;
 
+.ui-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+  }
+
+  &__box {
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--color-border);
+    background: var(--color-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-base);
+    flex-shrink: 0;
+    position: relative;
+    @include m.elevation(0);
+  }
+
+  &__checkmark {
+    width: 12px;
+    height: 12px;
+    position: relative;
+    opacity: 0;
+    transform: scale(0);
+    transition: all var(--transition-fast);
+
+    &::before {
+      content: "✓";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 1;
+    }
+  }
+
+  &__input:checked + &__box {
+    background: var(--primary-500);
+    border-color: var(--primary-500);
+    @include m.elevation(1);
+  }
+
+  &__input:checked + &__box &__checkmark {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &__input:indeterminate + &__box {
+    background: var(--primary-500);
+    border-color: var(--primary-500);
+  }
+
+  &__input:indeterminate + &__box &__checkmark::before {
+    content: "−";
+    opacity: 1;
+  }
+
+  &__label {
+    font-size: var(--fs-base);
+    color: var(--color-text);
+    line-height: 1.5;
+  }
+
+  &:hover:not(&--disabled) &__box {
+    border-color: var(--primary-500);
+    @include m.elevation(1);
+  }
+}

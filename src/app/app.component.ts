@@ -1,4 +1,11 @@
-import { Component, Renderer2, Inject, signal, computed, inject } from '@angular/core';
+import {
+  Component,
+  Renderer2,
+  Inject,
+  signal,
+  computed,
+  inject,
+} from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { UiLibraryModule } from './shared/ui-library/ui-library.module';
 import { IconComponent } from './shared/components/icon/icon.component';
@@ -8,14 +15,9 @@ import { TranslationService } from './shared/services/translation.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    CommonModule,
-    TranslatePipe,
-    UiLibraryModule,
-    IconComponent
-  ],
+  imports: [CommonModule, TranslatePipe, UiLibraryModule, IconComponent],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   // ===== SERVICES =====
@@ -28,7 +30,7 @@ export class AppComponent {
   readonly activeSection = signal<string | null>(null);
   readonly currentLanguage = this.translationService.getLanguage();
 
-  readonly searchValueLower = computed(() => 
+  readonly searchValueLower = computed(() =>
     this.searchValue().toLowerCase().trim()
   );
 
@@ -42,7 +44,9 @@ export class AppComponent {
 
   // ===== THEME INITIALIZATION =====
   private initTheme(): void {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const prefersDark = window.matchMedia(
+      '(prefers-color-scheme: dark)'
+    ).matches;
     const savedTheme = localStorage.getItem('wyrmrest-theme');
     const isDark = savedTheme ? savedTheme === 'dark' : prefersDark;
     this.setTheme(isDark);
@@ -57,7 +61,7 @@ export class AppComponent {
 
   private setTheme(isDark: boolean): void {
     this.isDarkMode.set(isDark);
-    
+
     if (isDark) {
       this.r.addClass(this.doc.body, 'theme-dark');
       this.r.removeClass(this.doc.body, 'theme-light');
@@ -65,7 +69,7 @@ export class AppComponent {
       this.r.addClass(this.doc.body, 'theme-light');
       this.r.removeClass(this.doc.body, 'theme-dark');
     }
-    
+
     this.r.addClass(this.doc.body, 'wyrmrest');
   }
 

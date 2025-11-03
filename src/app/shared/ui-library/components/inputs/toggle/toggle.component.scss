@@ -1,4 +1,108 @@
-.ui-toggle {
-  // Stili verranno generati successivamente
-}
+@use "../../../styles/mixins" as m;
 
+.ui-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  user-select: none;
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+  }
+
+  &__track {
+    width: 48px;
+    height: 26px;
+    background: var(--color-muted);
+    border-radius: var(--radius-full);
+    position: relative;
+    transition: background var(--transition-base);
+    flex-shrink: 0;
+    @include m.elevation(0);
+  }
+
+  &__thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: var(--radius-full);
+    transition: all var(--transition-base);
+    @include m.elevation(1);
+  }
+
+  &__label {
+    font-size: var(--fs-base);
+    color: var(--color-text);
+    line-height: 1.5;
+  }
+
+  &__input:checked ~ &__track {
+    background: var(--primary-500);
+  }
+
+  &__input:checked ~ &__track &__thumb {
+    left: 25px;
+  }
+
+  // Sizes
+  &--small &__track {
+    width: 38px;
+    height: 22px;
+  }
+
+  &--small &__thumb {
+    width: 16px;
+    height: 16px;
+  }
+
+  &--small &__input:checked ~ &__track &__thumb {
+    left: 19px;
+  }
+
+  &--medium &__track {
+    width: 48px;
+    height: 26px;
+  }
+
+  &--medium &__thumb {
+    width: 20px;
+    height: 20px;
+  }
+
+  &--medium &__input:checked ~ &__track &__thumb {
+    left: 25px;
+  }
+
+  &--large &__track {
+    width: 60px;
+    height: 32px;
+  }
+
+  &--large &__thumb {
+    width: 26px;
+    height: 26px;
+  }
+
+  &--large &__input:checked ~ &__track &__thumb {
+    left: 31px;
+  }
+
+  // States
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &:hover:not(&--disabled) &__track {
+    @include m.elevation(1);
+  }
+}

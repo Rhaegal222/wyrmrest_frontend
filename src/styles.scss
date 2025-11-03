@@ -1,7 +1,6 @@
 // ===== GLOBAL STYLES =====
-@use './app/shared/ui-library/styles/variables' as *;
-@use './app/shared/ui-library/styles/theme' as *;
-@use './app/shared/ui-library/styles/animations' as *;
+@use "./app/shared/ui-library/styles/tokens" as *;
+@use "./app/shared/ui-library/styles/animations" as *;
 
 * {
   margin: 0;
@@ -14,12 +13,13 @@ html {
 }
 
 body {
-  background: var(--color-background);
+  background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-family);
   font-size: var(--fs-base);
   line-height: 1.6;
-  transition: background-color var(--transition-base), color var(--transition-base);
+  transition: background-color var(--transition-base),
+    color var(--transition-base);
 }
 
 // ===== LIGHT THEME =====
@@ -31,9 +31,6 @@ body.wyrmrest.theme-light {
   --color-text-secondary: #6b7280;
   --color-muted: #9ca3af;
   --color-border: #e5e7eb;
-  --primary-50: #f0f9ff;
-  --primary-500: #3b82f6;
-  --accent-500: #f5b42a;
 }
 
 // ===== DARK THEME =====
@@ -45,13 +42,13 @@ body.wyrmrest.theme-dark {
   --color-text-secondary: #cbd5e1;
   --color-muted: #64748b;
   --color-border: #334155;
-  --primary-50: #0c1222;
-  --primary-500: #60a5fa;
-  --accent-500: #fbbf24;
 }
 
 // ===== GLOBAL COMPONENTS =====
-button, input, textarea, select {
+button,
+input,
+textarea,
+select {
   font-family: inherit;
   font-size: inherit;
 }
@@ -60,7 +57,7 @@ button {
   cursor: pointer;
   border: none;
   background: none;
-  
+
   &:disabled {
     cursor: not-allowed;
     opacity: 0.5;
@@ -94,4 +91,75 @@ a {
   &:hover {
     background: var(--color-muted);
   }
+}
+
+// ===== UTILITY CLASSES =====
+.u-flex {
+  display: flex;
+}
+.u-grid {
+  display: grid;
+}
+.u-center {
+  display: grid;
+  place-items: center;
+}
+.u-gap-2 {
+  gap: var(--space-2);
+}
+.u-gap-3 {
+  gap: var(--space-3);
+}
+.u-gap-4 {
+  gap: var(--space-4);
+}
+.u-p-3 {
+  padding: var(--space-3);
+}
+.u-p-4 {
+  padding: var(--space-4);
+}
+.u-mb-3 {
+  margin-bottom: var(--space-3);
+}
+.u-mb-4 {
+  margin-bottom: var(--space-4);
+}
+
+.ui-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// ===== TOOLTIP GLOBAL =====
+.ui-tooltip {
+  position: fixed;
+  z-index: 9999;
+  background: rgba(17, 24, 39, 0.92);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  animation: fade-in var(--transition-fast) ease-out;
+  pointer-events: none;
+}
+
+// ===== RIPPLE EFFECT =====
+.ui-ripple-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.ui-ripple {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: ripple-animation 0.6s ease-out;
 }

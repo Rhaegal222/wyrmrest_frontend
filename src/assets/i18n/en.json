@@ -1,0 +1,99 @@
+{
+  "catalog": {
+    "title": "Component Catalog",
+    "search": "Search components (e.g. button, select, table, input...)",
+    "clearSearch": "Clear search"
+  },
+  "hero": {
+    "title": "UI Components",
+    "subtitle": "Wyrmrest",
+    "description": "A complete and ready-to-use Angular component library, built with design tokens, light/dark theme, integrated accessibility and optimized performance.",
+    "explore": "Start exploring",
+    "documentation": "Documentation"
+  },
+  "nav": {
+    "actions": "Actions",
+    "inputs": "Inputs",
+    "layout": "Layout",
+    "feedback": "Feedback",
+    "informational": "Informational"
+  },
+  "components": {
+    "button": {
+      "name": "Button",
+      "description": "Button with variants, sizes, states and icons."
+    },
+    "link": {
+      "name": "Link",
+      "description": "External and internal links with optional underline."
+    },
+    "iconButton": {
+      "name": "IconButton",
+      "description": "Icon button with tooltip and ripple effect."
+    },
+    "fab": {
+      "name": "Floating Action Button",
+      "description": "Floating button for primary action."
+    },
+    "textInput": {
+      "name": "TextInput",
+      "description": "Text field with label, hint, error and icons."
+    },
+    "checkbox": {
+      "name": "Checkbox",
+      "description": "Boolean selector with indeterminate state."
+    },
+    "toggle": {
+      "name": "Toggle",
+      "description": "On/off switch in multiple sizes."
+    },
+    "select": {
+      "name": "Select",
+      "description": "Menu selector with placeholder and validation."
+    },
+    "card": {
+      "name": "Card",
+      "description": "Container with header, content and footer."
+    },
+    "container": {
+      "name": "Container",
+      "description": "Responsive container with max-width."
+    },
+    "divider": {
+      "name": "Divider",
+      "description": "Horizontal/vertical separator with text."
+    },
+    "alert": {
+      "name": "Alert",
+      "description": "Informational messages for status and warnings."
+    },
+    "spinner": {
+      "name": "Spinner",
+      "description": "Loading indicator in various sizes/colors."
+    },
+    "progress": {
+      "name": "Progress Bar",
+      "description": "Progress with value and animation."
+    },
+    "toast": {
+      "name": "Toast Container",
+      "description": "Non-modal notification container."
+    },
+    "badge": {
+      "name": "Badge",
+      "description": "Compact labels for status and count."
+    },
+    "avatar": {
+      "name": "Avatar",
+      "description": "Profile images with initials and status."
+    },
+    "table": {
+      "name": "Table",
+      "description": "Table with sortable columns and hover."
+    }
+  },
+  "footer": {
+    "text": "A complete collection of Angular components for building modern interfaces.",
+    "details": "Dynamic light/dark theme, centralized design tokens, accessibility and optimized performance."
+  }
+}

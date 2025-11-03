@@ -27,7 +27,73 @@
       "name": "Link",
       "description": "Collegamenti esterni e interni con underline opzionale."
     },
-    "search": "Cerca componenti...",
-    "clearSearch": "Cancella"
+    "iconButton": {
+      "name": "IconButton",
+      "description": "Pulsante icona con tooltip e ripple effect."
+    },
+    "fab": {
+      "name": "Floating Action Button",
+      "description": "Pulsante flottante per azione primaria."
+    },
+    "textInput": {
+      "name": "TextInput",
+      "description": "Campo testo con label, hint, error e icone."
+    },
+    "checkbox": {
+      "name": "Checkbox",
+      "description": "Selettore booleano con stato indeterminate."
+    },
+    "toggle": {
+      "name": "Toggle",
+      "description": "Interruttore on/off in più dimensioni."
+    },
+    "select": {
+      "name": "Select",
+      "description": "Selettore a menu con placeholder e validazione."
+    },
+    "card": {
+      "name": "Card",
+      "description": "Contenitore con header, contenuto e footer."
+    },
+    "container": {
+      "name": "Container",
+      "description": "Contenitore responsivo con max-width."
+    },
+    "divider": {
+      "name": "Divider",
+      "description": "Separatore orizzontale/verticale con testo."
+    },
+    "alert": {
+      "name": "Alert",
+      "description": "Messaggi informativi per status e avvisi."
+    },
+    "spinner": {
+      "name": "Spinner",
+      "description": "Indicatore di caricamento in vari size/colori."
+    },
+    "progress": {
+      "name": "Progress Bar",
+      "description": "Avanzamento con valore e animazione."
+    },
+    "toast": {
+      "name": "Toast Container",
+      "description": "Contenitore notifiche non-modale."
+    },
+    "badge": {
+      "name": "Badge",
+      "description": "Etichette compatte per stato e conteggio."
+    },
+    "avatar": {
+      "name": "Avatar",
+      "description": "Immagini profilo con iniziali e stato."
+    },
+    "table": {
+      "name": "Table",
+      "description": "Tabella con colonne ordinabili e hover."
+    }
+  },
+  "footer": {
+    "text": "Una collezione completa di componenti Angular per costruire interfacce moderne.",
+    "details": "Tema scuro/chiaro dinamico, design tokens centralizzati, accessibilità e performance ottimizzate."
   }
 }

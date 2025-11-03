@@ -2,11 +2,16 @@
   <!-- ===== HERO SECTION ===== -->
   <div class="catalog-hero">
     <div class="catalog-hero__content">
-      <h1>{{ 'hero.title' | translate }} <span class="highlight">{{ 'hero.subtitle' | translate }}</span></h1>
-      <p>{{ 'hero.description' | translate }}</p>
+      <h1>
+        {{ "hero.title" | translate }}
+        <span class="highlight">{{ "hero.subtitle" | translate }}</span>
+      </h1>
+      <p>{{ "hero.description" | translate }}</p>
       <div class="catalog-hero__cta">
-        <button class="primary">{{ 'hero.explore' | translate }}</button>
-        <button class="secondary">{{ 'hero.documentation' | translate }}</button>
+        <button class="primary">{{ "hero.explore" | translate }}</button>
+        <button class="secondary">
+          {{ "hero.documentation" | translate }}
+        </button>
       </div>
     </div>
     <div class="catalog-hero__visual">
@@ -17,122 +22,183 @@
   <!-- ===== HEADER PRINCIPALE ===== -->
   <div class="catalog-header">
     <div class="catalog-header__top">
-      <h1>{{ 'catalog.title' | translate }}</h1>
-      <div style="display: flex; gap: var(--space-2); align-items: center;">
+      <h1>{{ "catalog.title" | translate }}</h1>
+      <div style="display: flex; gap: var(--space-2); align-items: center">
         <!-- Language Toggle -->
-        <button class="language-toggle" (click)="toggleLanguage()" title="Toggle language">
-          <span style="font-weight: 700;">{{ currentLanguage() | uppercase }}</span>
+        <button
+          class="language-toggle"
+          (click)="toggleLanguage()"
+          title="Toggle language"
+        >
+          <span style="font-weight: 700">{{
+            currentLanguage() | uppercase
+          }}</span>
         </button>
-        
+
         <!-- Theme Toggle -->
-        <button class="theme-toggle" (click)="toggleTheme()" [class.theme-toggle--dark]="isDarkMode()">
-          <app-icon [icon]="isDarkMode() ? 'sun' : 'moon'" [size]="18"></app-icon>
+        <button
+          class="theme-toggle"
+          (click)="toggleTheme()"
+          [class.theme-toggle--dark]="isDarkMode()"
+        >
+          <app-icon
+            [icon]="isDarkMode() ? 'sun' : 'moon'"
+            [size]="18"
+          ></app-icon>
           <span class="theme-toggle__track">
             <span class="theme-toggle__thumb"></span>
           </span>
-          <span class="theme-toggle__label">{{ isDarkMode() ? 'Light' : 'Dark' }}</span>
+          <span class="theme-toggle__label">{{
+            isDarkMode() ? "Light" : "Dark"
+          }}</span>
         </button>
       </div>
     </div>
 
     <!-- Search centralizzata -->
     <div class="catalog-search-wrapper">
-      <app-icon icon="search" [size]="20" color="var(--color-muted)" class="catalog-search__icon"></app-icon>
-    <!-- <input 
-      type="search" 
-      class="catalog-search__input"
-      [placeholder]="'catalog.search' | translate"
-      [value]="searchValue()"
-      (input)="onSearchInput($event)"
-      aria-label="Search components"
-    /> -->
-      <button 
-        *ngIf="searchValue()" 
-        class="catalog-search__clear" 
+      <app-icon
+        icon="search"
+        [size]="20"
+        color="var(--color-muted)"
+        class="catalog-search__icon"
+      ></app-icon>
+      <input
+        type="search"
+        class="catalog-search__input"
+        [placeholder]="'catalog.search' | translate"
+        [value]="searchValue()"
+        (input)="onSearchInput($event)"
+        aria-label="Search components"
+      />
+      <button
+        *ngIf="searchValue()"
+        class="catalog-search__clear"
         (click)="clearSearch()"
         [title]="'catalog.clearSearch' | translate"
-        aria-label="Clear search">
+        aria-label="Clear search"
+      >
         <app-icon icon="close" [size]="18"></app-icon>
       </button>
     </div>
 
     <!-- Navigazione sezioni -->
     <nav class="catalog-nav">
-      <a 
-        href="#actions" 
+      <a
+        href="#actions"
         class="catalog-nav__link"
         [class.active]="isSectionActive('actions')"
-        (click)="scrollToSection('actions'); $event.preventDefault()">
+        (click)="scrollToSection('actions'); $event.preventDefault()"
+      >
         <app-icon icon="arrow" [size]="16"></app-icon>
-        <span>{{ 'nav.actions' | translate }}</span>
+        <span>{{ "nav.actions" | translate }}</span>
       </a>
-      <a 
-        href="#inputs" 
+      <a
+        href="#inputs"
         class="catalog-nav__link"
         [class.active]="isSectionActive('inputs')"
-        (click)="scrollToSection('inputs'); $event.preventDefault()">
+        (click)="scrollToSection('inputs'); $event.preventDefault()"
+      >
         <app-icon icon="input" [size]="16"></app-icon>
-        <span>{{ 'nav.inputs' | translate }}</span>
+        <span>{{ "nav.inputs" | translate }}</span>
       </a>
-      <a 
-        href="#layout" 
+      <a
+        href="#layout"
         class="catalog-nav__link"
         [class.active]="isSectionActive('layout')"
-        (click)="scrollToSection('layout'); $event.preventDefault()">
+        (click)="scrollToSection('layout'); $event.preventDefault()"
+      >
         <app-icon icon="grid" [size]="16"></app-icon>
-        <span>{{ 'nav.layout' | translate }}</span>
+        <span>{{ "nav.layout" | translate }}</span>
       </a>
-      <a 
-        href="#feedback" 
+      <a
+        href="#feedback"
         class="catalog-nav__link"
         [class.active]="isSectionActive('feedback')"
-        (click)="scrollToSection('feedback'); $event.preventDefault()">
+        (click)="scrollToSection('feedback'); $event.preventDefault()"
+      >
         <app-icon icon="alert" [size]="16"></app-icon>
-        <span>{{ 'nav.feedback' | translate }}</span>
+        <span>{{ "nav.feedback" | translate }}</span>
       </a>
-      <a 
-        href="#informational" 
+      <a
+        href="#informational"
         class="catalog-nav__link"
         [class.active]="isSectionActive('informational')"
-        (click)="scrollToSection('informational'); $event.preventDefault()">
+        (click)="scrollToSection('informational'); $event.preventDefault()"
+      >
         <app-icon icon="info" [size]="16"></app-icon>
-        <span>{{ 'nav.informational' | translate }}</span>
+        <span>{{ "nav.informational" | translate }}</span>
       </a>
     </nav>
   </div>
 
   <!-- ===== ACTIONS SECTION ===== -->
   <section id="actions">
-    <h2><app-icon icon="arrow" [size]="20"></app-icon> <span class="highlight">{{ 'nav.actions' | translate }}</span></h2>
-    <p>{{ 'components.button.description' | translate }}</p>
-    
+    <h2>
+      <app-icon icon="arrow" [size]="20"></app-icon>
+      <span class="highlight">{{ "nav.actions" | translate }}</span>
+    </h2>
+    <p>{{ "components.button.description" | translate }}</p>
+
     <!-- Filter pills -->
     <div class="filter-pills">
-      <button class="filter-pill" (click)="setSearchFilter('button')" [class.filter-pill--active]="searchValue() === 'button'">
-        <app-icon icon="plus" [size]="14"></app-icon> {{ 'components.button.name' | translate }}
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('button')"
+        [class.filter-pill--active]="searchValue() === 'button'"
+      >
+        <app-icon icon="plus" [size]="14"></app-icon>
+        {{ "components.button.name" | translate }}
       </button>
-      <button class="filter-pill" (click)="setSearchFilter('link')" [class.filter-pill--active]="searchValue() === 'link'">
-        <app-icon icon="link" [size]="14"></app-icon> {{ 'components.link.name' | translate }}
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('link')"
+        [class.filter-pill--active]="searchValue() === 'link'"
+      >
+        <app-icon icon="link" [size]="14"></app-icon>
+        {{ "components.link.name" | translate }}
       </button>
-      <button class="filter-pill" (click)="setSearchFilter('icon')" [class.filter-pill--active]="searchValue() === 'icon'">
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('icon')"
+        [class.filter-pill--active]="searchValue() === 'icon'"
+      >
         <app-icon icon="star" [size]="14"></app-icon> Icon
       </button>
-      <button class="filter-pill" (click)="setSearchFilter('fab')" [class.filter-pill--active]="searchValue() === 'fab'">
-        <app-icon icon="search" [size]="14"></app-icon> {{ 'components.fab.name' | translate }}
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('fab')"
+        [class.filter-pill--active]="searchValue() === 'fab'"
+      >
+        <app-icon icon="search" [size]="14"></app-icon>
+        {{ "components.fab.name" | translate }}
       </button>
     </div>
 
     <div class="components-grid">
       <!-- Button Card -->
-      <div class="component-card" *ngIf="shouldShowCard('button action primary secondary danger success loading')">
-        <h3>{{ 'components.button.name' | translate }}</h3>
-        <p class="component-description">{{ 'components.button.description' | translate }}</p>
+      <div
+        class="component-card"
+        *ngIf="
+          shouldShowCard(
+            'button action primary secondary danger success loading'
+          )
+        "
+      >
+        <h3>{{ "components.button.name" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.button.description" | translate }}
+        </p>
         <div class="component-examples">
           <ui-button variant="primary" size="medium">Primary</ui-button>
           <ui-button variant="success" size="medium">Success</ui-button>
           <ui-button variant="danger" size="medium">Danger</ui-button>
-          <ui-button variant="warning" size="medium" [loading]="true">Loading</ui-button>
-          <ui-button variant="primary" size="small" [disabled]="true">Disabled</ui-button>
+          <ui-button variant="warning" size="medium" [loading]="true"
+            >Loading</ui-button
+          >
+          <ui-button variant="primary" size="small" [disabled]="true"
+            >Disabled</ui-button
+          >
         </div>
         <div class="component-footer">
           Varianti, dimensioni, stato loading, disabilitato.
@@ -140,9 +206,14 @@
       </div>
 
       <!-- Link Card -->
-      <div class="component-card" *ngIf="shouldShowCard('link anchor routerlink navigation external')">
-        <h3>{{ 'components.link.name' | translate }}</h3>
-        <p class="component-description">{{ 'components.link.description' | translate }}</p>
+      <div
+        class="component-card"
+        *ngIf="shouldShowCard('link anchor routerlink navigation external')"
+      >
+        <h3>{{ "components.link.name" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.link.description" | translate }}
+        </p>
         <div class="component-examples">
           <ui-link href="https://angular.dev" target="_blank">External</ui-link>
           <ui-link [routerLink]="['/']">Internal</ui-link>
@@ -154,30 +225,48 @@
       </div>
 
       <!-- IconButton Card -->
-      <div class="component-card" *ngIf="shouldShowCard('icon button tooltip ripple')">
-        <h3>{{ 'components.iconButton.name' | translate }}</h3>
-        <p class="component-description">{{ 'components.iconButton.description' | translate }}</p>
+      <div
+        class="component-card"
+        *ngIf="shouldShowCard('icon button tooltip ripple')"
+      >
+        <h3>{{ "components.iconButton.name" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.iconButton.description" | translate }}
+        </p>
         <div class="component-examples">
-          <ui-icon-button icon="★" variant="primary" tooltip="Preferiti"></ui-icon-button>
-          <ui-icon-button icon="✎" variant="secondary" tooltip="Modifica"></ui-icon-button>
-          <ui-icon-button icon="🗑" variant="danger" tooltip="Elimina"></ui-icon-button>
+          <ui-icon-button
+            icon="★"
+            variant="primary"
+            tooltip="Preferiti"
+          ></ui-icon-button>
+          <ui-icon-button
+            icon="✎"
+            variant="secondary"
+            tooltip="Modifica"
+          ></ui-icon-button>
+          <ui-icon-button
+            icon="🗑"
+            variant="danger"
+            tooltip="Elimina"
+          ></ui-icon-button>
         </div>
-        <div class="component-footer">
-          Azioni contestuali con tooltip.
-        </div>
+        <div class="component-footer">Azioni contestuali con tooltip.</div>
       </div>
 
       <!-- FAB Card -->
-      <div class="component-card" *ngIf="shouldShowCard('fab floating action button extended')">
-        <h3>{{ 'components.fab.name' | translate }}</h3>
-        <p class="component-description">{{ 'components.fab.description' | translate }}</p>
+      <div
+        class="component-card"
+        *ngIf="shouldShowCard('fab floating action button extended')"
+      >
+        <h3>{{ "components.fab.name" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.fab.description" | translate }}
+        </p>
         <div class="component-examples">
           <ui-fab icon="+" size="medium"></ui-fab>
           <ui-fab icon="+" size="large" [extended]="true">Nuovo</ui-fab>
         </div>
-        <div class="component-footer">
-          FAB standard ed esteso.
-        </div>
+        <div class="component-footer">FAB standard ed esteso.</div>
       </div>
     </div>
   </section>
@@ -186,32 +275,64 @@
 
   <!-- ===== INPUTS SECTION ===== -->
   <section id="inputs">
-    <h2><app-icon icon="input" [size]="20"></app-icon> <span class="highlight">{{ 'nav.inputs' | translate }}</span></h2>
-    <p>{{ 'components.textInput.description' | translate }}</p>
+    <h2>
+      <app-icon icon="input" [size]="20"></app-icon>
+      <span class="highlight">{{ "nav.inputs" | translate }}</span>
+    </h2>
+    <p>{{ "components.textInput.description" | translate }}</p>
 
     <!-- Filter pills -->
     <div class="filter-pills">
-      <button class="filter-pill" (click)="setSearchFilter('text')" [class.filter-pill--active]="searchValue() === 'text'">
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('text')"
+        [class.filter-pill--active]="searchValue() === 'text'"
+      >
         <app-icon icon="input" [size]="14"></app-icon> Text
       </button>
-      <button class="filter-pill" (click)="setSearchFilter('checkbox')" [class.filter-pill--active]="searchValue() === 'checkbox'">
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('checkbox')"
+        [class.filter-pill--active]="searchValue() === 'checkbox'"
+      >
         <app-icon icon="checkbox" [size]="14"></app-icon> Checkbox
       </button>
-      <button class="filter-pill" (click)="setSearchFilter('toggle')" [class.filter-pill--active]="searchValue() === 'toggle'">
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('toggle')"
+        [class.filter-pill--active]="searchValue() === 'toggle'"
+      >
         <app-icon icon="toggle" [size]="14"></app-icon> Toggle
       </button>
-      <button class="filter-pill" (click)="setSearchFilter('select')" [class.filter-pill--active]="searchValue() === 'select'">
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('select')"
+        [class.filter-pill--active]="searchValue() === 'select'"
+      >
         <app-icon icon="grid" [size]="14"></app-icon> Select
       </button>
     </div>
 
     <div class="components-grid">
       <!-- TextInput Card -->
-      <div class="component-card" *ngIf="shouldShowCard('text input field label')">
-        <h3>{{ 'components.textInput.name' | translate }}</h3>
-        <p class="component-description">{{ 'components.textInput.description' | translate }}</p>
-        <div class="component-examples" style="flex-direction: column; align-items: stretch;">
-          <ui-text-input label="Nome" placeholder="Inserisci il nome" [required]="true" hint="Obbligatorio"></ui-text-input>
+      <div
+        class="component-card"
+        *ngIf="shouldShowCard('text input field label')"
+      >
+        <h3>{{ "components.textInput.name" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.textInput.description" | translate }}
+        </p>
+        <div
+          class="component-examples"
+          style="flex-direction: column; align-items: stretch"
+        >
+          <ui-text-input
+            label="Nome"
+            placeholder="Inserisci il nome"
+            [required]="true"
+            hint="Obbligatorio"
+          ></ui-text-input>
         </div>
         <div class="component-footer">
           Required, hint, error, readonly, disabled.
@@ -219,43 +340,66 @@
       </div>
 
       <!-- Checkbox Card -->
-      <div class="component-card" *ngIf="shouldShowCard('checkbox boolean selection')">
-        <h3>{{ 'components.checkbox.name' | translate }}</h3>
-        <p class="component-description">{{ 'components.checkbox.description' | translate }}</p>
-        <div class="component-examples" style="flex-direction: column; align-items: flex-start;">
+      <div
+        class="component-card"
+        *ngIf="shouldShowCard('checkbox boolean selection')"
+      >
+        <h3>{{ "components.checkbox.name" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.checkbox.description" | translate }}
+        </p>
+        <div
+          class="component-examples"
+          style="flex-direction: column; align-items: flex-start"
+        >
           <ui-checkbox label="Accetto i termini"></ui-checkbox>
           <ui-checkbox label="Iscriviti"></ui-checkbox>
           <ui-checkbox label="Disabilitato" [disabled]="true"></ui-checkbox>
         </div>
-        <div class="component-footer">
-          Attivo, disabilitato, indeterminate.
-        </div>
+        <div class="component-footer">Attivo, disabilitato, indeterminate.</div>
       </div>
 
       <!-- Toggle Card -->
-      <div class="component-card" *ngIf="shouldShowCard('toggle switch boolean')">
-        <h3>{{ 'components.toggle.name' | translate }}</h3>
-        <p class="component-description">{{ 'components.toggle.description' | translate }}</p>
-        <div class="component-examples" style="flex-direction: column; align-items: flex-start; gap: var(--space-3);">
+      <div
+        class="component-card"
+        *ngIf="shouldShowCard('toggle switch boolean')"
+      >
+        <h3>{{ "components.toggle.name" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.toggle.description" | translate }}
+        </p>
+        <div
+          class="component-examples"
+          style="
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--space-3);
+          "
+        >
           <ui-toggle label="Notifiche" size="small"></ui-toggle>
           <ui-toggle label="Modalità scura" size="medium"></ui-toggle>
-          <ui-toggle label="Tracciamento" size="large" [disabled]="true"></ui-toggle>
+          <ui-toggle
+            label="Tracciamento"
+            size="large"
+            [disabled]="true"
+          ></ui-toggle>
         </div>
-        <div class="component-footer">
-          Small, medium, large, disabled.
-        </div>
+        <div class="component-footer">Small, medium, large, disabled.</div>
       </div>
 
       <!-- Select Card -->
       <div class="component-card" *ngIf="shouldShowCard('select dropdown')">
-        <h3>{{ 'components.select.name' | translate }}</h3>
-        <p class="component-description">{{ 'components.select.description' | translate }}</p>
-        <div class="component-examples" style="flex-direction: column; align-items: stretch;">
+        <h3>{{ "components.select.name" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.select.description" | translate }}
+        </p>
+        <div
+          class="component-examples"
+          style="flex-direction: column; align-items: stretch"
+        >
           <ui-select label="Ruolo" placeholder="Seleziona"></ui-select>
         </div>
-        <div class="component-footer">
-          Placeholder, required, error.
-        </div>
+        <div class="component-footer">Placeholder, required, error.</div>
       </div>
     </div>
   </section>
@@ -264,18 +408,33 @@
 
   <!-- ===== LAYOUT SECTION ===== -->
   <section id="layout">
-    <h2><app-icon icon="grid" [size]="20"></app-icon> <span class="highlight">{{ 'nav.layout' | translate }}</span></h2>
-    <p>{{ 'components.card.description' | translate }}</p>
+    <h2>
+      <app-icon icon="grid" [size]="20"></app-icon>
+      <span class="highlight">{{ "nav.layout" | translate }}</span>
+    </h2>
+    <p>{{ "components.card.description" | translate }}</p>
 
     <!-- Filter pills -->
     <div class="filter-pills">
-      <button class="filter-pill" (click)="setSearchFilter('card')" [class.filter-pill--active]="searchValue() === 'card'">
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('card')"
+        [class.filter-pill--active]="searchValue() === 'card'"
+      >
         <app-icon icon="grid" [size]="14"></app-icon> Card
       </button>
-      <button class="filter-pill" (click)="setSearchFilter('container')" [class.filter-pill--active]="searchValue() === 'container'">
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('container')"
+        [class.filter-pill--active]="searchValue() === 'container'"
+      >
         <app-icon icon="grid" [size]="14"></app-icon> Container
       </button>
-      <button class="filter-pill" (click)="setSearchFilter('divider')" [class.filter-pill--active]="searchValue() === 'divider'">
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('divider')"
+        [class.filter-pill--active]="searchValue() === 'divider'"
+      >
         <app-icon icon="arrow" [size]="14"></app-icon> Divider
       </button>
     </div>
@@ -283,26 +442,50 @@
     <div class="components-grid">
       <!-- Card Card -->
       <div class="component-card" *ngIf="shouldShowCard('card elevation')">
-        <h3>{{ 'components.card.name' | translate }}</h3>
-        <p class="component-description">{{ 'components.card.description' | translate }}</p>
-        <div class="component-examples" style="flex-direction: column; align-items: stretch;">
+        <h3>{{ "components.card.name" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.card.description" | translate }}
+        </p>
+        <div
+          class="component-examples"
+          style="flex-direction: column; align-items: stretch"
+        >
           <ui-card [elevation]="1" padding="medium" [hoverable]="true">
-            <h4 style="margin: 0;">Titolo Card</h4>
-            <p style="margin: 8px 0; color: var(--color-muted); font-size: var(--fs-sm);">Contenuto di esempio.</p>
+            <h4 style="margin: 0">Titolo Card</h4>
+            <p
+              style="
+                margin: 8px 0;
+                color: var(--color-muted);
+                font-size: var(--fs-sm);
+              "
+            >
+              Contenuto di esempio.
+            </p>
           </ui-card>
         </div>
-        <div class="component-footer">
-          Card con elevazione, padding, hover.
-        </div>
+        <div class="component-footer">Card con elevazione, padding, hover.</div>
       </div>
 
       <!-- Container Card -->
       <div class="component-card" *ngIf="shouldShowCard('container max width')">
-        <h3>{{ 'components.container.name' | translate }}</h3>
-        <p class="component-description">{{ 'components.container.description' | translate }}</p>
-        <div class="component-examples" style="flex-direction: column; align-items: stretch;">
+        <h3>{{ "components.container.name" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.container.description" | translate }}
+        </p>
+        <div
+          class="component-examples"
+          style="flex-direction: column; align-items: stretch"
+        >
           <ui-container maxWidth="md" [padding]="true">
-            <div style="background: rgba(245, 180, 42, 0.1); padding: 12px; border-radius: 6px; text-align: center; font-size: var(--fs-sm);">
+            <div
+              style="
+                background: rgba(245, 180, 42, 0.1);
+                padding: 12px;
+                border-radius: 6px;
+                text-align: center;
+                font-size: var(--fs-sm);
+              "
+            >
               Contenuto in container
             </div>
           </ui-container>
@@ -314,14 +497,21 @@
 
       <!-- Divider Card -->
       <div class="component-card" *ngIf="shouldShowCard('divider separator')">
-        <h3>{{ 'components.divider.name' | translate }}</h3>
-        <p class="component-description">{{ 'components.divider.description' | translate }}</p>
-        <div class="component-examples" style="flex-direction: column; align-items: stretch;">
-          <ui-divider orientation="horizontal" spacing="small" text="Sezione"></ui-divider>
+        <h3>{{ "components.divider.name" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.divider.description" | translate }}
+        </p>
+        <div
+          class="component-examples"
+          style="flex-direction: column; align-items: stretch"
+        >
+          <ui-divider
+            orientation="horizontal"
+            spacing="small"
+            text="Sezione"
+          ></ui-divider>
         </div>
-        <div class="component-footer">
-          Orizzontale, verticale con testo.
-        </div>
+        <div class="component-footer">Orizzontale, verticale con testo.</div>
       </div>
     </div>
   </section>
@@ -330,21 +520,40 @@
 
   <!-- ===== FEEDBACK SECTION ===== -->
   <section id="feedback">
-    <h2><app-icon icon="alert" [size]="20"></app-icon> <span class="highlight">{{ 'nav.feedback' | translate }}</span></h2>
-    <p>{{ 'components.alert.description' | translate }}</p>
+    <h2>
+      <app-icon icon="alert" [size]="20"></app-icon>
+      <span class="highlight">{{ "nav.feedback" | translate }}</span>
+    </h2>
+    <p>{{ "components.alert.description" | translate }}</p>
 
     <!-- Filter pills -->
     <div class="filter-pills">
-      <button class="filter-pill" (click)="setSearchFilter('alert')" [class.filter-pill--active]="searchValue() === 'alert'">
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('alert')"
+        [class.filter-pill--active]="searchValue() === 'alert'"
+      >
         <app-icon icon="alert" [size]="14"></app-icon> Alert
       </button>
-      <button class="filter-pill" (click)="setSearchFilter('spinner')" [class.filter-pill--active]="searchValue() === 'spinner'">
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('spinner')"
+        [class.filter-pill--active]="searchValue() === 'spinner'"
+      >
         <app-icon icon="loader" [size]="14"></app-icon> Spinner
       </button>
-      <button class="filter-pill" (click)="setSearchFilter('progress')" [class.filter-pill--active]="searchValue() === 'progress'">
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('progress')"
+        [class.filter-pill--active]="searchValue() === 'progress'"
+      >
         <app-icon icon="arrow" [size]="14"></app-icon> Progress
       </button>
-      <button class="filter-pill" (click)="setSearchFilter('toast')" [class.filter-pill--active]="searchValue() === 'toast'">
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('toast')"
+        [class.filter-pill--active]="searchValue() === 'toast'"
+      >
         <app-icon icon="bell" [size]="14"></app-icon> Toast
       </button>
     </div>
@@ -352,51 +561,83 @@
     <div class="components-grid">
       <!-- Alert Card -->
       <div class="component-card" *ngIf="shouldShowCard('alert success error')">
-        <h3>{{ 'components.alert.name' | translate }}</h3>
-        <p class="component-description">{{ 'components.alert.description' | translate }}</p>
-        <div class="component-examples" style="flex-direction: column; align-items: stretch; gap: var(--space-2);">
-          <ui-alert type="success" title="Successo">Operazione completata.</ui-alert>
+        <h3>{{ "components.alert.name" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.alert.description" | translate }}
+        </p>
+        <div
+          class="component-examples"
+          style="
+            flex-direction: column;
+            align-items: stretch;
+            gap: var(--space-2);
+          "
+        >
+          <ui-alert type="success" title="Successo"
+            >Operazione completata.</ui-alert
+          >
           <ui-alert type="error" title="Errore">Qualcosa non va.</ui-alert>
-          <ui-alert type="warning" title="Attenzione">Controlla i dati.</ui-alert>
+          <ui-alert type="warning" title="Attenzione"
+            >Controlla i dati.</ui-alert
+          >
         </div>
-        <div class="component-footer">
-          Success, error, warning, info.
-        </div>
+        <div class="component-footer">Success, error, warning, info.</div>
       </div>
 
       <!-- Spinner Card -->
-      <div class="component-card" *ngIf="shouldShowCard('spinner loader loading')">
-        <h3>{{ 'components.spinner.name' | translate }}</h3>
-        <p class="component-description">{{ 'components.spinner.description' | translate }}</p>
+      <div
+        class="component-card"
+        *ngIf="shouldShowCard('spinner loader loading')"
+      >
+        <h3>{{ "components.spinner.name" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.spinner.description" | translate }}
+        </p>
         <div class="component-examples">
           <ui-spinner size="small" color="primary"></ui-spinner>
           <ui-spinner size="medium" color="secondary"></ui-spinner>
           <ui-spinner size="large" color="primary"></ui-spinner>
         </div>
-        <div class="component-footer">
-          Small/medium/large con colori.
-        </div>
+        <div class="component-footer">Small/medium/large con colori.</div>
       </div>
 
       <!-- Progress Bar Card -->
       <div class="component-card" *ngIf="shouldShowCard('progress bar')">
-        <h3>{{ 'components.progress.name' | translate }}</h3>
-        <p class="component-description">{{ 'components.progress.description' | translate }}</p>
-        <div class="component-examples" style="flex-direction: column; align-items: stretch; gap: var(--space-3);">
+        <h3>{{ "components.progress.name" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.progress.description" | translate }}
+        </p>
+        <div
+          class="component-examples"
+          style="
+            flex-direction: column;
+            align-items: stretch;
+            gap: var(--space-3);
+          "
+        >
           <ui-progress-bar [value]="25" [showLabel]="true"></ui-progress-bar>
-          <ui-progress-bar [value]="60" color="success" [striped]="true"></ui-progress-bar>
-          <ui-progress-bar [value]="85" color="warning" [striped]="true" [animated]="true"></ui-progress-bar>
+          <ui-progress-bar
+            [value]="60"
+            color="success"
+            [striped]="true"
+          ></ui-progress-bar>
+          <ui-progress-bar
+            [value]="85"
+            color="warning"
+            [striped]="true"
+            [animated]="true"
+          ></ui-progress-bar>
         </div>
-        <div class="component-footer">
-          Label, striped, animated.
-        </div>
+        <div class="component-footer">Label, striped, animated.</div>
       </div>
 
       <!-- Toast Card -->
       <div class="component-card" *ngIf="shouldShowCard('toast notification')">
-        <h3>{{ 'components.toast.name' | translate }}</h3>
-        <p class="component-description">{{ 'components.toast.description' | translate }}</p>
-        <div class="component-examples" style="min-height: 100px;">
+        <h3>{{ "components.toast.name" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.toast.description" | translate }}
+        </p>
+        <div class="component-examples" style="min-height: 100px">
           <ui-toast-container></ui-toast-container>
         </div>
         <div class="component-footer">
@@ -410,18 +651,33 @@
 
   <!-- ===== INFORMATIONAL SECTION ===== -->
   <section id="informational">
-    <h2><app-icon icon="info" [size]="20"></app-icon> <span class="highlight">{{ 'nav.informational' | translate }}</span></h2>
-    <p>{{ 'components.badge.description' | translate }}</p>
+    <h2>
+      <app-icon icon="info" [size]="20"></app-icon>
+      <span class="highlight">{{ "nav.informational" | translate }}</span>
+    </h2>
+    <p>{{ "components.badge.description" | translate }}</p>
 
     <!-- Filter pills -->
     <div class="filter-pills">
-      <button class="filter-pill" (click)="setSearchFilter('badge')" [class.filter-pill--active]="searchValue() === 'badge'">
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('badge')"
+        [class.filter-pill--active]="searchValue() === 'badge'"
+      >
         <app-icon icon="star" [size]="14"></app-icon> Badge
       </button>
-      <button class="filter-pill" (click)="setSearchFilter('avatar')" [class.filter-pill--active]="searchValue() === 'avatar'">
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('avatar')"
+        [class.filter-pill--active]="searchValue() === 'avatar'"
+      >
         <app-icon icon="users" [size]="14"></app-icon> Avatar
       </button>
-      <button class="filter-pill" (click)="setSearchFilter('table')" [class.filter-pill--active]="searchValue() === 'table'">
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('table')"
+        [class.filter-pill--active]="searchValue() === 'table'"
+      >
         <app-icon icon="table" [size]="14"></app-icon> Table
       </button>
     </div>
@@ -429,38 +685,58 @@
     <div class="components-grid">
       <!-- Badge Card -->
       <div class="component-card" *ngIf="shouldShowCard('badge tag label')">
-        <h3>{{ 'components.badge.name' | translate }}</h3>
-        <p class="component-description">{{ 'components.badge.description' | translate }}</p>
+        <h3>{{ "components.badge.name" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.badge.description" | translate }}
+        </p>
         <div class="component-examples">
           <ui-badge variant="primary">Primary</ui-badge>
           <ui-badge variant="success">Success</ui-badge>
           <ui-badge variant="warning">Warning</ui-badge>
           <ui-badge variant="danger">Danger</ui-badge>
         </div>
-        <div class="component-footer">
-          Varianti, outlined, dot.
-        </div>
+        <div class="component-footer">Varianti, outlined, dot.</div>
       </div>
 
       <!-- Avatar Card -->
       <div class="component-card" *ngIf="shouldShowCard('avatar profile')">
-        <h3>{{ 'components.avatar.name' | translate }}</h3>
-        <p class="component-description">{{ 'components.avatar.description' | translate }}</p>
+        <h3>{{ "components.avatar.name" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.avatar.description" | translate }}
+        </p>
         <div class="component-examples">
-          <ui-avatar alt="Mario Rossi" size="medium" shape="circle" status="online"></ui-avatar>
-          <ui-avatar alt="Giulia Bianchi" size="medium" shape="circle" status="away"></ui-avatar>
-          <ui-avatar alt="AB" size="medium" shape="square" status="offline"></ui-avatar>
+          <ui-avatar
+            alt="Mario Rossi"
+            size="medium"
+            shape="circle"
+            status="online"
+          ></ui-avatar>
+          <ui-avatar
+            alt="Giulia Bianchi"
+            size="medium"
+            shape="circle"
+            status="away"
+          ></ui-avatar>
+          <ui-avatar
+            alt="AB"
+            size="medium"
+            shape="square"
+            status="offline"
+          ></ui-avatar>
         </div>
-        <div class="component-footer">
-          Immagine, iniziali, forme, status.
-        </div>
+        <div class="component-footer">Immagine, iniziali, forme, status.</div>
       </div>
 
       <!-- Table Card -->
       <div class="component-card" *ngIf="shouldShowCard('table data grid')">
-        <h3>{{ 'components.table.name' | translate }}</h3>
-        <p class="component-description">{{ 'components.table.description' | translate }}</p>
-        <div class="component-examples" style="flex-direction: column; align-items: stretch;">
+        <h3>{{ "components.table.name" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.table.description" | translate }}
+        </p>
+        <div
+          class="component-examples"
+          style="flex-direction: column; align-items: stretch"
+        >
           <ui-table
             [columns]="[
               { field: 'name', header: 'Nome' },
@@ -471,12 +747,11 @@
               { name: 'Bruno', role: 'Editor' }
             ]"
             [striped]="true"
-            [hoverable]="true">
+            [hoverable]="true"
+          >
           </ui-table>
         </div>
-        <div class="component-footer">
-          Ordinamento, striped, hoverable.
-        </div>
+        <div class="component-footer">Ordinamento, striped, hoverable.</div>
       </div>
     </div>
   </section>
@@ -484,10 +759,10 @@
   <!-- ===== FOOTER ===== -->
   <div class="catalog-footer">
     <p>
-      🐉 <strong>Wyrmrest UI Library</strong> – {{ 'footer.text' | translate }}
+      🐉 <strong>Wyrmrest UI Library</strong> — {{ "footer.text" | translate }}
     </p>
     <p>
-      {{ 'footer.details' | translate }}
+      {{ "footer.details" | translate }}
     </p>
   </div>
 </div>
