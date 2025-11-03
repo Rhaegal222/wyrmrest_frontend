@@ -23,7 +23,7 @@ export class ProgressBarComponent {
   get barClasses(): string[] {
     return [
       'ui-progress-bar__fill',
-      'ui-progress-bar__fill--',
+      'ui-progress-bar__fill--' + this.color,
       this.striped ? 'ui-progress-bar__fill--striped' : '',
       this.animated ? 'ui-progress-bar__fill--animated' : ''
     ].filter(Boolean);

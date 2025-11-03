@@ -224,7 +224,7 @@
         </div>
       </div>
 
-      <!-- IconButton Card -->
+      <!-- IconButton Card - FIXED ICONS -->
       <div
         class="component-card"
         *ngIf="shouldShowCard('icon button tooltip ripple')"
@@ -739,8 +739,8 @@
         >
           <ui-table
             [columns]="[
-              { field: 'name', header: 'Nome' },
-              { field: 'role', header: 'Ruolo' }
+              { field: 'name', header: 'Nome', sortable: true },
+              { field: 'role', header: 'Ruolo', sortable: true }
             ]"
             [data]="[
               { name: 'Alice', role: 'Admin' },

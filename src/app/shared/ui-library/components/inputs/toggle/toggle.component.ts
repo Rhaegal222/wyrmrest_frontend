@@ -50,7 +50,7 @@ export class ToggleComponent implements ControlValueAccessor {
   get classes(): string[] {
     return [
       'ui-toggle',
-      'ui-toggle--',
+      'ui-toggle--' + this.size,
       this.disabled ? 'ui-toggle--disabled' : '',
       this.checked ? 'ui-toggle--checked' : ''
     ].filter(Boolean);

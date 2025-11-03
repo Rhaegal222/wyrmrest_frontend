@@ -30,8 +30,8 @@ export class IconButtonComponent {
   get classes(): string[] {
     return [
       'ui-icon-button',
-      'ui-icon-button--',
-      'ui-icon-button--',
+      'ui-icon-button--' + this.variant,
+      'ui-icon-button--' + this.size,
       this.rounded ? 'ui-icon-button--rounded' : ''
     ].filter(Boolean);
   }

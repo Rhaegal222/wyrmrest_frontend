@@ -18,8 +18,8 @@ export class CardComponent {
   get classes(): string[] {
     return [
       'ui-card',
-      'ui-card--elevation-',
-      'ui-card--padding-',
+      'ui-card--elevation-' + this.elevation,
+      'ui-card--padding-' + this.padding,
       this.hoverable ? 'ui-card--hoverable' : ''
     ].filter(Boolean);
   }

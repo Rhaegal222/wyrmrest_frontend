@@ -16,8 +16,8 @@ export class DividerComponent {
   get classes(): string[] {
     return [
       'ui-divider',
-      'ui-divider--',
-      'ui-divider--spacing-',
+      'ui-divider--' + this.orientation,
+      'ui-divider--spacing-' + this.spacing,
       this.text ? 'ui-divider--with-text' : ''
     ].filter(Boolean);
   }

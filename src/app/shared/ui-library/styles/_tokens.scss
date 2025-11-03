@@ -1,12 +1,15 @@
-/* tokens.scss - Wyrmrest Theme */
+/* tokens.scss — Wyrmrest Theme (Light + Dark) */
+/* Tutte le dimensioni sono in rem; base 1rem = 16px */
+
 :root,
 .theme-light.wyrmrest {
-  /* Palette base */
+  /* Palette base — Light */
   --color-bg: #ffffff;
-  --color-surface: #ffffff;
-  --color-text: #1f2937;
-  --color-muted: #6b7280;
-  --color-border: #e5e7eb;
+  --color-surface: #ffffff;         /* card / moduli */
+  --color-surface-2: #f7f7f9;       /* input / search */
+  --color-text: #1f2937;            /* testo principale */
+  --color-muted: #6b7280;           /* testo secondario */
+  --color-border: #e5e7eb;          /* separatori / bordi leggeri */
 
   /* Brand */
   --primary-50: #ffe7df;
@@ -32,45 +35,52 @@
   --info-50: #ecfeff;
   --info-500: #0ea5e9;
 
-  /* Spacing */
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 20px;
-  --space-6: 24px;
-  --space-8: 32px;
+  /* Spaziatura (rem) — 4px step */
+  --space-1: 0.25rem;  /* 4px  */
+  --space-2: 0.5rem;   /* 8px  */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
 
-  /* Radius / Type / Shadow */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-full: 9999px;
+  /* Raggi (rem) */
+  --radius-sm: 0.375rem;  /* 6px  */
+  --radius-md: 0.625rem;  /* 10px */
+  --radius-lg: 0.875rem;  /* 14px */
+  --radius-full: 62.5rem; /* ~1000px (pill) */
 
-  --font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
-    sans-serif;
+  /* Tipografia */
+  --font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   --fs-sm: 0.875rem;
   --fs-base: 1rem;
   --fs-lg: 1.125rem;
 
+  /* Ombre (rem) */
   --shadow-0: none;
-  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow-2: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
-  --shadow-3: 0 10px 15px rgba(0, 0, 0, 0.12), 0 4px 6px rgba(0, 0, 0, 0.08);
+  --shadow-1: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.08),
+              0 0.0625rem 0.125rem rgba(0, 0, 0, 0.06);         /* 0 1px 3px, 0 1px 2px */
+  --shadow-2: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.10),
+              0 0.125rem 0.25rem rgba(0, 0, 0, 0.06);           /* 0 4px 6px, 0 2px 4px */
+  --shadow-3: 0 0.625rem 0.9375rem rgba(0, 0, 0, 0.12),
+              0 0.25rem 0.375rem rgba(0, 0, 0, 0.08);           /* 0 10px 15px, 0 4px 6px */
 
+  /* Transizioni */
   --transition-fast: 150ms;
   --transition-base: 200ms;
 }
 
 /* Dark variant */
 .theme-dark.wyrmrest {
+  /* Palette base — Dark */
   --color-bg: #0b1220;
-  --color-surface: #111827;
+  --color-surface: #121826;         /* leggermente più chiaro di bg */
+  --color-surface-2: #1a2233;       /* input / search */
   --color-text: #e5e7eb;
   --color-muted: #9ca3af;
   --color-border: #253046;
 
-  /* Brand nel dark: più luminanza per leggibilità */
+  /* Brand (più luminanza per contrasto) */
   --primary-50: #40231e;
   --primary-500: #e45b3d;
   --primary-600: #ff6b47;
@@ -83,7 +93,11 @@
 
   --tertiary-500: #5f79d1;
 
-  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-2: 0 4px 6px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
-  --shadow-3: 0 10px 15px rgba(0, 0, 0, 0.45), 0 4px 6px rgba(0, 0, 0, 0.35);
+  /* Ombre più corpose in scuro (rem) */
+  --shadow-1: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.35),
+              0 0.0625rem 0.125rem rgba(0, 0, 0, 0.30);
+  --shadow-2: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.40),
+              0 0.125rem 0.25rem rgba(0, 0, 0, 0.30);
+  --shadow-3: 0 0.625rem 0.9375rem rgba(0, 0, 0, 0.45),
+              0 0.25rem 0.375rem rgba(0, 0, 0, 0.35);
 }

@@ -1,4 +1,20 @@
 .ui-avatar {
-  // Stili verranno generati successivamente
+  position: relative; display: inline-grid; place-items: center; overflow: hidden; background: #e5e7eb;
+  &--small { width: 28px; height: 28px; }
+  &--medium { width: 36px; height: 36px; }
+  &--large { width: 48px; height: 48px; }
+  &--xlarge { width: 64px; height: 64px; }
+  &--circle { border-radius: var(--radius-full); }
+  &--square { border-radius: var(--radius-md); }
+  &__image { width: 100%; height: 100%; object-fit: cover; }
+  &__initials { font-weight: 600; color: var(--color-text); }
+  &__status {
+    position: absolute; right: -2px; bottom: -2px; width: 12px; height: 12px; border-radius: var(--radius-full); border: 2px solid var(--color-surface);
+    &--online  { background: var(--success-500); }
+    &--offline { background: #9ca3af; }
+    &--away    { background: var(--warning-500); }
+    &--busy    { background: var(--danger-500); }
+  }
 }
+
 

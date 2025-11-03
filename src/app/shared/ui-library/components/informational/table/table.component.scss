@@ -1,4 +1,16 @@
+@use '../../../styles/mixins' as m;
+
+.ui-table-wrapper { width: 100%; overflow-x: auto; }
 .ui-table {
-  // Stili verranno generati successivamente
+  width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; background: var(--color-surface);
+  &__head { background: #f8fafc; }
+  &__header-cell { text-align: left; padding: 10px 12px; font-weight: 600; color: var(--color-muted); cursor: default; }
+  &__header-cell--sortable { cursor: pointer; }
+  &__body .ui-table__row:nth-child(odd).ui-table--striped &,
+  &--striped .ui-table__row:nth-child(odd) { background: #fafafa; }
+  &__row:hover.ui-table--hoverable &,
+  &--hoverable .ui-table__row:hover { background: var(--primary-50); }
+  &__cell { padding: 10px 12px; border-top: 1px solid var(--color-border); }
+  &__empty { padding: 16px; text-align: center; color: var(--color-muted); }
 }
 

@@ -1,6 +1,19 @@
 @use '../../../styles/mixins' as m;
 
 .ui-progress-bar {
-  // Stili verranno generati successivamente
+  &__track {
+    width: 100%; height: 10px; background: #e5e7eb; border-radius: var(--radius-full); overflow: hidden;
+  }
+  &__fill {
+    height: 100%; display: grid; place-items: center; color: #fff; font-size: var(--fs-sm);
+    background: var(--primary-500); transition: width var(--transition-base) ease;
+    &--success { background: var(--success-500); }
+    &--warning { background: var(--warning-500); }
+    &--danger  { background: var(--danger-500); }
+    &--striped { background-image: linear-gradient(45deg, rgba(255,255,255,.25) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.25) 50%, rgba(255,255,255,.25) 75%, transparent 75%, transparent); background-size: 1rem 1rem; }
+    &--animated { animation: pb 1s linear infinite; }
+  }
 }
+@keyframes pb { 0% { background-position: 0 0; } 100% { background-position: 1rem 0; } }
+
 

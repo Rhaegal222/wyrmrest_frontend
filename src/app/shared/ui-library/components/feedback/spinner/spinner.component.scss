@@ -1,4 +1,14 @@
-.ui-spinner {
-  // Stili verranno generati successivamente
-}
+@use '../../../styles/mixins' as m;
 
+.ui-spinner {
+  &__circle {
+    width: 28px; height: 28px; border: 3px solid rgba(0,0,0,.1);
+    border-top-color: currentColor; border-radius: 50%; animation: spin 1s linear infinite;
+  }
+  &--small .ui-spinner__circle { width: 18px; height: 18px; }
+  &--large .ui-spinner__circle { width: 36px; height: 36px; }
+  &--primary { color: var(--primary-500); }
+  &--secondary { color: var(--secondary-500); }
+  &--white { color: #fff; }
+  &--overlay { position: fixed; inset: 0; display: grid; place-items: center; background: rgba(0,0,0,.1); }
+}

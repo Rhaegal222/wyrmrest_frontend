@@ -34,7 +34,7 @@ export class AlertComponent {
   get classes(): string[] {
     return [
       'ui-alert',
-      'ui-alert--'
+      'ui-alert--' + this.type
     ];
   }
 }

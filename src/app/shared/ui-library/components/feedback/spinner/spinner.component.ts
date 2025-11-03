@@ -16,8 +16,8 @@ export class SpinnerComponent {
   get classes(): string[] {
     return [
       'ui-spinner',
-      'ui-spinner--',
-      'ui-spinner--',
+      'ui-spinner--' + this.size,
+      'ui-spinner--' + this.color,
       this.overlay ? 'ui-spinner--overlay' : ''
     ].filter(Boolean);
   }

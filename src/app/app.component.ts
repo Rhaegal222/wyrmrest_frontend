@@ -11,11 +11,12 @@ import { UiLibraryModule } from './shared/ui-library/ui-library.module';
 import { IconComponent } from './shared/components/icon/icon.component';
 import { TranslatePipe } from './shared/pipes/translate.pipe';
 import { TranslationService } from './shared/services/translation.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, TranslatePipe, UiLibraryModule, IconComponent],
+  imports: [CommonModule, UiLibraryModule, IconComponent, TranslateModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

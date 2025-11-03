@@ -18,8 +18,8 @@ export class BadgeComponent {
   get classes(): string[] {
     return [
       'ui-badge',
-      'ui-badge--',
-      'ui-badge--',
+      'ui-badge--' + this.variant,
+      'ui-badge--' + this.size,
       this.dot ? 'ui-badge--dot' : '',
       this.outlined ? 'ui-badge--outlined' : ''
     ].filter(Boolean);

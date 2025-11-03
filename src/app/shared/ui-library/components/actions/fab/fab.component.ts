@@ -26,8 +26,8 @@ export class FabComponent {
   get classes(): string[] {
     return [
       'ui-fab',
-      'ui-fab--',
-      'ui-fab--',
+      'ui-fab--' + this.size,
+      'ui-fab--' + this.position,
       this.extended ? 'ui-fab--extended' : ''
     ].filter(Boolean);
   }

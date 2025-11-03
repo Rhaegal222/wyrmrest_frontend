@@ -38,8 +38,8 @@ export class AvatarComponent {
   get classes(): string[] {
     return [
       'ui-avatar',
-      'ui-avatar--',
-      'ui-avatar--',
+      'ui-avatar--' + this.size,
+      'ui-avatar--' + this.shape,
       this.status ? 'ui-avatar--with-status' : ''
     ].filter(Boolean);
   }

@@ -15,7 +15,7 @@ export class ContainerComponent {
   get classes(): string[] {
     return [
       'ui-container',
-      'ui-container--',
+      'ui-container--' + this.maxWidth,
       this.padding ? 'ui-container--padded' : ''
     ].filter(Boolean);
   }
