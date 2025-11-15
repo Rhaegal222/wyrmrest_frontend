@@ -27,6 +27,10 @@
       "name": "Link",
       "description": "Collegamenti esterni e interni con underline opzionale."
     },
+    "icons":{
+      "name": "Icone",
+      "description": "Catalogo delle icone SVG con opzioni di dimensione e colore."
+    },
     "iconButton": {
       "name": "IconButton",
       "description": "Pulsante icona con tooltip e ripple effect."

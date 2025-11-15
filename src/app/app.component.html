@@ -129,6 +129,15 @@
         <app-icon icon="info" [size]="16"></app-icon>
         <span>{{ "nav.informational" | translate }}</span>
       </a>
+      <a
+        href="#icons"
+        class="catalog-nav__link"
+        [class.active]="isSectionActive('icons')"
+        (click)="scrollToSection('icons'); $event.preventDefault()"
+      >
+        <app-icon icon="star" [size]="16"></app-icon>
+        <span>{{ "nav.icons" | translate }}</span>
+      </a>
     </nav>
   </div>
 
@@ -755,6 +764,84 @@
       </div>
     </div>
   </section>
+
+  <div class="section-divider"></div>
+
+<!-- ICONS SECTION -->
+<section id="icons">
+  <h2>
+    <app-icon icon="star" [size]="20"></app-icon>
+    <span class="highlight">{{ "components.icons.name" | translate }}</span>
+  </h2>
+  <p>{{ "components.icons.description" | translate }}</p>
+
+  <!-- Filter pills -->
+  <div class="filter-pills">
+    <button
+      class="filter-pill"
+      (click)="setIconCategoryFilter('all')"
+      [class.filter-pill--active]="iconCategoryFilter() === 'all'"
+    >
+      <app-icon icon="grid" [size]="14"></app-icon>
+      All Icons
+    </button>
+    <button
+      class="filter-pill"
+      (click)="setIconCategoryFilter('actions')"
+      [class.filter-pill--active]="iconCategoryFilter() === 'actions'"
+    >
+      <app-icon icon="arrow" [size]="14"></app-icon>
+      Actions
+    </button>
+    <button
+      class="filter-pill"
+      (click)="setIconCategoryFilter('navigation')"
+      [class.filter-pill--active]="iconCategoryFilter() === 'navigation'"
+    >
+      <app-icon icon="menu" [size]="14"></app-icon>
+      Navigation
+    </button>
+    <button
+      class="filter-pill"
+      (click)="setIconCategoryFilter('feedback')"
+      [class.filter-pill--active]="iconCategoryFilter() === 'feedback'"
+    >
+      <app-icon icon="alert" [size]="14"></app-icon>
+      Feedback
+    </button>
+    <button
+      class="filter-pill"
+      (click)="setIconCategoryFilter('ui')"
+      [class.filter-pill--active]="iconCategoryFilter() === 'ui'"
+    >
+      <app-icon icon="type" [size]="14"></app-icon>
+      UI
+    </button>
+  </div>
+
+  <!-- Icons Grid -->
+  <div class="icons-grid">
+    @for (iconData of getFilteredIcons(); track iconData.name) {
+      <div class="icon-card" (click)="copyIconName(iconData.name)">
+        <div class="icon-card__preview">
+          <app-icon [icon]="iconData.name" [size]="32"></app-icon>
+        </div>
+        <div class="icon-card__name">{{ iconData.name }}</div>
+        @if (iconData.alias) {
+          <div class="icon-card__alias">{{ iconData.alias }}</div>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Empty state -->
+  @if (getFilteredIcons().length === 0) {
+    <div class="empty-state">
+      <app-icon icon="search" [size]="48" color="var(--color-muted)"></app-icon>
+      <p>No icons found matching "{{ searchValue() }}"</p>
+    </div>
+  }
+</section>
 
   <!-- ===== FOOTER ===== -->
   <div class="catalog-footer">

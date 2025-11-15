@@ -1695,7 +1695,7 @@ export class IconComponent {
       link: '🔗',
       archive: '📦',
       send: '✉',
-      sun: '☀',
+      sun: '☀️',
       moon: '🌙',
       users: '👥',
       grid: '⊞',

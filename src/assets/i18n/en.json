@@ -27,6 +27,10 @@
       "name": "Link",
       "description": "External and internal links with optional underline."
     },
+    "icons":{
+      "name": "Icons",
+      "description": "SVG icon catalog with size and color options."
+    },
     "iconButton": {
       "name": "IconButton",
       "description": "Icon button with tooltip and ripple effect."

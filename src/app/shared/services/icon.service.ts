@@ -1,157 +1,142 @@
 // src/app/shared/services/icon.service.ts
-import {
-  Home01Icon,
-  Search01Icon,
-  Settings01Icon,
-  Notification01Icon, // Corretto (era BellIcon)
-  CheckmarkCircleIcon, // Corretto (era CheckmarkCircle01Icon)
-  AlertCircleIcon, // Corretto (era AlertCircle01Icon)
-  CircleIcon,
-  Cancel01Icon, // Corretto (era CloseIcon)
-  Add01Icon, // Corretto (era Plus01Icon)
-  Edit02Icon,
-  Delete01Icon, // Corretto (era Trash01Icon)
-  Download01Icon, // Corretto (era ChartDownloadIcon)
-  Layers01Icon,
-  Sun01Icon,
-  Moon01Icon,
-  Menu01Icon,
-  StarIcon, // Corretto (era Star01Icon)
-  UserGroupIcon, // Corretto (era Users01Icon)
-  LayoutGridIcon,
-  TypeCursorIcon, // Corretto (era Type01Icon)
-  ToggleOnIcon,
-  Tick01Icon, // Corretto (era CheckIcon)
-  Edit04Icon,
-  TableIcon,
-  ArrowRight01Icon,
-  Share01Icon,
-  CallDisabled02Icon,
-  AlertDiamondIcon, // Corretto (era AlertTriangleIcon)
-  RankingIcon,
-  EyeIcon, // Corretto (era Eye01Icon)
-  ViewOffIcon, // Corretto (era EyeOff01Icon)
-  LockIcon, // Corretto (era Lock01Icon)
-  FilterIcon, // Corretto (era Filter01Icon)
-  Sorting01Icon, // Corretto (era Sort01Icon)
-  Copy01Icon,
-  Upload01Icon,
-  Calendar01Icon,
-  Clock01Icon,
-  SmartPhone01Icon, // Corretto (era Mobile01Icon)
-  LaptopIcon, // Corretto (era Laptop01Icon)
-  ComputerIcon, // Corretto (era Monitor01Icon)
-  HeadphonesIcon, // Corretto (era Headphone01Icon)
-  VolumeHighIcon, // Corretto (era Volume01Icon)
-  Mic01Icon,
-  MicOff01Icon,
-  PlayIcon,
-  PauseIcon,
-  Folder01Icon,
-  Mail01Icon,
-  Pen01Icon,
-  Link01Icon,
-  Archive01Icon,
-  Xls01Icon,
-  Cash02Icon,
-  Copy02Icon,
-  Share02Icon,
-  MoreVerticalIcon,
-  MoreHorizontalIcon,
-  Logout01Icon,
-  Login01Icon,
-  MailSend01Icon, // Aggiunto per 'send' e 'message'
-  ListViewIcon, // Aggiunto per 'list'
-  MusicNote01Icon, // Aggiunto per 'music'
-} from '@hugeicons/core-free-icons';
 
-export const WYRMREST_ICONS = {
+import * as HugeIcons from '@hugeicons/core-free-icons';
+
+/**
+ * Genera automaticamente il dizionario delle icone da HugeIcons
+ * Tutte le icone esportate da @hugeicons/core-free-icons vengono automaticamente mappate
+ */
+function generateIconDictionary() {
+  const icons: Record<string, any> = {};
+  
+  // Itera su tutte le esportazioni del modulo HugeIcons
+  Object.entries(HugeIcons).forEach(([key, value]) => {
+    // Filtra solo le icone (esclude altri exports come utils, types, etc.)
+    if (key.endsWith('Icon') && typeof value === 'object') {
+      // Converte il nome da PascalCase a kebab-case
+      // Es: Home01Icon -> home-01
+      const iconName = key
+        .replace(/Icon$/, '') // Rimuove 'Icon' alla fine
+        .replace(/([A-Z])/g, '-$1') // Aggiunge trattino prima delle maiuscole
+        .toLowerCase()
+        .replace(/^-/, ''); // Rimuove il trattino iniziale
+      
+      icons[iconName] = value;
+    }
+  });
+  
+  return icons;
+}
+
+// Genera automaticamente il dizionario
+export const WYRMREST_ICONS = generateIconDictionary();
+
+// Mappa di alias per nomi più user-friendly
+export const ICON_ALIASES: Record<string, string> = {
   // Navigation & UI
-  home: Home01Icon,
-  search: Search01Icon,
-  settings: Settings01Icon,
-  bell: Notification01Icon,
-  menu: Menu01Icon,
-  close: Cancel01Icon,
-  download: Download01Icon,
-  share: Share01Icon,
-  more: MoreVerticalIcon,
-  moreHorizontal: MoreHorizontalIcon,
-  logout: Logout01Icon, // Corretto (typo LogOut)
-  login: Login01Icon, // Corretto (typo LogIn)
-
+  'home': 'home-01',
+  'search': 'search-01',
+  'settings': 'settings-01',
+  'bell': 'notification-01',
+  'menu': 'menu-01',
+  'close': 'cancel-01',
+  'download': 'download-01',
+  'share': 'share-01',
+  'more': 'more-vertical',
+  'more-horizontal': 'more-horizontal',
+  'logout': 'logout-01',
+  'login': 'login-01',
+  
   // Status & Feedback
-  success: CheckmarkCircleIcon,
-  error: AlertCircleIcon,
-  warning: AlertDiamondIcon,
-  info: CircleIcon,
-  alert: AlertDiamondIcon,
-  loader: Layers01Icon,
-
+  'success': 'checkmark-circle',
+  'error': 'alert-circle',
+  'warning': 'alert-diamond',
+  'info': 'circle',
+  'alert': 'alert-diamond',
+  'loader': 'layers-01',
+  
   // Actions
-  plus: Add01Icon,
-  edit: Edit02Icon,
-  delete: Delete01Icon,
-  star: StarIcon,
-  trash: Delete01Icon,
-  copy: Copy01Icon,
-  link: Link01Icon,
-  archive: Archive01Icon,
-  send: MailSend01Icon,
-
+  'plus': 'add-01',
+  'edit': 'edit-02',
+  'delete': 'delete-01',
+  'star': 'star',
+  'trash': 'delete-01',
+  'copy': 'copy-01',
+  'link': 'link-01',
+  'archive': 'archive-01',
+  'send': 'mail-send-01',
+  
   // Theme
-  sun: Sun01Icon,
-  moon: Moon01Icon,
-
-  // Components showcase
-  users: UserGroupIcon,
-  grid: LayoutGridIcon,
-  list: ListViewIcon,
-  type: TypeCursorIcon,
-  toggle: ToggleOnIcon,
-  checkbox: Tick01Icon,
-  input: Edit04Icon,
-  table: TableIcon,
-  arrow: ArrowRight01Icon,
-
+  'sun': 'sun-01',
+  'moon': 'moon-01',
+  
+  // Components
+  'users': 'user-group',
+  'grid': 'layout-grid',
+  'list': 'list-view',
+  'type': 'type-cursor',
+  'toggle': 'toggle-on',
+  'checkbox': 'tick-01',
+  'input': 'edit-04',
+  'table': 'table',
+  'arrow': 'arrow-right-01',
+  
   // Vision
-  eye: EyeIcon,
-  eyeOff: ViewOffIcon,
-
+  'eye': 'eye',
+  'eye-off': 'view-off',
+  
   // Security
-  lock: LockIcon,
-
+  'lock': 'lock',
+  
   // Filtering & Sorting
-  filter: FilterIcon,
-  sort: Sorting01Icon,
-
+  'filter': 'filter',
+  'sort': 'sorting-01',
+  
   // File & Folder
-  folder: Folder01Icon,
-  upload: Upload01Icon,
-  mail: Mail01Icon,
-
-  // Communication
-  message: MailSend01Icon,
-
+  'folder': 'folder-01',
+  'upload': 'upload-01',
+  'mail': 'mail-01',
+  'message': 'mail-send-01',
+  
   // Date & Time
-  calendar: Calendar01Icon,
-  clock: Clock01Icon,
-
+  'calendar': 'calendar-01',
+  'clock': 'clock-01',
+  
   // Devices
-  mobile: SmartPhone01Icon,
-  laptop: LaptopIcon,
-  monitor: ComputerIcon,
-
+  'mobile': 'smart-phone-01',
+  'laptop': 'laptop',
+  'monitor': 'computer',
+  
   // Audio
-  headphone: HeadphonesIcon,
-  volume: VolumeHighIcon,
-  mic: Mic01Icon,
-  micOff: MicOff01Icon,
-
+  'headphone': 'headphones',
+  'volume': 'volume-high',
+  'mic': 'mic-01',
+  'mic-off': 'mic-off-01',
+  
   // Media
-  music: MusicNote01Icon,
-  play: PlayIcon, // Corretto (era Play01Icon)
-  pause: PauseIcon, // Corretto (era Pause01Icon)
+  'music': 'music-note-01',
+  'play': 'play',
+  'pause': 'pause',
 };
 
-export type IconKey = keyof typeof WYRMREST_ICONS;
+// Helper per ottenere l'icona con supporto per alias
+export function getIcon(name: string): any {
+  const iconName = ICON_ALIASES[name] || name;
+  return WYRMREST_ICONS[iconName];
+}
+
+// Type per tutte le icone disponibili (dinamico)
+export type IconKey = keyof typeof WYRMREST_ICONS | keyof typeof ICON_ALIASES;
+
+// Utility per elencare tutte le icone disponibili (utile per debug/docs)
+export function listAvailableIcons(): string[] {
+  return Object.keys(WYRMREST_ICONS).sort();
+}
+
+// Utility per cercare icone per nome parziale
+export function searchIcons(query: string): string[] {
+  const lowerQuery = query.toLowerCase();
+  return Object.keys(WYRMREST_ICONS)
+    .filter(name => name.includes(lowerQuery))
+    .sort();
+}
