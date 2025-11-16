@@ -74,6 +74,7 @@ export class IconComponent implements OnChanges {
       'search': '🔍',
       'settings': '⚙️',
       'bell': '🔔',
+      'bell-off': '🔕',
       'menu': '☰',
       'close': '✕',
       'download': '⬇',
