@@ -1,6 +1,6 @@
 // GENERATED BUNDLE — DO NOT EDIT BY HAND
 // Source: .\src
-// Date: 2025-11-03 20:21:25
+// Date: 2025-11-17 22:54:28
 // Files: 85
 
 
@@ -140,8 +140,299 @@
         <app-icon icon="info" [size]="16"></app-icon>
         <span>{{ "nav.informational" | translate }}</span>
       </a>
+      <a
+        href="#icons"
+        class="catalog-nav__link"
+        [class.active]="isSectionActive('icons')"
+        (click)="scrollToSection('icons'); $event.preventDefault()"
+      >
+        <app-icon icon="star" [size]="16"></app-icon>
+        <span>{{ "nav.icons" | translate }}</span>
+      </a>
     </nav>
   </div>
+
+    <!-- ===== COLORS SECTION ===== -->
+  <section id="colors">
+    <h2>
+      <app-icon icon="palette" [size]="20"></app-icon>
+      <span class="highlight">{{ "nav.colors" | translate }}</span>
+    </h2>
+    <p>{{ "components.colors.description" | translate }}</p>
+
+    <!-- Filter pills -->
+    <div class="filter-pills">
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('brand')"
+        [class.filter-pill--active]="searchValue() === 'brand'"
+      >
+        <app-icon icon="star" [size]="14"></app-icon> Brand
+      </button>
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('semantic')"
+        [class.filter-pill--active]="searchValue() === 'semantic'"
+      >
+        <app-icon icon="alert" [size]="14"></app-icon> Semantic
+      </button>
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('neutral')"
+        [class.filter-pill--active]="searchValue() === 'neutral'"
+      >
+        <app-icon icon="circle" [size]="14"></app-icon> Neutral
+      </button>
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('tokens')"
+        [class.filter-pill--active]="searchValue() === 'tokens'"
+      >
+        <app-icon icon="settings" [size]="14"></app-icon> Tokens
+      </button>
+    </div>
+
+    <div class="components-grid">
+      <!-- Primary Brand Colors Card -->
+      <div class="component-card" *ngIf="shouldShowCard('brand primary colors')">
+        <h3>{{ "components.colors.primary" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.primaryDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-badge variant="primary">Primary 50</ui-badge>
+          <ui-badge variant="primary">Primary 100</ui-badge>
+          <ui-badge variant="primary">Primary 300</ui-badge>
+          <ui-badge variant="primary">Primary 500</ui-badge>
+          <ui-badge variant="primary">Primary 600</ui-badge>
+          <ui-badge variant="primary">Primary 700</ui-badge>
+          <ui-badge variant="primary">Primary 800</ui-badge>
+        </div>
+        <div class="component-footer">
+          Colori principali del brand Wyrmrest - dal chiaro allo scuro.
+        </div>
+      </div>
+
+      <!-- Secondary & Accent Colors Card -->
+      <div class="component-card" *ngIf="shouldShowCard('brand secondary accent')">
+        <h3>{{ "components.colors.secondary" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.secondaryDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-badge variant="secondary">Secondary 500</ui-badge>
+          <ui-badge variant="secondary">Secondary 600</ui-badge>
+          <ui-badge variant="secondary">Secondary 700</ui-badge>
+          <ui-divider [spacing]="'small'"></ui-divider>
+          <ui-badge>Accent 500</ui-badge>
+          <ui-badge>Accent 600</ui-badge>
+          <ui-divider [spacing]="'small'"></ui-divider>
+          <ui-badge>Tertiary 500</ui-badge>
+        </div>
+        <div class="component-footer">
+          Colori secondari, accent e tertiary per supporto visivo.
+        </div>
+      </div>
+
+      <!-- Semantic: Success Card -->
+      <div class="component-card" *ngIf="shouldShowCard('semantic success positive')">
+        <h3>{{ "components.colors.success" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.successDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-alert type="success" title="Success 50">
+            Sfondo per messaggi di successo leggeri.
+          </ui-alert>
+          <ui-button variant="success" size="medium">Success 500</ui-button>
+          <ui-badge variant="success">Success 600</ui-badge>
+          <ui-badge variant="success">Success 700</ui-badge>
+        </div>
+        <div class="component-footer">
+          Colori per stati positivi, conferme e completamenti.
+        </div>
+      </div>
+
+      <!-- Semantic: Danger Card -->
+      <div class="component-card" *ngIf="shouldShowCard('semantic danger error')">
+        <h3>{{ "components.colors.danger" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.dangerDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-alert type="error" title="Danger 50">
+            Sfondo per messaggi di errore leggeri.
+          </ui-alert>
+          <ui-button variant="danger" size="medium">Danger 500</ui-button>
+          <ui-badge variant="danger">Danger 600</ui-badge>
+          <ui-badge variant="danger">Danger 700</ui-badge>
+        </div>
+        <div class="component-footer">
+          Colori per errori, avvisi critici e azioni distruttive.
+        </div>
+      </div>
+
+      <!-- Semantic: Warning Card -->
+      <div class="component-card" *ngIf="shouldShowCard('semantic warning caution')">
+        <h3>{{ "components.colors.warning" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.warningDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-alert type="warning" title="Warning 50">
+            Sfondo per avvisi leggeri.
+          </ui-alert>
+          <ui-button variant="warning" size="medium">Warning 500</ui-button>
+          <ui-badge variant="warning">Warning 600</ui-badge>
+          <ui-badge variant="warning">Warning 700</ui-badge>
+        </div>
+        <div class="component-footer">
+          Colori per avvisi, attenzione e notifiche importanti.
+        </div>
+      </div>
+
+      <!-- Semantic: Info Card -->
+      <div class="component-card" *ngIf="shouldShowCard('semantic info information')">
+        <h3>{{ "components.colors.info" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.infoDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-alert type="info" title="Info 50">
+            Sfondo per messaggi informativi leggeri.
+          </ui-alert>
+          <ui-button variant="info" size="medium">Info 500</ui-button>
+          <ui-badge variant="info">Info 600</ui-badge>
+          <ui-badge variant="info">Info 700</ui-badge>
+        </div>
+        <div class="component-footer">
+          Colori per informazioni generali e suggerimenti.
+        </div>
+      </div>
+
+      <!-- Neutral Colors Card -->
+      <div class="component-card" *ngIf="shouldShowCard('neutral background surface text')">
+        <h3>{{ "components.colors.neutral" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.neutralDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-card [elevation]="0" [padding]="'small'">
+            <p>Background (#ffffff)</p>
+          </ui-card>
+          <ui-card [elevation]="1" [padding]="'small'">
+            <p>Surface (#ffffff)</p>
+          </ui-card>
+          <ui-card [elevation]="1" [padding]="'small'">
+            <p>Surface 2 (#f9fafb)</p>
+          </ui-card>
+          <ui-badge variant="secondary">Text (#1f2937)</ui-badge>
+          <ui-badge variant="secondary">Muted (#6b7280)</ui-badge>
+          <ui-badge variant="secondary">Border (#e5e7eb)</ui-badge>
+        </div>
+        <div class="component-footer">
+          Colori neutri per superfici, testi e bordi.
+        </div>
+      </div>
+
+      <!-- Design Tokens: Shadows Card -->
+      <div class="component-card" *ngIf="shouldShowCard('tokens shadow elevation')">
+        <h3>{{ "components.colors.shadows" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.shadowsDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-card [elevation]="0" [padding]="'medium'">
+            <h4>Shadow 0</h4>
+            <p>Nessuna ombra</p>
+          </ui-card>
+          <ui-card [elevation]="1" [padding]="'medium'">
+            <h4>Shadow 1</h4>
+            <p>Elevazione base</p>
+          </ui-card>
+          <ui-card [elevation]="2" [padding]="'medium'">
+            <h4>Shadow 2</h4>
+            <p>Elevazione media</p>
+          </ui-card>
+          <ui-card [elevation]="3" [padding]="'medium'">
+            <h4>Shadow 3</h4>
+            <p>Elevazione alta</p>
+          </ui-card>
+        </div>
+        <div class="component-footer">
+          Sistema di elevazione con 4 livelli di profondità.
+        </div>
+      </div>
+
+      <!-- Design Tokens: Spacing Card -->
+      <div class="component-card" *ngIf="shouldShowCard('tokens spacing padding margin')">
+        <h3>{{ "components.colors.spacing" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.spacingDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-container [maxWidth]="'md'" [padding]="true">
+            <ui-badge>space-1 (4px)</ui-badge>
+            <ui-badge>space-2 (8px)</ui-badge>
+            <ui-badge>space-3 (12px)</ui-badge>
+            <ui-badge>space-4 (16px)</ui-badge>
+            <ui-badge>space-5 (20px)</ui-badge>
+            <ui-badge>space-6 (24px)</ui-badge>
+            <ui-badge>space-8 (32px)</ui-badge>
+          </ui-container>
+        </div>
+        <div class="component-footer">
+          Sistema di spaziatura basato su rem (4px, 8px, 12px, 16px, 20px, 24px, 32px).
+        </div>
+      </div>
+
+      <!-- Design Tokens: Border Radius Card -->
+      <div class="component-card" *ngIf="shouldShowCard('tokens radius rounded corners')">
+        <h3>{{ "components.colors.radius" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.radiusDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-button variant="primary" size="small">Small (6px)</ui-button>
+          <ui-button variant="primary" size="medium">Medium (10px)</ui-button>
+          <ui-button variant="primary" size="large">Large (14px)</ui-button>
+          <ui-avatar [size]="'medium'" [shape]="'circle'" [alt]="'Full'"></ui-avatar>
+        </div>
+        <div class="component-footer">
+          Border radius da small (6px) a large (14px) e full per cerchi.
+        </div>
+      </div>
+
+      <!-- CSS Variables Reference Card -->
+      <div class="component-card" *ngIf="shouldShowCard('tokens variables css custom-properties')">
+        <h3>{{ "components.colors.variables" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.variablesDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-card [elevation]="1" [padding]="'medium'">
+            <p><strong>Colori Brand:</strong></p>
+            <code>--primary-500, --secondary-500, --accent-500, --tertiary-500</code>
+          </ui-card>
+          <ui-card [elevation]="1" [padding]="'medium'">
+            <p><strong>Colori Semantici:</strong></p>
+            <code>--success-500, --danger-500, --warning-500, --info-500</code>
+          </ui-card>
+          <ui-card [elevation]="1" [padding]="'medium'">
+            <p><strong>Spacing:</strong></p>
+            <code>--space-1 to --space-8</code>
+          </ui-card>
+          <ui-card [elevation]="1" [padding]="'medium'">
+            <p><strong>Shadows:</strong></p>
+            <code>--shadow-0 to --shadow-3</code>
+          </ui-card>
+        </div>
+        <div class="component-footer">
+          Tutte le variabili CSS disponibili nel design system Wyrmrest.
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ===== ACTIONS SECTION ===== -->
   <section id="actions">
@@ -767,6 +1058,84 @@
     </div>
   </section>
 
+  <div class="section-divider"></div>
+
+<!-- ICONS SECTION -->
+<section id="icons">
+  <h2>
+    <app-icon icon="star" [size]="20"></app-icon>
+    <span class="highlight">{{ "components.icons.name" | translate }}</span>
+  </h2>
+  <p>{{ "components.icons.description" | translate }}</p>
+
+  <!-- Filter pills -->
+  <div class="filter-pills">
+    <button
+      class="filter-pill"
+      (click)="setIconCategoryFilter('all')"
+      [class.filter-pill--active]="iconCategoryFilter() === 'all'"
+    >
+      <app-icon icon="grid" [size]="14"></app-icon>
+      All Icons
+    </button>
+    <button
+      class="filter-pill"
+      (click)="setIconCategoryFilter('actions')"
+      [class.filter-pill--active]="iconCategoryFilter() === 'actions'"
+    >
+      <app-icon icon="arrow" [size]="14"></app-icon>
+      Actions
+    </button>
+    <button
+      class="filter-pill"
+      (click)="setIconCategoryFilter('navigation')"
+      [class.filter-pill--active]="iconCategoryFilter() === 'navigation'"
+    >
+      <app-icon icon="menu" [size]="14"></app-icon>
+      Navigation
+    </button>
+    <button
+      class="filter-pill"
+      (click)="setIconCategoryFilter('feedback')"
+      [class.filter-pill--active]="iconCategoryFilter() === 'feedback'"
+    >
+      <app-icon icon="alert" [size]="14"></app-icon>
+      Feedback
+    </button>
+    <button
+      class="filter-pill"
+      (click)="setIconCategoryFilter('ui')"
+      [class.filter-pill--active]="iconCategoryFilter() === 'ui'"
+    >
+      <app-icon icon="type" [size]="14"></app-icon>
+      UI
+    </button>
+  </div>
+
+  <!-- Icons Grid -->
+  <div class="icons-grid">
+    @for (iconData of getFilteredIcons(); track iconData.name) {
+      <div class="icon-card" (click)="copyIconName(iconData.name)">
+        <div class="icon-card__preview">
+          <app-icon [icon]="iconData.name" [size]="32"></app-icon>
+        </div>
+        <div class="icon-card__name">{{ iconData.name }}</div>
+        @if (iconData.alias) {
+          <div class="icon-card__alias">{{ iconData.alias }}</div>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Empty state -->
+  @if (getFilteredIcons().length === 0) {
+    <div class="empty-state">
+      <app-icon icon="search" [size]="48" color="var(--color-muted)"></app-icon>
+      <p>No icons found matching "{{ searchValue() }}"</p>
+    </div>
+  }
+</section>
+
   <!-- ===== FOOTER ===== -->
   <div class="catalog-footer">
     <p>
@@ -1235,6 +1604,86 @@ section {
   );
 }
 
+/* ===== ICONS GRID ===== */
+.icons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.icon-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--primary-500);
+    transform: translateY(-2px);
+    @include m.elevation(2);
+  }
+}
+
+.icon-card__preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+}
+
+.icon-card__name {
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--color-text);
+  text-align: center;
+  word-break: break-word;
+}
+
+.icon-card__alias {
+  font-size: 0.7rem;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+/* Empty state */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+  color: var(--color-muted);
+
+  p {
+    margin-top: var(--space-3);
+    font-size: var(--fs-md);
+  }
+}
+
+/* Responsive for icons grid */
+@media (max-width: 768px) {
+  .icons-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: var(--space-2);
+  }
+
+  .icon-card {
+    padding: var(--space-2);
+  }
+}
+
 /* ===== COMPONENTS GRID ===== */
 .components-grid {
   display: grid;
@@ -1455,11 +1904,12 @@ import { IconComponent } from './shared/components/icon/icon.component';
 import { TranslatePipe } from './shared/pipes/translate.pipe';
 import { TranslationService } from './shared/services/translation.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { listAvailableIcons, searchIcons, ICON_ALIASES } from './shared/services/icon.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, TranslatePipe, TranslateModule, UiLibraryModule, IconComponent],
+  imports: [CommonModule, UiLibraryModule, IconComponent, TranslateModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
@@ -1470,13 +1920,64 @@ export class AppComponent {
   // ===== SIGNALS =====
   readonly title = 'Wyrmrest UI Library';
   readonly isDarkMode = signal(false);
-  readonly searchValue = signal<string>('');
+  readonly searchValue = signal('');
   readonly activeSection = signal<string | null>(null);
   readonly currentLanguage = this.translationService.getLanguage();
-
   readonly searchValueLower = computed(() =>
     this.searchValue().toLowerCase().trim()
   );
+  readonly iconCategoryFilter = signal<string>('all');
+
+  // ===== ICON CATEGORIES =====
+  iconCategories: Record<string, string[]> = {
+    actions: [
+      'plus',
+      'edit',
+      'delete',
+      'download',
+      'upload',
+      'share',
+      'copy',
+      'trash',
+      'archive',
+      'send',
+    ],
+    navigation: [
+      'home',
+      'search',
+      'menu',
+      'arrow',
+      'close',
+      'more',
+      'more-horizontal',
+      'logout',
+      'login',
+      'link',
+    ],
+    feedback: [
+      'success',
+      'error',
+      'warning',
+      'alert',
+      'loader',
+      'bell',
+      'star',
+    ],
+    ui: [
+      'grid',
+      'list',
+      'type',
+      'toggle',
+      'checkbox',
+      'input',
+      'table',
+      'eye',
+      'eye-off',
+      'lock',
+      'filter',
+      'sort',
+    ],
+  };
 
   // ===== CONSTRUCTOR =====
   constructor(
@@ -1505,7 +2006,6 @@ export class AppComponent {
 
   private setTheme(isDark: boolean): void {
     this.isDarkMode.set(isDark);
-
     if (isDark) {
       this.r.addClass(this.doc.body, 'theme-dark');
       this.r.removeClass(this.doc.body, 'theme-light');
@@ -1513,7 +2013,6 @@ export class AppComponent {
       this.r.addClass(this.doc.body, 'theme-light');
       this.r.removeClass(this.doc.body, 'theme-dark');
     }
-
     this.r.addClass(this.doc.body, 'wyrmrest');
   }
 
@@ -1566,6 +2065,78 @@ export class AppComponent {
   isSearchActive(): boolean {
     return this.searchValueLower().length > 0;
   }
+
+  // ===== ICONS SECTION =====
+  setIconCategoryFilter(category: string): void {
+    this.iconCategoryFilter.set(category);
+  }
+
+  getFilteredIcons(): Array<{ name: string; alias?: string; category: string }> {
+    let icons: Array<{ name: string; alias?: string; category: string }> = [];
+
+    // Se c'è un filtro di ricerca, usa quello
+    if (this.searchValue().trim()) {
+      const searchResults = searchIcons(this.searchValue().toLowerCase());
+      icons = searchResults.map((name) => ({
+        name,
+        alias: this.getAliasForIcon(name),
+        category: this.getCategoryForIcon(name),
+      }));
+    } else {
+      // Altrimenti mostra le icone in base alla categoria
+      if (this.iconCategoryFilter() === 'all') {
+        // Mostra tutte le icone dagli alias
+        icons = Object.entries(ICON_ALIASES).map(([alias, iconName]) => ({
+          name: alias,
+          alias: iconName !== alias ? iconName : undefined,
+          category: this.getCategoryForIcon(alias),
+        }));
+      } else {
+        // Mostra solo le icone della categoria selezionata
+        const categoryIcons =
+          this.iconCategories[this.iconCategoryFilter()] || [];
+        icons = categoryIcons.map((name) => ({
+          name,
+          alias: ICON_ALIASES[name],
+          category: this.iconCategoryFilter(),
+        }));
+      }
+    }
+
+    return icons;
+  }
+
+  getCategoryForIcon(iconName: string): string {
+    for (const [category, icons] of Object.entries(this.iconCategories)) {
+      if (icons.includes(iconName)) {
+        return category;
+      }
+    }
+    return 'other';
+  }
+
+  getAliasForIcon(iconName: string): string | undefined {
+    // Trova l'alias per un'icona
+    for (const [alias, target] of Object.entries(ICON_ALIASES)) {
+      if (target === iconName && alias !== iconName) {
+        return alias;
+      }
+    }
+    return undefined;
+  }
+
+  copyIconName(iconName: string): void {
+    navigator.clipboard
+      .writeText(iconName)
+      .then(() => {
+        console.log(`Icon name "${iconName}" copied to clipboard!`);
+        // Opzionale: Mostra un toast
+        // this.toastService.show({ type: 'success', message: `"${iconName}" copied!` });
+      })
+      .catch((err) => {
+        console.error('Failed to copy icon name:', err);
+      });
+  }
 }
 
 
@@ -1576,21 +2147,20 @@ export class AppComponent {
 // ================================================================
 
 // app.config.ts
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
-import { routes } from './app.routes';
+// import { routes } from './app.routes'; // opzionale, puoi anche passare []
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
     provideHttpClient(),
+    provideRouter([]),
     provideTranslateService({ lang: 'it', fallbackLang: 'it' }),
-    provideTranslateHttpLoader({ prefix: 'assets/i18n/', suffix: '.json' })
-  ]
+    provideTranslateHttpLoader({ prefix: 'assets/i18n/', suffix: '.json' }),
+  ],
 };
 
 
@@ -1611,10 +2181,10 @@ export const routes: Routes = [];
 // FILE: src\app\shared\components\icon\icon.component.ts
 // ================================================================
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HugeiconsIconComponent } from '@hugeicons/angular';
-import { WYRMREST_ICONS, IconKey } from '../../services/icon.service';
+import { getIcon, IconKey, ICON_ALIASES } from '../../services/icon.service';
 
 @Component({
   selector: 'app-icon',
@@ -1622,21 +2192,17 @@ import { WYRMREST_ICONS, IconKey } from '../../services/icon.service';
   imports: [CommonModule, HugeiconsIconComponent],
   template: `
     @if (iconObject) {
-    <hugeicons-icon
-      [icon]="iconObject"
-      [size]="size"
-      [strokeWidth]="strokeWidth"
-      [class]="customClass"
-      [attr.style]="'color:' + color"
-    ></hugeicons-icon>
+      <hugeicons-icon
+        [icon]="iconObject"
+        [size]="size"
+        [color]="color"
+        [strokeWidth]="strokeWidth"
+        [class]="customClass"
+      />
     } @else {
-    <span
-      class="icon-fallback"
-      [style.font-size.px]="size"
-      [style.color]="color"
-    >
-      {{ getFallbackIcon() }}
-    </span>
+      <span class="icon-fallback" [style.font-size.px]="size">
+        {{ getFallbackIcon() }}
+      </span>
     }
   `,
   styles: [
@@ -1646,6 +2212,7 @@ import { WYRMREST_ICONS, IconKey } from '../../services/icon.service';
         align-items: center;
         justify-content: center;
       }
+
       .icon-fallback {
         display: inline-flex;
         align-items: center;
@@ -1655,79 +2222,99 @@ import { WYRMREST_ICONS, IconKey } from '../../services/icon.service';
     `,
   ],
 })
-export class IconComponent {
+export class IconComponent implements OnChanges {
   @Input() icon: IconKey = 'home';
   @Input() size: number = 24;
   @Input() color: string = 'currentColor';
   @Input() strokeWidth: number = 2;
   @Input() customClass: string = '';
 
-  get iconObject() {
-    return WYRMREST_ICONS[this.icon];
+  iconObject: any;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['icon']) {
+      this.updateIcon();
+    }
+  }
+
+  ngOnInit(): void {
+    this.updateIcon();
+  }
+
+  private updateIcon(): void {
+    this.iconObject = getIcon(this.icon);
+    
+    // Log in development per debugging
+    if (!this.iconObject && typeof ngDevMode !== 'undefined' && ngDevMode) {
+      console.warn(`Icon "${this.icon}" not found in WYRMREST_ICONS. Available aliases:`, 
+        Object.keys(ICON_ALIASES));
+    }
   }
 
   getFallbackIcon(): string {
-    const fallbackMap: Record<IconKey, string> = {
-      home: '🏠',
-      search: '🔍',
-      settings: '⚙️',
-      bell: '🔔',
-      menu: '☰',
-      close: '✕',
-      download: '⬇',
-      share: '↗',
-      more: '⋮',
-      moreHorizontal: '⋯',
-      logout: '→',
-      login: '←',
-      success: '✓',
-      error: '✕',
-      warning: '⚠',
-      info: 'ℹ',
-      alert: '⚠',
-      loader: '⟳',
-      plus: '+',
-      edit: '✎',
-      delete: '🗑',
-      star: '★',
-      trash: '🗑',
-      copy: '📋',
-      link: '🔗',
-      archive: '📦',
-      send: '✉',
-      sun: '☀️',
-      moon: '🌙',
-      users: '👥',
-      grid: '⊞',
-      list: '☰',
-      type: 'T',
-      toggle: '⏻',
-      checkbox: '☑',
-      input: '⌨',
-      table: '⊞',
-      arrow: '→',
-      eye: '👁',
-      eyeOff: '👁',
-      lock: '🔒',
-      filter: '⊲',
-      sort: '⇅',
-      folder: '📁',
-      upload: '⬆',
-      mail: '✉',
-      message: '💬',
-      calendar: '📅',
-      clock: '🕐',
-      mobile: '📱',
-      laptop: '💻',
-      monitor: '🖥',
-      headphone: '🎧',
-      volume: '🔊',
-      mic: '🎤',
-      micOff: '🎤',
-      music: '♪',
-      play: '▶',
-      pause: '⏸',
+    const fallbackMap: Record<string, string> = {
+      'home': '🏠',
+      'search': '🔍',
+      'settings': '⚙️',
+      'bell': '🔔',
+      'bell-off': '🔕',
+      'menu': '☰',
+      'close': '✕',
+      'download': '⬇',
+      'share': '↗',
+      'more': '⋮',
+      'more-horizontal': '⋯',
+      'logout': '→',
+      'login': '←',
+      'success': '✓',
+      'error': '✕',
+      'warning': '⚠',
+      'info': 'ℹ️',
+      'alert': '⚠',
+      'loader': '⟳',
+      'plus': '+',
+      'edit': '✎',
+      'delete': '❌',
+      'star': '★',
+      'trash': '🗑️',
+      'copy': '📋',
+      'link': '🔗',
+      'archive': '📦',
+      'send': '✉',
+      'sun': '☀️',
+      'moon': '🌕',
+      'users': '👥',
+      'grid': '⊞',
+      'list': '☰',
+      'type': 'T',
+      'toggle': '⏻',
+      'checkbox': '☑',
+      'input': '⌨',
+      'table': '⊞',
+      'arrow': '→',
+      'eye': '👁',
+      'eye-off': '👁',
+      'lock': '🔒',
+      'filter': '⊲',
+      'sort': '⇅',
+      'folder': '📁',
+      'upload': '⬆',
+      'mail': '✉',
+      'message': '💬',
+      'calendar': '📅',
+      'clock': '🕐',
+      'mobile': '📱',
+      'laptop': '💻',
+      'monitor': '🖥',
+      'headphone': '🎧',
+      'volume': '🔊',
+      'mic': '🎤',
+      'mic-off': '🎤',
+      'music': '♪',
+      'play': '▶',
+      'pause': '⏸',
     };
+
     return fallbackMap[this.icon] || '◆';
   }
 }
@@ -1759,162 +2346,148 @@ export class TranslatePipe implements PipeTransform {
 // ================================================================
 
 // src/app/shared/services/icon.service.ts
-import {
-  Home01Icon,
-  Search01Icon,
-  Settings01Icon,
-  Notification01Icon, // Corretto (era BellIcon)
-  CheckmarkCircleIcon, // Corretto (era CheckmarkCircle01Icon)
-  AlertCircleIcon, // Corretto (era AlertCircle01Icon)
-  CircleIcon,
-  Cancel01Icon, // Corretto (era CloseIcon)
-  Add01Icon, // Corretto (era Plus01Icon)
-  Edit02Icon,
-  Delete01Icon, // Corretto (era Trash01Icon)
-  Download01Icon, // Corretto (era ChartDownloadIcon)
-  Layers01Icon,
-  Sun01Icon,
-  Moon01Icon,
-  Menu01Icon,
-  StarIcon, // Corretto (era Star01Icon)
-  UserGroupIcon, // Corretto (era Users01Icon)
-  LayoutGridIcon,
-  TypeCursorIcon, // Corretto (era Type01Icon)
-  ToggleOnIcon,
-  Tick01Icon, // Corretto (era CheckIcon)
-  Edit04Icon,
-  TableIcon,
-  ArrowRight01Icon,
-  Share01Icon,
-  CallDisabled02Icon,
-  AlertDiamondIcon, // Corretto (era AlertTriangleIcon)
-  RankingIcon,
-  EyeIcon, // Corretto (era Eye01Icon)
-  ViewOffIcon, // Corretto (era EyeOff01Icon)
-  LockIcon, // Corretto (era Lock01Icon)
-  FilterIcon, // Corretto (era Filter01Icon)
-  Sorting01Icon, // Corretto (era Sort01Icon)
-  Copy01Icon,
-  Upload01Icon,
-  Calendar01Icon,
-  Clock01Icon,
-  SmartPhone01Icon, // Corretto (era Mobile01Icon)
-  LaptopIcon, // Corretto (era Laptop01Icon)
-  ComputerIcon, // Corretto (era Monitor01Icon)
-  HeadphonesIcon, // Corretto (era Headphone01Icon)
-  VolumeHighIcon, // Corretto (era Volume01Icon)
-  Mic01Icon,
-  MicOff01Icon,
-  PlayIcon,
-  PauseIcon,
-  Folder01Icon,
-  Mail01Icon,
-  Pen01Icon,
-  Link01Icon,
-  Archive01Icon,
-  Xls01Icon,
-  Cash02Icon,
-  Copy02Icon,
-  Share02Icon,
-  MoreVerticalIcon,
-  MoreHorizontalIcon,
-  Logout01Icon,
-  Login01Icon,
-  MailSend01Icon, // Aggiunto per 'send' e 'message'
-  ListViewIcon, // Aggiunto per 'list'
-  MusicNote01Icon, // Aggiunto per 'music'
-} from '@hugeicons/core-free-icons';
 
-export const WYRMREST_ICONS = {
+import * as HugeIcons from '@hugeicons/core-free-icons';
+
+/**
+ * Genera automaticamente il dizionario delle icone da HugeIcons
+ * Tutte le icone esportate da @hugeicons/core-free-icons vengono automaticamente mappate
+ */
+function generateIconDictionary() {
+  const icons: Record<string, any> = {};
+  
+  // Itera su tutte le esportazioni del modulo HugeIcons
+  Object.entries(HugeIcons).forEach(([key, value]) => {
+    // Filtra solo le icone (esclude altri exports come utils, types, etc.)
+    if (key.endsWith('Icon') && typeof value === 'object') {
+      // Converte il nome da PascalCase a kebab-case
+      // Es: Home01Icon -> home-01
+      const iconName = key
+        .replace(/Icon$/, '') // Rimuove 'Icon' alla fine
+        .replace(/([A-Z])/g, '-$1') // Aggiunge trattino prima delle maiuscole
+        .toLowerCase()
+        .replace(/^-/, ''); // Rimuove il trattino iniziale
+      
+      icons[iconName] = value;
+    }
+  });
+  
+  return icons;
+}
+
+// Genera automaticamente il dizionario
+export const WYRMREST_ICONS = generateIconDictionary();
+
+// Mappa di alias per nomi più user-friendly
+export const ICON_ALIASES: Record<string, string> = {
   // Navigation & UI
-  home: Home01Icon,
-  search: Search01Icon,
-  settings: Settings01Icon,
-  bell: Notification01Icon,
-  menu: Menu01Icon,
-  close: Cancel01Icon,
-  download: Download01Icon,
-  share: Share01Icon,
-  more: MoreVerticalIcon,
-  moreHorizontal: MoreHorizontalIcon,
-  logout: Logout01Icon, // Corretto (typo LogOut)
-  login: Login01Icon, // Corretto (typo LogIn)
-
+  'home': 'home-01',
+  'search': 'search-01',
+  'settings': 'settings-01',
+  'bell': 'notification-01',
+  'menu': 'menu-01',
+  'close': 'cancel-01',
+  'download': 'download-01',
+  'share': 'share-01',
+  'more': 'more-vertical',
+  'more-horizontal': 'more-horizontal',
+  'logout': 'logout-01',
+  'login': 'login-01',
+  
   // Status & Feedback
-  success: CheckmarkCircleIcon,
-  error: AlertCircleIcon,
-  warning: AlertDiamondIcon,
-  info: CircleIcon,
-  alert: AlertDiamondIcon,
-  loader: Layers01Icon,
-
+  'success': 'checkmark-circle',
+  'error': 'alert-circle',
+  'warning': 'alert-diamond',
+  'info': 'circle',
+  'alert': 'alert-diamond',
+  'loader': 'layers-01',
+  
   // Actions
-  plus: Add01Icon,
-  edit: Edit02Icon,
-  delete: Delete01Icon,
-  star: StarIcon,
-  trash: Delete01Icon,
-  copy: Copy01Icon,
-  link: Link01Icon,
-  archive: Archive01Icon,
-  send: MailSend01Icon,
-
+  'plus': 'add-01',
+  'edit': 'edit-02',
+  'delete': 'delete-01',
+  'star': 'star',
+  'trash': 'delete-01',
+  'copy': 'copy-01',
+  'link': 'link-01',
+  'archive': 'archive-01',
+  'send': 'mail-send-01',
+  
   // Theme
-  sun: Sun01Icon,
-  moon: Moon01Icon,
-
-  // Components showcase
-  users: UserGroupIcon,
-  grid: LayoutGridIcon,
-  list: ListViewIcon,
-  type: TypeCursorIcon,
-  toggle: ToggleOnIcon,
-  checkbox: Tick01Icon,
-  input: Edit04Icon,
-  table: TableIcon,
-  arrow: ArrowRight01Icon,
-
+  'sun': 'sun-01',
+  'moon': 'moon-01',
+  
+  // Components
+  'users': 'user-group',
+  'grid': 'layout-grid',
+  'list': 'list-view',
+  'type': 'type-cursor',
+  'toggle': 'toggle-on',
+  'checkbox': 'tick-01',
+  'input': 'edit-04',
+  'table': 'table',
+  'arrow': 'arrow-right-01',
+  
   // Vision
-  eye: EyeIcon,
-  eyeOff: ViewOffIcon,
-
+  'eye': 'eye',
+  'eye-off': 'view-off',
+  
   // Security
-  lock: LockIcon,
-
+  'lock': 'lock',
+  
   // Filtering & Sorting
-  filter: FilterIcon,
-  sort: Sorting01Icon,
-
+  'filter': 'filter',
+  'sort': 'sorting-01',
+  
   // File & Folder
-  folder: Folder01Icon,
-  upload: Upload01Icon,
-  mail: Mail01Icon,
-
-  // Communication
-  message: MailSend01Icon,
-
+  'folder': 'folder-01',
+  'upload': 'upload-01',
+  'mail': 'mail-01',
+  'message': 'mail-send-01',
+  
   // Date & Time
-  calendar: Calendar01Icon,
-  clock: Clock01Icon,
-
+  'calendar': 'calendar-01',
+  'clock': 'clock-01',
+  
   // Devices
-  mobile: SmartPhone01Icon,
-  laptop: LaptopIcon,
-  monitor: ComputerIcon,
-
+  'mobile': 'smart-phone-01',
+  'laptop': 'laptop',
+  'monitor': 'computer',
+  
   // Audio
-  headphone: HeadphonesIcon,
-  volume: VolumeHighIcon,
-  mic: Mic01Icon,
-  micOff: MicOff01Icon,
-
+  'headphone': 'headphones',
+  'volume': 'volume-high',
+  'mic': 'mic-01',
+  'mic-off': 'mic-off-01',
+  
   // Media
-  music: MusicNote01Icon,
-  play: PlayIcon, // Corretto (era Play01Icon)
-  pause: PauseIcon, // Corretto (era Pause01Icon)
+  'music': 'music-note-01',
+  'play': 'play',
+  'pause': 'pause',
 };
 
-export type IconKey = keyof typeof WYRMREST_ICONS;
+// Helper per ottenere l'icona con supporto per alias
+export function getIcon(name: string): any {
+  const iconName = ICON_ALIASES[name] || name;
+  return WYRMREST_ICONS[iconName];
+}
+
+// Type per tutte le icone disponibili (dinamico)
+export type IconKey = keyof typeof WYRMREST_ICONS | keyof typeof ICON_ALIASES;
+
+// Utility per elencare tutte le icone disponibili (utile per debug/docs)
+export function listAvailableIcons(): string[] {
+  return Object.keys(WYRMREST_ICONS).sort();
+}
+
+// Utility per cercare icone per nome parziale
+export function searchIcons(query: string): string[] {
+  const lowerQuery = query.toLowerCase();
+  return Object.keys(WYRMREST_ICONS)
+    .filter(name => name.includes(lowerQuery))
+    .sort();
+}
+
 
 
 
@@ -1968,6 +2541,7 @@ export class TranslationService {
 // FILE: src\app\shared\ui-library\components\actions\button\button.component.html
 // ================================================================
 
+<!-- button.component.html -->
 <button
   [type]="type"
   [class]="classes.join(' ')"
@@ -1999,28 +2573,32 @@ export class TranslationService {
 // FILE: src\app\shared\ui-library\components\actions\button\button.component.scss
 // ================================================================
 
-@use "../../../styles/mixins" as m;
+@use '../../../styles/mixins' as m;
 
+/* ========== BUTTON STANDARD ========== */
 .ui-button {
+  /* Variabili locali per variant e size */
   --btn-bg: var(--primary-500);
   --btn-bg-hover: var(--primary-600);
   --btn-fg: #fff;
+  --btn-h: 2.5rem;        /* 40px - default = md */
+  --btn-px: 1rem;         /* 16px */
+  --btn-fs: var(--fs-base);
   --btn-radius: var(--radius-md);
-  --btn-padding-y: 10px;
-  --btn-padding-x: 16px;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  padding: var(--btn-padding-y) var(--btn-padding-x);
-  border: 1px solid transparent;
+  height: var(--btn-h);
+  padding: 0 var(--btn-px);
+  border: 0.0625rem solid transparent; /* 1px */
   border-radius: var(--btn-radius);
   background: var(--btn-bg);
   color: var(--btn-fg);
-  cursor: pointer;
+  font-size: var(--btn-fs);
   font-weight: 600;
-  font-size: var(--fs-base);
+  cursor: pointer;
   transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
@@ -2029,7 +2607,7 @@ export class TranslationService {
   &:hover:not(:disabled):not(.ui-button--loading) {
     background: var(--btn-bg-hover);
     @include m.elevation(2);
-    transform: translateY(-2px);
+    transform: translateY(-0.125rem); /* -2px */
   }
 
   &:active:not(:disabled):not(.ui-button--loading) {
@@ -2048,26 +2626,30 @@ export class TranslationService {
     width: 100%;
   }
 
-  /* Sizes */
-  &--small {
-    --btn-padding-y: 6px;
-    --btn-padding-x: 12px;
-    font-size: var(--fs-sm);
+  /* ===== Sizes (bootstrap-like) ===== */
+  &--sm {
+    --btn-h: 2rem;       /* 32px */
+    --btn-px: 0.75rem;   /* 12px */
+    --btn-fs: var(--fs-sm);
   }
 
-  &--medium {
-    --btn-padding-y: 10px;
-    --btn-padding-x: 16px;
-    font-size: var(--fs-base);
+  &--md {
+    /* default già impostato sopra */
   }
 
-  &--large {
-    --btn-padding-y: 12px;
-    --btn-padding-x: 20px;
-    font-size: var(--fs-lg);
+  &--lg {
+    --btn-h: 2.875rem;   /* 46px */
+    --btn-px: 1.125rem;  /* 18px */
+    --btn-fs: var(--fs-lg);
   }
 
-  /* Variants */
+  &--xl {
+    --btn-h: 3.25rem;    /* 52px */
+    --btn-px: 1.375rem;  /* 22px */
+    --btn-fs: var(--fs-xl);
+  }
+
+  /* ===== Variants ===== */
   &--primary {
     --btn-bg: var(--primary-500);
     --btn-bg-hover: var(--primary-600);
@@ -2082,13 +2664,13 @@ export class TranslationService {
 
   &--success {
     --btn-bg: var(--success-500);
-    --btn-bg-hover: #12893e;
+    --btn-bg-hover: var(--success-600);
     --btn-fg: #fff;
   }
 
   &--warning {
     --btn-bg: var(--warning-500);
-    --btn-bg-hover: #b45309;
+    --btn-bg-hover: var(--warning-600);
     --btn-fg: #fff;
   }
 
@@ -2100,32 +2682,32 @@ export class TranslationService {
 
   &--info {
     --btn-bg: var(--info-500);
-    --btn-bg-hover: #0891b2;
+    --btn-bg-hover: var(--info-600);
     --btn-fg: #fff;
   }
 
-  /* Spinner */
+  /* ===== Loading spinner ===== */
   .ui-button__spinner {
     width: 1em;
     height: 1em;
-    border: 2px solid rgba(255, 255, 255, 0.35);
+    border: 0.125rem solid rgba(255, 255, 255, 0.35); /* 2px */
     border-top-color: currentColor;
     border-radius: 50%;
     animation: spin 1s linear infinite;
   }
 
-  /* Icons */
+  /* ===== Icon helpers ===== */
   .ui-button__icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
     &--left {
-      margin-right: -4px;
+      margin-right: -0.25rem; /* -4px */
     }
 
     &--right {
-      margin-left: -4px;
+      margin-left: -0.25rem;
     }
   }
 
@@ -2138,90 +2720,6 @@ export class TranslationService {
 @keyframes spin {
   to {
     transform: rotate(360deg);
-  }
-}
-
-/* Icon Button */
-.ui-icon-button {
-  display: inline-grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-full);
-  background: var(--primary-50);
-  color: var(--primary-600);
-  border: 1px solid var(--color-border);
-  cursor: pointer;
-  transition: all var(--transition-base);
-  @include m.elevation(0);
-
-  &:hover:not(:disabled) {
-    background: var(--primary-100);
-    @include m.elevation(1);
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-
-  &--secondary {
-    background: #f3f4f6;
-    color: var(--secondary-600);
-  }
-
-  &--danger {
-    background: var(--danger-50);
-    color: var(--danger-600);
-  }
-
-  .ui-icon-button__icon {
-    font-size: 1.25rem;
-  }
-}
-
-/* FAB */
-.ui-fab {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  border: none;
-  color: #fff;
-  background: var(--primary-500);
-  border-radius: var(--radius-full);
-  padding: 14px 18px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all var(--transition-base);
-  @include m.elevation(2);
-
-  &:hover {
-    background: var(--primary-600);
-    @include m.elevation(3);
-    transform: translateY(-2px);
-  }
-
-  &--extended {
-    padding: 14px 24px;
-  }
-
-  &--small {
-    padding: 10px 14px;
-    font-size: var(--fs-sm);
-  }
-
-  &--large {
-    padding: 16px 22px;
-    font-size: var(--fs-lg);
-  }
-
-  .ui-fab__icon {
-    font-size: 1.25rem;
-  }
-
-  .ui-fab__label {
-    font-weight: 600;
   }
 }
 
@@ -2303,9 +2801,79 @@ export class ButtonComponent {
 @use '../../../styles/mixins' as m;
 
 .ui-fab {
-  // Stili verranno generati successivamente
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: 2.75rem;               /* 44px */
+  padding: 0 1rem;               /* 16px */
+  border: 0.0625rem solid color-mix(in srgb, var(--primary-700) 70%, transparent);
+  border-radius: var(--radius-full);
+  background: var(--primary-500);
+  color: #fff;
+  font-size: var(--fs-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  @include m.elevation(2);
+
+  &:hover {
+    background: var(--primary-600);
+    @include m.elevation(3);
+    transform: translateY(-0.125rem); /* -2px */
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 0.125rem solid color-mix(in srgb, #fff 70%, var(--primary-300)); /* 2px */
+    outline-offset: 0.125rem;
+  }
+
+  /* ===== Extended con label ===== */
+  &--extended {
+    padding: 0 1.125rem; /* 18px */
+  }
+
+  /* ===== Sizes (opzionale) ===== */
+  &--small {
+    height: 2.25rem;      /* 36px */
+    padding: 0 0.875rem;  /* 14px */
+    font-size: var(--fs-sm);
+  }
+
+  &--medium {
+    /* default già impostato sopra */
+  }
+
+  &--large {
+    height: 3rem;         /* 48px */
+    padding: 0 1.25rem;   /* 20px */
+    font-size: var(--fs-lg);
+  }
+
+  .ui-fab__icon {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1;
+  }
+
+  .ui-fab__label {
+    font-weight: 600;
+  }
 }
 
+/* ===== Dark mode fine-tune ===== */
+:root.dark .ui-fab,
+.theme-dark .ui-fab {
+  box-shadow: 0 0.625rem 1.5rem rgba(0, 0, 0, 0.45);
+  border-color: color-mix(in srgb, var(--primary-800) 75%, transparent);
+
+  &:hover {
+    box-shadow: 0 0.75rem 1.875rem rgba(0, 0, 0, 0.55);
+  }
+}
 
 
 
@@ -2372,164 +2940,28 @@ export class FabComponent {
 // FILE: src\app\shared\ui-library\components\actions\icon-button\icon-button.component.scss
 // ================================================================
 
-@use "../../../styles/mixins" as m;
+@use '../../../styles/mixins' as m;
 
-.ui-button {
-  --btn-bg: var(--primary-500);
-  --btn-bg-hover: var(--primary-600);
-  --btn-fg: #fff;
-  --btn-radius: var(--radius-md);
-  --btn-padding-y: 10px;
-  --btn-padding-x: 16px;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  padding: var(--btn-padding-y) var(--btn-padding-x);
-  border: 1px solid transparent;
-  border-radius: var(--btn-radius);
-  background: var(--btn-bg);
-  color: var(--btn-fg);
-  cursor: pointer;
-  font-weight: 600;
-  font-size: var(--fs-base);
-  transition: all var(--transition-base);
-  position: relative;
-  overflow: hidden;
-  @include m.elevation(1);
-
-  &:hover:not(:disabled):not(.ui-button--loading) {
-    background: var(--btn-bg-hover);
-    @include m.elevation(2);
-    transform: translateY(-2px);
-  }
-
-  &:active:not(:disabled):not(.ui-button--loading) {
-    transform: translateY(0);
-    @include m.elevation(1);
-  }
-
-  &:disabled,
-  &.ui-button--loading {
-    opacity: 0.6;
-    cursor: not-allowed;
-    @include m.elevation(0);
-  }
-
-  &--full-width {
-    width: 100%;
-  }
-
-  /* Sizes */
-  &--small {
-    --btn-padding-y: 6px;
-    --btn-padding-x: 12px;
-    font-size: var(--fs-sm);
-  }
-
-  &--medium {
-    --btn-padding-y: 10px;
-    --btn-padding-x: 16px;
-    font-size: var(--fs-base);
-  }
-
-  &--large {
-    --btn-padding-y: 12px;
-    --btn-padding-x: 20px;
-    font-size: var(--fs-lg);
-  }
-
-  /* Variants */
-  &--primary {
-    --btn-bg: var(--primary-500);
-    --btn-bg-hover: var(--primary-600);
-    --btn-fg: #fff;
-  }
-
-  &--secondary {
-    --btn-bg: var(--secondary-500);
-    --btn-bg-hover: var(--secondary-600);
-    --btn-fg: #fff;
-  }
-
-  &--success {
-    --btn-bg: var(--success-500);
-    --btn-bg-hover: #12893e;
-    --btn-fg: #fff;
-  }
-
-  &--warning {
-    --btn-bg: var(--warning-500);
-    --btn-bg-hover: #b45309;
-    --btn-fg: #fff;
-  }
-
-  &--danger {
-    --btn-bg: var(--danger-500);
-    --btn-bg-hover: var(--danger-600);
-    --btn-fg: #fff;
-  }
-
-  &--info {
-    --btn-bg: var(--info-500);
-    --btn-bg-hover: #0891b2;
-    --btn-fg: #fff;
-  }
-
-  /* Spinner */
-  .ui-button__spinner {
-    width: 1em;
-    height: 1em;
-    border: 2px solid rgba(255, 255, 255, 0.35);
-    border-top-color: currentColor;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-
-  /* Icons */
-  .ui-button__icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    &--left {
-      margin-right: -4px;
-    }
-
-    &--right {
-      margin-left: -4px;
-    }
-  }
-
-  .ui-button__content {
-    display: inline-flex;
-    align-items: center;
-  }
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Icon Button */
 .ui-icon-button {
+  /* Variabili locali per colore */
+  --icon-btn-bg: var(--primary-50);
+  --icon-btn-bg-hover: var(--primary-100);
+  --icon-btn-fg: var(--primary-600);
+
   display: inline-grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;   /* 40px */
+  height: 2.5rem;
   border-radius: var(--radius-full);
-  background: var(--primary-50);
-  color: var(--primary-600);
-  border: 1px solid var(--color-border);
+  background: var(--icon-btn-bg);
+  color: var(--icon-btn-fg);
+  border: 0.0625rem solid var(--color-border); /* 1px */
   cursor: pointer;
   transition: all var(--transition-base);
   @include m.elevation(0);
 
   &:hover:not(:disabled) {
-    background: var(--primary-100);
+    background: var(--icon-btn-bg-hover);
     @include m.elevation(1);
   }
 
@@ -2538,63 +2970,46 @@ export class FabComponent {
     cursor: not-allowed;
   }
 
+  /* ===== Variants ===== */
+  &--primary {
+    /* già applicato sopra come default */
+  }
+
   &--secondary {
-    background: #f3f4f6;
-    color: var(--secondary-600);
+    --icon-btn-bg: #eef2ff;
+    --icon-btn-bg-hover: #dce4ff;
+    --icon-btn-fg: var(--secondary-600);
   }
 
   &--danger {
-    background: var(--danger-50);
-    color: var(--danger-600);
+    --icon-btn-bg: var(--danger-50);
+    --icon-btn-bg-hover: #fecaca;
+    --icon-btn-fg: var(--danger-600);
   }
 
   .ui-icon-button__icon {
-    font-size: 1.25rem;
+    font-size: 1.25rem; /* 20px */
   }
 }
 
-/* FAB */
-.ui-fab {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  border: none;
-  color: #fff;
-  background: var(--primary-500);
-  border-radius: var(--radius-full);
-  padding: 14px 18px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all var(--transition-base);
-  @include m.elevation(2);
+/* ===== Dark mode override ===== */
+:root.dark .ui-icon-button,
+.theme-dark .ui-icon-button {
+  --icon-btn-bg: #202938;
+  --icon-btn-bg-hover: #2a3446;
+  --icon-btn-fg: var(--primary-300);
+  border-color: #2f3a52;
 
-  &:hover {
-    background: var(--primary-600);
-    @include m.elevation(3);
-    transform: translateY(-2px);
+  &--secondary {
+    --icon-btn-bg: #1e2838;
+    --icon-btn-bg-hover: #28344a;
+    --icon-btn-fg: var(--secondary-500);
   }
 
-  &--extended {
-    padding: 14px 24px;
-  }
-
-  &--small {
-    padding: 10px 14px;
-    font-size: var(--fs-sm);
-  }
-
-  &--large {
-    padding: 16px 22px;
-    font-size: var(--fs-lg);
-  }
-
-  .ui-fab__icon {
-    font-size: 1.25rem;
-  }
-
-  .ui-fab__label {
-    font-weight: 600;
+  &--danger {
+    --icon-btn-bg: #2d1f1f;
+    --icon-btn-bg-hover: #3d2828;
+    --icon-btn-fg: var(--danger-500);
   }
 }
 
@@ -2880,14 +3295,18 @@ export class AlertComponent {
 // FILE: src\app\shared\ui-library\components\feedback\progress-bar\progress-bar.component.html
 // ================================================================
 
-<div class="ui-progress-bar">
+<div
+  [class]="hostClasses.join(' ')"
+  role="progressbar"
+  [attr.aria-valuemin]="0"
+  [attr.aria-valuemax]="100"
+  [attr.aria-valuenow]="percentage"
+>
   <div class="ui-progress-bar__track">
-    <div
-      [class]="barClasses.join(' ')"
-      [style.width.%]="percentage">
-      @if (showLabel) {
-        <span class="ui-progress-bar__label">{{ percentage.toFixed(0) }}%</span>
-      }
+    <div [class]="barClasses.join(' ')" [style.width.%]="percentage">
+      <span class="ui-progress-bar__label" *ngIf="showLabel">
+        {{ percentage | number: '1.0-0' }}%
+      </span>
     </div>
   </div>
 </div>
@@ -2900,24 +3319,81 @@ export class AlertComponent {
 // ================================================================
 
 @use '../../../styles/mixins' as m;
-
+/* Progress bar a tema drago — rem, anti-schiacciamento e taglie */
 .ui-progress-bar {
-  &__track {
-    width: 100%; height: 10px; background: #e5e7eb; border-radius: var(--radius-full); overflow: hidden;
-  }
-  &__fill {
-    height: 100%; display: grid; place-items: center; color: #fff; font-size: var(--fs-sm);
-    background: var(--primary-500); transition: width var(--transition-base) ease;
-    &--success { background: var(--success-500); }
-    &--warning { background: var(--warning-500); }
-    &--danger  { background: var(--danger-500); }
-    &--striped { background-image: linear-gradient(45deg, rgba(255,255,255,.25) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.25) 50%, rgba(255,255,255,.25) 75%, transparent 75%, transparent); background-size: 1rem 1rem; }
-    &--animated { animation: pb 1s linear infinite; }
-  }
+  /* altezze basate su rem */
+  --pb-h-sm: 0.625rem;  /* 10px */
+  --pb-h-md: 0.75rem;   /* 12px */
+  --pb-h-lg: 1rem;      /* 16px */
+
+  /* track e bordi */
+  --pb-track-bg: var(--color-border);
+  --pb-radius: var(--radius-full);
+
+  inline-size: 100%;
+  flex: 0 0 auto;              /* evita lo schiacciamento in flex/grid */
+  min-block-size: var(--pb-h-md);
+  contain: layout paint;       /* micro-ottimizzazione */
 }
-@keyframes pb { 0% { background-position: 0 0; } 100% { background-position: 1rem 0; } }
 
+.ui-progress-bar__track {
+  inline-size: 100%;
+  block-size: var(--pb-h-md);
+  background: var(--pb-track-bg);
+  border-radius: var(--pb-radius);
+  overflow: hidden;
+  box-shadow: inset 0 0 0.0625rem rgba(0,0,0,.12);
+}
 
+.ui-progress-bar--sm .ui-progress-bar__track { block-size: var(--pb-h-sm); }
+.ui-progress-bar--md .ui-progress-bar__track { block-size: var(--pb-h-md); }
+.ui-progress-bar--lg .ui-progress-bar__track { block-size: var(--pb-h-lg); }
+
+.ui-progress-bar__fill {
+  block-size: 100%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  white-space: nowrap;
+  text-shadow: 0 0.0625rem 0.125rem rgba(0,0,0,.35);
+  transition: inline-size var(--transition-base) ease, width var(--transition-base) ease;
+  background: var(--primary-500);
+}
+
+/* colori */
+.ui-progress-bar__fill--primary { background: var(--primary-600); }
+.ui-progress-bar__fill--success { background: var(--success-500); }
+.ui-progress-bar__fill--warning { background: var(--warning-500); color: #111827; text-shadow: none; }
+.ui-progress-bar__fill--danger  { background: var(--danger-500); }
+
+/* stripes/animazione */
+.ui-progress-bar__fill--striped {
+  background-image:
+    linear-gradient(45deg, rgba(255,255,255,.25) 25%, transparent 25%, transparent 50%,
+                           rgba(255,255,255,.25) 50%, rgba(255,255,255,.25) 75%, transparent 75%, transparent);
+  background-size: 1rem 1rem;
+}
+@keyframes pb-stripes { to { background-position: 1rem 0; } }
+.ui-progress-bar__fill--animated { animation: pb-stripes 1s linear infinite; }
+
+/* tema drago: squame + glow d’ambra sul fill */
+.ui-progress-bar--dragon .ui-progress-bar__fill {
+  background-image:
+    linear-gradient(90deg, var(--primary-600), var(--accent-600)),
+    radial-gradient(circle at 0.5rem 0.5rem, rgba(255,255,255,.14) 0.25rem, transparent 0.26rem);
+  background-size: 100% 100%, 1rem 1rem;
+  background-blend-mode: overlay;
+  box-shadow:
+    inset 0 0 0.125rem rgba(0,0,0,.35),
+    0 0 0.75rem rgba(245,180,42,.22);
+}
+
+/* tema drago: track più “ferroso” in dark */
+:root.dark .ui-progress-bar {
+  --pb-track-bg: #2a3446;
+}
 
 
 
@@ -2929,20 +3405,26 @@ export class AlertComponent {
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+type BarColor = 'primary' | 'success' | 'warning' | 'danger';
+type BarSize = 'sm' | 'md' | 'lg';
+type BarTheme = 'default' | 'dragon';
+
 @Component({
   selector: 'ui-progress-bar',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './progress-bar.component.html',
-  styleUrls: ['./progress-bar.component.scss']
+  styleUrls: ['./progress-bar.component.scss'],
 })
 export class ProgressBarComponent {
-  @Input() value = 0;
-  @Input() max = 100;
-  @Input() showLabel = false;
-  @Input() color: 'primary' | 'success' | 'warning' | 'danger' = 'primary';
+  @Input() value = 0;               // valore corrente
+  @Input() max = 100;               // massimo
+  @Input() showLabel = false;       // mostra % nel riempimento
+  @Input() color: BarColor = 'primary';
   @Input() striped = false;
   @Input() animated = false;
+  @Input() size: BarSize = 'md';    // sm | md | lg
+  @Input() theme: BarTheme = 'dragon'; // default | dragon
 
   get percentage(): number {
     return Math.min(100, Math.max(0, (this.value / this.max) * 100));
@@ -2951,9 +3433,17 @@ export class ProgressBarComponent {
   get barClasses(): string[] {
     return [
       'ui-progress-bar__fill',
-      'ui-progress-bar__fill--' + this.color,
+      `ui-progress-bar__fill--${this.color}`,
       this.striped ? 'ui-progress-bar__fill--striped' : '',
-      this.animated ? 'ui-progress-bar__fill--animated' : ''
+      this.animated ? 'ui-progress-bar__fill--animated' : '',
+    ].filter(Boolean);
+  }
+
+  get hostClasses(): string[] {
+    return [
+      'ui-progress-bar',
+      `ui-progress-bar--${this.size}`,
+      this.theme === 'dragon' ? 'ui-progress-bar--dragon' : '',
     ].filter(Boolean);
   }
 }
@@ -5221,22 +5711,30 @@ export class ToastService {
 // ================================================================
 
 /* tokens.scss - Wyrmrest Theme */
+
+/* ========== LIGHT THEME (default) ========== */
 :root,
 .theme-light.wyrmrest {
-  /* Palette base */
+  /* Superfici e testi - nero ammorbidito, grigio medio */
   --color-bg: #ffffff;
   --color-surface: #ffffff;
-  --color-text: #1f2937;
+  --color-surface-2: #f9fafb;       /* input/search più morbido */
+  --color-text: #1f2937;             /* testo principale non "puro" */
   --color-muted: #6b7280;
   --color-border: #e5e7eb;
 
   /* Brand */
   --primary-50: #ffe7df;
+  --primary-100: #ffc9b8;            /* per hover icon-button light */
+  --primary-300: #ff8d6a;
   --primary-500: #d14a2e;
   --primary-600: #b63e25;
+  --primary-700: #9a3420;
+  --primary-800: #7d2a1a;
 
   --secondary-500: #1f2937;
   --secondary-600: #111827;
+  --secondary-700: #0b0f19;
 
   --accent-500: #f5b42a;
   --accent-600: #da9e1f;
@@ -5246,68 +5744,120 @@ export class ToastService {
   /* Stati */
   --success-50: #ecfdf5;
   --success-500: #16a34a;
+  --success-600: #12893e;
+  --success-700: #0f7435;
+
   --warning-50: #fffbeb;
   --warning-500: #d97706;
+  --warning-600: #b45309;
+  --warning-700: #92400e;
+
   --danger-50: #fef2f2;
   --danger-500: #dc2626;
   --danger-600: #b91c1c;
+  --danger-700: #991b1b;
+
   --info-50: #ecfeff;
   --info-500: #0ea5e9;
+  --info-600: #0891b2;
+  --info-700: #0e7490;
 
-  /* Spacing */
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 20px;
-  --space-6: 24px;
-  --space-8: 32px;
+  /* Spacing (rem-based) */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
 
-  /* Radius / Type / Shadow */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-full: 9999px;
+  /* Radius */
+  --radius-sm: 0.375rem;   /* 6px */
+  --radius-md: 0.625rem;   /* 10px */
+  --radius-lg: 0.875rem;   /* 14px */
+  --radius-full: 62.4375rem; /* 9999px → ~62.5rem */
 
-  --font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
-    sans-serif;
-  --fs-sm: 0.875rem;
-  --fs-base: 1rem;
-  --fs-lg: 1.125rem;
+  /* Typography */
+  --font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fs-xs: 0.75rem;      /* 12px */
+  --fs-sm: 0.875rem;     /* 14px */
+  --fs-base: 1rem;       /* 16px */
+  --fs-lg: 1.125rem;     /* 18px */
+  --fs-xl: 1.25rem;      /* 20px */
 
+  /* Elevation / Shadow */
+  --shadow-color: 20, 20, 30;
   --shadow-0: none;
-  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow-2: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
-  --shadow-3: 0 10px 15px rgba(0, 0, 0, 0.12), 0 4px 6px rgba(0, 0, 0, 0.08);
+  --shadow-1: 0 0.0625rem 0.1875rem rgba(var(--shadow-color), 0.08),
+              0 0.0625rem 0.125rem rgba(var(--shadow-color), 0.06);
+  --shadow-2: 0 0.25rem 0.375rem rgba(var(--shadow-color), 0.1),
+              0 0.125rem 0.25rem rgba(var(--shadow-color), 0.06);
+  --shadow-3: 0 0.625rem 0.9375rem rgba(var(--shadow-color), 0.12),
+              0 0.25rem 0.375rem rgba(var(--shadow-color), 0.08);
 
+  /* Transition */
   --transition-fast: 150ms;
   --transition-base: 200ms;
+  --transition-slow: 300ms;
 }
 
-/* Dark variant */
+/* ========== DARK THEME ========== */
 .theme-dark.wyrmrest {
-  --color-bg: #0b1220;
-  --color-surface: #111827;
+  /* Superfici e testi - sfondo meno cupo, bordi più leggibili */
+  --color-bg: #0e1420;
+  --color-surface: #161d2b;
+  --color-surface-2: #1e2838;
   --color-text: #e5e7eb;
   --color-muted: #9ca3af;
-  --color-border: #253046;
+  --color-border: #2d3a52;
 
-  /* Brand nel dark: più luminanza per leggibilità */
-  --primary-50: #40231e;
+  /* Brand - più luminosi in dark per contrasto */
+  --primary-50: #3d1f1b;
+  --primary-100: #59342d;
+  --primary-300: #ff8d6a;
   --primary-500: #e45b3d;
   --primary-600: #ff6b47;
+  --primary-700: #ff8c6e;
+  --primary-800: #ffab92;
 
   --secondary-500: #c7d0de;
-  --secondary-600: #e5e7eb;
+  --secondary-600: #dde3ed;
+  --secondary-700: #f0f3f7;
 
   --accent-500: #f6c24e;
   --accent-600: #ffd36a;
 
   --tertiary-500: #5f79d1;
 
-  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-2: 0 4px 6px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
-  --shadow-3: 0 10px 15px rgba(0, 0, 0, 0.45), 0 4px 6px rgba(0, 0, 0, 0.35);
+  /* Stati - leggermente più luminosi */
+  --success-50: #0d3625;
+  --success-500: #22c55e;
+  --success-600: #34d071;
+  --success-700: #4ade80;
+
+  --warning-50: #3e2a0f;
+  --warning-500: #f59e0b;
+  --warning-600: #fbbf24;
+  --warning-700: #fcd34d;
+
+  --danger-50: #3d1616;
+  --danger-500: #ef4444;
+  --danger-600: #f87171;
+  --danger-700: #fca5a5;
+
+  --info-50: #0c3644;
+  --info-500: #06b6d4;
+  --info-600: #22d3ee;
+  --info-700: #67e8f9;
+
+  /* Shadow in dark - più intenso */
+  --shadow-color: 0, 0, 0;
+  --shadow-1: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.35),
+              0 0.0625rem 0.125rem rgba(0, 0, 0, 0.3);
+  --shadow-2: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.4),
+              0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
+  --shadow-3: 0 0.625rem 0.9375rem rgba(0, 0, 0, 0.45),
+              0 0.25rem 0.375rem rgba(0, 0, 0, 0.35);
 }
 
 
@@ -5616,6 +6166,10 @@ export class UiLibraryModule { }
       "name": "Link",
       "description": "External and internal links with optional underline."
     },
+    "icons":{
+      "name": "Icons",
+      "description": "SVG icon catalog with size and color options."
+    },
     "iconButton": {
       "name": "IconButton",
       "description": "Icon button with tooltip and ripple effect."
@@ -5722,6 +6276,10 @@ export class UiLibraryModule { }
     "link": {
       "name": "Link",
       "description": "Collegamenti esterni e interni con underline opzionale."
+    },
+    "icons":{
+      "name": "Icone",
+      "description": "Catalogo delle icone SVG con opzioni di dimensione e colore."
     },
     "iconButton": {
       "name": "IconButton",
@@ -6016,7 +6574,7 @@ a {
 // ================================================================
 // Generato con: tree /a /f
 // Directory: .\src
-// Data: 2025-11-03 20:21:31
+// Data: 2025-11-17 22:54:34
 // ================================================================
 
 // Elenco del percorso delle cartelle

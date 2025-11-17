@@ -84,6 +84,17 @@
 
     <!-- Navigazione sezioni -->
     <nav class="catalog-nav">
+      <!-- Colors -->
+      <a
+        href="#colors"
+        class="catalog-nav__link"
+        [class.active]="isSectionActive('colors')"
+        (click)="scrollToSection('colors'); $event.preventDefault()"
+      >
+        <app-icon icon="palette" [size]="16"></app-icon>
+        <span>{{ "nav.colors" | translate }}</span>
+      </a>
+
       <a
         href="#actions"
         class="catalog-nav__link"
@@ -140,6 +151,321 @@
       </a>
     </nav>
   </div>
+
+  <!-- ===== COLORS SECTION ===== -->
+  <section id="colors">
+    <h2>
+      <app-icon icon="palette" [size]="20"></app-icon>
+      <span class="highlight">{{ "nav.colors" | translate }}</span>
+    </h2>
+    <p>{{ "components.colors.description" | translate }}</p>
+
+    <!-- Filter pills -->
+    <div class="filter-pills">
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('brand')"
+        [class.filter-pill--active]="searchValue() === 'brand'"
+      >
+        <app-icon icon="star" [size]="14"></app-icon>
+        Brand
+      </button>
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('semantic')"
+        [class.filter-pill--active]="searchValue() === 'semantic'"
+      >
+        <app-icon icon="alert" [size]="14"></app-icon>
+        Semantic
+      </button>
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('neutral')"
+        [class.filter-pill--active]="searchValue() === 'neutral'"
+      >
+        <app-icon icon="circle" [size]="14"></app-icon>
+        Neutral
+      </button>
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('tokens')"
+        [class.filter-pill--active]="searchValue() === 'tokens'"
+      >
+        <app-icon icon="settings" [size]="14"></app-icon>
+        Tokens
+      </button>
+    </div>
+
+    <div class="components-grid">
+      <!-- Primary Brand Colors Card -->
+      <div class="component-card" *ngIf="shouldShowCard('brand primary colors')">
+        <h3>{{ "components.colors.primary" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.primaryDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-badge variant="primary">Primary 50</ui-badge>
+          <ui-badge variant="primary">Primary 100</ui-badge>
+          <ui-badge variant="primary">Primary 300</ui-badge>
+          <ui-badge variant="primary">Primary 500</ui-badge>
+          <ui-badge variant="primary">Primary 600</ui-badge>
+          <ui-badge variant="primary">Primary 700</ui-badge>
+          <ui-badge variant="primary">Primary 800</ui-badge>
+        </div>
+        <div class="component-footer">
+          Colori principali del brand Wyrmrest - dal chiaro allo scuro.
+        </div>
+      </div>
+
+      <!-- Secondary & Accent Colors Card -->
+      <div
+        class="component-card"
+        *ngIf="shouldShowCard('brand secondary accent')"
+      >
+        <h3>{{ "components.colors.secondary" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.secondaryDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-badge variant="secondary">Secondary 500</ui-badge>
+          <ui-badge variant="secondary">Secondary 600</ui-badge>
+          <ui-badge variant="secondary">Secondary 700</ui-badge>
+          <ui-divider [spacing]="'small'"></ui-divider>
+          <ui-badge>Accent 500</ui-badge>
+          <ui-badge>Accent 600</ui-badge>
+          <ui-divider [spacing]="'small'"></ui-divider>
+          <ui-badge>Tertiary 500</ui-badge>
+        </div>
+        <div class="component-footer">
+          Colori secondari, accent e tertiary per supporto visivo.
+        </div>
+      </div>
+
+      <!-- Semantic: Success Card -->
+      <div
+        class="component-card"
+        *ngIf="shouldShowCard('semantic success positive')"
+      >
+        <h3>{{ "components.colors.success" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.successDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-alert type="success" title="Success 50">
+            Sfondo per messaggi di successo leggeri.
+          </ui-alert>
+          <ui-button variant="success" size="medium">Success 500</ui-button>
+          <ui-badge variant="success">Success 600</ui-badge>
+          <ui-badge variant="success">Success 700</ui-badge>
+        </div>
+        <div class="component-footer">
+          Colori per stati positivi, conferme e completamenti.
+        </div>
+      </div>
+
+      <!-- Semantic: Danger Card -->
+      <div
+        class="component-card"
+        *ngIf="shouldShowCard('semantic danger error')"
+      >
+        <h3>{{ "components.colors.danger" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.dangerDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-alert type="error" title="Danger 50">
+            Sfondo per messaggi di errore leggeri.
+          </ui-alert>
+          <ui-button variant="danger" size="medium">Danger 500</ui-button>
+          <ui-badge variant="danger">Danger 600</ui-badge>
+          <ui-badge variant="danger">Danger 700</ui-badge>
+        </div>
+        <div class="component-footer">
+          Colori per errori, avvisi critici e azioni distruttive.
+        </div>
+      </div>
+
+      <!-- Semantic: Warning Card -->
+      <div
+        class="component-card"
+        *ngIf="shouldShowCard('semantic warning caution')"
+      >
+        <h3>{{ "components.colors.warning" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.warningDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-alert type="warning" title="Warning 50">
+            Sfondo per avvisi leggeri.
+          </ui-alert>
+          <ui-button variant="warning" size="medium">Warning 500</ui-button>
+          <ui-badge variant="warning">Warning 600</ui-badge>
+          <ui-badge variant="warning">Warning 700</ui-badge>
+        </div>
+        <div class="component-footer">
+          Colori per avvisi, attenzione e notifiche importanti.
+        </div>
+      </div>
+
+      <!-- Semantic: Info Card -->
+      <div class="component-card" *ngIf="shouldShowCard('semantic info')">
+        <h3>{{ "components.colors.info" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.infoDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-alert type="info" title="Info 50">
+            Sfondo per messaggi informativi leggeri.
+          </ui-alert>
+          <ui-button variant="info" size="medium">Info 500</ui-button>
+          <ui-badge variant="info">Info 600</ui-badge>
+          <ui-badge variant="info">Info 700</ui-badge>
+        </div>
+        <div class="component-footer">
+          Colori per informazioni generali e suggerimenti.
+        </div>
+      </div>
+
+      <!-- Neutral Colors Card -->
+      <div
+        class="component-card"
+        *ngIf="shouldShowCard('neutral background surface text')"
+      >
+        <h3>{{ "components.colors.neutral" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.neutralDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-card [elevation]="0" [padding]="'small'">
+            <p>Background (#ffffff)</p>
+          </ui-card>
+          <ui-card [elevation]="1" [padding]="'small'">
+            <p>Surface (#ffffff)</p>
+          </ui-card>
+          <ui-card [elevation]="1" [padding]="'small'">
+            <p>Surface 2 (#f9fafb)</p>
+          </ui-card>
+          <ui-badge variant="secondary">Text (#1f2937)</ui-badge>
+          <ui-badge variant="secondary">Muted (#6b7280)</ui-badge>
+          <ui-badge variant="secondary">Border (#e5e7eb)</ui-badge>
+        </div>
+        <div class="component-footer">
+          Colori neutri per superfici, testi e bordi.
+        </div>
+      </div>
+
+      <!-- Design Tokens: Shadows Card -->
+      <div
+        class="component-card"
+        *ngIf="shouldShowCard('tokens shadow elevation')"
+      >
+        <h3>{{ "components.colors.shadows" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.shadowsDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-card [elevation]="0" [padding]="'medium'">
+            <h4>Shadow 0</h4>
+            <p>Nessuna ombra</p>
+          </ui-card>
+          <ui-card [elevation]="1" [padding]="'medium'">
+            <h4>Shadow 1</h4>
+            <p>Elevazione base</p>
+          </ui-card>
+          <ui-card [elevation]="2" [padding]="'medium'">
+            <h4>Shadow 2</h4>
+            <p>Elevazione media</p>
+          </ui-card>
+          <ui-card [elevation]="3" [padding]="'medium'">
+            <h4>Shadow 3</h4>
+            <p>Elevazione alta</p>
+          </ui-card>
+        </div>
+        <div class="component-footer">
+          Sistema di elevazione con 4 livelli di profondità.
+        </div>
+      </div>
+
+      <!-- Design Tokens: Spacing Card -->
+      <div
+        class="component-card"
+        *ngIf="shouldShowCard('tokens spacing padding margin')"
+      >
+        <h3>{{ "components.colors.spacing" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.spacingDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-container [maxWidth]="'md'" [padding]="true">
+            <ui-badge>space-1 (4px)</ui-badge>
+            <ui-badge>space-2 (8px)</ui-badge>
+            <ui-badge>space-3 (12px)</ui-badge>
+            <ui-badge>space-4 (16px)</ui-badge>
+            <ui-badge>space-5 (20px)</ui-badge>
+            <ui-badge>space-6 (24px)</ui-badge>
+            <ui-badge>space-8 (32px)</ui-badge>
+          </ui-container>
+        </div>
+        <div class="component-footer">
+          Sistema di spaziatura basato su rem (4px, 8px, 12px, 16px, 20px,
+          24px, 32px).
+        </div>
+      </div>
+
+      <!-- Design Tokens: Border Radius Card -->
+      <div
+        class="component-card"
+        *ngIf="shouldShowCard('tokens radius rounded corners')"
+      >
+        <h3>{{ "components.colors.radius" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.radiusDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-button variant="primary" size="small">Small (6px)</ui-button>
+          <ui-button variant="primary" size="medium">Medium (10px)</ui-button>
+          <ui-button variant="primary" size="large">Large (14px)</ui-button>
+          <ui-avatar [size]="'medium'" [shape]="'circle'" [alt]="'Full'">
+          </ui-avatar>
+        </div>
+        <div class="component-footer">
+          Border radius da small (6px) a large (14px) e full per cerchi.
+        </div>
+      </div>
+
+      <!-- CSS Variables Reference Card -->
+      <div
+        class="component-card"
+        *ngIf="shouldShowCard('tokens variables css custom-properties')"
+      >
+        <h3>{{ "components.colors.variables" | translate }}</h3>
+        <p class="component-description">
+          {{ "components.colors.variablesDescription" | translate }}
+        </p>
+        <div class="component-examples">
+          <ui-card [elevation]="1" [padding]="'medium'">
+            <p><strong>Colori Brand:</strong></p>
+            <code>--primary-500, --secondary-500, --accent-500, --tertiary-500</code>
+          </ui-card>
+          <ui-card [elevation]="1" [padding]="'medium'">
+            <p><strong>Colori Semantici:</strong></p>
+            <code>--success-500, --danger-500, --warning-500, --info-500</code>
+          </ui-card>
+          <ui-card [elevation]="1" [padding]="'medium'">
+            <p><strong>Spacing:</strong></p>
+            <code>--space-1 to --space-8</code>
+          </ui-card>
+          <ui-card [elevation]="1" [padding]="'medium'">
+            <p><strong>Shadows:</strong></p>
+            <code>--shadow-0 to --shadow-3</code>
+          </ui-card>
+        </div>
+        <div class="component-footer">
+          Tutte le variabili CSS disponibili nel design system Wyrmrest.
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ===== ACTIONS SECTION ===== -->
   <section id="actions">
