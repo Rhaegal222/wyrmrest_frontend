@@ -1,6 +1,16 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  forwardRef,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  FormsModule,
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+} from '@angular/forms';
 
 @Component({
   selector: 'ui-toggle',
@@ -8,18 +18,25 @@ import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/f
   imports: [CommonModule, FormsModule],
   templateUrl: './toggle.component.html',
   styleUrls: ['./toggle.component.scss'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => ToggleComponent),
-    multi: true
-  }]
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ToggleComponent),
+      multi: true,
+    },
+  ],
 })
 export class ToggleComponent implements ControlValueAccessor {
   @Input() label?: string;
   @Input() disabled = false;
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
 
-  checked = false;
+  // Aggiunto @Input per permettere [checked]="true"
+  @Input() checked = false;
+
+  // Aggiunto @Output per supportare [(checked)]="val" o (checkedChange)="..."
+  @Output() checkedChange = new EventEmitter<boolean>();
+
   private onChange: (value: boolean) => void = () => {};
   private onTouched: () => void = () => {};
 
@@ -44,6 +61,7 @@ export class ToggleComponent implements ControlValueAccessor {
       this.checked = !this.checked;
       this.onChange(this.checked);
       this.onTouched();
+      this.checkedChange.emit(this.checked);
     }
   }
 
@@ -52,7 +70,7 @@ export class ToggleComponent implements ControlValueAccessor {
       'ui-toggle',
       'ui-toggle--' + this.size,
       this.disabled ? 'ui-toggle--disabled' : '',
-      this.checked ? 'ui-toggle--checked' : ''
+      this.checked ? 'ui-toggle--checked' : '',
     ].filter(Boolean);
   }
 }

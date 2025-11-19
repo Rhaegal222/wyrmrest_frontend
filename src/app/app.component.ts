@@ -12,12 +12,18 @@ import { IconComponent } from './shared/components/icon/icon.component';
 import { TranslatePipe } from './shared/pipes/translate.pipe';
 import { TranslationService } from './shared/services/translation.service';
 import { TranslateModule } from '@ngx-translate/core';
-import { listAvailableIcons, searchIcons, ICON_ALIASES } from './shared/services/icon.service';
+import {
+  listAvailableIcons,
+  searchIcons,
+  ICON_ALIASES,
+} from './shared/services/icon.service';
+import { Tab, TabsComponent } from './shared/ui-library/components/layout/tabs/tabs.component';
+import { ModalComponent } from "./shared/ui-library/components/feedback/modal/modal.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, UiLibraryModule, IconComponent, TranslateModule],
+  imports: [CommonModule, UiLibraryModule, IconComponent, TranslateModule, ModalComponent, TabsComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
@@ -174,12 +180,40 @@ export class AppComponent {
     return this.searchValueLower().length > 0;
   }
 
+  // ===== MODAL STATE =====
+  readonly isModalOpen = signal(false);
+
+  openModal(): void {
+    this.isModalOpen.set(true);
+  }
+
+  closeModal(): void {
+    this.isModalOpen.set(false);
+  }
+
+  // ===== TABS DATA =====
+  readonly tabsData: Tab[] = [
+    { id: 'tab1', label: 'Account', icon: 'user' }, // Assicurati che 'user' esista o usa un'icona esistente come 'users'
+    { id: 'tab2', label: 'Settings', icon: 'settings' },
+    { id: 'tab3', label: 'Disabled', icon: 'lock', disabled: true },
+  ];
+
+  readonly activeTabId = signal('tab1');
+
+  onTabChange(id: string): void {
+    this.activeTabId.set(id);
+  }
+
   // ===== ICONS SECTION =====
   setIconCategoryFilter(category: string): void {
     this.iconCategoryFilter.set(category);
   }
 
-  getFilteredIcons(): Array<{ name: string; alias?: string; category: string }> {
+  getFilteredIcons(): Array<{
+    name: string;
+    alias?: string;
+    category: string;
+  }> {
     let icons: Array<{ name: string; alias?: string; category: string }> = [];
 
     // Se c'è un filtro di ricerca, usa quello

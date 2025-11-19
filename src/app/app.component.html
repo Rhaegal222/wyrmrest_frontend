@@ -772,6 +772,13 @@
       >
         <app-icon icon="arrow" [size]="14"></app-icon> Divider
       </button>
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('tabs')"
+        [class.filter-pill--active]="searchValue() === 'tabs'"
+      >
+        <app-icon icon="folder" [size]="14"></app-icon> Tabs
+      </button>
     </div>
 
     <div class="components-grid">
@@ -848,6 +855,56 @@
         </div>
         <div class="component-footer">Orizzontale, verticale con testo.</div>
       </div>
+
+      <!-- Tabs Card -->
+      <div
+        class="component-card"
+        *ngIf="shouldShowCard('tabs navigation layout')"
+      >
+        <h3>Tabs</h3>
+        <p class="component-description">
+          Navigazione a schede con indicatore animato e icone opzionali.
+        </p>
+
+        <div
+          class="component-examples"
+          style="
+            flex-direction: column;
+            align-items: stretch;
+            background: var(--color-surface);
+            border: none;
+          "
+        >
+          <ui-tabs
+            [tabs]="tabsData"
+            [activeTabId]="activeTabId()"
+            (tabChange)="onTabChange($event)"
+          >
+            <!-- Contenuto Tab Dinamico -->
+            <div *ngIf="activeTabId() === 'tab1'" class="u-p-4">
+              <h4>Impostazioni Account</h4>
+              <p style="color: var(--color-muted)">
+                Gestisci qui le tue preferenze personali.
+              </p>
+              <ui-text-input
+                label="Username"
+                value="WyrmUser"
+                class="u-mb-3"
+              ></ui-text-input>
+              <ui-button>Salva</ui-button>
+            </div>
+
+            <div *ngIf="activeTabId() === 'tab2'" class="u-p-4">
+              <h4>Preferenze Sistema</h4>
+              <ui-toggle label="Notifiche Email" class="u-mb-3"></ui-toggle>
+              <ui-toggle label="Autenticazione 2FA"></ui-toggle>
+            </div>
+          </ui-tabs>
+        </div>
+        <div class="component-footer">
+          Supporta icone, stati disabilitati e contenuti lazy.
+        </div>
+      </div>
     </div>
   </section>
 
@@ -891,6 +948,13 @@
       >
         <app-icon icon="bell" [size]="14"></app-icon> Toast
       </button>
+      <button
+        class="filter-pill"
+        (click)="setSearchFilter('modal')"
+        [class.filter-pill--active]="searchValue() === 'modal'"
+      >
+        <app-icon icon="copy" [size]="14"></app-icon> Modal
+      </button>
     </div>
 
     <div class="components-grid">
@@ -919,37 +983,44 @@
         <div class="component-footer">Success, error, warning, info.</div>
       </div>
 
-      <!-- Spinner Card -->
+      <!-- Spinner/Progress Card -->
       <div
         class="component-card"
         *ngIf="shouldShowCard('spinner loader loading')"
       >
-        <h3>{{ "components.spinner.name" | translate }}</h3>
-        <p class="component-description">
-          {{ "components.spinner.description" | translate }}
-        </p>
-        <div class="component-examples">
-          <ui-spinner size="small" color="primary"></ui-spinner>
-          <ui-spinner size="medium" color="secondary"></ui-spinner>
-          <ui-spinner size="large" color="primary"></ui-spinner>
-        </div>
-        <div class="component-footer">Small/medium/large con colori.</div>
-      </div>
-
-      <!-- Progress Bar Card -->
-      <div class="component-card" *ngIf="shouldShowCard('progress bar')">
-        <h3>{{ "components.progress.name" | translate }}</h3>
-        <p class="component-description">
-          {{ "components.progress.description" | translate }}
-        </p>
         <div
           class="component-examples"
-          style="
-            flex-direction: column;
-            align-items: stretch;
-            gap: var(--space-3);
-          "
+          style="flex-direction: column; align-items: stretch"
         >
+          <h3>{{ "components.spinner.name" | translate }}</h3>
+          <p class="component-description">
+            {{ "components.spinner.description" | translate }}
+          </p>
+          <div
+            class="component-examples"
+            style="
+              gap: var(--space-8);
+              background: transparent;
+              border: none;
+              margin: 0;
+              padding: 0;
+            "
+          >
+            <ui-spinner size="small" color="primary"></ui-spinner>
+            <ui-spinner size="medium" color="secondary"></ui-spinner>
+            <ui-spinner size="large" color="primary"></ui-spinner>
+          </div>
+          <div class="component-footer">Small/medium/large con colori.</div>
+        </div>
+
+        <div
+          class="component-examples"
+          style="flex-direction: column; align-items: stretch"
+        >
+          <h3>{{ "components.progress.name" | translate }}</h3>
+          <p class="component-description">
+            {{ "components.progress.description" | translate }}
+          </p>
           <ui-progress-bar [value]="25" [showLabel]="true"></ui-progress-bar>
           <ui-progress-bar
             [value]="60"
@@ -962,8 +1033,8 @@
             [striped]="true"
             [animated]="true"
           ></ui-progress-bar>
+          <div class="component-footer">Label, striped, animated.</div>
         </div>
-        <div class="component-footer">Label, striped, animated.</div>
       </div>
 
       <!-- Toast Card -->
@@ -977,6 +1048,26 @@
         </div>
         <div class="component-footer">
           Integra ToastService per mostrare notifiche.
+        </div>
+      </div>
+
+      <!-- Modal Card -->
+      <div
+        class="component-card"
+        *ngIf="shouldShowCard('modal dialog popup overlay')"
+      >
+        <h3>Modal</h3>
+        <p class="component-description">
+          Finestra di dialogo modale con overlay, header e footer
+          personalizzabili.
+        </p>
+
+        <div class="component-examples">
+          <ui-button (clicked)="openModal()">Apri Modale Demo</ui-button>
+        </div>
+
+        <div class="component-footer">
+          Accessibile, chiusura su backdrop, slot per footer.
         </div>
       </div>
     </div>
@@ -1093,81 +1184,81 @@
 
   <div class="section-divider"></div>
 
-<!-- ICONS SECTION -->
-<section id="icons">
-  <h2>
-    <app-icon icon="star" [size]="20"></app-icon>
-    <span class="highlight">{{ "components.icons.name" | translate }}</span>
-  </h2>
-  <p>{{ "components.icons.description" | translate }}</p>
+  <!-- ICONS SECTION -->
+  <section id="icons">
+    <h2>
+      <app-icon icon="star" [size]="20"></app-icon>
+      <span class="highlight">{{ "components.icons.name" | translate }}</span>
+    </h2>
+    <p>{{ "components.icons.description" | translate }}</p>
 
-  <!-- Filter pills -->
-  <div class="filter-pills">
-    <button
-      class="filter-pill"
-      (click)="setIconCategoryFilter('all')"
-      [class.filter-pill--active]="iconCategoryFilter() === 'all'"
-    >
-      <app-icon icon="grid" [size]="14"></app-icon>
-      All Icons
-    </button>
-    <button
-      class="filter-pill"
-      (click)="setIconCategoryFilter('actions')"
-      [class.filter-pill--active]="iconCategoryFilter() === 'actions'"
-    >
-      <app-icon icon="arrow" [size]="14"></app-icon>
-      Actions
-    </button>
-    <button
-      class="filter-pill"
-      (click)="setIconCategoryFilter('navigation')"
-      [class.filter-pill--active]="iconCategoryFilter() === 'navigation'"
-    >
-      <app-icon icon="menu" [size]="14"></app-icon>
-      Navigation
-    </button>
-    <button
-      class="filter-pill"
-      (click)="setIconCategoryFilter('feedback')"
-      [class.filter-pill--active]="iconCategoryFilter() === 'feedback'"
-    >
-      <app-icon icon="alert" [size]="14"></app-icon>
-      Feedback
-    </button>
-    <button
-      class="filter-pill"
-      (click)="setIconCategoryFilter('ui')"
-      [class.filter-pill--active]="iconCategoryFilter() === 'ui'"
-    >
-      <app-icon icon="type" [size]="14"></app-icon>
-      UI
-    </button>
-  </div>
+    <!-- Filter pills -->
+    <div class="filter-pills">
+      <button
+        class="filter-pill"
+        (click)="setIconCategoryFilter('all')"
+        [class.filter-pill--active]="iconCategoryFilter() === 'all'"
+      >
+        <app-icon icon="grid" [size]="14"></app-icon>
+        All Icons
+      </button>
+      <button
+        class="filter-pill"
+        (click)="setIconCategoryFilter('actions')"
+        [class.filter-pill--active]="iconCategoryFilter() === 'actions'"
+      >
+        <app-icon icon="arrow" [size]="14"></app-icon>
+        Actions
+      </button>
+      <button
+        class="filter-pill"
+        (click)="setIconCategoryFilter('navigation')"
+        [class.filter-pill--active]="iconCategoryFilter() === 'navigation'"
+      >
+        <app-icon icon="menu" [size]="14"></app-icon>
+        Navigation
+      </button>
+      <button
+        class="filter-pill"
+        (click)="setIconCategoryFilter('feedback')"
+        [class.filter-pill--active]="iconCategoryFilter() === 'feedback'"
+      >
+        <app-icon icon="alert" [size]="14"></app-icon>
+        Feedback
+      </button>
+      <button
+        class="filter-pill"
+        (click)="setIconCategoryFilter('ui')"
+        [class.filter-pill--active]="iconCategoryFilter() === 'ui'"
+      >
+        <app-icon icon="type" [size]="14"></app-icon>
+        UI
+      </button>
+    </div>
 
-  <!-- Icons Grid -->
-  <div class="icons-grid">
-    @for (iconData of getFilteredIcons(); track iconData.name) {
+    <!-- Icons Grid -->
+    <div class="icons-grid">
+      @for (iconData of getFilteredIcons(); track iconData.name) {
       <div class="icon-card" (click)="copyIconName(iconData.name)">
         <div class="icon-card__preview">
           <app-icon [icon]="iconData.name" [size]="32"></app-icon>
         </div>
         <div class="icon-card__name">{{ iconData.name }}</div>
         @if (iconData.alias) {
-          <div class="icon-card__alias">{{ iconData.alias }}</div>
+        <div class="icon-card__alias">{{ iconData.alias }}</div>
         }
       </div>
-    }
-  </div>
+      }
+    </div>
 
-  <!-- Empty state -->
-  @if (getFilteredIcons().length === 0) {
+    <!-- Empty state -->
+    @if (getFilteredIcons().length === 0) {
     <div class="empty-state">
       <app-icon icon="search" [size]="48" color="var(--color-muted)"></app-icon>
       <p>No icons found matching "{{ searchValue() }}"</p>
     </div>
-  }
-</section>
+    }
+  </section>
 
   <!-- ===== FOOTER ===== -->
   <div class="catalog-footer">
@@ -1179,3 +1270,25 @@
     </p>
   </div>
 </div>
+
+<ui-modal
+  [isOpen]="isModalOpen()"
+  title="Conferma azione"
+  (closeEvent)="closeModal()"
+>
+  <p>
+    Stai per effettuare un'azione importante. Sei sicuro di voler procedere con
+    l'operazione richiesta?
+  </p>
+  <ui-alert type="warning" class="u-mt-3"
+    >Questa azione non può essere annullata.</ui-alert
+  >
+
+  <div
+    footer
+    style="display: flex; gap: 10px; width: 100%; justify-content: flex-end"
+  >
+    <ui-button variant="secondary" (clicked)="closeModal()">Annulla</ui-button>
+    <ui-button variant="primary" (clicked)="closeModal()">Conferma</ui-button>
+  </div>
+</ui-modal>
