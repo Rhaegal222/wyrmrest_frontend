@@ -13,14 +13,14 @@ type BarTheme = 'default' | 'dragon';
   styleUrls: ['./progress-bar.component.scss'],
 })
 export class ProgressBarComponent {
-  @Input() value = 0;               // valore corrente
-  @Input() max = 100;               // massimo
-  @Input() showLabel = false;       // mostra % nel riempimento
+  @Input() value = 0;
+  @Input() max = 100;
+  @Input() showLabel = false;
   @Input() color: BarColor = 'primary';
   @Input() striped = false;
   @Input() animated = false;
-  @Input() size: BarSize = 'md';    // sm | md | lg
-  @Input() theme: BarTheme = 'dragon'; // default | dragon
+  @Input() size: BarSize = 'md';
+  @Input() theme: BarTheme = 'dragon';
 
   get percentage(): number {
     return Math.min(100, Math.max(0, (this.value / this.max) * 100));
@@ -39,6 +39,7 @@ export class ProgressBarComponent {
     return [
       'ui-progress-bar',
       `ui-progress-bar--${this.size}`,
+      this.showLabel ? 'ui-progress-bar--labeled' : '', // Aggiunta classe per gestire l'altezza con testo
       this.theme === 'dragon' ? 'ui-progress-bar--dragon' : '',
     ].filter(Boolean);
   }

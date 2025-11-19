@@ -1,0 +1,28 @@
+<div class="ui-tabs">
+  <div class="ui-tabs__header" role="tablist">
+    @for (tab of tabs; track tab.id) {
+    <button
+      class="ui-tab-item"
+      [class.ui-tab-item--active]="activeTabId === tab.id"
+      [class.ui-tab-item--disabled]="tab.disabled"
+      role="tab"
+      [attr.aria-selected]="activeTabId === tab.id"
+      (click)="selectTab(tab.id)"
+    >
+      @if (tab.icon) {
+      <span class="ui-tab-item__icon material-icons" *ngIf="false">{{
+        tab.icon
+      }}</span>
+      <!-- Using text placeholder for icon if no icon lib is loaded, or rely on projection -->
+      }
+      {{ tab.label }}
+    </button>
+    }
+    <!-- Indicatore attivo animato -->
+    <div class="ui-tabs__indicator" [style]="indicatorStyle"></div>
+  </div>
+
+  <div class="ui-tabs__content">
+    <ng-content></ng-content>
+  </div>
+</div>
