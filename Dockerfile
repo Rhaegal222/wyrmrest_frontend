@@ -2,7 +2,7 @@ FROM node:20-alpine
 
 LABEL maintainer="francescovecchio01@gmail.com"
 
-RUN npm install -g @angular/cli@19
+RUN npm install -g @angular/cli@21
 
 RUN chown -R node:node /home/node
 USER node

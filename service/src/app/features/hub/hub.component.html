@@ -1,0 +1,15 @@
+<header>
+  <span class="logo">🐉</span>
+  <h1>Wyrmrest</h1>
+  <p class="tagline">La tana del drago — Hub di controllo</p>
+</header>
+
+<p class="section-title">Strumenti &amp; servizi</p>
+
+<div class="grid">
+  @for (p of platforms(); track p.url) {
+    <app-platform-card [platform]="p" />
+  }
+</div>
+
+<footer>&copy; {{ year }} Wyrmrest &mdash; Francesco Vecchio</footer>
