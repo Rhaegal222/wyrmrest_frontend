@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main, staging, develop]
+  pull_request:
+    branches: [main, staging, develop]
+
+jobs:
+  build:
+    name: Angular 21 / Node 22
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: service/package-lock.json
+
+      - name: Install npm dependencies
+        working-directory: service
+        run: npm ci
+
+      - name: Build
+        working-directory: service
+        run: npm run build -- --configuration production
+
+  docker-build:
+    name: Docker Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build -t wyrmrest-frontend:${{ github.sha }} .
