@@ -1,0 +1,21 @@
+FROM node:20-alpine AS builder
+
+LABEL maintainer="francescovecchio01@gmail.com"
+
+ARG NODE_ENV=production
+
+WORKDIR /app
+
+COPY ./service/package*.json ./
+RUN npm ci --omit=dev
+
+COPY ./service .
+RUN npm run build
+
+# =============================================================================
+FROM nginx:1.27-alpine AS runner
+
+COPY --from=builder /app/dist/wyrmrest_frontend/browser /usr/share/nginx/html
+COPY _resources/nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
