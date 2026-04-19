@@ -7,7 +7,7 @@ ARG NODE_ENV=production
 WORKDIR /app
 
 COPY ./service/package*.json ./
-RUN npm ci --omit=dev
+RUN npm ci
 
 COPY ./service .
 RUN npm run build
