@@ -1,0 +1,47 @@
+name: Update Parent Submodule
+
+on:
+  workflow_run:
+    workflows: [CI]
+    branches: [main, staging]
+    types: [completed]
+
+jobs:
+  update-submodule:
+    name: Aggiorna puntatore wyrmrest → wyrmrest_frontend
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success'
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Rhaegal222/wyrmrest
+          ref: ${{ github.event.workflow_run.head_branch }}
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Update submodule pointer and push
+        env:
+          SHA: ${{ github.event.workflow_run.head_sha }}
+          BRANCH: ${{ github.event.workflow_run.head_branch }}
+        run: |
+          git update-index --cacheinfo "160000,$SHA,wyrmrest_frontend"
+          git add wyrmrest_frontend
+          if git diff --cached --quiet; then
+            echo "Submodulo già aggiornato, nessun commit necessario"
+            exit 0
+          fi
+          SHORT_SHA="${SHA:0:7}"
+          git commit -m "chore: aggiorna wyrmrest_frontend a $SHORT_SHA"
+          for i in 1 2 3; do
+            git push origin "$BRANCH" && exit 0
+            git fetch origin "$BRANCH"
+            git rebase "origin/$BRANCH"
+            sleep $((i * 3))
+          done
+          echo "Push fallito dopo 3 tentativi"
+          exit 1
