@@ -17,7 +17,7 @@ jobs:
         with:
           repository: Rhaegal222/wyrmrest
           ref: ${{ github.event.workflow_run.head_branch }}
-          token: ${{ secrets.GH_PAT }}
+          ssh-key: ${{ secrets.WYRMREST_DEPLOY_KEY }}
 
       - name: Configure git
         run: |
