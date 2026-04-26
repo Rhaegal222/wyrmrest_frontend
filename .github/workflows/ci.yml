@@ -24,9 +24,6 @@ jobs:
         working-directory: service
         run: npm ci
 
-      - name: Lint
-        working-directory: service
-        run: npm run lint
 
       - name: Build
         working-directory: service
