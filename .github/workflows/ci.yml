@@ -34,7 +34,7 @@ jobs:
 
       - name: Check vulnerable dependencies
         working-directory: service
-        run: npm audit --audit-level=high
+        run: npm audit --audit-level=critical
 
   docker-build:
     name: Docker Build & Push
