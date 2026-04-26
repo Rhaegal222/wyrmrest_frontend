@@ -5,19 +5,22 @@
 }
 
 body {
-  font-family: 'Georgia', serif;
-  background: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 40%, #2d1b4e 70%, #16213e 100%);
+  font-family: var(--wr-font-family-ui, "Segoe UI", system-ui, sans-serif);
+  background: var(--wr-color-bg-canvas, #0b1118);
   min-height: 100vh;
-  color: #f0e6d2;
+  color: var(--wr-color-text-primary, #e6edf5);
   overflow-x: hidden;
-  position: relative;
+}
 
-  &::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 20%, rgba(255, 100, 0, 0.08) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
-  }
+:focus-visible {
+  outline: 2px solid var(--wr-color-accent-primary, #2c9fd6);
+  outline-offset: 2px;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  transition: border-color var(--wr-motion-base, 180ms), background-color var(--wr-motion-base, 180ms);
 }
