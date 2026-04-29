@@ -22,4 +22,26 @@ export class PlatformCardComponent {
     if (badge === 'wip') return '⧖ In sviluppo';
     return 'Strumento';
   });
+
+  readonly accessLabel = computed(() => {
+    const platform = this.platform();
+
+    if (platform.audience === 'public') {
+      return 'Libero accesso';
+    }
+
+    if ((platform.required_permissions?.length ?? 0) > 0) {
+      return 'Permesso dedicato';
+    }
+
+    if ((platform.required_roles?.length ?? 0) > 0) {
+      return 'Ruolo dedicato';
+    }
+
+    if (platform.auth_required) {
+      return 'Autenticazione';
+    }
+
+    return 'Riservato';
+  });
 }

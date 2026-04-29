@@ -1,0 +1,50 @@
+<main class="login-page">
+  <section class="login-panel">
+    <div class="login-brand">
+      <span class="login-logo">🐉</span>
+      <p class="login-kicker">Wyrmrest</p>
+      <h1>Accesso</h1>
+      <p class="login-copy">Entra per aprire i tool interni secondo il tuo profilo.</p>
+    </div>
+
+    <form class="login-form" (ngSubmit)="submit()" [formGroup]="form">
+      <label class="field">
+        <span>Email</span>
+        <input type="email" formControlName="email" autocomplete="email" />
+      </label>
+
+      <label class="field">
+        <span>Password</span>
+        <input type="password" formControlName="password" autocomplete="current-password" />
+      </label>
+
+      @if (twoFactorRequired()) {
+        <label class="field">
+          <span>Codice 2FA</span>
+          <input type="text" formControlName="code" inputmode="numeric" autocomplete="one-time-code" />
+        </label>
+      }
+
+      <label class="remember">
+        <input type="checkbox" formControlName="remember" />
+        <span>Ricordami</span>
+      </label>
+
+      @if (error(); as message) {
+        <p class="error">{{ message }}</p>
+      }
+
+      <button type="submit" class="submit-button" [disabled]="loading()">
+        @if (loading()) {
+          Attendi...
+        } @else if (twoFactorRequired()) {
+          Verifica 2FA
+        } @else {
+          Accedi
+        }
+      </button>
+    </form>
+
+    <a class="back-link" routerLink="/">Torna alla Home</a>
+  </section>
+</main>

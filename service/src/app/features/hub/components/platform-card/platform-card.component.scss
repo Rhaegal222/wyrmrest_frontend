@@ -38,6 +38,9 @@
 .badge-audience { text-transform: uppercase; }
 .badge-audience-public { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.16); color: #f0e6d2; }
 .badge-audience-internal { background: rgba(170, 80, 255, 0.15); border: 1px solid rgba(170, 80, 255, 0.35); color: #d9b6ff; }
+.badge-access { text-transform: uppercase; }
+.badge-access-public { background: rgba(0, 200, 100, 0.08); border: 1px solid rgba(0, 200, 100, 0.18); color: #80e8b7; }
+.badge-access-internal { background: rgba(255, 180, 0, 0.08); border: 1px solid rgba(255, 180, 0, 0.18); color: #ffd38a; }
 .badge-live { background: rgba(0, 200, 100, 0.15); border: 1px solid rgba(0, 200, 100, 0.4); color: #00c864; }
 .badge-tool { background: rgba(100, 150, 255, 0.15); border: 1px solid rgba(100, 150, 255, 0.4); color: #80aaff; }
 .badge-wip  { background: rgba(255, 200, 0, 0.15);  border: 1px solid rgba(255, 200, 0, 0.4);  color: #ffcc00; }
