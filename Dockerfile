@@ -4,7 +4,8 @@ LABEL maintainer="francescovecchio01@gmail.com"
 
 RUN npm install -g @angular/cli@21
 
-RUN chown -R node:node /home/node
+RUN mkdir -p /app/node_modules \
+    && chown -R node:node /home/node /app
 USER node
 
 WORKDIR /app
