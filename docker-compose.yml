@@ -1,11 +1,11 @@
-name: "wyrmrest_frontend_develop"
+name: "wyrmrest_frontend_prod"
 
 services:
   service:
     # =============================================================================
     # 🚩 CONTAINER NAME
     # =============================================================================
-    container_name: wyrmrest_frontend_develop
+    container_name: wyrmrest_frontend_prod
 
     # =============================================================================
     # 📀 BUILD
@@ -19,7 +19,7 @@ services:
     # =============================================================================
     volumes:
       - ./service:/app
-      - /app/node_modules
+      - ./service/node_modules:/app/node_modules
 
     # =============================================================================
     # 🌤 ENVIRONMENT
@@ -27,15 +27,29 @@ services:
     environment:
       - NODE_ENV=development
 
+    user: "1000:1000"
+
+    command: >
+      sh -c 'test -d node_modules/@angular/build || npm ci --include=dev;
+             ng serve --host 0.0.0.0 --allowed-hosts --poll 2000'
+
     # =============================================================================
     # 🔗 NETWORKS
     # =============================================================================
     networks:
       - wyrmrest_network
+      - proxy
     expose:
       - 4200
-    ports:
-      - "7002:4200"
+
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=proxy
+      - traefik.http.routers.wyrmrest-frontend.rule=(Host(`wyrmrest.it`) || Host(`www.wyrmrest.it`) || Host(`wyrmrest.com`) || Host(`www.wyrmrest.com`)) && PathPrefix(`/`)
+      - traefik.http.routers.wyrmrest-frontend.entrypoints=websecure
+      - traefik.http.routers.wyrmrest-frontend.tls=true
+      - traefik.http.routers.wyrmrest-frontend.priority=1
+      - traefik.http.services.wyrmrest-frontend.loadbalancer.server.port=4200
 
     # =============================================================================
     # 🔐 SECURITY OPTIONS
@@ -61,7 +75,7 @@ services:
     # 🏥 HEALTHCHECK
     # =============================================================================
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:4200"]
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:4200"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -83,3 +97,6 @@ networks:
   wyrmrest_network:
     external: true
     name: wyrmrest_network
+  proxy:
+    external: true
+    name: proxy
