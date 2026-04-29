@@ -1,12 +1,8 @@
-name: "wyrmrest_frontend_prod"
-
 services:
   service:
     # =============================================================================
     # 🚩 CONTAINER NAME
     # =============================================================================
-    container_name: wyrmrest_frontend_prod
-
     # =============================================================================
     # 📀 BUILD
     # =============================================================================
@@ -43,7 +39,7 @@ services:
       - 4200
 
     labels:
-      - traefik.enable=true
+      - traefik.enable=${TRAEFIK_ENABLE:-true}
       - traefik.docker.network=proxy
       - traefik.http.routers.wyrmrest-frontend.rule=(Host(`wyrmrest.it`) || Host(`www.wyrmrest.it`) || Host(`wyrmrest.com`) || Host(`www.wyrmrest.com`)) && PathPrefix(`/`)
       - traefik.http.routers.wyrmrest-frontend.entrypoints=websecure
