@@ -1,7 +1,34 @@
-<header>
-  <span class="logo">🐉</span>
-  <h1>Wyrmrest</h1>
-  <p class="tagline">Catalogo dei tool ospitati</p>
+<header class="hero">
+  <div class="hero-brand">
+    <span class="logo">🐉</span>
+    <h1>Wyrmrest</h1>
+    <p class="tagline">Catalogo dei tool ospitati</p>
+  </div>
+
+  <div class="session-panel">
+    @if (isAuthenticated()) {
+      @if (currentUser(); as user) {
+        <p class="session-label">Profilo attivo</p>
+        <h2>{{ user.name }}</h2>
+        <p class="session-copy">{{ user.email }}</p>
+        <div class="session-meta">
+          @for (role of user.roles; track role.id) {
+            <span class="session-chip">{{ role.name }}</span>
+          }
+        </div>
+        <p class="session-copy session-copy--muted">{{ user.permissions.length }} permessi disponibili</p>
+        <button type="button" class="session-action" (click)="logout()">Esci</button>
+      }
+    } @else {
+      <p class="session-label">Accesso</p>
+      <h2>Tools pubblici e interni</h2>
+      <p class="session-copy">Accedi per aprire il catalogo interno secondo il tuo ruolo o i tuoi permessi.</p>
+      <a class="session-action" routerLink="/login">Accedi</a>
+    }
+    @if (authError(); as message) {
+      <p class="error-banner">{{ message }}</p>
+    }
+  </div>
 </header>
 
 <main class="sections">
@@ -28,6 +55,22 @@
           <app-platform-card [platform]="p" />
         }
       </div>
+    </section>
+  } @else if (internalLoaded() && isAuthenticated()) {
+    <section class="catalog-section">
+      <div class="section-header">
+        <p class="section-title">Tool interni</p>
+        <p class="section-count">Nessun accesso disponibile</p>
+      </div>
+      <p class="empty-state">Il profilo corrente non ha ancora permessi per i tool interni.</p>
+    </section>
+  } @else if (internalLoaded()) {
+    <section class="catalog-section">
+      <div class="section-header">
+        <p class="section-title">Tool interni</p>
+        <p class="section-count">Riservati</p>
+      </div>
+      <p class="empty-state">Accedi per vedere i tool interni disponibili per il tuo profilo.</p>
     </section>
   }
 </main>

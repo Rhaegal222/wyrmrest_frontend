@@ -8,4 +8,6 @@ export interface Platform {
   category?: string | null;
   auth_required?: boolean;
   listed?: boolean;
+  required_roles?: string[];
+  required_permissions?: string[];
 }
