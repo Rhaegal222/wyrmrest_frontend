@@ -21,6 +21,7 @@
 
 .card-icon { font-size: 44px; line-height: 1; }
 .card-name { font-size: 1.4em; font-weight: 700; color: #ffa500; letter-spacing: 1px; }
+.card-meta { display: flex; flex-wrap: wrap; gap: 8px; }
 .card-desc { font-size: 0.95em; color: #c0a880; line-height: 1.6; flex: 1; }
 .card-url  { font-size: 0.78em; color: #806040; font-family: monospace; margin-top: auto; }
 
@@ -34,6 +35,9 @@
   align-self: flex-start;
 }
 
+.badge-audience { text-transform: uppercase; }
+.badge-audience-public { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.16); color: #f0e6d2; }
+.badge-audience-internal { background: rgba(170, 80, 255, 0.15); border: 1px solid rgba(170, 80, 255, 0.35); color: #d9b6ff; }
 .badge-live { background: rgba(0, 200, 100, 0.15); border: 1px solid rgba(0, 200, 100, 0.4); color: #00c864; }
 .badge-tool { background: rgba(100, 150, 255, 0.15); border: 1px solid rgba(100, 150, 255, 0.4); color: #80aaff; }
 .badge-wip  { background: rgba(255, 200, 0, 0.15);  border: 1px solid rgba(255, 200, 0, 0.4);  color: #ffcc00; }

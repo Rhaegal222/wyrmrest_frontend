@@ -1,7 +1,10 @@
 <a class="card" [href]="platform().url">
   <span class="card-icon">{{ platform().icon }}</span>
   <span class="card-name">{{ platform().name }}</span>
-  <span class="card-badge" [class]="'badge-' + platform().badge">{{ badgeLabel() }}</span>
+  <span class="card-meta">
+    <span class="card-badge badge-audience" [class.badge-audience-public]="platform().audience === 'public'" [class.badge-audience-internal]="platform().audience === 'internal'">{{ audienceLabel() }}</span>
+    <span class="card-badge" [class.badge-live]="platform().badge === 'live'" [class.badge-tool]="platform().badge === 'tool'" [class.badge-wip]="platform().badge === 'wip'">{{ badgeLabel() }}</span>
+  </span>
   <p class="card-desc">{{ platform().description }}</p>
   <span class="card-url">{{ platform().url }}</span>
 </a>

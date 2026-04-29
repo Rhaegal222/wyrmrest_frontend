@@ -1,15 +1,35 @@
 <header>
   <span class="logo">🐉</span>
   <h1>Wyrmrest</h1>
-  <p class="tagline">La tana del drago — Hub di controllo</p>
+  <p class="tagline">Catalogo dei tool ospitati</p>
 </header>
 
-<p class="section-title">Strumenti &amp; servizi</p>
+<main class="sections">
+  <section class="catalog-section">
+    <div class="section-header">
+      <p class="section-title">Tool pubblici</p>
+      <p class="section-count">{{ publicCount() }} disponibili</p>
+    </div>
+    <div class="grid">
+      @for (p of publicPlatforms(); track p.url) {
+        <app-platform-card [platform]="p" />
+      }
+    </div>
+  </section>
 
-<div class="grid">
-  @for (p of platforms(); track p.url) {
-    <app-platform-card [platform]="p" />
+  @if (internalLoaded() && internalCount() > 0) {
+    <section class="catalog-section">
+      <div class="section-header">
+        <p class="section-title">Tool interni</p>
+        <p class="section-count">{{ internalCount() }} riservati</p>
+      </div>
+      <div class="grid">
+        @for (p of internalPlatforms(); track p.url) {
+          <app-platform-card [platform]="p" />
+        }
+      </div>
+    </section>
   }
-</div>
+</main>
 
 <footer>&copy; {{ year }} Wyrmrest &mdash; Francesco Vecchio</footer>

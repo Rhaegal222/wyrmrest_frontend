@@ -10,6 +10,12 @@ import { Platform } from '../../platform.model';
 export class PlatformCardComponent {
   readonly platform = input.required<Platform>();
 
+  readonly audienceLabel = computed(() => {
+    const audience = this.platform().audience;
+    if (audience === 'internal') return 'Interno';
+    return 'Pubblico';
+  });
+
   readonly badgeLabel = computed(() => {
     const badge = this.platform().badge;
     if (badge === 'live') return '● Live';

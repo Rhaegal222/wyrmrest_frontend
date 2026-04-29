@@ -8,7 +8,7 @@
 
 header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 44px;
   position: relative;
   z-index: 1;
 }
@@ -37,17 +37,40 @@ h1 {
   letter-spacing: 1px;
 }
 
-.section-title {
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
   width: 100%;
   max-width: 960px;
+  position: relative;
+  z-index: 1;
+}
+
+.catalog-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.section-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.section-title {
   font-size: 0.75em;
   text-transform: uppercase;
   letter-spacing: 3px;
   color: #604030;
-  margin: 0 0 12px;
   padding-left: 4px;
-  position: relative;
-  z-index: 1;
+}
+
+.section-count {
+  font-size: 0.8em;
+  color: rgba(160, 128, 96, 0.7);
 }
 
 .grid {
@@ -55,9 +78,6 @@ h1 {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
   width: 100%;
-  max-width: 960px;
-  position: relative;
-  z-index: 1;
 }
 
 footer {
@@ -78,4 +98,5 @@ footer {
 @media (max-width: 500px) {
   h1 { font-size: 2em; }
   .logo { font-size: 60px; }
+  .section-header { align-items: start; flex-direction: column; }
 }
