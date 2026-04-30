@@ -17,9 +17,12 @@ import { SelectComponent } from './components/inputs/select/select.component';
 import { CardComponent } from './components/layout/card/card.component';
 import { ContainerComponent } from './components/layout/container/container.component';
 import { DividerComponent } from './components/layout/divider/divider.component';
+import { SidebarComponent } from './components/layout/sidebar/sidebar.component';
+import { OffcanvasComponent } from './components/layout/offcanvas/offcanvas.component';
 
 // Feedback
 import { AlertComponent } from './components/feedback/alert/alert.component';
+import { ModalComponent } from './components/feedback/modal/modal.component';
 import { SpinnerComponent } from './components/feedback/spinner/spinner.component';
 import { ProgressBarComponent } from './components/feedback/progress-bar/progress-bar.component';
 import { ToastContainerComponent } from './components/feedback/toast-container/toast-container.component';
@@ -53,8 +56,11 @@ const COMPONENTS = [
   CardComponent,
   ContainerComponent,
   DividerComponent,
+  SidebarComponent,
+  OffcanvasComponent,
   // Feedback
   AlertComponent,
+  ModalComponent,
   SpinnerComponent,
   ProgressBarComponent,
   ToastContainerComponent,

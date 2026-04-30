@@ -1,0 +1,17 @@
+<aside class="ui-sidebar wr-sidebar" [attr.aria-label]="ariaLabel">
+  <div class="wr-sidebar__header">
+    <p class="wr-sidebar__eyebrow">{{ eyebrow }}</p>
+    <h2 class="wr-sidebar__title">{{ title }}</h2>
+    @if (subtitle) {
+      <p class="wr-sidebar__subtitle">{{ subtitle }}</p>
+    }
+  </div>
+
+  <nav class="wr-sidebar__nav" aria-label="Sezioni principali">
+    <ng-content select="[nav]"></ng-content>
+  </nav>
+
+  <div class="wr-sidebar__footer">
+    <ng-content select="[footer]"></ng-content>
+  </div>
+</aside>

@@ -5,11 +5,14 @@ import { catchError, finalize, of } from 'rxjs';
 import { PlatformCardComponent } from './components/platform-card/platform-card.component';
 import { Platform } from './platform.model';
 import { AuthService } from '../../shared/services/auth.service';
+import { SidebarComponent } from '../../shared/ui-library/components/layout/sidebar/sidebar.component';
+import { OffcanvasComponent } from '../../shared/ui-library/components/layout/offcanvas/offcanvas.component';
+import { ModalComponent } from '../../shared/ui-library/components/feedback/modal/modal.component';
 
 @Component({
   selector: 'app-hub',
   standalone: true,
-  imports: [PlatformCardComponent, RouterLink],
+  imports: [PlatformCardComponent, RouterLink, SidebarComponent, OffcanvasComponent, ModalComponent],
   templateUrl: './hub.component.html',
   styleUrl: './hub.component.scss',
 })
@@ -21,6 +24,8 @@ export class HubComponent implements OnInit {
   readonly publicPlatforms = signal<Platform[]>([]);
   readonly internalPlatforms = signal<Platform[]>([]);
   readonly internalLoaded = signal(false);
+  readonly isDrawerOpen = signal(false);
+  readonly isLogoutModalOpen = signal(false);
   readonly year = new Date().getFullYear();
   readonly publicCount = computed(() => this.publicPlatforms().length);
   readonly internalCount = computed(() => this.internalPlatforms().length);
@@ -58,13 +63,34 @@ export class HubComponent implements OnInit {
     });
   }
 
-  logout(): void {
+  openDrawer(): void {
+    this.isDrawerOpen.set(true);
+  }
+
+  closeDrawer(): void {
+    this.isDrawerOpen.set(false);
+  }
+
+  openLogoutModal(): void {
+    this.isLogoutModalOpen.set(true);
+  }
+
+  closeLogoutModal(): void {
+    this.isLogoutModalOpen.set(false);
+  }
+
+  confirmLogout(): void {
     this.auth.logout().pipe(
       catchError(() => of(null)),
     ).subscribe(() => {
+      this.closeLogoutModal();
       this.internalRequestStarted.set(false);
       this.internalPlatforms.set([]);
       this.internalLoaded.set(false);
     });
+  }
+
+  logout(): void {
+    this.openLogoutModal();
   }
 }

@@ -11,20 +11,20 @@ import {
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'ui-modal',
+  selector: 'ui-offcanvas',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss'],
+  templateUrl: './offcanvas.component.html',
+  styleUrls: ['./offcanvas.component.scss'],
 })
-export class ModalComponent implements AfterViewInit {
-  @Input() title = '';
+export class OffcanvasComponent implements AfterViewInit {
+  @Input() title = 'WYRMREST';
+  @Input() eyebrow = 'Menu';
   @Input() isOpen = false;
+  @Input() ariaLabel = 'Menu Wyrmrest';
   @Output() closeEvent = new EventEmitter<void>();
-  @ViewChild('dialog', { static: false }) dialog?: ElementRef<HTMLElement>;
+  @ViewChild('drawer', { static: false }) drawer?: ElementRef<HTMLElement>;
   private previouslyFocused?: HTMLElement | null;
-
-  titleId = `modal-title-${Math.random().toString(36).slice(2, 10)}`;
 
   ngAfterViewInit(): void {
     this.previouslyFocused = document.activeElement as HTMLElement | null;
@@ -33,8 +33,11 @@ export class ModalComponent implements AfterViewInit {
     }
   }
 
+  onBackdropClick(): void {
+    this.close();
+  }
+
   close(): void {
-    this.isOpen = false;
     this.closeEvent.emit();
     queueMicrotask(() => this.previouslyFocused?.focus());
   }
@@ -47,7 +50,7 @@ export class ModalComponent implements AfterViewInit {
   }
 
   onKeydown(event: KeyboardEvent): void {
-    if (event.key !== 'Tab' || !this.dialog) {
+    if (event.key !== 'Tab' || !this.drawer) {
       return;
     }
 
@@ -70,22 +73,18 @@ export class ModalComponent implements AfterViewInit {
     }
   }
 
-  onBackdropClick(): void {
-    this.close();
-  }
-
   private focusFirstElement(): void {
     const focusables = this.getFocusableElements();
-    (focusables[0] ?? this.dialog?.nativeElement)?.focus();
+    (focusables[0] ?? this.drawer?.nativeElement)?.focus();
   }
 
   private getFocusableElements(): HTMLElement[] {
-    if (!this.dialog) {
+    if (!this.drawer) {
       return [];
     }
 
     return Array.from(
-      this.dialog.nativeElement.querySelectorAll<HTMLElement>(
+      this.drawer.nativeElement.querySelectorAll<HTMLElement>(
         'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
       ),
     ).filter(element => !element.hasAttribute('disabled') && !element.getAttribute('aria-hidden'));

@@ -22,9 +22,12 @@ export * from './components/inputs/select/select.component';
 export * from './components/layout/card/card.component';
 export * from './components/layout/container/container.component';
 export * from './components/layout/divider/divider.component';
+export * from './components/layout/sidebar/sidebar.component';
+export * from './components/layout/offcanvas/offcanvas.component';
 
 // Components - Feedback
 export * from './components/feedback/alert/alert.component';
+export * from './components/feedback/modal/modal.component';
 export * from './components/feedback/spinner/spinner.component';
 export * from './components/feedback/progress-bar/progress-bar.component';
 export * from './components/feedback/toast-container/toast-container.component';
