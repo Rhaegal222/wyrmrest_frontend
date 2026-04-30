@@ -7,116 +7,138 @@
   min-height: 100vh;
   display: grid;
   place-items: center;
-  padding: 32px 20px;
+  padding: var(--wr-space-24) var(--wr-space-16);
 }
 
 .login-panel {
-  width: min(100%, 420px);
-  border: 1px solid rgba(255, 140, 0, 0.18);
-  border-radius: 16px;
-  padding: 28px;
-  background: rgba(0, 0, 0, 0.58);
-  box-shadow: 0 0 34px rgba(255, 100, 0, 0.08), inset 0 0 20px rgba(0, 0, 0, 0.28);
+  width: min(100%, 460px);
+  border: 1px solid var(--wr-color-border-strong);
+  border-radius: var(--wr-radius-lg);
+  padding: var(--wr-space-24);
+  background: linear-gradient(135deg, var(--wr-color-bg-elevated), var(--wr-color-bg-surface));
+  box-shadow: var(--wr-shadow-2);
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: var(--wr-space-24);
 }
 
 .login-brand {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--wr-space-8);
   text-align: center;
 }
 
 .login-logo {
-  font-size: 56px;
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  align-self: center;
+  border: 1px solid color-mix(in srgb, var(--wr-color-accent-primary) 42%, transparent);
+  border-radius: var(--wr-radius-lg);
+  background: color-mix(in srgb, var(--wr-color-accent-primary) 14%, var(--wr-color-bg-elevated));
+  font-size: 2rem;
 }
 
 .login-kicker {
-  font-size: 0.72em;
+  color: var(--wr-color-accent-primary);
+  font-size: var(--wr-font-size-12);
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 3px;
-  color: #704d39;
+  letter-spacing: .12em;
 }
 
 h1 {
-  font-size: 2.2em;
-  color: #ffb15e;
-  letter-spacing: 2px;
+  color: var(--wr-color-text-primary);
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: .04em;
 }
 
 .login-copy {
-  color: #c0a880;
-  line-height: 1.55;
+  color: var(--wr-color-text-secondary);
+  line-height: var(--wr-line-relaxed);
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: var(--wr-space-16);
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  color: #c8b08a;
-  font-size: 0.9em;
+  gap: var(--wr-space-8);
+  color: var(--wr-color-text-secondary);
+  font-size: var(--wr-font-size-14);
+  font-weight: 650;
 }
 
 .field input {
   min-height: 44px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 140, 0, 0.22);
-  background: rgba(255, 255, 255, 0.03);
-  color: #f3e4cd;
-  padding: 0 14px;
+  border-radius: var(--wr-radius-md);
+  border: 1px solid var(--wr-color-border-strong);
+  background: var(--wr-color-bg-canvas);
+  color: var(--wr-color-text-primary);
+  padding: 0 var(--wr-space-12);
 }
 
-.field input:focus {
-  outline: none;
-  border-color: rgba(255, 180, 90, 0.6);
-  box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.12);
+.field input:focus-visible {
+  border-color: var(--wr-color-accent-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--wr-color-accent-primary) 24%, transparent);
 }
 
 .remember {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  color: #c0a880;
-  font-size: 0.9em;
+  gap: var(--wr-space-8);
+  color: var(--wr-color-text-secondary);
+  font-size: var(--wr-font-size-14);
 }
 
 .remember input {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--wr-color-accent-primary);
 }
 
 .error {
-  color: #ff9d9d;
-  font-size: 0.92em;
-  line-height: 1.45;
+  border: 1px solid color-mix(in srgb, var(--wr-color-danger) 35%, transparent);
+  border-radius: var(--wr-radius-md);
+  background: color-mix(in srgb, var(--wr-color-danger) 12%, transparent);
+  color: var(--wr-color-danger);
+  padding: var(--wr-space-8) var(--wr-space-12);
+  font-size: var(--wr-font-size-14);
+  line-height: var(--wr-line-normal);
 }
 
 .submit-button {
   min-height: 44px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 140, 0, 0.35);
-  background: rgba(255, 140, 0, 0.14);
-  color: #ffd7a8;
-  font-weight: 600;
+  border: 1px solid var(--wr-color-accent-primary);
+  border-radius: var(--wr-radius-md);
+  background: var(--wr-color-accent-primary);
+  color: var(--wr-color-text-on-accent);
+  font-weight: 800;
   cursor: pointer;
+  transition: background-color var(--wr-motion-base), transform var(--wr-motion-fast), opacity var(--wr-motion-fast);
+}
+
+.submit-button:hover:not(:disabled) {
+  background: var(--wr-color-accent-hover);
+  transform: translateY(-1px);
 }
 
 .submit-button:disabled {
-  opacity: 0.72;
+  opacity: 0.55;
   cursor: progress;
 }
 
 .back-link {
-  color: #c2a37a;
+  color: var(--wr-color-text-secondary);
   text-align: center;
-  text-decoration: none;
-  font-size: 0.88em;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-size: var(--wr-font-size-14);
 }
