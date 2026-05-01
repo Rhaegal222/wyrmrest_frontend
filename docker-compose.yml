@@ -7,8 +7,8 @@ services:
     # 📀 BUILD
     # =============================================================================
     build:
-      context: ./
-      dockerfile: Dockerfile.staging
+      context: ../
+      dockerfile: wyrmrest_frontend/Dockerfile.staging
 
     # =============================================================================
     # 🌤 ENVIRONMENT
