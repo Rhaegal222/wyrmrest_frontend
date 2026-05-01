@@ -1,0 +1,29 @@
+<ui-sidebar
+  class="hub-sidebar"
+  eyebrow="Wyrmrest Hub"
+  title="WYRMREST"
+  subtitle="Catalogo operativo, accesso e tool gated in un solo sistema."
+  ariaLabel="Navigazione Wyrmrest"
+>
+  <a nav class="wr-sidebar__item is-active" href="#overview" aria-current="page">Overview</a>
+  <a nav class="wr-sidebar__item" href="#public-tools">Tool pubblici</a>
+  <a nav class="wr-sidebar__item" href="#internal-tools">Tool interni</a>
+  <a nav class="wr-sidebar__item" routerLink="/login">Accesso</a>
+
+  <div footer class="sidebar-access">
+    @if (isAuthenticated && currentUser; as user) {
+      <p class="sidebar-meta">{{ user.name }}</p>
+      <p class="sidebar-submeta">{{ user.email }}</p>
+      <div class="sidebar-chips" aria-label="Ruoli profilo">
+        @for (role of user.roles; track role.id) {
+          <span class="session-chip">{{ role.name }}</span>
+        }
+      </div>
+      <button type="button" class="wr-action wr-action--secondary" (click)="logoutRequested.emit()">Esci</button>
+    } @else {
+      <p class="sidebar-meta">Accesso richiesto</p>
+      <p class="sidebar-submeta">I tool pubblici restano disponibili. L'accesso sblocca l'area interna.</p>
+      <a class="wr-action wr-action--primary" routerLink="/login">Accedi</a>
+    }
+  </div>
+</ui-sidebar>
