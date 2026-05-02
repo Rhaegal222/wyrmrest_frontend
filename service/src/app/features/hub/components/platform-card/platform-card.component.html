@@ -1,16 +1,34 @@
-<a class="wr-card wr-card--hoverable" [class.card--internal]="platform().audience === 'internal'" [href]="platform().url">
-  <span class="card-top">
-    <span class="card-icon" aria-hidden="true">{{ platform().icon }}</span>
-    <span class="wr-badge" [class.wr-badge--success]="platform().badge === 'live'" [class.wr-badge--info]="platform().badge === 'tool'" [class.wr-badge--warning]="platform().badge === 'wip'">{{ badgeLabel() }}</span>
-  </span>
-  <span class="card-name">{{ platform().name }}</span>
-  <p class="card-desc">{{ platform().description }}</p>
-  <span class="card-meta">
-    <span class="wr-badge wr-badge--idle">{{ audienceLabel() }}</span>
-    <span class="wr-badge wr-badge--idle">{{ accessLabel() }}</span>
-  </span>
-  <span class="card-footer">
-    <span class="card-url">{{ platform().url }}</span>
-    <span class="card-cta">Apri</span>
-  </span>
+<a class="platform-card" 
+   [class.is-live]="platform().badge === 'live'" 
+   [class.is-tool]="platform().badge === 'tool'" 
+   [class.is-wip]="platform().badge === 'wip'"
+   [href]="platform().url"
+>
+  <div class="pc-header">
+    <div class="pc-icon" aria-hidden="true">{{ platform().icon }}</div>
+    <span class="wr-badge" 
+          [class.wr-badge--success]="platform().badge === 'live'" 
+          [class.wr-badge--info]="platform().badge === 'tool'" 
+          [class.wr-badge--warning]="platform().badge === 'wip'">
+      @if (platform().badge === 'live') {
+        <span class="live-dot" aria-hidden="true"></span>
+      }
+      {{ badgeLabel() }}
+    </span>
+  </div>
+  
+  <div class="pc-body">
+    <h3 class="pc-title">{{ platform().name }}</h3>
+    <p class="pc-desc">{{ platform().description }}</p>
+    
+    <div class="pc-meta">
+      <span class="wr-badge wr-badge--idle">{{ audienceLabel() }}</span>
+      <span class="wr-badge wr-badge--idle">{{ accessLabel() }}</span>
+    </div>
+  </div>
+  
+  <div class="pc-footer">
+    <code class="pc-url">{{ platform().url }}</code>
+    <span class="pc-cta">Apri →</span>
+  </div>
 </a>

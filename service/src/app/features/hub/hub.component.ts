@@ -1,26 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, computed, effect, inject, signal } from '@angular/core';
 import { catchError, finalize, of } from 'rxjs';
+import { RouterLink } from '@angular/router';
 import { Platform } from './platform.model';
 import { AuthService } from '../../shared/services/auth.service';
 import { ModalComponent } from '../../shared/ui-library/components/feedback/modal/modal.component';
-import { HubCatalogSectionComponent } from './components/hub-catalog-section/hub-catalog-section.component';
-import { HubFooterComponent } from './components/hub-footer/hub-footer.component';
-import { HubHeaderComponent } from './components/hub-header/hub-header.component';
-import { HubHeroComponent } from './components/hub-hero/hub-hero.component';
-import { HubMobileNavComponent } from './components/hub-mobile-nav/hub-mobile-nav.component';
-import { HubSidebarNavComponent } from './components/hub-sidebar-nav/hub-sidebar-nav.component';
+import { OffcanvasComponent } from '../../shared/ui-library/components/layout/offcanvas/offcanvas.component';
+import { PlatformCardComponent } from './components/platform-card/platform-card.component';
 
 @Component({
   selector: 'app-hub',
   standalone: true,
   imports: [
-    HubCatalogSectionComponent,
-    HubFooterComponent,
-    HubHeaderComponent,
-    HubHeroComponent,
-    HubMobileNavComponent,
-    HubSidebarNavComponent,
+    RouterLink,
+    PlatformCardComponent,
+    OffcanvasComponent,
     ModalComponent,
   ],
   templateUrl: './hub.component.html',

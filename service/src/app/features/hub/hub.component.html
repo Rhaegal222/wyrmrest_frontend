@@ -1,89 +1,64 @@
 <main class="hub-shell" aria-labelledby="hub-title">
   <div class="hub-layout">
-    <section class="hub-sidebar-wrap">
-      <ui-sidebar
-        class="hub-sidebar"
-        eyebrow="Wyrmrest Hub"
-        title="WYRMREST"
-        subtitle="Catalogo operativo, accesso e tool gated in un solo sistema."
-        ariaLabel="Navigazione Wyrmrest"
-      >
-        <a nav class="wr-sidebar__item is-active" href="#overview" aria-current="page">Overview</a>
-        <a nav class="wr-sidebar__item" href="#public-tools">Tool pubblici</a>
-        <a nav class="wr-sidebar__item" href="#internal-tools">Tool interni</a>
-        <a nav class="wr-sidebar__item" routerLink="/login">Accesso</a>
+    <aside class="hub-sidebar-wrap">
+      <div class="wr-sidebar">
+        <header class="wr-sidebar__header">
+          <p class="wr-sidebar__eyebrow">Wyrmrest Hub</p>
+          <h1 class="wr-sidebar__title" id="hub-title">WYRMREST</h1>
+          <p class="wr-sidebar__subtitle">Catalogo operativo, accesso e tool gated in un solo sistema.</p>
+        </header>
 
-        <div footer class="sidebar-access">
+        <nav class="wr-sidebar__nav">
+          <a class="wr-sidebar__item" href="#overview" [class.is-active]="true" aria-current="page">Overview</a>
+          <a class="wr-sidebar__item" href="#public-tools">Tool pubblici</a>
+          <a class="wr-sidebar__item" href="#internal-tools">Tool interni</a>
+          <a class="wr-sidebar__item" routerLink="/login">Accesso</a>
+        </nav>
+
+        <div class="wr-sidebar__footer">
           @if (isAuthenticated()) {
             @if (currentUser(); as user) {
-              <p class="sidebar-meta">{{ user.name }}</p>
-              <p class="sidebar-submeta">{{ user.email }}</p>
-              <div class="sidebar-chips" aria-label="Ruoli profilo">
-                @for (role of user.roles; track role.id) {
-                  <span class="session-chip">{{ role.name }}</span>
-                }
+              <div class="user-profile">
+                <p class="user-name">{{ user.name }}</p>
+                <p class="user-email">{{ user.email }}</p>
               </div>
-              <button type="button" class="wr-button wr-button--secondary" (click)="openLogoutModal()">Esci</button>
+              <button type="button" class="wr-button wr-button--secondary wr-button--sm" (click)="openLogoutModal()">Esci</button>
             }
           } @else {
-            <p class="sidebar-meta">Accesso richiesto</p>
-            <p class="sidebar-submeta">I tool pubblici restano disponibili. L'accesso sblocca l'area interna.</p>
+            <div class="auth-prompt">
+              <p class="auth-title">Accesso richiesto</p>
+              <p class="auth-desc">L'accesso sblocca l'area interna.</p>
+            </div>
             <a class="wr-button wr-button--primary" routerLink="/login">Accedi</a>
           }
         </div>
-      </ui-sidebar>
-    </section>
+      </div>
+    </aside>
 
-    <section class="hub-content">
-      <header class="hub-topbar wr-card" id="overview">
+    <div class="hub-content">
+      <header class="hub-mobile-header wr-card">
         <div class="brand-lockup">
-          <span class="brand-mark" aria-hidden="true">🐉</span>
-          <div>
-            <p class="eyebrow">Wyrmrest Hub</p>
-            <h1 id="hub-title">WYRMREST</h1>
+          <div class="brand-logo" aria-hidden="true">🐉</div>
+          <div class="brand-text">
+            <p class="brand-eyebrow">Wyrmrest Hub</p>
+            <h2 class="brand-title">WYRMREST</h2>
           </div>
         </div>
-
-        <button
-          type="button"
-          class="hub-menu-button wr-button wr-button--secondary"
-          (click)="openDrawer()"
-          aria-haspopup="dialog"
-          [attr.aria-expanded]="isDrawerOpen()"
-          aria-controls="hub-drawer"
-        >
+        <button type="button" class="wr-button wr-button--secondary" (click)="openDrawer()" aria-label="Apri menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
           Menu
         </button>
       </header>
 
-      <section class="hero-panel wr-card">
-        <div class="hero-copy">
-          <p class="eyebrow">Catalogo</p>
-          <h2>Interfaccia uniforme per tool pubblici e interni</h2>
-          <p class="brand-copy">Bento grid, accesso coerente, CTA controllate e stato gated esplicito per i servizi interni.</p>
-        </div>
-
-        <div class="hero-stats" aria-label="Riepilogo catalogo">
-          <span><strong>{{ publicCount() }}</strong> pubblici</span>
-          <span><strong>{{ internalCount() }}</strong> interni</span>
-          <span><strong>44px</strong> touch target</span>
-        </div>
-      </section>
-
-      @if (authError(); as message) {
-        <section class="wr-card banner-panel" role="alert">
-          <p class="error-banner">{{ message }}</p>
-        </section>
-      }
-
-      <section class="catalog-panel wr-card catalog-panel--public" aria-labelledby="public-tools-title">
+      <section class="catalog-section" id="public-tools">
         <div class="section-header">
-          <div>
-            <p class="eyebrow">Catalogo</p>
-            <h2 id="public-tools-title">Tool pubblici</h2>
+          <div class="section-title-wrap">
+            <p class="section-eyebrow">Catalogo</p>
+            <h2 class="section-title">Tool pubblici</h2>
           </div>
           <span class="wr-badge wr-badge--idle">{{ publicCount() }} disponibili</span>
         </div>
+
         <div class="tool-grid">
           @for (p of publicPlatforms(); track p.url) {
             <app-platform-card [platform]="p" />
@@ -91,11 +66,11 @@
         </div>
       </section>
 
-      <section class="catalog-panel wr-card catalog-panel--internal" aria-labelledby="internal-tools-title">
+      <section class="catalog-section" id="internal-tools">
         <div class="section-header">
-          <div>
-            <p class="eyebrow">Area gated</p>
-            <h2 id="internal-tools-title">Tool interni</h2>
+          <div class="section-title-wrap">
+            <p class="section-eyebrow">Area gated</p>
+            <h2 class="section-title">Tool interni</h2>
           </div>
           <span class="wr-badge wr-badge--warning">Riservati</span>
         </div>
@@ -106,24 +81,32 @@
               <app-platform-card [platform]="p" />
             }
           </div>
-        } @else if (internalLoaded() && isAuthenticated()) {
-          <div class="wr-empty-state" role="status">
-            <span aria-hidden="true">🔒</span>
-            <p>Il profilo corrente non ha ancora permessi per i tool interni.</p>
-          </div>
         } @else {
-          <div class="wr-empty-state" role="status">
-            <span aria-hidden="true">🔒</span>
-            <p>Accedi per vedere i tool interni disponibili per il tuo ruolo.</p>
-            <a class="wr-button wr-button--secondary" routerLink="/login">Accedi</a>
+          <div class="wr-gated-area">
+            <div class="wr-gated-area__inner">
+              <svg class="wr-gated-area__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <h3 class="wr-gated-area__title">Area riservata</h3>
+              <p class="wr-gated-area__desc">
+                @if (isAuthenticated()) {
+                  Il profilo corrente non ha ancora permessi per i tool interni.
+                } @else {
+                  Accedi per vedere i tool interni disponibili per il tuo ruolo.
+                }
+              </p>
+              @if (!isAuthenticated()) {
+                <a class="wr-button wr-button--primary" routerLink="/login">Accedi</a>
+              }
+            </div>
           </div>
         }
       </section>
-    </section>
+      
+      <footer class="hub-footer">
+        &copy; {{ year }} Wyrmrest &middot; Francesco Vecchio
+      </footer>
+    </div>
   </div>
 </main>
-
-<footer>&copy; {{ year }} Wyrmrest · Francesco Vecchio</footer>
 
 <ui-offcanvas
   id="hub-drawer"
@@ -133,17 +116,19 @@
   ariaLabel="Menu mobile Wyrmrest"
   (closeEvent)="closeDrawer()"
 >
-  <a nav class="wr-offcanvas__item is-active" href="#overview" aria-current="page" (click)="closeDrawer()">Overview</a>
+  <a nav class="wr-offcanvas__item" href="#overview" [class.is-active]="true" (click)="closeDrawer()">Overview</a>
   <a nav class="wr-offcanvas__item" href="#public-tools" (click)="closeDrawer()">Tool pubblici</a>
   <a nav class="wr-offcanvas__item" href="#internal-tools" (click)="closeDrawer()">Tool interni</a>
   <a nav class="wr-offcanvas__item" routerLink="/login" (click)="closeDrawer()">Accesso</a>
 
-  <div footer class="sidebar-access">
+  <div footer class="offcanvas-auth">
     @if (isAuthenticated()) {
       @if (currentUser(); as user) {
-        <p class="sidebar-meta">{{ user.name }}</p>
-        <p class="sidebar-submeta">{{ user.email }}</p>
-        <button type="button" class="wr-button wr-button--secondary" (click)="closeDrawer(); openLogoutModal()">Esci</button>
+        <div class="user-profile">
+          <p class="user-name">{{ user.name }}</p>
+          <p class="user-email">{{ user.email }}</p>
+        </div>
+        <button type="button" class="wr-button wr-button--secondary wr-button--sm" (click)="closeDrawer(); openLogoutModal()">Esci</button>
       }
     } @else {
       <a class="wr-button wr-button--primary" routerLink="/login" (click)="closeDrawer()">Accedi</a>

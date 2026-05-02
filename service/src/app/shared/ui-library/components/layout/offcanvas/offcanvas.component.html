@@ -1,32 +1,34 @@
-@if (isOpen) {
-  <div class="ui-offcanvas-backdrop wr-offcanvas-backdrop" (click)="onBackdropClick()" aria-hidden="true">
-    <section
-      #drawer
-      class="ui-offcanvas wr-offcanvas"
-      role="dialog"
-      aria-modal="true"
-      [attr.aria-label]="ariaLabel"
-      (click)="$event.stopPropagation()"
-      (keydown)="onKeydown($event)"
-      tabindex="-1"
-    >
-      <header class="wr-offcanvas__header">
-        <div>
-          <p class="wr-offcanvas__eyebrow">{{ eyebrow }}</p>
-          <h2 class="wr-offcanvas__title">{{ title }}</h2>
-        </div>
-        <button type="button" class="ui-offcanvas__close wr-button wr-button--secondary" (click)="close()" aria-label="Chiudi menu">
-          Chiudi
-        </button>
-      </header>
-
-      <nav class="wr-offcanvas__nav" aria-label="Navigazione mobile">
-        <ng-content select="[nav]"></ng-content>
-      </nav>
-
-      <div class="wr-offcanvas__footer">
-        <ng-content select="[footer]"></ng-content>
+<div class="wr-offcanvas-backdrop" 
+     [class.is-visible]="isOpen" 
+     (click)="onBackdropClick()" 
+     aria-hidden="true">
+  <section
+    #drawer
+    class="wr-offcanvas"
+    [class.is-open]="isOpen"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="ariaLabel"
+    (click)="$event.stopPropagation()"
+    (keydown)="onKeydown($event)"
+    tabindex="-1"
+  >
+    <header class="wr-offcanvas__header">
+      <div>
+        <p class="wr-offcanvas__eyebrow">{{ eyebrow }}</p>
+        <h2 class="wr-offcanvas__title">{{ title }}</h2>
       </div>
-    </section>
-  </div>
-}
+      <button type="button" class="wr-button wr-button--secondary" (click)="close()" aria-label="Chiudi menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </header>
+
+    <nav class="wr-offcanvas__nav" aria-label="Navigazione mobile">
+      <ng-content select="[nav]"></ng-content>
+    </nav>
+
+    <div class="wr-offcanvas__footer">
+      <ng-content select="[footer]"></ng-content>
+    </div>
+  </section>
+</div>

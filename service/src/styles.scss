@@ -19,12 +19,14 @@
   --wr-color-info: #3a8fd1;
   --wr-font-family-ui: "Inter", "Segoe UI", system-ui, sans-serif;
   --wr-font-family-mono: "JetBrains Mono", "Fira Mono", "Consolas", monospace;
+  --wr-font-size-11: 0.6875rem;
   --wr-font-size-12: 0.75rem;
   --wr-font-size-14: 0.875rem;
   --wr-font-size-16: 1rem;
   --wr-font-size-18: 1.125rem;
   --wr-font-size-20: 1.25rem;
   --wr-font-size-24: 1.5rem;
+  --wr-font-weight-black: 900;
   --wr-line-compact: 1.3;
   --wr-line-normal: 1.5;
   --wr-line-relaxed: 1.65;
@@ -34,8 +36,11 @@
   --wr-space-8: 0.5rem;
   --wr-space-12: 0.75rem;
   --wr-space-16: 1rem;
+  --wr-space-20: 1.25rem;
   --wr-space-24: 1.5rem;
   --wr-space-32: 2rem;
+  --wr-space-48: 3rem;
+  --wr-space-64: 4rem;
   --wr-radius-sm: 4px;
   --wr-radius-md: 8px;
   --wr-radius-lg: 12px;
@@ -43,9 +48,11 @@
   --wr-shadow-1: 0 1px 3px rgba(0, 0, 0, 0.25);
   --wr-shadow-2: 0 4px 12px rgba(0, 0, 0, 0.35);
   --wr-shadow-3: 0 12px 28px rgba(0, 0, 0, 0.45);
+  --wr-letter-tight: -0.03em;
+  --wr-letter-wide: 0.18em;
   --wr-motion-fast: 120ms;
-  --wr-motion-base: 180ms;
-  --wr-motion-slow: 240ms;
+  --wr-motion-base: 200ms;
+  --wr-motion-slow: 320ms;
 }
 
 [data-wr-theme="high-contrast"] {
