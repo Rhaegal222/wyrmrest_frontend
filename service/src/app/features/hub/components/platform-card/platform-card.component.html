@@ -1,13 +1,13 @@
-<a class="card" [class.card--internal]="platform().audience === 'internal'" [href]="platform().url">
+<a class="wr-card wr-card--hoverable" [class.card--internal]="platform().audience === 'internal'" [href]="platform().url">
   <span class="card-top">
     <span class="card-icon" aria-hidden="true">{{ platform().icon }}</span>
-    <span class="card-badge" [class.badge-live]="platform().badge === 'live'" [class.badge-tool]="platform().badge === 'tool'" [class.badge-wip]="platform().badge === 'wip'">{{ badgeLabel() }}</span>
+    <span class="wr-badge" [class.wr-badge--success]="platform().badge === 'live'" [class.wr-badge--info]="platform().badge === 'tool'" [class.wr-badge--warning]="platform().badge === 'wip'">{{ badgeLabel() }}</span>
   </span>
   <span class="card-name">{{ platform().name }}</span>
   <p class="card-desc">{{ platform().description }}</p>
   <span class="card-meta">
-    <span class="card-pill">{{ audienceLabel() }}</span>
-    <span class="card-pill">{{ accessLabel() }}</span>
+    <span class="wr-badge wr-badge--idle">{{ audienceLabel() }}</span>
+    <span class="wr-badge wr-badge--idle">{{ accessLabel() }}</span>
   </span>
   <span class="card-footer">
     <span class="card-url">{{ platform().url }}</span>

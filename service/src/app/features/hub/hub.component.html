@@ -1,52 +1,155 @@
 <main class="hub-shell" aria-labelledby="hub-title">
   <div class="hub-layout">
-    <app-hub-sidebar-nav
-      [currentUser]="currentUser()"
-      [isAuthenticated]="isAuthenticated()"
-      (logoutRequested)="openLogoutModal()"
-    />
+    <section class="hub-sidebar-wrap">
+      <ui-sidebar
+        class="hub-sidebar"
+        eyebrow="Wyrmrest Hub"
+        title="WYRMREST"
+        subtitle="Catalogo operativo, accesso e tool gated in un solo sistema."
+        ariaLabel="Navigazione Wyrmrest"
+      >
+        <a nav class="wr-sidebar__item is-active" href="#overview" aria-current="page">Overview</a>
+        <a nav class="wr-sidebar__item" href="#public-tools">Tool pubblici</a>
+        <a nav class="wr-sidebar__item" href="#internal-tools">Tool interni</a>
+        <a nav class="wr-sidebar__item" routerLink="/login">Accesso</a>
+
+        <div footer class="sidebar-access">
+          @if (isAuthenticated()) {
+            @if (currentUser(); as user) {
+              <p class="sidebar-meta">{{ user.name }}</p>
+              <p class="sidebar-submeta">{{ user.email }}</p>
+              <div class="sidebar-chips" aria-label="Ruoli profilo">
+                @for (role of user.roles; track role.id) {
+                  <span class="session-chip">{{ role.name }}</span>
+                }
+              </div>
+              <button type="button" class="wr-button wr-button--secondary" (click)="openLogoutModal()">Esci</button>
+            }
+          } @else {
+            <p class="sidebar-meta">Accesso richiesto</p>
+            <p class="sidebar-submeta">I tool pubblici restano disponibili. L'accesso sblocca l'area interna.</p>
+            <a class="wr-button wr-button--primary" routerLink="/login">Accedi</a>
+          }
+        </div>
+      </ui-sidebar>
+    </section>
 
     <section class="hub-content">
-      <app-hub-header [drawerOpen]="isDrawerOpen()" (menuRequested)="openDrawer()" />
-      <app-hub-hero [publicCount]="publicCount()" [internalCount]="internalCount()" />
+      <header class="hub-topbar wr-card" id="overview">
+        <div class="brand-lockup">
+          <span class="brand-mark" aria-hidden="true">🐉</span>
+          <div>
+            <p class="eyebrow">Wyrmrest Hub</p>
+            <h1 id="hub-title">WYRMREST</h1>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="hub-menu-button wr-button wr-button--secondary"
+          (click)="openDrawer()"
+          aria-haspopup="dialog"
+          [attr.aria-expanded]="isDrawerOpen()"
+          aria-controls="hub-drawer"
+        >
+          Menu
+        </button>
+      </header>
+
+      <section class="hero-panel wr-card">
+        <div class="hero-copy">
+          <p class="eyebrow">Catalogo</p>
+          <h2>Interfaccia uniforme per tool pubblici e interni</h2>
+          <p class="brand-copy">Bento grid, accesso coerente, CTA controllate e stato gated esplicito per i servizi interni.</p>
+        </div>
+
+        <div class="hero-stats" aria-label="Riepilogo catalogo">
+          <span><strong>{{ publicCount() }}</strong> pubblici</span>
+          <span><strong>{{ internalCount() }}</strong> interni</span>
+          <span><strong>44px</strong> touch target</span>
+        </div>
+      </section>
 
       @if (authError(); as message) {
-        <section class="panel banner-panel" role="alert">
+        <section class="wr-card banner-panel" role="alert">
           <p class="error-banner">{{ message }}</p>
         </section>
       }
 
-      <app-hub-catalog-section
-        sectionId="public-tools-title"
-        title="Tool pubblici"
-        eyebrow="Catalogo"
-        [countLabel]="publicCount() + ' disponibili'"
-        [platforms]="publicPlatforms()"
-      />
+      <section class="catalog-panel wr-card catalog-panel--public" aria-labelledby="public-tools-title">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Catalogo</p>
+            <h2 id="public-tools-title">Tool pubblici</h2>
+          </div>
+          <span class="wr-badge wr-badge--idle">{{ publicCount() }} disponibili</span>
+        </div>
+        <div class="tool-grid">
+          @for (p of publicPlatforms(); track p.url) {
+            <app-platform-card [platform]="p" />
+          }
+        </div>
+      </section>
 
-      <app-hub-catalog-section
-        sectionId="internal-tools-title"
-        title="Tool interni"
-        eyebrow="Area gated"
-        countLabel="Riservati"
-        [locked]="true"
-        [loaded]="internalLoaded()"
-        [authenticated]="isAuthenticated()"
-        [platforms]="internalPlatforms()"
-      />
+      <section class="catalog-panel wr-card catalog-panel--internal" aria-labelledby="internal-tools-title">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Area gated</p>
+            <h2 id="internal-tools-title">Tool interni</h2>
+          </div>
+          <span class="wr-badge wr-badge--warning">Riservati</span>
+        </div>
+
+        @if (internalLoaded() && internalCount() > 0) {
+          <div class="tool-grid">
+            @for (p of internalPlatforms(); track p.url) {
+              <app-platform-card [platform]="p" />
+            }
+          </div>
+        } @else if (internalLoaded() && isAuthenticated()) {
+          <div class="wr-empty-state" role="status">
+            <span aria-hidden="true">🔒</span>
+            <p>Il profilo corrente non ha ancora permessi per i tool interni.</p>
+          </div>
+        } @else {
+          <div class="wr-empty-state" role="status">
+            <span aria-hidden="true">🔒</span>
+            <p>Accedi per vedere i tool interni disponibili per il tuo ruolo.</p>
+            <a class="wr-button wr-button--secondary" routerLink="/login">Accedi</a>
+          </div>
+        }
+      </section>
     </section>
   </div>
 </main>
 
-<app-hub-footer [year]="year" />
+<footer>&copy; {{ year }} Wyrmrest · Francesco Vecchio</footer>
 
-<app-hub-mobile-nav
+<ui-offcanvas
+  id="hub-drawer"
   [isOpen]="isDrawerOpen()"
-  [currentUser]="currentUser()"
-  [isAuthenticated]="isAuthenticated()"
-  (closeRequested)="closeDrawer()"
-  (logoutRequested)="openLogoutModal()"
-/>
+  eyebrow="Wyrmrest Hub"
+  title="WYRMREST"
+  ariaLabel="Menu mobile Wyrmrest"
+  (closeEvent)="closeDrawer()"
+>
+  <a nav class="wr-offcanvas__item is-active" href="#overview" aria-current="page" (click)="closeDrawer()">Overview</a>
+  <a nav class="wr-offcanvas__item" href="#public-tools" (click)="closeDrawer()">Tool pubblici</a>
+  <a nav class="wr-offcanvas__item" href="#internal-tools" (click)="closeDrawer()">Tool interni</a>
+  <a nav class="wr-offcanvas__item" routerLink="/login" (click)="closeDrawer()">Accesso</a>
+
+  <div footer class="sidebar-access">
+    @if (isAuthenticated()) {
+      @if (currentUser(); as user) {
+        <p class="sidebar-meta">{{ user.name }}</p>
+        <p class="sidebar-submeta">{{ user.email }}</p>
+        <button type="button" class="wr-button wr-button--secondary" (click)="closeDrawer(); openLogoutModal()">Esci</button>
+      }
+    } @else {
+      <a class="wr-button wr-button--primary" routerLink="/login" (click)="closeDrawer()">Accedi</a>
+    }
+  </div>
+</ui-offcanvas>
 
 <ui-modal
   [title]="'Conferma uscita'"

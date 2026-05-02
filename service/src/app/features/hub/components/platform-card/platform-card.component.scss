@@ -1,15 +1,14 @@
-.card {
-  min-height: 260px;
-  background: color-mix(in srgb, var(--wr-color-bg-elevated) 88%, transparent);
-  border: 1px solid var(--wr-color-border-strong);
-  border-radius: var(--wr-radius-lg);
-  padding: var(--wr-space-16);
-  box-shadow: var(--wr-shadow-1);
-  transition: transform var(--wr-motion-base), box-shadow var(--wr-motion-base), border-color var(--wr-motion-base);
+:host {
+  display: block;
+}
+
+.wr-card--hoverable {
   display: flex;
   flex-direction: column;
   gap: var(--wr-space-12);
   text-decoration: none;
+  min-height: 260px;
+  transition: transform var(--wr-motion-base), box-shadow var(--wr-motion-base), border-color var(--wr-motion-base);
   color: var(--wr-color-text-primary);
 
   &:hover {
@@ -88,42 +87,4 @@
   font-weight: 750;
 }
 
-.card-badge {
-  display: inline-flex;
-  align-items: center;
-  min-height: 28px;
-  border: 1px solid var(--wr-color-border-strong);
-  border-radius: var(--wr-radius-full);
-  padding: var(--wr-space-2) var(--wr-space-8);
-  font-size: var(--wr-font-size-12);
-  font-weight: 750;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-}
 
-.card-pill {
-  display: inline-flex;
-  align-items: center;
-  min-height: 28px;
-  border: 1px solid var(--wr-color-border-subtle);
-  border-radius: var(--wr-radius-full);
-  padding: var(--wr-space-2) var(--wr-space-8);
-  color: var(--wr-color-text-secondary);
-  font-size: var(--wr-font-size-12);
-  line-height: var(--wr-line-compact);
-}
-
-.badge-live {
-  background: color-mix(in srgb, var(--wr-color-success) 14%, transparent);
-  color: var(--wr-color-success);
-}
-
-.badge-tool {
-  background: color-mix(in srgb, var(--wr-color-info) 14%, transparent);
-  color: var(--wr-color-info);
-}
-
-.badge-wip {
-  background: color-mix(in srgb, var(--wr-color-warning) 14%, transparent);
-  color: var(--wr-color-warning);
-}
