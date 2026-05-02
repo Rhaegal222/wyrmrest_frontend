@@ -1,0 +1,20 @@
+<header class="hub-topbar panel" id="overview">
+  <div class="brand-lockup">
+    <span class="brand-mark" aria-hidden="true">WR</span>
+    <div>
+      <p class="eyebrow">Wyrmrest Hub</p>
+      <h1 id="hub-title">WYRMREST</h1>
+    </div>
+  </div>
+
+  <button
+    type="button"
+    class="hub-menu-button wr-action wr-action--secondary"
+    (click)="menuRequested.emit()"
+    aria-haspopup="dialog"
+    [attr.aria-expanded]="drawerOpen"
+    aria-controls="hub-drawer"
+  >
+    Menu
+  </button>
+</header>
