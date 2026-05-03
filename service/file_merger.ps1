@@ -132,7 +132,7 @@ try {
     Add-Content -Path $out -Value "`r`n" -Encoding UTF8
   }
 
-  Write-Host "✅ Bundle creato: $out ($($files.Count) file)" -ForegroundColor Green
+  Write-Host "OK Bundle creato: $out ($($files.Count) file)" -ForegroundColor Green
 
   # Aggiungi tree della directory alla fine
   if (-not $SkipTree) {
@@ -167,11 +167,11 @@ try {
       Add-Content -Path $out -Value ($treeLines -join "`r`n") -Encoding UTF8
       Add-Content -Path $out -Value "`r`n// ================================================================" -Encoding UTF8
       
-      Write-Host "✅ Tree aggiunto al bundle" -ForegroundColor Green
+      Write-Host "OK Tree aggiunto al bundle" -ForegroundColor Green
       
     }
     catch {
-      Write-Warning "⚠️ Impossibile eseguire tree command: $_"
+      Write-Warning "WARNING Impossibile eseguire tree command: $_"
       Add-Content -Path $out -Value "// ERRORE: tree command non disponibile o fallito" -Encoding UTF8
     }
   }

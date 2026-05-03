@@ -1,14 +1,38 @@
-@use '../../../styles/mixins' as m;
+:host {
+  display: inline-flex;
+}
+
+.ui-spinner-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  z-index: var(--wr-z-overlay);
+  display: grid;
+  place-items: center;
+}
 
 .ui-spinner {
-  &__circle {
-    width: 28px; height: 28px; border: 3px solid rgba(0,0,0,.1);
-    border-top-color: currentColor; border-radius: 50%; animation: spin 1s linear infinite;
-  }
-  &--small .ui-spinner__circle { width: 18px; height: 18px; }
-  &--large .ui-spinner__circle { width: 36px; height: 36px; }
-  &--primary { color: var(--primary-500); }
-  &--secondary { color: var(--secondary-500); }
-  &--white { color: #fff; }
-  &--overlay { position: fixed; inset: 0; display: grid; place-items: center; background: rgba(0,0,0,.1); }
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &--small  { width: 20px; height: 20px; }
+  &--medium { width: 32px; height: 32px; }
+  &--large  { width: 48px; height: 48px; }
+}
+
+.ui-spinner__circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid var(--wr-color-border-subtle);
+  border-top-color: var(--wr-color-accent-primary);
+  animation: ui-spin 700ms linear infinite;
+}
+
+.ui-spinner--small .ui-spinner__circle { border-width: 2px; }
+
+@keyframes ui-spin {
+  to { transform: rotate(360deg); }
 }

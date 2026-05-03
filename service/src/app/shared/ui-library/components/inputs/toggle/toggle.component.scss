@@ -1,108 +1,66 @@
-@use "../../../styles/mixins" as m;
+:host {
+  display: inline-flex;
+}
 
 .ui-toggle {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--wr-space-8);
   cursor: pointer;
   user-select: none;
 
-  &__input {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-    width: 0;
-    height: 0;
-  }
+  &--disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+}
 
-  &__track {
-    width: 48px;
-    height: 26px;
-    background: var(--color-muted);
-    border-radius: var(--radius-full);
-    position: relative;
-    transition: background var(--transition-base);
-    flex-shrink: 0;
-    @include m.elevation(0);
-  }
+.ui-toggle__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
 
-  &__thumb {
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 20px;
-    height: 20px;
-    background: #fff;
-    border-radius: var(--radius-full);
-    transition: all var(--transition-base);
-    @include m.elevation(1);
-  }
+.ui-toggle__track {
+  position: relative;
+  width: 40px;
+  height: 22px;
+  border-radius: var(--wr-radius-full);
+  background: var(--wr-color-bg-elevated);
+  border: 1px solid var(--wr-color-border-strong);
+  transition: background var(--wr-motion-base), border-color var(--wr-motion-base);
+  flex-shrink: 0;
+}
 
-  &__label {
-    font-size: var(--fs-base);
-    color: var(--color-text);
-    line-height: 1.5;
-  }
+.ui-toggle__thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--wr-color-text-disabled);
+  transition: transform var(--wr-motion-base), background var(--wr-motion-base);
+}
 
-  &__input:checked ~ &__track {
-    background: var(--primary-500);
-  }
+.ui-toggle__input:checked ~ .ui-toggle__track {
+  background: var(--wr-color-accent-primary);
+  border-color: var(--wr-color-accent-primary);
+}
 
-  &__input:checked ~ &__track &__thumb {
-    left: 25px;
-  }
+.ui-toggle__input:checked ~ .ui-toggle__track .ui-toggle__thumb {
+  transform: translateX(18px);
+  background: var(--wr-color-text-on-accent);
+}
 
-  // Sizes
-  &--small &__track {
-    width: 38px;
-    height: 22px;
-  }
+.ui-toggle__input:focus-visible ~ .ui-toggle__track {
+  outline: 2px solid var(--wr-color-accent-primary);
+  outline-offset: 2px;
+}
 
-  &--small &__thumb {
-    width: 16px;
-    height: 16px;
-  }
-
-  &--small &__input:checked ~ &__track &__thumb {
-    left: 19px;
-  }
-
-  &--medium &__track {
-    width: 48px;
-    height: 26px;
-  }
-
-  &--medium &__thumb {
-    width: 20px;
-    height: 20px;
-  }
-
-  &--medium &__input:checked ~ &__track &__thumb {
-    left: 25px;
-  }
-
-  &--large &__track {
-    width: 60px;
-    height: 32px;
-  }
-
-  &--large &__thumb {
-    width: 26px;
-    height: 26px;
-  }
-
-  &--large &__input:checked ~ &__track &__thumb {
-    left: 31px;
-  }
-
-  // States
-  &--disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    pointer-events: none;
-  }
-
-  &:hover:not(&--disabled) &__track {
-    @include m.elevation(1);
-  }
+.ui-toggle__label {
+  font-size: var(--wr-font-size-14);
+  color: var(--wr-color-text-primary);
 }

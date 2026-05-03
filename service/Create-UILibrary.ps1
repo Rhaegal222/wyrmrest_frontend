@@ -25,7 +25,7 @@ $folders = @(
     "$BasePath/styles"
 )
 
-Write-Host "`n🚀 Creazione UI Library Angular Completa`n" -ForegroundColor Green
+Write-Host "`nSTART Creazione UI Library Angular Completa`n" -ForegroundColor Green
 
 foreach ($folder in $folders) {
     New-Item -ItemType Directory -Path $folder -Force | Out-Null
@@ -84,7 +84,7 @@ export interface TableColumn {
 # ============================================
 # SERVICES
 # ============================================
-Write-Host "🔧 Creazione Services..." -ForegroundColor Cyan
+Write-Host "SETUP Creazione Services..." -ForegroundColor Cyan
 
 # Theme Service
 @"
@@ -2046,7 +2046,7 @@ Write-Host "`n🎨 Creazione file stili base..." -ForegroundColor Cyan
 }
 "@ | Out-File "$BasePath/styles/theme.scss" -Encoding UTF8
 
-Write-Host "`n✅ UI Library creata con successo!" -ForegroundColor Green
+Write-Host "`nOK UI Library creata con successo!" -ForegroundColor Green
 Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor Green
 Write-Host "📍 Percorso: $BasePath" -ForegroundColor Cyan
 Write-Host "`n📦 Componenti creati:" -ForegroundColor Yellow

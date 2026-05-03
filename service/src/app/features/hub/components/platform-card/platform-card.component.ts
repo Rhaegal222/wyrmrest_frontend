@@ -18,8 +18,8 @@ export class PlatformCardComponent {
 
   readonly badgeLabel = computed(() => {
     const badge = this.platform().badge;
-    if (badge === 'live') return '● Live';
-    if (badge === 'wip') return '⧖ In sviluppo';
+    if (badge === 'live') return 'Live';
+    if (badge === 'wip') return 'In sviluppo';
     return 'Strumento';
   });
 
