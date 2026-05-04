@@ -3,33 +3,33 @@
 }
 
 .hub-layout {
-  display: grid;
-  grid-template-columns: 300px 1fr;
+  display: flex;
   min-height: 100vh;
-
-  @media (max-width: 1100px) {
-    grid-template-columns: 1fr;
-  }
+  background: var(--color-bg);
 }
 
 .hub-sidebar-slot {
+  width: 280px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 100;
+
   @media (max-width: 1100px) {
     display: none;
   }
 }
 
 .hub-content {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--wr-space-24);
-  padding: var(--wr-space-24);
   min-width: 0;
-  background: var(--wr-color-bg-canvas);
-
-  @media (max-width: 768px) {
-    padding: var(--wr-space-16);
-    gap: var(--wr-space-16);
-  }
+  padding: 0;
+  background: var(--color-bg);
 }
 
 .hub-error-alert {
