@@ -1,9 +1,6 @@
 services:
   service:
-    # =============================================================================
-    # 🚩 CONTAINER NAME
-    # =============================================================================
-    container_name: wyrmrest-frontend-production-service
+
     # =============================================================================
     # 📀 BUILD
     # =============================================================================
@@ -33,7 +30,7 @@ services:
       - traefik.http.routers.wyrmrest-frontend.entrypoints=websecure
       - traefik.http.routers.wyrmrest-frontend.tls=true
       - traefik.http.routers.wyrmrest-frontend.priority=10
-      - traefik.http.routers.wyrmrest-frontend.middlewares=maintenance-error@docker
+      - traefik.http.routers.wyrmrest-frontend.middlewares=redirect-to-it@docker,maintenance-error@docker
       - traefik.http.services.wyrmrest-frontend.loadbalancer.server.port=80
 
     # =============================================================================
