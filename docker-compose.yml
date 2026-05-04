@@ -32,7 +32,8 @@ services:
       - traefik.http.routers.wyrmrest-frontend.rule=(Host(`wyrmrest.it`) || Host(`www.wyrmrest.it`) || Host(`wyrmrest.com`) || Host(`www.wyrmrest.com`)) && PathPrefix(`/`)
       - traefik.http.routers.wyrmrest-frontend.entrypoints=websecure
       - traefik.http.routers.wyrmrest-frontend.tls=true
-      - traefik.http.routers.wyrmrest-frontend.priority=1
+      - traefik.http.routers.wyrmrest-frontend.priority=10
+      - traefik.http.routers.wyrmrest-frontend.middlewares=maintenance-error@docker
       - traefik.http.services.wyrmrest-frontend.loadbalancer.server.port=80
 
     # =============================================================================

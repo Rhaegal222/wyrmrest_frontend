@@ -91,31 +91,20 @@
 
 /* ========== DARK THEME ========== */
 .theme-dark.wyrmrest {
-  /* Superfici e testi - sfondo meno cupo, bordi più leggibili */
-  --color-bg: #0e1420;
-  --color-surface: #161d2b;
-  --color-surface-2: #1e2838;
-  --color-text: #e5e7eb;
-  --color-muted: #9ca3af;
-  --color-border: #2d3a52;
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-surface-2: #334155;
+  --color-text: #f8fafc;
+  --color-muted: #94a3b8;
+  --color-border: #1e293b;
 
-  /* Brand - più luminosi in dark per contrasto */
-  --primary-50: #3d1f1b;
-  --primary-100: #59342d;
-  --primary-300: #ff8d6a;
-  --primary-500: #e45b3d;
-  --primary-600: #ff6b47;
-  --primary-700: #ff8c6e;
-  --primary-800: #ffab92;
-
-  --secondary-500: #c7d0de;
-  --secondary-600: #dde3ed;
-  --secondary-700: #f0f3f7;
-
-  --accent-500: #f6c24e;
-  --accent-600: #ffd36a;
-
-  --tertiary-500: #5f79d1;
+  --primary-500: #6366f1; /* Indigo */
+  --primary-600: #4f46e5;
+  
+  --success-500: #10b981; /* Emerald */
+  --warning-500: #f59e0b; /* Amber */
+  --danger-500: #ef4444; /* Rose */
+  --info-500: #0ea5e9;   /* Sky */
 
   /* Stati - leggermente più luminosi */
   --success-50: #0d3625;
