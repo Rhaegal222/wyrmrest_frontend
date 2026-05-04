@@ -1,81 +1,110 @@
 :host {
-  display: block;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow-y: auto;
-  background: var(--wr-color-bg-canvas);
-  border-right: 1px solid var(--wr-color-border-subtle);
-}
-
-.sidebar-access {
   display: flex;
   flex-direction: column;
-  gap: var(--wr-space-8);
+  height: 100%;
+  background: #1e2838; /* CoreUI Dark sidebar base */
+  color: #e5e7eb;
 }
 
-.sidebar-meta {
-  font-size: var(--wr-font-size-14);
-  font-weight: 600;
-  color: var(--wr-color-text-primary);
-}
-
-.sidebar-submeta {
-  font-size: var(--wr-font-size-12);
-  color: var(--wr-color-text-disabled);
-  margin-bottom: var(--wr-space-4);
-}
-
-.sidebar-chips {
+.sidebar-header {
+  padding: 1.5rem 1rem;
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--wr-space-4);
-  margin-bottom: var(--wr-space-8);
-}
-
-.session-chip {
-  display: inline-flex;
   align-items: center;
-  padding: 2px var(--wr-space-8);
-  background: var(--wr-color-bg-elevated);
-  border: 1px solid var(--wr-color-border-subtle);
-  border-radius: var(--wr-radius-full);
-  font-size: var(--wr-font-size-11);
-  font-weight: 600;
-  color: var(--wr-color-text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
+  gap: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 
-.wr-action {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  gap: var(--wr-space-6);
-  padding: var(--wr-space-8) var(--wr-space-16);
-  border-radius: var(--wr-radius-md);
-  font-size: var(--wr-font-size-14);
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-  border: 1px solid transparent;
-  transition:
-    background-color var(--wr-motion-base),
-    border-color var(--wr-motion-base),
-    color var(--wr-motion-base);
-
-  &--primary {
-    background: var(--wr-color-accent-primary);
-    border-color: var(--wr-color-accent-primary);
-    color: var(--wr-color-text-on-accent);
-    &:hover { background: var(--wr-color-accent-hover); border-color: var(--wr-color-accent-hover); }
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--primary-500);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.25rem;
   }
 
-  &--secondary {
-    background: var(--wr-color-bg-elevated);
-    border-color: var(--wr-color-border-strong);
-    color: var(--wr-color-text-primary);
-    &:hover { border-color: var(--wr-color-accent-primary); color: var(--wr-color-accent-primary); }
+  .logo-text {
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+}
+
+.sidebar-nav {
+  flex-grow: 1;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.nav-title {
+  padding: 0.75rem 1rem 0.25rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+  }
+
+  &.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-left-color: var(--primary-500);
+  }
+
+  .icon {
+    font-size: 1.125rem;
+    width: 20px;
+    text-align: center;
+    opacity: 0.8;
+  }
+}
+
+.sidebar-footer {
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--color-surface-2);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .user-info {
+    flex-grow: 1;
+    min-width: 0;
+    .name { font-weight: 600; font-size: 0.875rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .role { font-size: 0.75rem; color: rgba(255, 255, 255, 0.5); }
   }
 }

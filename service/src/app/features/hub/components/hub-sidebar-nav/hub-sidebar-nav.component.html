@@ -1,29 +1,53 @@
-<ui-sidebar
-  class="hub-sidebar"
-  eyebrow="Wyrmrest Hub"
-  title="WYRMREST"
-  subtitle="Catalogo operativo, accesso e tool gated in un solo sistema."
-  ariaLabel="Navigazione Wyrmrest"
->
-  <a nav class="wr-sidebar__item is-active" href="#overview" aria-current="page">Overview</a>
-  <a nav class="wr-sidebar__item" href="#public-tools">Tool pubblici</a>
-  <a nav class="wr-sidebar__item" href="#internal-tools">Tool interni</a>
-  <a nav class="wr-sidebar__item" routerLink="/login">Accesso</a>
+<div class="sidebar-header">
+  <div class="logo-icon">W</div>
+  <div class="logo-text">WYRMREST</div>
+</div>
 
-  <div footer class="sidebar-access">
-    @if (isAuthenticated && currentUser; as user) {
-      <p class="sidebar-meta">{{ user.name }}</p>
-      <p class="sidebar-submeta">{{ user.email }}</p>
-      <div class="sidebar-chips" aria-label="Ruoli profilo">
-        @for (role of user.roles; track role.id) {
-          <span class="session-chip">{{ role.name }}</span>
-        }
+<div class="sidebar-nav">
+  <div class="nav-title">Catalogo</div>
+  <a class="nav-item active" href="#overview">
+    <span class="icon">📊</span>
+    <span>Overview</span>
+  </a>
+  <a class="nav-item" href="#public-tools">
+    <span class="icon">🌐</span>
+    <span>Tool Pubblici</span>
+  </a>
+  <a class="nav-item" href="#internal-tools">
+    <span class="icon">🔒</span>
+    <span>Tool Interni</span>
+  </a>
+
+  <div class="nav-title">Area Utente</div>
+  @if (!isAuthenticated) {
+    <a class="nav-item" routerLink="/login">
+      <span class="icon">🔑</span>
+      <span>Accedi</span>
+    </a>
+  } @else {
+    <a class="nav-item" (click)="logoutRequested.emit()">
+      <span class="icon">🚪</span>
+      <span>Esci</span>
+    </a>
+  }
+</div>
+
+<div class="sidebar-footer">
+  @if (isAuthenticated && currentUser; as user) {
+    <div class="user-profile">
+      <div class="avatar"></div>
+      <div class="user-info">
+        <div class="name">{{ user.name }}</div>
+        <div class="role">{{ user.roles[0]?.name || 'Utente' }}</div>
       </div>
-      <button type="button" class="wr-action wr-action--secondary" (click)="logoutRequested.emit()">Esci</button>
-    } @else {
-      <p class="sidebar-meta">Accesso richiesto</p>
-      <p class="sidebar-submeta">I tool pubblici restano disponibili. L'accesso sblocca l'area interna.</p>
-      <a class="wr-action wr-action--primary" routerLink="/login">Accedi</a>
-    }
-  </div>
-</ui-sidebar>
+    </div>
+  } @else {
+    <div class="user-profile">
+      <div class="avatar"></div>
+      <div class="user-info">
+        <div class="name">Ospite</div>
+        <div class="role">Accesso limitato</div>
+      </div>
+    </div>
+  }
+</div>
