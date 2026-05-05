@@ -144,3 +144,53 @@
   --shadow-2: 0 0 16px rgba(125,31,31,0.35), 0 4px 12px rgba(0,0,0,0.65);
   --shadow-3: 0 0 28px rgba(125,31,31,0.45), 0 8px 24px rgba(0,0,0,0.75);
 }
+
+/* Wyrmrest Dark Tech compatibility aliases.
+   Keep legacy Angular variables mapped to the canonical --wr-* contract. */
+:root,
+.theme-light.wyrmrest,
+.theme-dark.wyrmrest {
+  --color-bg: var(--wr-bg-canvas);
+  --color-surface: var(--wr-bg-surface);
+  --color-surface-2: var(--wr-bg-elevated);
+  --color-text: var(--wr-text-primary);
+  --color-muted: var(--wr-text-disabled);
+  --color-border: var(--wr-border-subtle);
+
+  --primary-50: color-mix(in srgb, var(--wr-accent-primary) 8%, transparent);
+  --primary-100: color-mix(in srgb, var(--wr-accent-primary) 14%, transparent);
+  --primary-300: color-mix(in srgb, var(--wr-accent-primary) 42%, transparent);
+  --primary-500: var(--wr-accent-primary);
+  --primary-600: var(--wr-accent-hover);
+  --primary-700: var(--wr-accent-hover);
+  --primary-800: var(--wr-accent-hover);
+
+  --secondary-500: var(--wr-text-primary);
+  --secondary-600: var(--wr-text-secondary);
+  --secondary-700: var(--wr-text-disabled);
+  --accent-500: var(--wr-warning);
+  --accent-600: var(--wr-warning);
+  --tertiary-500: var(--wr-info);
+
+  --success-50: color-mix(in srgb, var(--wr-success) 10%, transparent);
+  --success-500: var(--wr-success);
+  --success-600: var(--wr-success);
+  --success-700: var(--wr-success);
+  --warning-50: color-mix(in srgb, var(--wr-warning) 10%, transparent);
+  --warning-500: var(--wr-warning);
+  --warning-600: var(--wr-warning);
+  --warning-700: var(--wr-warning);
+  --danger-50: color-mix(in srgb, var(--wr-danger) 10%, transparent);
+  --danger-500: var(--wr-danger);
+  --danger-600: var(--wr-danger);
+  --danger-700: var(--wr-danger);
+  --info-50: color-mix(in srgb, var(--wr-info) 10%, transparent);
+  --info-500: var(--wr-info);
+  --info-600: var(--wr-info);
+  --info-700: var(--wr-info);
+
+  --shadow-0: none;
+  --shadow-1: var(--wr-shadow-1);
+  --shadow-2: var(--wr-shadow-2);
+  --shadow-3: var(--wr-shadow-3);
+}

@@ -20,7 +20,7 @@ app-root {
 .ui-ripple {
   position: absolute;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
+  background: color-mix(in srgb, var(--wr-text-primary) 12%, transparent);
   transform: scale(0);
   animation: wr-ripple 600ms ease-out forwards;
   pointer-events: none;

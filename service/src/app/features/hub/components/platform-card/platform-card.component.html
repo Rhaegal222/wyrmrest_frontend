@@ -13,7 +13,10 @@
         <line x1="12" y1="17" x2="12" y2="21"/>
       </svg>
     </div>
-    <span class="status-badge" [attr.data-status]="platform().badge">{{ badgeLabel() }}</span>
+    <span class="status-badge" [attr.data-status]="platform().badge">
+      <span class="status-dot" aria-hidden="true"></span>
+      {{ badgeLabel() }}
+    </span>
   </div>
 
   <div class="card-body">
@@ -26,6 +29,11 @@
       <span class="label">{{ audienceLabel() }}</span>
       <span class="label">{{ accessLabel() }}</span>
     </div>
-    <div class="cta" aria-hidden="true">Apri →</div>
+    <div class="cta" aria-hidden="true">
+      <span>Apri</span>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3.5 10.5 8 6 12.5"/>
+      </svg>
+    </div>
   </div>
 </a>
