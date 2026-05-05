@@ -1,11 +1,21 @@
-<a class="dashboard-card" [href]="platform().url">
+<a
+  class="dashboard-card"
+  [href]="platform().url"
+  [class.is-live]="platform().badge === 'live'"
+  [class.is-wip]="platform().badge === 'wip'"
+  [class.is-tool]="platform().badge === 'tool'"
+>
   <div class="card-header">
-    <div class="icon-box">{{ platform().icon || '🛠️' }}</div>
-    <div class="badges">
-      <span class="status-badge" [attr.data-status]="platform().badge">{{ badgeLabel() }}</span>
+    <div class="icon-box" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2"/>
+        <line x1="8" y1="21" x2="16" y2="21"/>
+        <line x1="12" y1="17" x2="12" y2="21"/>
+      </svg>
     </div>
+    <span class="status-badge" [attr.data-status]="platform().badge">{{ badgeLabel() }}</span>
   </div>
-  
+
   <div class="card-body">
     <h3 class="name">{{ platform().name }}</h3>
     <p class="description">{{ platform().description }}</p>
@@ -16,6 +26,6 @@
       <span class="label">{{ audienceLabel() }}</span>
       <span class="label">{{ accessLabel() }}</span>
     </div>
-    <div class="cta">Apri →</div>
+    <div class="cta" aria-hidden="true">Apri →</div>
   </div>
 </a>

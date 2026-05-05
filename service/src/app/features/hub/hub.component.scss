@@ -7,16 +7,16 @@
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  background: #0f172a; /* Slate 900 */
+  background: var(--wr-color-bg-canvas);
 }
 
 .hub-sidebar-slot {
-  width: 260px;
+  width: 256px;
   height: 100vh;
   flex-shrink: 0;
   z-index: 50;
-  
-  @media (max-width: 1024px) {
+
+  @media (max-width: 1100px) {
     display: none;
   }
 }
@@ -27,15 +27,15 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  padding: 2rem;
-  gap: 2rem;
+  padding: var(--wr-space-24);
+  gap: var(--wr-space-24);
   min-width: 0;
 }
 
 .hub-error-alert {
   padding: var(--wr-space-12) var(--wr-space-16);
   border-left: 3px solid var(--wr-color-danger);
-  background: rgba(200, 81, 81, 0.08);
+  background: color-mix(in srgb, var(--wr-color-danger) 8%, transparent);
   border-radius: 0 var(--wr-radius-md) var(--wr-radius-md) 0;
   color: var(--wr-color-danger);
   font-size: var(--wr-font-size-14);

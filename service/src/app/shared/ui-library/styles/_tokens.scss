@@ -1,138 +1,146 @@
-/* tokens.scss - Wyrmrest Theme */
+/* _tokens.scss — Silent Hill Edition
+   Allineati con ui-core.css v2.0.0
+   Otherworld (dark) + Fog World (light) */
 
-/* ========== LIGHT THEME (default) ========== */
+/* ── Fog World — light (default :root per Angular) ───────────────── */
 :root,
 .theme-light.wyrmrest {
-  /* Superfici e testi - nero ammorbidito, grigio medio */
-  --color-bg: #ffffff;
-  --color-surface: #ffffff;
-  --color-surface-2: #f9fafb;       /* input/search più morbido */
-  --color-text: #1f2937;             /* testo principale non "puro" */
-  --color-muted: #6b7280;
-  --color-border: #e5e7eb;
+  /* Surfaces — aged paper / parchment */
+  --color-bg:        #e8e3e3;
+  --color-surface:   #eeecec;
+  --color-surface-2: #d9d4d4;
+  --color-text:      #1a1010;
+  --color-muted:     #4a3838;
+  --color-border:    #c4bcbc;
 
-  /* Brand */
-  --primary-50: #ffe7df;
-  --primary-100: #ffc9b8;            /* per hover icon-button light */
-  --primary-300: #ff8d6a;
-  --primary-500: #d14a2e;
-  --primary-600: #b63e25;
-  --primary-700: #9a3420;
-  --primary-800: #7d2a1a;
+  /* Brand — blood rust (Otherworld bleeding through the fog) */
+  --primary-50:  #f5e0e0;
+  --primary-100: #e8b8b8;
+  --primary-300: #c07070;
+  --primary-500: #6a1a1a;
+  --primary-600: #551515;
+  --primary-700: #421010;
+  --primary-800: #300b0b;
 
-  --secondary-500: #1f2937;
-  --secondary-600: #111827;
-  --secondary-700: #0b0f19;
+  --secondary-500: #1a1010;
+  --secondary-600: #100b0b;
+  --secondary-700: #090505;
 
-  --accent-500: #f5b42a;
-  --accent-600: #da9e1f;
+  --accent-500: #6a4a10;
+  --accent-600: #553a0c;
 
-  --tertiary-500: #3f5aa9;
+  --tertiary-500: #1a3a5a;
 
-  /* Stati */
-  --success-50: #ecfdf5;
-  --success-500: #16a34a;
-  --success-600: #12893e;
-  --success-700: #0f7435;
+  /* Semantic — all desaturated for fog world */
+  --success-50:  #e0ede2;
+  --success-500: #2d5a30;
+  --success-600: #254a28;
+  --success-700: #1d3b20;
 
-  --warning-50: #fffbeb;
-  --warning-500: #d97706;
-  --warning-600: #b45309;
-  --warning-700: #92400e;
+  --warning-50:  #e8ddd0;
+  --warning-500: #6a4a10;
+  --warning-600: #553a0c;
+  --warning-700: #412c08;
 
-  --danger-50: #fef2f2;
-  --danger-500: #dc2626;
-  --danger-600: #b91c1c;
-  --danger-700: #991b1b;
+  --danger-50:   #ede0e0;
+  --danger-500:  #5a1010;
+  --danger-600:  #480d0d;
+  --danger-700:  #360a0a;
 
-  --info-50: #ecfeff;
-  --info-500: #0ea5e9;
-  --info-600: #0891b2;
-  --info-700: #0e7490;
+  --info-50:     #d8e0ea;
+  --info-500:    #1a3a5a;
+  --info-600:    #142e48;
+  --info-700:    #0e2236;
 
-  /* Spacing (rem-based) */
-  --space-1: 0.25rem;  /* 4px */
-  --space-2: 0.5rem;   /* 8px */
-  --space-3: 0.75rem;  /* 12px */
-  --space-4: 1rem;     /* 16px */
-  --space-5: 1.25rem;  /* 20px */
-  --space-6: 1.5rem;   /* 24px */
-  --space-8: 2rem;     /* 32px */
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
 
-  /* Radius */
-  --radius-sm: 0.375rem;   /* 6px */
-  --radius-md: 0.625rem;   /* 10px */
-  --radius-lg: 0.875rem;   /* 14px */
-  --radius-full: 62.4375rem; /* 9999px → ~62.5rem */
+  /* Radius — sharp, industrial */
+  --radius-sm:   0.125rem;
+  --radius-md:   0.25rem;
+  --radius-lg:   0.375rem;
+  --radius-full: 62.4375rem;
 
   /* Typography */
-  --font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --fs-xs: 0.75rem;      /* 12px */
-  --fs-sm: 0.875rem;     /* 14px */
-  --fs-base: 1rem;       /* 16px */
-  --fs-lg: 1.125rem;     /* 18px */
-  --fs-xl: 1.25rem;      /* 20px */
+  --font-family:         "Barlow", "Segoe UI", system-ui, sans-serif;
+  --font-family-display: "Special Elite", "Courier New", monospace;
+  --fs-xs:   0.75rem;
+  --fs-sm:   0.875rem;
+  --fs-base: 1rem;
+  --fs-lg:   1.125rem;
+  --fs-xl:   1.25rem;
 
-  /* Elevation / Shadow */
-  --shadow-color: 20, 20, 30;
+  /* Elevation — hard shadows (Fog World) */
   --shadow-0: none;
-  --shadow-1: 0 0.0625rem 0.1875rem rgba(var(--shadow-color), 0.08),
-              0 0.0625rem 0.125rem rgba(var(--shadow-color), 0.06);
-  --shadow-2: 0 0.25rem 0.375rem rgba(var(--shadow-color), 0.1),
-              0 0.125rem 0.25rem rgba(var(--shadow-color), 0.06);
-  --shadow-3: 0 0.625rem 0.9375rem rgba(var(--shadow-color), 0.12),
-              0 0.25rem 0.375rem rgba(var(--shadow-color), 0.08);
+  --shadow-1: 2px 2px 0px rgba(0,0,0,0.14);
+  --shadow-2: 3px 3px 0px rgba(0,0,0,0.18);
+  --shadow-3: 5px 5px 0px rgba(0,0,0,0.22);
 
   /* Transition */
-  --transition-fast: 150ms;
-  --transition-base: 200ms;
-  --transition-slow: 300ms;
+  --transition-fast: 120ms;
+  --transition-base: 300ms;
+  --transition-slow: 500ms;
+  --transition-atmo: 1200ms;
 }
 
-/* ========== DARK THEME ========== */
+/* ── Otherworld — dark ───────────────────────────────────────────── */
 .theme-dark.wyrmrest {
-  --color-bg: #0f172a;
-  --color-surface: #1e293b;
-  --color-surface-2: #334155;
-  --color-text: #f8fafc;
-  --color-muted: #94a3b8;
-  --color-border: #1e293b;
+  /* Surfaces — dark red-black */
+  --color-bg:        #0f0b0b;
+  --color-surface:   #160e0e;
+  --color-surface-2: #1e1515;
+  --color-text:      #cdc4c4;
+  --color-muted:     #8c7e7e;
+  --color-border:    #2d1a1a;
 
-  --primary-500: #6366f1; /* Indigo */
-  --primary-600: #4f46e5;
-  
-  --success-500: #10b981; /* Emerald */
-  --warning-500: #f59e0b; /* Amber */
-  --danger-500: #ef4444; /* Rose */
-  --info-500: #0ea5e9;   /* Sky */
+  /* Brand — blood red */
+  --primary-50:  #2d1a1a;
+  --primary-100: #3d2020;
+  --primary-300: #6a2020;
+  --primary-500: #7d1f1f;
+  --primary-600: #9c2828;
+  --primary-700: #b23030;
+  --primary-800: #c84040;
 
-  /* Stati - leggermente più luminosi */
-  --success-50: #0d3625;
-  --success-500: #22c55e;
-  --success-600: #34d071;
-  --success-700: #4ade80;
+  --secondary-500: #cdc4c4;
+  --secondary-600: #a89898;
+  --secondary-700: #8c7e7e;
 
-  --warning-50: #3e2a0f;
-  --warning-500: #f59e0b;
-  --warning-600: #fbbf24;
-  --warning-700: #fcd34d;
+  --accent-500: #8a6020;
+  --accent-600: #9a7030;
 
-  --danger-50: #3d1616;
-  --danger-500: #ef4444;
-  --danger-600: #f87171;
-  --danger-700: #fca5a5;
+  --tertiary-500: #204a6a;
 
-  --info-50: #0c3644;
-  --info-500: #06b6d4;
-  --info-600: #22d3ee;
-  --info-700: #67e8f9;
+  /* Semantic */
+  --success-50:  #0d2010;
+  --success-500: #3d6640;
+  --success-600: #4d8050;
+  --success-700: #5d9a60;
 
-  /* Shadow in dark - più intenso */
-  --shadow-color: 0, 0, 0;
-  --shadow-1: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.35),
-              0 0.0625rem 0.125rem rgba(0, 0, 0, 0.3);
-  --shadow-2: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.4),
-              0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
-  --shadow-3: 0 0.625rem 0.9375rem rgba(0, 0, 0, 0.45),
-              0 0.25rem 0.375rem rgba(0, 0, 0, 0.35);
+  --warning-50:  #201408;
+  --warning-500: #8a6020;
+  --warning-600: #9a7030;
+  --warning-700: #aa8040;
+
+  --danger-50:   #200808;
+  --danger-500:  #6a1010;
+  --danger-600:  #7a1a1a;
+  --danger-700:  #8a2020;
+
+  --info-50:     #081420;
+  --info-500:    #204a6a;
+  --info-600:    #2a5a80;
+  --info-700:    #3a6a90;
+
+  /* Elevation — red glow (Otherworld) */
+  --shadow-0: none;
+  --shadow-1: 0 0 8px rgba(125,31,31,0.25), 0 1px 3px rgba(0,0,0,0.55);
+  --shadow-2: 0 0 16px rgba(125,31,31,0.35), 0 4px 12px rgba(0,0,0,0.65);
+  --shadow-3: 0 0 28px rgba(125,31,31,0.45), 0 8px 24px rgba(0,0,0,0.75);
 }

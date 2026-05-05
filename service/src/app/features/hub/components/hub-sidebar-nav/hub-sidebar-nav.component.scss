@@ -2,71 +2,140 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: #111827; /* Darker Slate for sidebar */
-  border-right: 1px solid rgba(255,255,255,0.05);
-  color: #f8fafc;
+  background: var(--wr-color-bg-canvas);
+  border-right: 1px solid var(--wr-color-border-subtle);
+  color: var(--wr-color-text-primary);
+  overflow: hidden;
+  /* Slow atmospheric transition */
+  transition: background-color 1200ms ease-in-out;
 }
 
+/* Brand mark at top */
 .sidebar-header {
-  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wr-space-4);
+  padding: var(--wr-space-24) var(--wr-space-20);
+  border-bottom: 1px solid var(--wr-color-border-subtle);
+
+  .logo-eyebrow {
+    font-size: var(--wr-font-size-11);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--wr-color-text-disabled);
+  }
+
   .logo-text {
-    font-size: 1.25rem;
-    font-weight: 800;
-    letter-spacing: -0.04em;
-    color: var(--primary-500);
+    font-family: var(--wr-font-family-display, "Special Elite", monospace);
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--wr-color-text-primary);
+    line-height: 1.1;
   }
 }
 
+/* Navigation */
 .sidebar-nav {
   flex: 1;
-  padding: 0 0.75rem;
+  overflow-y: auto;
+  padding: var(--wr-space-12) var(--wr-space-8);
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0;
 }
 
-.nav-title {
-  padding: 1.5rem 0.75rem 0.5rem;
-  font-size: 0.7rem;
-  font-weight: 600;
+.nav-section-title {
+  padding: var(--wr-space-16) var(--wr-space-12) var(--wr-space-6);
+  font-size: var(--wr-font-size-11);
+  font-weight: 700;
   text-transform: uppercase;
-  color: #475569;
-  letter-spacing: 0.05em;
+  color: var(--wr-color-text-disabled);
+  letter-spacing: 0.14em;
 }
 
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.6rem 0.75rem;
-  border-radius: 0.5rem;
-  font-size: 0.875rem;
+  gap: var(--wr-space-12);
+  padding: var(--wr-space-8) var(--wr-space-12);
+  border-left: 2px solid transparent;
+  border-radius: 0 var(--wr-radius-md) var(--wr-radius-md) 0;
+  font-size: var(--wr-font-size-14);
   font-weight: 500;
-  color: #94a3b8;
+  color: var(--wr-color-text-secondary);
   text-decoration: none;
-  transition: all 0.2s;
+  cursor: pointer;
+  transition:
+    background-color var(--wr-motion-fast),
+    color var(--wr-motion-fast),
+    border-color var(--wr-motion-fast);
 
   &:hover {
-    background: rgba(255,255,255,0.05);
-    color: #fff;
+    background: color-mix(in srgb, var(--wr-color-text-primary) 5%, transparent);
+    color: var(--wr-color-text-primary);
   }
 
   &.active {
-    background: rgba(99, 102, 241, 0.1);
-    color: var(--primary-500);
+    background: color-mix(in srgb, var(--wr-color-accent-primary) 8%, transparent);
+    border-left-color: var(--wr-color-accent-primary);
+    color: var(--wr-color-text-primary);
   }
 
-  .icon { font-size: 1rem; width: 20px; text-align: center; }
+  /* Nav icon — SVG wrapper */
+  .nav-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    opacity: 0.7;
+    color: currentColor;
+  }
 }
 
+/* Footer with user info */
 .sidebar-footer {
-  padding: 1.5rem;
-  background: rgba(0,0,0,0.2);
+  padding: var(--wr-space-16) var(--wr-space-20);
+  border-top: 1px solid var(--wr-color-border-subtle);
+  background: color-mix(in srgb, var(--wr-color-bg-canvas) 60%, var(--wr-color-bg-surface));
+
   .user-profile {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    .avatar { width: 32px; height: 32px; border-radius: 50%; background: #334155; }
-    .name { font-size: 0.8rem; font-weight: 600; color: #f1f5f9; }
+    gap: var(--wr-space-12);
+  }
+
+  .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: var(--wr-radius-md);
+    background: color-mix(in srgb, var(--wr-color-accent-primary) 15%, var(--wr-color-bg-elevated));
+    border: 1px solid color-mix(in srgb, var(--wr-color-accent-primary) 30%, transparent);
+    display: grid;
+    place-items: center;
+    font-size: var(--wr-font-size-12);
+    font-weight: 700;
+    color: var(--wr-color-accent-primary);
+    font-family: var(--wr-font-family-mono);
+    flex-shrink: 0;
+  }
+
+  .user-info {
+    min-width: 0;
+  }
+
+  .name {
+    font-size: var(--wr-font-size-12);
+    font-weight: 600;
+    color: var(--wr-color-text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .role {
+    font-size: var(--wr-font-size-11);
+    color: var(--wr-color-text-disabled);
+    letter-spacing: 0.04em;
   }
 }

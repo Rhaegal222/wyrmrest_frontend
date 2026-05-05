@@ -1,6 +1,5 @@
 /* ui-core.css è caricato prima da angular.json — non ridefinire reset o body */
 
-/* Stili globali Angular-specific */
 html, body {
   min-height: 100%;
 }
@@ -9,7 +8,7 @@ app-root {
   display: contents;
 }
 
-/* Ripple (global, non incapsulabile nel componente) */
+/* Ripple */
 .ui-ripple-container {
   position: absolute;
   inset: 0;
@@ -21,9 +20,9 @@ app-root {
 .ui-ripple {
   position: absolute;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.12);
   transform: scale(0);
-  animation: wr-ripple 500ms ease-out forwards;
+  animation: wr-ripple 600ms ease-out forwards;
   pointer-events: none;
 }
 
@@ -31,7 +30,7 @@ app-root {
   to { transform: scale(4); opacity: 0; }
 }
 
-/* Tooltip globale */
+/* Tooltip */
 .ui-tooltip {
   position: fixed;
   background: var(--wr-color-bg-elevated);
@@ -39,9 +38,34 @@ app-root {
   border-radius: var(--wr-radius-sm);
   color: var(--wr-color-text-primary);
   font-size: var(--wr-font-size-12);
+  font-family: var(--wr-font-family-ui);
   padding: var(--wr-space-4) var(--wr-space-8);
   pointer-events: none;
   white-space: nowrap;
   z-index: var(--wr-z-toast);
   box-shadow: var(--wr-shadow-2);
+}
+
+/* Theme toggle button — positioned in header */
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--wr-color-border-strong);
+  border-radius: var(--wr-radius-md);
+  background: var(--wr-color-bg-elevated);
+  color: var(--wr-color-text-secondary);
+  cursor: pointer;
+  transition: border-color var(--wr-motion-base), color var(--wr-motion-base);
+  flex-shrink: 0;
+
+  &:hover {
+    border-color: var(--wr-color-accent-primary);
+    color: var(--wr-color-accent-primary);
+  }
+
+  svg { width: 15px; height: 15px; }
 }
