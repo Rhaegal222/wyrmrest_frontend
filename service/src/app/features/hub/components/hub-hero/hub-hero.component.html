@@ -1,13 +1,19 @@
-<section class="hero-panel panel">
-  <div class="hero-copy">
-    <p class="eyebrow">Catalogo</p>
-    <h2>Interfaccia uniforme per tool pubblici e interni</h2>
-    <p class="brand-copy">Bento grid, accesso coerente, CTA controllate e stato gated esplicito per i servizi interni.</p>
+<section class="stats-grid">
+  <div class="stat-card stat-card--primary">
+    <div class="stat-value">{{ publicCount }}</div>
+    <div class="stat-label">Tool Pubblici</div>
+    <div class="stat-trend">Disponibili a tutti</div>
   </div>
 
-  <div class="hero-stats" aria-label="Riepilogo catalogo">
-    <span><strong>{{ publicCount }}</strong> pubblici</span>
-    <span><strong>{{ internalCount }}</strong> interni</span>
-    <span><strong>44px</strong> touch target</span>
+  <div class="stat-card stat-card--warning">
+    <div class="stat-value">{{ internalCount }}</div>
+    <div class="stat-label">Tool Interni</div>
+    <div class="stat-trend">Accesso Gated</div>
+  </div>
+
+  <div class="stat-card stat-card--info">
+    <div class="stat-value">Live</div>
+    <div class="stat-label">Stato Sistema</div>
+    <div class="stat-trend">Monitoraggio attivo</div>
   </div>
 </section>

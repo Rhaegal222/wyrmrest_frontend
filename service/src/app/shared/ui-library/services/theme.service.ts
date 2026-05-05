@@ -1,66 +1,38 @@
-import { Injectable, signal, Inject, PLATFORM_ID, effect } from '@angular/core';
+import { Injectable, signal, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { ComponentTheme } from '../models/component-theme.model';
 
-export type ThemeStyle = 'professional' | 'fantasy';
+export type WrTheme = 'sh-dark' | 'sh-light';
 
-@Injectable({
-  providedIn: 'root',
-})
+const STORAGE_KEY = 'wr-theme';
+const DEFAULT_THEME: WrTheme = 'sh-dark';
+
+@Injectable({ providedIn: 'root' })
 export class ThemeService {
-  // Colori custom (se necessari)
-  private currentTheme = signal<ComponentTheme>({
-    primaryColor: '#007bff',
-    secondaryColor: '#6c757d',
-    successColor: '#28a745',
-    dangerColor: '#dc3545',
-    warningColor: '#ffc107',
-    infoColor: '#17a2b8',
-  });
+  readonly currentTheme = signal<WrTheme>(DEFAULT_THEME);
 
-  // Stato dello stile (Fantasy vs Professional)
-  readonly currentStyle = signal<ThemeStyle>('professional');
-
-  theme = this.currentTheme.asReadonly();
-
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {
     if (isPlatformBrowser(this.platformId)) {
-      // Recupera stile salvato
-      const savedStyle = localStorage.getItem('wyrmrest-style') as ThemeStyle;
-      if (savedStyle) {
-        this.setStyle(savedStyle);
-      } else {
-        this.setStyle('professional');
-      }
+      const saved = localStorage.getItem(STORAGE_KEY) as WrTheme | null;
+      this.applyTheme(saved ?? DEFAULT_THEME);
     }
   }
 
-  setTheme(theme: Partial<ComponentTheme>): void {
-    this.currentTheme.update((current) => ({ ...current, ...theme }));
-  }
-
-  setStyle(style: ThemeStyle): void {
-    this.currentStyle.set(style);
+  setTheme(theme: WrTheme): void {
+    this.applyTheme(theme);
     if (isPlatformBrowser(this.platformId)) {
-      document.body.setAttribute('data-style', style);
-      localStorage.setItem('wyrmrest-style', style);
+      localStorage.setItem(STORAGE_KEY, theme);
     }
   }
 
-  toggleStyle(): void {
-    const newStyle =
-      this.currentStyle() === 'professional' ? 'fantasy' : 'professional';
-    this.setStyle(newStyle);
+  toggleTheme(): void {
+    const next: WrTheme = this.currentTheme() === 'sh-dark' ? 'sh-light' : 'sh-dark';
+    this.setTheme(next);
   }
 
-  resetTheme(): void {
-    this.setTheme({
-      primaryColor: '#007bff',
-      secondaryColor: '#6c757d',
-      successColor: '#28a745',
-      dangerColor: '#dc3545',
-      warningColor: '#ffc107',
-      infoColor: '#17a2b8',
-    });
+  private applyTheme(theme: WrTheme): void {
+    this.currentTheme.set(theme);
+    if (isPlatformBrowser(this.platformId)) {
+      document.documentElement.setAttribute('data-wr-theme', theme);
+    }
   }
 }

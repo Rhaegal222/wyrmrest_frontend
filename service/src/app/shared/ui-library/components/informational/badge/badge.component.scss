@@ -1,51 +1,45 @@
-@use '../../../styles/mixins' as m;
-
-/* Badge */
-.ui-badge {
-  display: inline-flex; align-items: center; gap: 6px; border-radius: var(--radius-full);
-  padding: 2px 8px; font-size: var(--fs-sm); border: 1px solid transparent;
-  &--primary   { background: var(--primary-50); color: var(--primary-600); }
-  &--secondary { background: #f3f4f6; color: var(--secondary-600); }
-  &--success   { background: var(--success-50); color: var(--success-500); }
-  &--warning   { background: var(--warning-50); color: var(--warning-500); }
-  &--danger    { background: var(--danger-50);  color: var(--danger-500); }
-  &--info      { background: var(--info-50);    color: var(--info-500); }
-  &--outlined  { background: transparent; border-color: currentColor; }
-  &--dot::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+:host {
+  display: inline-flex;
 }
 
-/* Avatar */
-.ui-avatar {
-  position: relative; display: inline-grid; place-items: center; overflow: hidden; background: #e5e7eb;
-  &--small { width: 28px; height: 28px; }
-  &--medium { width: 36px; height: 36px; }
-  &--large { width: 48px; height: 48px; }
-  &--xlarge { width: 64px; height: 64px; }
-  &--circle { border-radius: var(--radius-full); }
-  &--square { border-radius: var(--radius-md); }
-  &__image { width: 100%; height: 100%; object-fit: cover; }
-  &__initials { font-weight: 600; color: var(--color-text); }
-  &__status {
-    position: absolute; right: -2px; bottom: -2px; width: 12px; height: 12px; border-radius: var(--radius-full); border: 2px solid var(--color-surface);
-    &--online  { background: var(--success-500); }
-    &--offline { background: #9ca3af; }
-    &--away    { background: var(--warning-500); }
-    &--busy    { background: var(--danger-500); }
+.ui-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wr-space-4);
+  border-radius: var(--wr-radius-full);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+
+  &--small  { padding: 2px 6px; font-size: 0.625rem; }
+  &--medium { padding: 3px 8px; font-size: var(--wr-font-size-11); }
+  &--large  { padding: 4px 10px; font-size: var(--wr-font-size-12); }
+
+  &--primary  { background: color-mix(in srgb, var(--wr-color-accent-primary) 12%, transparent); color: var(--wr-color-accent-primary); }
+  &--secondary { background: rgba(169,183,199,.12); color: var(--wr-color-text-secondary); }
+  &--success  { background: rgba(47,163,107,.12); color: var(--wr-color-success); }
+  &--warning  { background: rgba(211,154,44,.12); color: var(--wr-color-warning); }
+  &--danger   { background: rgba(200,81,81,.12); color: var(--wr-color-danger); }
+  &--info     { background: rgba(58,143,209,.12); color: var(--wr-color-info); }
+
+  &--outlined {
+    background: transparent;
+    border-color: currentColor;
+  }
+
+  &--dot::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: badge-pulse 2s ease-in-out infinite;
+    flex-shrink: 0;
   }
 }
 
-/* Table */
-.ui-table-wrapper { width: 100%; overflow-x: auto; }
-.ui-table {
-  width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; background: var(--color-surface);
-  &__head { background: #f8fafc; }
-  &__header-cell { text-align: left; padding: 10px 12px; font-weight: 600; color: var(--color-muted); cursor: default; }
-  &__header-cell--sortable { cursor: pointer; }
-  &__body .ui-table__row:nth-child(odd).ui-table--striped &,
-  &--striped .ui-table__row:nth-child(odd) { background: #fafafa; }
-  &__row:hover.ui-table--hoverable &,
-  &--hoverable .ui-table__row:hover { background: var(--primary-50); }
-  &__cell { padding: 10px 12px; border-top: 1px solid var(--color-border); }
-  &__empty { padding: 16px; text-align: center; color: var(--color-muted); }
+@keyframes badge-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.75); }
 }
-

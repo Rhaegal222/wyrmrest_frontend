@@ -1,49 +1,57 @@
-<main class="hub-shell" aria-labelledby="hub-title">
-  <div class="hub-layout">
-    <app-hub-sidebar-nav
-      [currentUser]="currentUser()"
-      [isAuthenticated]="isAuthenticated()"
-      (logoutRequested)="openLogoutModal()"
+<div class="hub-layout">
+  <app-hub-sidebar-nav
+    class="hub-sidebar-slot"
+    [currentUser]="currentUser()"
+    [isAuthenticated]="isAuthenticated()"
+    (logoutRequested)="openLogoutModal()"
+  />
+
+  <div class="hub-content">
+    <app-hub-header
+      [drawerOpen]="isDrawerOpen()"
+      (menuRequested)="openDrawer()"
     />
 
-    <section class="hub-content">
-      <app-hub-header [drawerOpen]="isDrawerOpen()" (menuRequested)="openDrawer()" />
-      <app-hub-hero [publicCount]="publicCount()" [internalCount]="internalCount()" />
+    <app-hub-hero
+      [publicCount]="publicCount()"
+      [internalCount]="internalCount()"
+    />
 
-      @if (authError(); as message) {
-        <section class="panel banner-panel" role="alert">
-          <p class="error-banner">{{ message }}</p>
-        </section>
-      }
+    @if (authError(); as message) {
+      <div class="hub-error-alert" role="alert">
+        <p>{{ message }}</p>
+      </div>
+    }
 
-      <app-hub-catalog-section
-        sectionId="public-tools-title"
-        title="Tool pubblici"
-        eyebrow="Catalogo"
-        [countLabel]="publicCount() + ' disponibili'"
-        [platforms]="publicPlatforms()"
-      />
+    <app-hub-catalog-section
+      sectionId="public-tools-title"
+      title="Tool pubblici"
+      eyebrow="Catalogo"
+      [countLabel]="publicCount() + ' disponibili'"
+      [platforms]="publicPlatforms()"
+      [loaded]="true"
+      [authenticated]="isAuthenticated()"
+    />
 
-      <app-hub-catalog-section
-        sectionId="internal-tools-title"
-        title="Tool interni"
-        eyebrow="Area gated"
-        countLabel="Riservati"
-        [locked]="true"
-        [loaded]="internalLoaded()"
-        [authenticated]="isAuthenticated()"
-        [platforms]="internalPlatforms()"
-      />
-    </section>
+    <app-hub-catalog-section
+      sectionId="internal-tools-title"
+      title="Tool interni"
+      eyebrow="Area gated"
+      countLabel="Riservati"
+      [locked]="true"
+      [platforms]="internalPlatforms()"
+      [loaded]="internalLoaded()"
+      [authenticated]="isAuthenticated()"
+    />
+
+    <app-hub-footer [year]="year" />
   </div>
-</main>
-
-<app-hub-footer [year]="year" />
+</div>
 
 <app-hub-mobile-nav
-  [isOpen]="isDrawerOpen()"
   [currentUser]="currentUser()"
   [isAuthenticated]="isAuthenticated()"
+  [isOpen]="isDrawerOpen()"
   (closeRequested)="closeDrawer()"
   (logoutRequested)="openLogoutModal()"
 />
@@ -55,8 +63,8 @@
 >
   <p>Vuoi uscire dall'area autenticata? I tool pubblici resteranno disponibili.</p>
 
-  <div footer class="modal-actions">
+  <div footer>
     <button type="button" class="wr-button wr-button--secondary" (click)="closeLogoutModal()">Annulla</button>
-    <button type="button" class="wr-button wr-button--primary" (click)="confirmLogout()">Esci</button>
+    <button type="button" class="wr-button wr-button--danger" (click)="confirmLogout()">Esci</button>
   </div>
 </ui-modal>

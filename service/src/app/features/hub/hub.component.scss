@@ -1,68 +1,42 @@
 :host {
-  display: block;
-  min-height: 100vh;
-}
-
-.hub-shell {
-  width: min(100%, 1360px);
-  margin: 0 auto;
-  padding: clamp(var(--wr-space-16), 4vw, var(--wr-space-32));
+  display: contents;
 }
 
 .hub-layout {
-  display: grid;
-  grid-template-columns: minmax(280px, 320px) minmax(0, 1fr);
-  gap: var(--wr-space-16);
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: var(--wr-color-bg-canvas);
 }
 
-.hub-sidebar-wrap {
-  position: sticky;
-  top: var(--wr-space-16);
-  align-self: start;
-  height: calc(100vh - var(--wr-space-32));
+.hub-sidebar-slot {
+  width: 256px;
+  height: 100vh;
+  flex-shrink: 0;
+  z-index: 50;
+
+  @media (max-width: 1100px) {
+    display: none;
+  }
 }
 
 .hub-content {
-  display: grid;
-  gap: var(--wr-space-16);
-}
-
-.panel {
-  border: 1px solid var(--wr-color-border-strong);
-  border-radius: var(--wr-radius-lg);
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--wr-color-bg-elevated) 92%, transparent), var(--wr-color-bg-surface));
-  box-shadow: var(--wr-shadow-2);
-  padding: var(--wr-space-24);
-}
-
-.error-banner {
-  border: 1px solid color-mix(in srgb, var(--wr-color-danger) 35%, transparent);
-  border-radius: var(--wr-radius-md);
-  background: color-mix(in srgb, var(--wr-color-danger) 12%, transparent);
-  color: var(--wr-color-danger);
-  padding: var(--wr-space-8) var(--wr-space-12);
-  font-size: var(--wr-font-size-14);
-}
-
-.modal-actions {
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto;
   display: flex;
-  justify-content: flex-end;
-  gap: var(--wr-space-8);
+  flex-direction: column;
+  padding: var(--wr-space-24);
+  gap: var(--wr-space-24);
+  min-width: 0;
 }
 
-@media (max-width: 1100px) {
-  .hub-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 560px) {
-  .hub-shell {
-    padding: var(--wr-space-12);
-  }
-
-  .panel {
-    padding: var(--wr-space-16);
-  }
+.hub-error-alert {
+  padding: var(--wr-space-12) var(--wr-space-16);
+  border-left: 3px solid var(--wr-color-danger);
+  background: color-mix(in srgb, var(--wr-color-danger) 8%, transparent);
+  border-radius: 0 var(--wr-radius-md) var(--wr-radius-md) 0;
+  color: var(--wr-color-danger);
+  font-size: var(--wr-font-size-14);
 }
