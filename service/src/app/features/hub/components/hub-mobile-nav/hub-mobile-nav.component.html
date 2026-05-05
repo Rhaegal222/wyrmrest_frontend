@@ -1,0 +1,23 @@
+<ui-offcanvas
+  id="hub-drawer"
+  [isOpen]="isOpen"
+  eyebrow="Wyrmrest Hub"
+  title="WYRMREST"
+  ariaLabel="Menu mobile Wyrmrest"
+  (closeEvent)="close()"
+>
+  <a nav class="wr-offcanvas__item is-active" href="#overview" aria-current="page" (click)="close()">Overview</a>
+  <a nav class="wr-offcanvas__item" href="#public-tools" (click)="close()">Tool pubblici</a>
+  <a nav class="wr-offcanvas__item" href="#internal-tools" (click)="close()">Tool interni</a>
+  <a nav class="wr-offcanvas__item" routerLink="/login" (click)="close()">Accesso</a>
+
+  <div footer class="sidebar-access">
+    @if (isAuthenticated && currentUser; as user) {
+      <p class="sidebar-meta">{{ user.name }}</p>
+      <p class="sidebar-submeta">{{ user.email }}</p>
+      <button type="button" class="wr-action wr-action--secondary" (click)="requestLogout()">Esci</button>
+    } @else {
+      <a class="wr-action wr-action--primary" routerLink="/login" (click)="close()">Accedi</a>
+    }
+  </div>
+</ui-offcanvas>

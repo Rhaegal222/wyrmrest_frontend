@@ -1,16 +1,39 @@
-<a class="card" [class.card--internal]="platform().audience === 'internal'" [href]="platform().url">
-  <span class="card-top">
-    <span class="card-icon" aria-hidden="true">{{ platform().icon }}</span>
-    <span class="card-badge" [class.badge-live]="platform().badge === 'live'" [class.badge-tool]="platform().badge === 'tool'" [class.badge-wip]="platform().badge === 'wip'">{{ badgeLabel() }}</span>
-  </span>
-  <span class="card-name">{{ platform().name }}</span>
-  <p class="card-desc">{{ platform().description }}</p>
-  <span class="card-meta">
-    <span class="card-pill">{{ audienceLabel() }}</span>
-    <span class="card-pill">{{ accessLabel() }}</span>
-  </span>
-  <span class="card-footer">
-    <span class="card-url">{{ platform().url }}</span>
-    <span class="card-cta">Apri</span>
-  </span>
+<a
+  class="dashboard-card"
+  [href]="platform().url"
+  [class.is-live]="platform().badge === 'live'"
+  [class.is-wip]="platform().badge === 'wip'"
+  [class.is-tool]="platform().badge === 'tool'"
+>
+  <div class="card-header">
+    <div class="icon-box" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2"/>
+        <line x1="8" y1="21" x2="16" y2="21"/>
+        <line x1="12" y1="17" x2="12" y2="21"/>
+      </svg>
+    </div>
+    <span class="status-badge" [attr.data-status]="platform().badge">
+      <span class="status-dot" aria-hidden="true"></span>
+      {{ badgeLabel() }}
+    </span>
+  </div>
+
+  <div class="card-body">
+    <h3 class="name">{{ platform().name }}</h3>
+    <p class="description">{{ platform().description }}</p>
+  </div>
+
+  <div class="card-footer">
+    <div class="labels">
+      <span class="label">{{ audienceLabel() }}</span>
+      <span class="label">{{ accessLabel() }}</span>
+    </div>
+    <div class="cta" aria-hidden="true">
+      <span>Apri</span>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3.5 10.5 8 6 12.5"/>
+      </svg>
+    </div>
+  </div>
 </a>

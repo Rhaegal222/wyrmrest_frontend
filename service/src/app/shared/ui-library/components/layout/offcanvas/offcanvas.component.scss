@@ -1,7 +1,26 @@
+:host {
+  display: contents;
+}
+
+.ui-offcanvas-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--wr-z-overlay);
+  display: flex;
+  justify-content: flex-start;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+}
+
 .ui-offcanvas {
-  outline: none;
+  animation: offcanvas-slide-in var(--wr-motion-slow) cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .ui-offcanvas__close {
-  flex-shrink: 0;
+  min-height: 44px;
+}
+
+@keyframes offcanvas-slide-in {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
 }

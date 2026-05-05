@@ -30,6 +30,7 @@
               { "glob": "**/*", "input": "src/assets", "output": "/assets/" }
             ],
             "styles": [
+              "../../ui-system/packages/ui-core/dist/ui-core.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -89,6 +90,7 @@
               }
             ],
             "styles": [
+              "../../ui-system/packages/ui-core/dist/ui-core.css",
               "src/styles.scss"
             ],
             "scripts": []

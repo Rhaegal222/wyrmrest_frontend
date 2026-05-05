@@ -1,0 +1,69 @@
+:host {
+  display: block;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--wr-space-16);
+}
+
+.stat-card {
+  padding: var(--wr-space-20) var(--wr-space-24);
+  border-radius: var(--wr-radius-lg);
+  background: var(--wr-color-bg-surface);
+  border: 1px solid var(--wr-color-border-subtle);
+  box-shadow: var(--wr-shadow-1);
+  transition:
+    box-shadow var(--wr-motion-base),
+    border-color var(--wr-motion-base),
+    transform var(--wr-motion-base);
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--wr-color-accent-primary) 35%, var(--wr-color-border-subtle));
+  }
+
+  .stat-value {
+    font-family: var(--wr-font-family-display, "Special Elite", monospace);
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--wr-color-text-primary);
+    line-height: 1;
+    margin-bottom: var(--wr-space-8);
+  }
+
+  .stat-label {
+    font-size: var(--wr-font-size-11);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--wr-color-text-disabled);
+  }
+
+  .stat-trend {
+    margin-top: var(--wr-space-8);
+    font-size: var(--wr-font-size-12);
+    color: var(--wr-color-text-secondary);
+    line-height: var(--wr-line-normal);
+  }
+
+  /* Colored accent on value per variant */
+  &--primary .stat-value { color: var(--wr-color-accent-primary); }
+  &--warning .stat-value { color: var(--wr-color-warning); }
+  &--info    .stat-value { color: var(--wr-color-info); }
+}
+
+/* Dark hover — glow */
+:host-context([data-wr-theme="sh-dark"]) .stat-card:hover,
+:host-context([data-wr-theme="default-dark"]) .stat-card:hover {
+  box-shadow:
+    0 0 16px color-mix(in srgb, var(--wr-color-accent-primary) 25%, transparent),
+    0 4px 12px rgba(0,0,0,0.6);
+}
+
+/* Light hover — hard shadow */
+:host-context([data-wr-theme="sh-light"]) .stat-card:hover {
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.16);
+  transform: translate(-2px, -2px);
+}

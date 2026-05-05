@@ -1,0 +1,72 @@
+<div class="sidebar-header">
+  <p class="logo-eyebrow">Wyrmrest Hub</p>
+  <div class="logo-text">WYRMREST</div>
+</div>
+
+<nav class="sidebar-nav" aria-label="Navigazione principale">
+  <p class="nav-section-title">Catalogo</p>
+
+  <a class="nav-item active" href="#overview" aria-current="page">
+    <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <rect x="1" y="1" width="6" height="6" rx="1"/>
+      <rect x="9" y="1" width="6" height="6" rx="1"/>
+      <rect x="1" y="9" width="6" height="6" rx="1"/>
+      <rect x="9" y="9" width="6" height="6" rx="1"/>
+    </svg>
+    <span>Overview</span>
+  </a>
+
+  <a class="nav-item" href="#public-tools">
+    <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <circle cx="8" cy="8" r="6.5"/>
+      <path d="M8 1.5C8 1.5 5 4 5 8s3 6.5 3 6.5M8 1.5C8 1.5 11 4 11 8s-3 6.5-3 6.5M1.5 8h13"/>
+    </svg>
+    <span>Tool Pubblici</span>
+  </a>
+
+  <a class="nav-item" href="#internal-tools">
+    <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <rect x="3" y="7" width="10" height="8" rx="1"/>
+      <path d="M5 7V5a3 3 0 0 1 6 0v2"/>
+    </svg>
+    <span>Tool Interni</span>
+  </a>
+
+  <p class="nav-section-title">Area Utente</p>
+
+  @if (!isAuthenticated) {
+    <a class="nav-item" routerLink="/login">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M6 2H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3M10 11l3-3-3-3M13 8H6"/>
+      </svg>
+      <span>Accedi</span>
+    </a>
+  } @else {
+    <a class="nav-item" (click)="logoutRequested.emit()" role="button" tabindex="0">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M10 2h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-3M6 11l-3-3 3-3M3 8h7"/>
+      </svg>
+      <span>Esci</span>
+    </a>
+  }
+</nav>
+
+<div class="sidebar-footer">
+  @if (isAuthenticated && currentUser; as user) {
+    <div class="user-profile">
+      <div class="avatar" aria-hidden="true">{{ (user.name || 'U')[0].toUpperCase() }}</div>
+      <div class="user-info">
+        <div class="name">{{ user.name }}</div>
+        <div class="role">{{ user.roles[0]?.name || 'Utente' }}</div>
+      </div>
+    </div>
+  } @else {
+    <div class="user-profile">
+      <div class="avatar" aria-hidden="true">?</div>
+      <div class="user-info">
+        <div class="name">Ospite</div>
+        <div class="role">Accesso limitato</div>
+      </div>
+    </div>
+  }
+</div>

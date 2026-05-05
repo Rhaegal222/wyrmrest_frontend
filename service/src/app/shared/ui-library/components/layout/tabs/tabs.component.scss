@@ -1,69 +1,60 @@
-@use "../../../styles/mixins" as m;
+:host {
+  display: block;
+}
 
 .ui-tabs {
   display: flex;
   flex-direction: column;
-  width: 100%;
+}
 
-  &__header {
-    display: flex;
-    position: relative;
-    border-bottom: 2px solid var(--color-border);
-    gap: var(--space-4);
-    margin-bottom: var(--space-4);
-  }
-
-  &__indicator {
-    position: absolute;
-    bottom: -2px;
-    height: 2px;
-    background-color: var(--primary-500);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  &__content {
-    padding: var(--space-2) 0;
-    animation: fade-in 0.3s ease-out;
-  }
+.ui-tabs__header {
+  display: flex;
+  position: relative;
+  border-bottom: 1px solid var(--wr-color-border-strong);
+  gap: 0;
 }
 
 .ui-tab-item {
-  background: transparent;
-  border: none;
-  padding: var(--space-3) var(--space-2);
-  font-family: var(--font-family);
-  font-size: var(--fs-base);
+  padding: var(--wr-space-8) var(--wr-space-16);
+  font-size: var(--wr-font-size-14);
   font-weight: 500;
-  color: var(--color-muted);
+  color: var(--wr-color-text-secondary);
+  border: none;
+  background: none;
   cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  transition: color var(--transition-base);
-  position: relative;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color var(--wr-motion-fast), border-color var(--wr-motion-fast);
+  white-space: nowrap;
 
-  &:hover:not(&--disabled) {
-    color: var(--primary-600);
-  }
+  &:hover:not(&--disabled) { color: var(--wr-color-text-primary); }
 
   &--active {
-    color: var(--primary-500);
-    font-weight: 600;
+    color: var(--wr-color-accent-primary);
+    border-bottom-color: var(--wr-color-accent-primary);
   }
 
   &--disabled {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--wr-color-accent-primary);
+    outline-offset: -2px;
+    border-radius: var(--wr-radius-sm) var(--wr-radius-sm) 0 0;
   }
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.ui-tabs__indicator {
+  position: absolute;
+  bottom: -1px;
+  height: 2px;
+  background: var(--wr-color-accent-primary);
+  border-radius: 2px;
+  transition: left var(--wr-motion-base), width var(--wr-motion-base);
+}
+
+.ui-tabs__content {
+  padding-top: var(--wr-space-16);
 }

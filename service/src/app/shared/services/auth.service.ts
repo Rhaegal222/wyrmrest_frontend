@@ -84,7 +84,10 @@ export class AuthService {
   refreshSession() {
     this.loadingSignal.set(true);
 
-    return this.http.get<AuthEnvelope<AuthUser>>('/api/auth/me', { withCredentials: true }).pipe(
+    return this.http.get<AuthEnvelope<AuthUser>>('/api/auth/me', { 
+      withCredentials: true,
+      headers: { 'Accept': 'application/json' }
+    }).pipe(
       tap((response) => {
         this.userSignal.set(response.data);
         this.twoFactorRequiredSignal.set(false);
@@ -104,7 +107,10 @@ export class AuthService {
     this.errorSignal.set(null);
 
     return this.getCsrfCookie().pipe(
-      switchMap(() => this.http.post<AuthEnvelope<LoginData>>('/api/auth/login', payload, { withCredentials: true })),
+      switchMap(() => this.http.post<AuthEnvelope<LoginData>>('/api/auth/login', payload, { 
+        withCredentials: true,
+        headers: { 'Accept': 'application/json' }
+      })),
       tap((response) => this.applyLoginResponse(response)),
       tap(() => this.loadingSignal.set(false)),
       catchError((error) => {
