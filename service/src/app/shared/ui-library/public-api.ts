@@ -9,7 +9,6 @@ export * from './services/modal.service';
 // Components - Actions
 export * from './components/actions/button/button.component';
 export * from './components/actions/link/link.component';
-export * from './components/actions/icon-button/icon-button.component';
 export * from './components/actions/fab/fab.component';
 
 // Components - Inputs

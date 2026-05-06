@@ -19,10 +19,10 @@ export class AlertComponent {
 
   get defaultIcon(): string {
     const icons: Record<AlertType, string> = {
-      success: '✓',
-      error: '✕',
-      warning: '⚠',
-      info: 'ℹ'
+      success: '[OK]',
+      error: '[ERR]',
+      warning: '[!]',
+      info: '[i]'
     };
     return this.icon || icons[this.type];
   }

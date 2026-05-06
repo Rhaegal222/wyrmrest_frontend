@@ -11,9 +11,11 @@ import { Platform } from '../../platform.model';
   styleUrl: './hub-catalog-section.component.scss',
 })
 export class HubCatalogSectionComponent {
+  @Input() anchorId = '';
   @Input() sectionId = '';
   @Input() title = '';
   @Input() eyebrow = 'Catalogo';
+  @Input() description = '';
   @Input() countLabel = '';
   @Input() locked = false;
   @Input() platforms: Platform[] = [];

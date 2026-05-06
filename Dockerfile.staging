@@ -6,16 +6,17 @@ ARG NODE_ENV=production
 
 WORKDIR /app
 
-COPY ./service/package*.json ./
+COPY wyrmrest_frontend/service/package*.json ./
 RUN NODE_ENV=development npm install --legacy-peer-deps
 
-COPY ./service .
+COPY wyrmrest_frontend/service .
+COPY ui-system /ui-system
 RUN npm run build
 
 # =============================================================================
 FROM nginx:1.27-alpine AS runner
 
 COPY --from=builder /app/dist/wyrmrest_frontend/browser /usr/share/nginx/html
-COPY _resources/nginx.conf /etc/nginx/conf.d/default.conf
+COPY wyrmrest_frontend/_resources/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80

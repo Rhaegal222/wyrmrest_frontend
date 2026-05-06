@@ -1,76 +1,59 @@
-@use '../../../styles/mixins' as m;
+:host {
+  display: inline-flex;
+  position: fixed;
+  bottom: var(--wr-space-24);
+  right: var(--wr-space-24);
+  z-index: var(--wr-z-dropdown);
+}
 
 .ui-fab {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2);
-  height: 2.75rem;               /* 44px */
-  padding: 0 1rem;               /* 16px */
-  border: 0.0625rem solid color-mix(in srgb, var(--primary-700) 70%, transparent);
-  border-radius: var(--radius-full);
-  background: var(--primary-500);
-  color: #fff;
-  font-size: var(--fs-base);
-  font-weight: 600;
+  gap: var(--wr-space-8);
+  border: none;
+  border-radius: var(--wr-radius-full);
+  background: var(--wr-color-accent-primary);
+  color: var(--wr-color-text-on-accent);
   cursor: pointer;
-  transition: all var(--transition-base);
-  @include m.elevation(2);
+  box-shadow: var(--wr-shadow-3);
+  transition:
+    background var(--wr-motion-base),
+    transform var(--wr-motion-base),
+    box-shadow var(--wr-motion-base);
 
   &:hover {
-    background: var(--primary-600);
-    @include m.elevation(3);
-    transform: translateY(-0.125rem); /* -2px */
-  }
-
-  &:active {
-    transform: translateY(0);
+    background: var(--wr-color-accent-hover);
+    transform: scale(1.05);
   }
 
   &:focus-visible {
-    outline: 0.125rem solid color-mix(in srgb, #fff 70%, var(--primary-300)); /* 2px */
-    outline-offset: 0.125rem;
+    outline: 2px solid var(--wr-color-accent-primary);
+    outline-offset: 4px;
   }
 
-  /* ===== Extended con label ===== */
+  &--small  { width: 40px; height: 40px; }
+  &--medium { width: 56px; height: 56px; }
+  &--large  { width: 64px; height: 64px; }
+
   &--extended {
-    padding: 0 1.125rem; /* 18px */
-  }
-
-  /* ===== Sizes (opzionale) ===== */
-  &--small {
-    height: 2.25rem;      /* 36px */
-    padding: 0 0.875rem;  /* 14px */
-    font-size: var(--fs-sm);
-  }
-
-  &--medium {
-    /* default già impostato sopra */
-  }
-
-  &--large {
-    height: 3rem;         /* 48px */
-    padding: 0 1.25rem;   /* 20px */
-    font-size: var(--fs-lg);
-  }
-
-  .ui-fab__icon {
-    font-size: 1.125rem; /* 18px */
-    line-height: 1;
-  }
-
-  .ui-fab__label {
-    font-weight: 600;
+    border-radius: var(--wr-radius-full);
+    padding: var(--wr-space-12) var(--wr-space-24);
+    width: auto;
+    height: auto;
   }
 }
 
-/* ===== Dark mode fine-tune ===== */
-:root.dark .ui-fab,
-.theme-dark .ui-fab {
-  box-shadow: 0 0.625rem 1.5rem rgba(0, 0, 0, 0.45);
-  border-color: color-mix(in srgb, var(--primary-800) 75%, transparent);
+.ui-fab__icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
 
-  &:hover {
-    box-shadow: 0 0.75rem 1.875rem rgba(0, 0, 0, 0.55);
-  }
+.ui-fab__label {
+  font-size: var(--wr-font-size-14);
+  font-weight: 600;
+  white-space: nowrap;
 }

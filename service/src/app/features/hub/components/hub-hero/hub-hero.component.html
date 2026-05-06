@@ -1,13 +1,47 @@
-<section class="hero-panel panel">
+<section class="hero-panel" id="overview">
   <div class="hero-copy">
-    <p class="eyebrow">Catalogo</p>
-    <h2>Interfaccia uniforme per tool pubblici e interni</h2>
-    <p class="brand-copy">Bento grid, accesso coerente, CTA controllate e stato gated esplicito per i servizi interni.</p>
+    <p class="hero-eyebrow">Platform Workspace</p>
+    <h2 class="hero-title">Tool pubblici, aree riservate e operativita tecnica in un solo hub.</h2>
+    <p class="hero-summary">
+      Wyrmrest raccoglie applicazioni, automazioni e moduli interni con un linguaggio visivo unico e una navigazione rapida.
+    </p>
+
+    <div class="hero-actions">
+      <a class="wr-button wr-button--primary" href="#public-tools">Esplora i tool</a>
+      <a class="wr-button wr-button--secondary" href="#internal-tools">Area riservata</a>
+    </div>
   </div>
 
-  <div class="hero-stats" aria-label="Riepilogo catalogo">
-    <span><strong>{{ publicCount }}</strong> pubblici</span>
-    <span><strong>{{ internalCount }}</strong> interni</span>
-    <span><strong>44px</strong> touch target</span>
+  <div class="hero-aside">
+    <div class="hero-card hero-card--accent">
+      <p class="hero-card__label">Catalogo live</p>
+      <div class="hero-card__value">{{ publicCount }}</div>
+      <p class="hero-card__meta">strumenti disponibili subito</p>
+    </div>
+
+    <div class="hero-card hero-card--rail">
+      <p class="hero-card__label">Active stack</p>
+      <div class="hero-rail">
+        <span>frontend.angular</span>
+        <span>backend.laravel</span>
+        <span>deploy.github-actions</span>
+      </div>
+      <p class="hero-card__meta">moduli allineati su un hub unico</p>
+    </div>
+
+    <div class="hero-card">
+      <p class="hero-card__label">Accesso interno</p>
+      <div class="hero-card__value">{{ internalCount }}</div>
+      <p class="hero-card__meta">moduli autenticati e workflow protetti</p>
+    </div>
+
+    <div class="hero-card">
+      <p class="hero-card__label">Stato piattaforma</p>
+      <div class="hero-status">
+        <span class="hero-status__dot" aria-hidden="true"></span>
+        <span>Operativa</span>
+      </div>
+      <p class="hero-card__meta">servizi monitorati e deploy centralizzati</p>
+    </div>
   </div>
 </section>

@@ -1,149 +1,83 @@
-@use '../../../styles/mixins' as m;
+:host {
+  display: inline-flex;
+}
 
-/* ========== BUTTON STANDARD ========== */
 .ui-button {
-  /* Variabili locali per variant e size */
-  --btn-bg: var(--primary-500);
-  --btn-bg-hover: var(--primary-600);
-  --btn-fg: #fff;
-  --btn-h: 2.5rem;        /* 40px - default = md */
-  --btn-px: 1rem;         /* 16px */
-  --btn-fs: var(--fs-base);
-  --btn-radius: var(--radius-md);
-
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2);
-  height: var(--btn-h);
-  padding: 0 var(--btn-px);
-  border: 0.0625rem solid transparent; /* 1px */
-  border-radius: var(--btn-radius);
-  background: var(--btn-bg);
-  color: var(--btn-fg);
-  font-size: var(--btn-fs);
+  gap: var(--wr-space-6);
+  border-radius: var(--wr-radius-md);
+  font-family: var(--wr-font-family-ui);
   font-weight: 600;
   cursor: pointer;
-  transition: all var(--transition-base);
-  position: relative;
-  overflow: hidden;
-  @include m.elevation(1);
+  white-space: nowrap;
+  border: 1px solid transparent;
+  transition:
+    background-color var(--wr-motion-base),
+    border-color var(--wr-motion-base),
+    color var(--wr-motion-base),
+    transform var(--wr-motion-fast);
 
-  &:hover:not(:disabled):not(.ui-button--loading) {
-    background: var(--btn-bg-hover);
-    @include m.elevation(2);
-    transform: translateY(-0.125rem); /* -2px */
+  &:focus-visible {
+    outline: 2px solid var(--wr-color-accent-primary);
+    outline-offset: 2px;
   }
 
-  &:active:not(:disabled):not(.ui-button--loading) {
-    transform: translateY(0);
-    @include m.elevation(1);
-  }
+  &--small   { padding: var(--wr-space-4) var(--wr-space-12); font-size: var(--wr-font-size-12); }
+  &--medium  { padding: var(--wr-space-8) var(--wr-space-16); font-size: var(--wr-font-size-14); }
+  &--large   { padding: var(--wr-space-12) var(--wr-space-24); font-size: var(--wr-font-size-16); }
 
-  &:disabled,
-  &.ui-button--loading {
-    opacity: 0.6;
-    cursor: not-allowed;
-    @include m.elevation(0);
-  }
+  &--full-width { width: 100%; }
 
-  &--full-width {
-    width: 100%;
-  }
-
-  /* ===== Sizes (bootstrap-like) ===== */
-  &--sm {
-    --btn-h: 2rem;       /* 32px */
-    --btn-px: 0.75rem;   /* 12px */
-    --btn-fs: var(--fs-sm);
-  }
-
-  &--md {
-    /* default già impostato sopra */
-  }
-
-  &--lg {
-    --btn-h: 2.875rem;   /* 46px */
-    --btn-px: 1.125rem;  /* 18px */
-    --btn-fs: var(--fs-lg);
-  }
-
-  &--xl {
-    --btn-h: 3.25rem;    /* 52px */
-    --btn-px: 1.375rem;  /* 22px */
-    --btn-fs: var(--fs-xl);
-  }
-
-  /* ===== Variants ===== */
   &--primary {
-    --btn-bg: var(--primary-500);
-    --btn-bg-hover: var(--primary-600);
-    --btn-fg: #fff;
+    background: var(--wr-color-accent-primary);
+    border-color: var(--wr-color-accent-primary);
+    color: var(--wr-color-text-on-accent);
+    &:hover:not(:disabled) { background: var(--wr-color-accent-hover); border-color: var(--wr-color-accent-hover); }
   }
 
   &--secondary {
-    --btn-bg: var(--secondary-500);
-    --btn-bg-hover: var(--secondary-600);
-    --btn-fg: #fff;
-  }
-
-  &--success {
-    --btn-bg: var(--success-500);
-    --btn-bg-hover: var(--success-600);
-    --btn-fg: #fff;
-  }
-
-  &--warning {
-    --btn-bg: var(--warning-500);
-    --btn-bg-hover: var(--warning-600);
-    --btn-fg: #fff;
+    background: var(--wr-color-bg-elevated);
+    border-color: var(--wr-color-border-strong);
+    color: var(--wr-color-text-primary);
+    &:hover:not(:disabled) { border-color: var(--wr-color-accent-primary); color: var(--wr-color-accent-primary); }
   }
 
   &--danger {
-    --btn-bg: var(--danger-500);
-    --btn-bg-hover: var(--danger-600);
-    --btn-fg: #fff;
+    background: transparent;
+    border-color: var(--wr-color-danger);
+    color: var(--wr-color-danger);
+    &:hover:not(:disabled) { background: rgba(200, 81, 81, 0.12); }
   }
 
-  &--info {
-    --btn-bg: var(--info-500);
-    --btn-bg-hover: var(--info-600);
-    --btn-fg: #fff;
-  }
-
-  /* ===== Loading spinner ===== */
-  .ui-button__spinner {
-    width: 1em;
-    height: 1em;
-    border: 0.125rem solid rgba(255, 255, 255, 0.35); /* 2px */
-    border-top-color: currentColor;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-
-  /* ===== Icon helpers ===== */
-  .ui-button__icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    &--left {
-      margin-right: -0.25rem; /* -4px */
-    }
-
-    &--right {
-      margin-left: -0.25rem;
-    }
-  }
-
-  .ui-button__content {
-    display: inline-flex;
-    align-items: center;
+  &--loading,
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
   }
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+.ui-button__spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: ui-btn-spin 600ms linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes ui-btn-spin {
+  to { transform: rotate(360deg); }
+}
+
+.ui-button__icon {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1em;
+  line-height: 1;
 }

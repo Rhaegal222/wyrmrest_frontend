@@ -9,6 +9,14 @@ import { Platform } from '../../platform.model';
 })
 export class PlatformCardComponent {
   readonly platform = input.required<Platform>();
+  readonly urlLabel = computed(() => {
+    const raw = this.platform().url;
+    try {
+      return new URL(raw).host;
+    } catch {
+      return raw;
+    }
+  });
 
   readonly audienceLabel = computed(() => {
     const audience = this.platform().audience;
@@ -18,8 +26,8 @@ export class PlatformCardComponent {
 
   readonly badgeLabel = computed(() => {
     const badge = this.platform().badge;
-    if (badge === 'live') return '● Live';
-    if (badge === 'wip') return '⧖ In sviluppo';
+    if (badge === 'live') return 'Live';
+    if (badge === 'wip') return 'In sviluppo';
     return 'Strumento';
   });
 

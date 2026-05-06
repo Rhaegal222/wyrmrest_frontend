@@ -1,8 +1,12 @@
+:host {
+  display: block;
+  margin-top: auto;
+}
+
 footer {
-  margin: 0 auto;
-  padding: 0 0 var(--wr-space-32);
-  width: min(100%, 1360px);
-  color: var(--wr-color-text-disabled);
+  padding: var(--wr-space-24) 0;
+  border-top: 1px solid var(--wr-color-border-subtle);
   font-size: var(--wr-font-size-12);
+  color: var(--wr-color-text-disabled);
   text-align: center;
 }

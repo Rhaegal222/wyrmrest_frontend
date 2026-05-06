@@ -1,3 +1,7 @@
-.ui-sidebar {
-  height: 100%;
+:host {
+  display: block;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
 }

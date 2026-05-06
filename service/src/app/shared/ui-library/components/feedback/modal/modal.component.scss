@@ -1,7 +1,93 @@
-.ui-modal-backdrop {
-  cursor: pointer;
+:host {
+  display: contents;
 }
 
-.ui-modal {
-  outline: none;
+/* backdrop */
+:host > div:first-child {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  z-index: var(--wr-z-overlay);
+  display: grid;
+  place-items: center;
+  padding: var(--wr-space-16);
+  animation: modal-fade-in var(--wr-motion-base) ease forwards;
+}
+
+/* dialog */
+:host > div:first-child > div {
+  background: var(--wr-color-bg-elevated);
+  border: 1px solid var(--wr-color-border-strong);
+  border-radius: var(--wr-radius-lg);
+  box-shadow: var(--wr-shadow-3);
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  z-index: var(--wr-z-modal);
+  animation: modal-scale-in var(--wr-motion-base) cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* header */
+:host > div:first-child > div > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--wr-space-16) var(--wr-space-24);
+  border-bottom: 1px solid var(--wr-color-border-strong);
+
+  h3 {
+    font-size: var(--wr-font-size-18);
+    font-weight: 600;
+    color: var(--wr-color-text-primary);
+  }
+
+  button {
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    border-radius: var(--wr-radius-sm);
+    color: var(--wr-color-text-disabled);
+    font-size: var(--wr-font-size-14);
+    transition: color var(--wr-motion-fast), background var(--wr-motion-fast);
+    cursor: pointer;
+    background: none;
+    border: none;
+    &:hover {
+      color: var(--wr-color-text-primary);
+      background: var(--wr-color-bg-canvas);
+    }
+  }
+}
+
+/* body */
+:host > div:first-child > div > div:nth-child(2) {
+  padding: var(--wr-space-24);
+  overflow-y: auto;
+  color: var(--wr-color-text-secondary);
+  font-size: var(--wr-font-size-14);
+  line-height: var(--wr-line-normal);
+  flex: 1;
+}
+
+/* footer */
+:host > div:first-child > div > div:last-child {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--wr-space-8);
+  padding: var(--wr-space-16) var(--wr-space-24);
+  border-top: 1px solid var(--wr-color-border-strong);
+}
+
+@keyframes modal-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes modal-scale-in {
+  from { opacity: 0; transform: scale(0.95) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
 }

@@ -20,10 +20,10 @@ export class ToastContainerComponent {
 
   getIcon(type: string): string {
     const icons: Record<string, string> = {
-      success: '✓',
-      error: '✕',
-      warning: '⚠',
-      info: 'ℹ'
+      success: '[OK]',
+      error: '[ERR]',
+      warning: '[!]',
+      info: '[i]'
     };
     return icons[type] || icons['info'];
   }

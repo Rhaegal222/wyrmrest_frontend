@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 // Actions
 import { ButtonComponent } from './components/actions/button/button.component';
 import { LinkComponent } from './components/actions/link/link.component';
-import { IconButtonComponent } from './components/actions/icon-button/icon-button.component';
 import { FabComponent } from './components/actions/fab/fab.component';
 
 // Inputs
@@ -45,7 +44,6 @@ const COMPONENTS = [
   // Actions
   ButtonComponent,
   LinkComponent,
-  IconButtonComponent,
   FabComponent,
   // Inputs
   TextInputComponent,
