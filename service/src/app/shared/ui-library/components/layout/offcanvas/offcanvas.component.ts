@@ -5,7 +5,10 @@ import {
   EventEmitter,
   HostListener,
   Input,
+  OnChanges,
+  OnDestroy,
   Output,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -17,7 +20,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './offcanvas.component.html',
   styleUrls: ['./offcanvas.component.scss'],
 })
-export class OffcanvasComponent implements AfterViewInit {
+export class OffcanvasComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input() title = 'WYRMREST';
   @Input() eyebrow = 'Menu';
   @Input() isOpen = false;
@@ -25,12 +28,29 @@ export class OffcanvasComponent implements AfterViewInit {
   @Output() closeEvent = new EventEmitter<void>();
   @ViewChild('drawer', { static: false }) drawer?: ElementRef<HTMLElement>;
   private previouslyFocused?: HTMLElement | null;
+  private viewReady = false;
 
   ngAfterViewInit(): void {
-    this.previouslyFocused = document.activeElement as HTMLElement | null;
-    if (this.isOpen) {
-      queueMicrotask(() => this.focusFirstElement());
+    this.viewReady = true;
+    if (this.isOpen) this.handleOpen();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!('isOpen' in changes)) {
+      return;
     }
+
+    if (this.isOpen) {
+      this.handleOpen();
+      return;
+    }
+
+    document.body.style.overflow = '';
+    queueMicrotask(() => this.previouslyFocused?.focus());
+  }
+
+  ngOnDestroy(): void {
+    document.body.style.overflow = '';
   }
 
   onBackdropClick(): void {
@@ -39,7 +59,6 @@ export class OffcanvasComponent implements AfterViewInit {
 
   close(): void {
     this.closeEvent.emit();
-    queueMicrotask(() => this.previouslyFocused?.focus());
   }
 
   @HostListener('document:keydown.escape')
@@ -76,6 +95,17 @@ export class OffcanvasComponent implements AfterViewInit {
   private focusFirstElement(): void {
     const focusables = this.getFocusableElements();
     (focusables[0] ?? this.drawer?.nativeElement)?.focus();
+  }
+
+  private handleOpen(): void {
+    this.previouslyFocused = document.activeElement as HTMLElement | null;
+    document.body.style.overflow = 'hidden';
+
+    if (!this.viewReady) {
+      return;
+    }
+
+    queueMicrotask(() => this.focusFirstElement());
   }
 
   private getFocusableElements(): HTMLElement[] {
