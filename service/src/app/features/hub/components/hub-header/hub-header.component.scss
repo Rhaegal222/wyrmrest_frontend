@@ -40,6 +40,12 @@
   gap: var(--wr-space-16);
   color: inherit;
   text-decoration: none;
+
+  &:focus-visible {
+    outline: none;
+    border-radius: var(--wr-radius-lg);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--wr-color-accent-primary) 18%, transparent);
+  }
 }
 
 .brand-logo {
@@ -123,13 +129,22 @@
     background: color-mix(in srgb, var(--wr-color-bg-elevated) 92%, transparent);
     box-shadow: inset 0 -2px 0 var(--wr-color-accent-primary);
   }
+
+  &:focus-visible {
+    outline: none;
+    color: var(--wr-color-text-primary);
+    background: color-mix(in srgb, var(--wr-color-bg-elevated) 92%, transparent);
+    box-shadow:
+      inset 0 -2px 0 var(--wr-color-accent-primary),
+      0 0 0 3px color-mix(in srgb, var(--wr-color-accent-primary) 16%, transparent);
+  }
 }
 
 .topbar-actions {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: var(--wr-space-10);
+  gap: var(--wr-space-12);
 }
 
 .hub-cta {

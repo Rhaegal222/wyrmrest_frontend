@@ -2,40 +2,40 @@
 
 :root,
 [data-wr-theme="default-dark"] {
-  --wr-bg-canvas: rgb(6 14 12);
-  --wr-bg-surface: rgb(11 24 20);
-  --wr-bg-elevated: rgb(18 34 29);
-  --wr-border-subtle: rgb(79 108 86 / 40%);
-  --wr-border-strong: rgb(112 145 118 / 58%);
-  --wr-accent-primary: rgb(183 255 84);
-  --wr-accent-hover: rgb(213 255 146);
-  --wr-text-primary: rgb(245 248 242);
-  --wr-text-secondary: rgb(183 198 185);
-  --wr-text-disabled: rgb(124 145 129);
-  --wr-text-on-accent: rgb(14 20 10);
-  --wr-success: rgb(126 255 167);
-  --wr-warning: rgb(255 196 96);
-  --wr-danger: rgb(255 112 112);
-  --wr-info: rgb(124 222 255);
+  --wr-bg-canvas: rgb(9 11 17);
+  --wr-bg-surface: rgb(16 19 28);
+  --wr-bg-elevated: rgb(23 29 41);
+  --wr-border-subtle: rgb(127 140 166 / 20%);
+  --wr-border-strong: rgb(177 191 220 / 30%);
+  --wr-accent-primary: rgb(255 124 76);
+  --wr-accent-hover: rgb(255 160 116);
+  --wr-text-primary: rgb(247 248 251);
+  --wr-text-secondary: rgb(195 202 214);
+  --wr-text-disabled: rgb(118 129 147);
+  --wr-text-on-accent: rgb(26 16 11);
+  --wr-success: rgb(82 214 157);
+  --wr-warning: rgb(255 190 86);
+  --wr-danger: rgb(255 104 120);
+  --wr-info: rgb(111 186 255);
 }
 
 [data-wr-theme="default-light"] {
   color-scheme: light;
-  --wr-bg-canvas: rgb(246 245 238);
-  --wr-bg-surface: rgb(255 255 251);
-  --wr-bg-elevated: rgb(239 236 224);
-  --wr-border-subtle: rgb(91 115 92 / 22%);
-  --wr-border-strong: rgb(62 89 64 / 34%);
-  --wr-accent-primary: rgb(41 117 67);
-  --wr-accent-hover: rgb(52 143 81);
-  --wr-text-primary: rgb(21 29 24);
-  --wr-text-secondary: rgb(75 88 80);
-  --wr-text-disabled: rgb(118 126 120);
-  --wr-text-on-accent: rgb(246 245 238);
-  --wr-success: rgb(36 146 83);
-  --wr-warning: rgb(201 129 28);
-  --wr-danger: rgb(191 67 67);
-  --wr-info: rgb(36 123 178);
+  --wr-bg-canvas: rgb(244 241 236);
+  --wr-bg-surface: rgb(255 252 247);
+  --wr-bg-elevated: rgb(238 232 224);
+  --wr-border-subtle: rgb(103 93 86 / 14%);
+  --wr-border-strong: rgb(103 93 86 / 24%);
+  --wr-accent-primary: rgb(190 84 44);
+  --wr-accent-hover: rgb(216 105 61);
+  --wr-text-primary: rgb(26 28 33);
+  --wr-text-secondary: rgb(84 87 95);
+  --wr-text-disabled: rgb(123 120 124);
+  --wr-text-on-accent: rgb(255 249 244);
+  --wr-success: rgb(24 141 95);
+  --wr-warning: rgb(184 116 29);
+  --wr-danger: rgb(193 68 79);
+  --wr-info: rgb(45 118 190);
 }
 
 html, body {
@@ -50,6 +50,10 @@ body {
   transition:
     background var(--wr-motion-slow),
     color var(--wr-motion-base);
+  background:
+    radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--wr-accent-primary) 16%, transparent), transparent 28rem),
+    radial-gradient(circle at 100% 10%, color-mix(in srgb, var(--wr-info) 12%, transparent), transparent 24rem),
+    linear-gradient(180deg, color-mix(in srgb, var(--wr-bg-elevated) 18%, var(--wr-bg-canvas)), var(--wr-bg-canvas) 44rem);
 }
 
 /* Ripple */

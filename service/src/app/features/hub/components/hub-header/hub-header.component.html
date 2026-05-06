@@ -13,10 +13,10 @@
   </a>
 
   <nav class="hub-nav" aria-label="Navigazione hub">
-    <a class="hub-nav__item" href="#overview" [class.is-active]="activeSection === 'overview'">Overview</a>
-    <a class="hub-nav__item" href="#core-modules" [class.is-active]="activeSection === 'core-modules'">Moduli</a>
-    <a class="hub-nav__item" href="#public-tools" [class.is-active]="activeSection === 'public-tools'">Tool pubblici</a>
-    <a class="hub-nav__item" href="#internal-tools" [class.is-active]="activeSection === 'internal-tools'">Area riservata</a>
+    <a class="hub-nav__item" href="#overview" [class.is-active]="activeSection === 'overview'" [attr.aria-current]="activeSection === 'overview' ? 'page' : null">Overview</a>
+    <a class="hub-nav__item" href="#core-modules" [class.is-active]="activeSection === 'core-modules'" [attr.aria-current]="activeSection === 'core-modules' ? 'page' : null">Moduli</a>
+    <a class="hub-nav__item" href="#public-tools" [class.is-active]="activeSection === 'public-tools'" [attr.aria-current]="activeSection === 'public-tools' ? 'page' : null">Tool pubblici</a>
+    <a class="hub-nav__item" href="#internal-tools" [class.is-active]="activeSection === 'internal-tools'" [attr.aria-current]="activeSection === 'internal-tools' ? 'page' : null">Area riservata</a>
   </nav>
 
   <div class="topbar-actions">
