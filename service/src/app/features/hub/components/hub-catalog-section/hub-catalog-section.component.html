@@ -1,14 +1,18 @@
 <section
-  class="catalog-panel panel"
+  class="catalog-panel"
+  [id]="anchorId || null"
   [class.catalog-panel--internal]="locked"
   [attr.aria-labelledby]="sectionId"
 >
   <div class="section-header">
-    <div>
+    <div class="section-copy">
       <p class="eyebrow">{{ eyebrow }}</p>
       <h2 [id]="sectionId">{{ title }}</h2>
+      @if (description) {
+        <p class="section-desc">{{ description }}</p>
+      }
     </div>
-    <span class="count-pill" [class.count-pill--locked]="locked">{{ countLabel }}</span>
+    <span class="wr-badge" [class.count-pill--locked]="locked">{{ countLabel }}</span>
   </div>
 
   @if (platforms.length > 0) {
@@ -18,15 +22,27 @@
       }
     </div>
   } @else if (locked && loaded && authenticated) {
-    <div class="locked-state" role="status">
-      <span aria-hidden="true">LOCK</span>
-      <p>Il profilo corrente non ha ancora permessi per i tool interni.</p>
+    <div class="gated-area" role="status">
+      <div class="gated-inner">
+        <svg class="gated-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="5" y="11" width="14" height="10" rx="2"/>
+          <path d="M7 11V8a5 5 0 0 1 10 0v3"/>
+        </svg>
+        <h3 class="gated-title">Accesso limitato</h3>
+        <p class="gated-desc">Il profilo corrente non ha permessi per i tool interni.</p>
+      </div>
     </div>
   } @else if (locked) {
-    <div class="locked-state" role="status">
-      <span aria-hidden="true">LOCK</span>
-      <p>Accedi per vedere i tool interni disponibili per il tuo ruolo.</p>
-      <a class="wr-action wr-action--secondary" routerLink="/login">Accedi</a>
+    <div class="gated-area" role="status">
+      <div class="gated-inner">
+        <svg class="gated-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="5" y="11" width="14" height="10" rx="2"/>
+          <path d="M7 11V8a5 5 0 0 1 10 0v3"/>
+        </svg>
+        <h3 class="gated-title">Area riservata</h3>
+        <p class="gated-desc">Accedi per vedere i tool interni disponibili per il tuo ruolo.</p>
+        <a class="wr-button wr-button--primary gated-cta" routerLink="/login">Accedi</a>
+      </div>
     </div>
   }
 </section>

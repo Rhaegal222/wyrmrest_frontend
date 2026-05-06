@@ -1,23 +1,40 @@
-<header class="hub-topbar" id="overview">
-  <div class="brand-lockup">
-    <span class="brand-mark" aria-hidden="true">WR</span>
-    <div>
-      <p class="eyebrow">Wyrmrest Hub</p>
-      <h1>WYRMREST</h1>
+<header class="hub-topbar">
+  <a class="brand-lockup" href="#overview" aria-label="Vai all'inizio dell'hub">
+    <div class="brand-logo" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4.5 6.5v11l3.5-4 3.5 4 3.5-4 3.5 4v-11"/>
+        <path d="M4.5 6.5c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 3.5 2"/>
+      </svg>
     </div>
-  </div>
+    <div class="brand-text">
+      <p class="brand-eyebrow">Wyrmrest Hub</p>
+      <h1 class="brand-title">WYRMREST</h1>
+    </div>
+  </a>
+
+  <nav class="hub-nav" aria-label="Navigazione hub">
+    <a class="hub-nav__item" href="#overview" [class.is-active]="activeSection === 'overview'" [attr.aria-current]="activeSection === 'overview' ? 'page' : null">Overview</a>
+    <a class="hub-nav__item" href="#core-modules" [class.is-active]="activeSection === 'core-modules'" [attr.aria-current]="activeSection === 'core-modules' ? 'page' : null">Moduli</a>
+    <a class="hub-nav__item" href="#public-tools" [class.is-active]="activeSection === 'public-tools'" [attr.aria-current]="activeSection === 'public-tools' ? 'page' : null">Tool pubblici</a>
+    <a class="hub-nav__item" href="#internal-tools" [class.is-active]="activeSection === 'internal-tools'" [attr.aria-current]="activeSection === 'internal-tools' ? 'page' : null">Area riservata</a>
+  </nav>
 
   <div class="topbar-actions">
-    <!-- Theme toggle -->
+    <a class="wr-button wr-button--primary hub-cta" routerLink="/login" aria-label="Accedi all'area riservata">
+      Accedi
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 8h10"/>
+        <path d="m9 4 4 4-4 4"/>
+      </svg>
+    </a>
     <button
       type="button"
-      class="theme-toggle"
+      class="wr-icon-button theme-toggle desktop-theme-toggle"
       (click)="themeService.toggleTheme()"
       [attr.aria-label]="isDark ? 'Passa al tema chiaro' : 'Passa al tema scuro'"
-      [title]="isDark ? 'Fog World (chiaro)' : 'Otherworld (scuro)'"
+      [title]="isDark ? 'Passa al tema chiaro' : 'Passa al tema scuro'"
     >
       @if (isDark) {
-        <!-- Sun icon — switch to light -->
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="5"/>
           <line x1="12" y1="1" x2="12" y2="3"/>
@@ -30,29 +47,26 @@
           <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
         </svg>
       } @else {
-        <!-- Moon icon — switch to dark -->
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
       }
     </button>
 
-    <!-- Menu button — mobile only -->
     <button
       type="button"
-      class="hub-menu-button"
+      class="wr-icon-button hub-menu-button"
       (click)="menuRequested.emit()"
       aria-haspopup="dialog"
       [attr.aria-expanded]="drawerOpen"
       aria-controls="hub-drawer"
       aria-label="Apri menu"
     >
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
-        <line x1="2" y1="4" x2="14" y2="4"/>
-        <line x1="2" y1="8" x2="14" y2="8"/>
-        <line x1="2" y1="12" x2="14" y2="12"/>
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="5" x2="15" y2="5"/>
+        <line x1="3" y1="9" x2="15" y2="9"/>
+        <line x1="3" y1="13" x2="15" y2="13"/>
       </svg>
-      Menu
     </button>
   </div>
 </header>

@@ -2,38 +2,65 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: var(--wr-color-bg-canvas);
-  border-right: 1px solid var(--wr-color-border-subtle);
-  color: var(--wr-color-text-primary);
   overflow: hidden;
-  /* Slow atmospheric transition */
-  transition: background-color 1200ms ease-in-out;
+  border: 1px solid var(--wr-color-border-subtle);
+  border-radius: var(--wr-radius-lg);
+  background: var(--wr-color-bg-surface);
+  box-shadow: var(--wr-shadow-1);
 }
 
 /* Brand mark at top */
 .sidebar-header {
-  display: flex;
-  flex-direction: column;
-  gap: var(--wr-space-4);
-  padding: var(--wr-space-24) var(--wr-space-20);
+  padding: var(--wr-space-20);
   border-bottom: 1px solid var(--wr-color-border-subtle);
+}
 
-  .logo-eyebrow {
-    font-size: var(--wr-font-size-11);
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--wr-color-text-disabled);
-  }
+.brand-lockup {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: var(--wr-space-12);
+  align-items: center;
+}
 
-  .logo-text {
-    font-family: var(--wr-font-family-display, "Special Elite", monospace);
-    font-size: 1.5rem;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    color: var(--wr-color-text-primary);
-    line-height: 1.1;
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--wr-radius-md);
+  background: radial-gradient(
+    circle at 30% 30%,
+    color-mix(in srgb, var(--wr-color-accent-primary) 22%, var(--wr-color-bg-elevated)),
+    var(--wr-color-bg-elevated)
+  );
+  border: 1px solid color-mix(in srgb, var(--wr-color-accent-primary) 30%, transparent);
+  display: grid;
+  place-items: center;
+  color: var(--wr-color-accent-primary);
+  box-shadow: inset 0 0 10px color-mix(in srgb, var(--wr-color-accent-primary) 14%, transparent);
+
+  svg {
+    width: 22px;
+    height: 22px;
   }
+}
+
+.brand-eyebrow {
+  font-size: var(--wr-font-size-11);
+  font-weight: 700;
+  letter-spacing: var(--wr-letter-wide);
+  text-transform: uppercase;
+  color: var(--wr-color-text-disabled);
+}
+
+.brand-title {
+  margin-top: var(--wr-space-2);
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: var(--wr-letter-tight);
+  line-height: 1;
+  color: var(--wr-color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Navigation */
@@ -52,7 +79,7 @@
   font-weight: 700;
   text-transform: uppercase;
   color: var(--wr-color-text-disabled);
-  letter-spacing: 0.14em;
+  letter-spacing: var(--wr-letter-wide);
 }
 
 .nav-item {
@@ -60,8 +87,8 @@
   align-items: center;
   gap: var(--wr-space-12);
   padding: var(--wr-space-8) var(--wr-space-12);
-  border-left: 2px solid transparent;
-  border-radius: 0 var(--wr-radius-md) var(--wr-radius-md) 0;
+  border-left: 3px solid transparent;
+  border-radius: var(--wr-radius-md);
   font-size: var(--wr-font-size-14);
   font-weight: 500;
   color: var(--wr-color-text-secondary);
@@ -77,10 +104,11 @@
     color: var(--wr-color-text-primary);
   }
 
-  &.active {
-    background: color-mix(in srgb, var(--wr-color-accent-primary) 8%, transparent);
+  &.is-active {
     border-left-color: var(--wr-color-accent-primary);
+    background: color-mix(in srgb, var(--wr-color-accent-primary) 8%, transparent);
     color: var(--wr-color-text-primary);
+    padding-left: calc(var(--wr-space-12) - 3px);
   }
 
   /* Nav icon — SVG wrapper */
@@ -97,7 +125,7 @@
 .sidebar-footer {
   padding: var(--wr-space-16) var(--wr-space-20);
   border-top: 1px solid var(--wr-color-border-subtle);
-  background: color-mix(in srgb, var(--wr-color-bg-canvas) 60%, var(--wr-color-bg-surface));
+  background: color-mix(in srgb, var(--wr-color-bg-elevated) 45%, transparent);
 
   .user-profile {
     display: flex;

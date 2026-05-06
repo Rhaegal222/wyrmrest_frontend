@@ -7,8 +7,8 @@
   inset: 0;
   z-index: var(--wr-z-overlay);
   display: flex;
-  justify-content: flex-start;
-  background: rgba(0,0,0,0.45);
+  justify-content: flex-end;
+  background: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(6px);
 }
 
@@ -21,6 +21,6 @@
 }
 
 @keyframes offcanvas-slide-in {
-  from { transform: translateX(-100%); }
+  from { transform: translateX(100%); }
   to   { transform: translateX(0); }
 }

@@ -1,11 +1,59 @@
 /* ui-core.css è caricato prima da angular.json — non ridefinire reset o body */
 
+:root,
+[data-wr-theme="default-dark"] {
+  --wr-bg-canvas: rgb(9 11 17);
+  --wr-bg-surface: rgb(16 19 28);
+  --wr-bg-elevated: rgb(23 29 41);
+  --wr-border-subtle: rgb(127 140 166 / 20%);
+  --wr-border-strong: rgb(177 191 220 / 30%);
+  --wr-accent-primary: rgb(255 124 76);
+  --wr-accent-hover: rgb(255 160 116);
+  --wr-text-primary: rgb(247 248 251);
+  --wr-text-secondary: rgb(195 202 214);
+  --wr-text-disabled: rgb(118 129 147);
+  --wr-text-on-accent: rgb(26 16 11);
+  --wr-success: rgb(82 214 157);
+  --wr-warning: rgb(255 190 86);
+  --wr-danger: rgb(255 104 120);
+  --wr-info: rgb(111 186 255);
+}
+
+[data-wr-theme="default-light"] {
+  color-scheme: light;
+  --wr-bg-canvas: rgb(244 241 236);
+  --wr-bg-surface: rgb(255 252 247);
+  --wr-bg-elevated: rgb(238 232 224);
+  --wr-border-subtle: rgb(103 93 86 / 14%);
+  --wr-border-strong: rgb(103 93 86 / 24%);
+  --wr-accent-primary: rgb(190 84 44);
+  --wr-accent-hover: rgb(216 105 61);
+  --wr-text-primary: rgb(26 28 33);
+  --wr-text-secondary: rgb(84 87 95);
+  --wr-text-disabled: rgb(123 120 124);
+  --wr-text-on-accent: rgb(255 249 244);
+  --wr-success: rgb(24 141 95);
+  --wr-warning: rgb(184 116 29);
+  --wr-danger: rgb(193 68 79);
+  --wr-info: rgb(45 118 190);
+}
+
 html, body {
   min-height: 100%;
 }
 
 app-root {
   display: contents;
+}
+
+body {
+  transition:
+    background var(--wr-motion-slow),
+    color var(--wr-motion-base);
+  background:
+    radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--wr-accent-primary) 16%, transparent), transparent 28rem),
+    radial-gradient(circle at 100% 10%, color-mix(in srgb, var(--wr-info) 12%, transparent), transparent 24rem),
+    linear-gradient(180deg, color-mix(in srgb, var(--wr-bg-elevated) 18%, var(--wr-bg-canvas)), var(--wr-bg-canvas) 44rem);
 }
 
 /* Ripple */
@@ -20,7 +68,7 @@ app-root {
 .ui-ripple {
   position: absolute;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--wr-text-primary) 12%, transparent);
+  background: color-mix(in srgb, var(--wr-color-text-primary) 12%, transparent);
   transform: scale(0);
   animation: wr-ripple 600ms ease-out forwards;
   pointer-events: none;
@@ -47,25 +95,4 @@ app-root {
 }
 
 /* Theme toggle button — positioned in header */
-.theme-toggle-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  padding: 0;
-  border: 1px solid var(--wr-color-border-strong);
-  border-radius: var(--wr-radius-md);
-  background: var(--wr-color-bg-elevated);
-  color: var(--wr-color-text-secondary);
-  cursor: pointer;
-  transition: border-color var(--wr-motion-base), color var(--wr-motion-base);
-  flex-shrink: 0;
-
-  &:hover {
-    border-color: var(--wr-color-accent-primary);
-    color: var(--wr-color-accent-primary);
-  }
-
-  svg { width: 15px; height: 15px; }
-}
+/* Theme toggle is implemented with .wr-icon-button in the header component. */

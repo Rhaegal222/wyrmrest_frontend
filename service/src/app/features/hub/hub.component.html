@@ -1,21 +1,146 @@
-<div class="hub-layout">
-  <app-hub-sidebar-nav
-    class="hub-sidebar-slot"
-    [currentUser]="currentUser()"
-    [isAuthenticated]="isAuthenticated()"
-    (logoutRequested)="openLogoutModal()"
+<div class="hub-shell">
+  <a class="hub-skip-link" href="#main-content">Salta al contenuto principale</a>
+
+  <app-hub-header
+    [activeSection]="activeSection()"
+    [drawerOpen]="isDrawerOpen()"
+    (menuRequested)="openDrawer()"
   />
 
-  <div class="hub-content">
-    <app-hub-header
-      [drawerOpen]="isDrawerOpen()"
-      (menuRequested)="openDrawer()"
-    />
+  <main class="hub-content" id="main-content">
+    <section class="landing-hero" id="overview">
+      <div class="landing-hero__copy">
+        <p class="landing-eyebrow">Wyrmrest platform</p>
+        <h2 class="landing-title">Software operativo per tool pubblici, workspace protetti e moduli interni.</h2>
+        <p class="landing-summary">
+          Una homepage tecnica, densa e chiara: accesso immediato ai tool aperti, ingresso guidato all’area riservata
+          e una struttura che comunica controllo, stato e affidabilita senza sembrare un pannello generico.
+        </p>
 
-    <app-hub-hero
-      [publicCount]="publicCount()"
-      [internalCount]="internalCount()"
-    />
+        <div class="landing-actions">
+          <a class="wr-button wr-button--primary" href="#public-tools">Apri il catalogo</a>
+          <a class="wr-button wr-button--secondary" href="#internal-tools">Area riservata</a>
+        </div>
+
+        <div class="landing-trustline">
+          <span>Stack operativo integrato</span>
+          <div class="landing-partners" aria-label="Core stack references">
+            @for (logo of partnerLogos; track logo) {
+              <span>{{ logo }}</span>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="landing-hero__panel" aria-label="Platform summary cards">
+        <article class="signal-card signal-card--feature">
+          <p class="signal-card__eyebrow">Operational pulse</p>
+          <h3>Un unico hub per accesso, cataloghi e operativita reale.</h3>
+          <p>Le sezioni principali portano direttamente a tool, moduli core e percorsi autenticati.</p>
+        </article>
+
+        <article class="signal-card signal-card--metric">
+          <p class="signal-card__eyebrow">Public tools</p>
+          <strong>{{ publicCount() }}</strong>
+          <span>disponibili subito</span>
+        </article>
+
+        <article class="signal-card signal-card--rail">
+          <p class="signal-card__eyebrow">Platform rail</p>
+          <div class="signal-rail">
+            <span>frontend.angular</span>
+            <span>backend.laravel</span>
+            <span>auth.role-gated</span>
+            <span>deploy.actions</span>
+          </div>
+        </article>
+
+        <article class="signal-card signal-card--metric">
+          <p class="signal-card__eyebrow">Internal modules</p>
+          <strong>{{ internalCount() }}</strong>
+          <span>workflow protetti</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="landing-stats" aria-labelledby="landing-stats-title">
+      <div class="section-intro">
+        <p class="section-intro__eyebrow">Platform overview</p>
+        <h2 id="landing-stats-title">Una homepage che orienta, filtra e apre il percorso corretto fin dal primo scroll.</h2>
+      </div>
+
+      <div class="stats-grid">
+        @for (metric of keyMetrics; track metric.label) {
+          <article class="metric-card">
+            <strong>{{ metric.value }}</strong>
+            <h3>{{ metric.label }}</h3>
+            <p>{{ metric.detail }}</p>
+          </article>
+        }
+      </div>
+    </section>
+
+    <section class="landing-features" id="core-modules" aria-labelledby="core-modules-title">
+      <div class="section-intro">
+        <p class="section-intro__eyebrow">Core modules</p>
+        <h2 id="core-modules-title">Capacita chiave della piattaforma, organizzate come una landing vera e non come un collage di widget.</h2>
+        <p class="section-intro__summary">
+          Ogni blocco ha un ruolo preciso: guidare ai tool, spiegare il valore dell’area protetta e mostrare che il sistema
+          e progettato per operare, non solo per presentarsi.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        @for (feature of featureCards; track feature.title) {
+          <article class="feature-card">
+            <p class="feature-card__eyebrow">{{ feature.eyebrow }}</p>
+            <h3>{{ feature.title }}</h3>
+            <p>{{ feature.description }}</p>
+          </article>
+        }
+      </div>
+    </section>
+
+    <section class="privacy-band" aria-labelledby="privacy-band-title">
+      <div class="privacy-band__copy">
+        <p class="section-intro__eyebrow">Precision and control</p>
+        <h2 id="privacy-band-title">Permessi, stato piattaforma e velocita di accesso convivono nella stessa superficie operativa.</h2>
+        <p>
+          Wyrmrest deve sembrare affidabile prima ancora di essere esplorato: segnali visivi netti, superfici compatte,
+          gerarchia forte e transizioni misurate costruiscono questa percezione in ogni sezione.
+        </p>
+      </div>
+
+      <div class="privacy-band__stack">
+        <article class="privacy-note">
+          <span class="privacy-note__label">Status</span>
+          <strong>Operational visibility</strong>
+          <p>Stati, badge e rail restano leggibili anche quando la homepage attraversa aree con accessi diversi.</p>
+        </article>
+        <article class="privacy-note">
+          <span class="privacy-note__label">Navigation</span>
+          <strong>Guided navigation</strong>
+          <p>Header sticky, section tracking e CTA contestuali riducono il tempo necessario per raggiungere il modulo giusto.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="services-panel" aria-labelledby="services-panel-title">
+      <div class="section-intro">
+        <p class="section-intro__eyebrow">What you can do here</p>
+        <h2 id="services-panel-title">Dalla homepage si entra in strumenti reali, non in sezioni decorative.</h2>
+      </div>
+
+      <div class="services-grid">
+        @for (service of serviceCards; track service.title) {
+          <article class="service-card">
+            <p class="service-card__eyebrow">{{ service.eyebrow }}</p>
+            <h3>{{ service.title }}</h3>
+            <p>{{ service.description }}</p>
+          </article>
+        }
+      </div>
+    </section>
 
     @if (authError(); as message) {
       <div class="hub-error-alert" role="alert">
@@ -24,9 +149,11 @@
     }
 
     <app-hub-catalog-section
+      anchorId="public-tools"
       sectionId="public-tools-title"
       title="Tool pubblici"
       eyebrow="Catalogo"
+      description="Strumenti consultabili subito, pensati per accesso rapido e flussi operativi essenziali."
       [countLabel]="publicCount() + ' disponibili'"
       [platforms]="publicPlatforms()"
       [loaded]="true"
@@ -34,9 +161,11 @@
     />
 
     <app-hub-catalog-section
+      anchorId="internal-tools"
       sectionId="internal-tools-title"
       title="Tool interni"
       eyebrow="Area gated"
+      description="Moduli riservati che richiedono autenticazione e permessi coerenti con il ruolo assegnato."
       countLabel="Riservati"
       [locked]="true"
       [platforms]="internalPlatforms()"
@@ -44,14 +173,43 @@
       [authenticated]="isAuthenticated()"
     />
 
+    <section class="faq-panel" aria-labelledby="faq-panel-title">
+      <div class="section-intro">
+        <p class="section-intro__eyebrow">Access paths</p>
+        <h2 id="faq-panel-title">Tre direttrici chiare: consultazione pubblica, comprensione della piattaforma e accesso interno.</h2>
+      </div>
+
+      <div class="faq-list">
+        @for (faq of faqs; track faq.question) {
+          <article class="faq-item">
+            <h3>{{ faq.question }}</h3>
+            <p>{{ faq.answer }}</p>
+          </article>
+        }
+      </div>
+    </section>
+
+    <section class="closing-cta" aria-labelledby="closing-cta-title">
+      <div>
+        <p class="section-intro__eyebrow">Ready to operate</p>
+        <h2 id="closing-cta-title">Apri il catalogo pubblico oppure autenticati per continuare nel workspace protetto.</h2>
+      </div>
+
+      <div class="closing-cta__actions">
+        <a class="wr-button wr-button--primary" href="#public-tools">Apri tool pubblici</a>
+        <a class="wr-button wr-button--secondary" routerLink="/login">Accedi</a>
+      </div>
+    </section>
+
     <app-hub-footer [year]="year" />
-  </div>
+  </main>
 </div>
 
 <app-hub-mobile-nav
   [currentUser]="currentUser()"
   [isAuthenticated]="isAuthenticated()"
   [isOpen]="isDrawerOpen()"
+  [activeSection]="activeSection()"
   (closeRequested)="closeDrawer()"
   (logoutRequested)="openLogoutModal()"
 />

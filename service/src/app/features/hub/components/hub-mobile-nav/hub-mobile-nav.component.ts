@@ -14,6 +14,7 @@ export class HubMobileNavComponent {
   @Input() currentUser: AuthUser | null = null;
   @Input() isAuthenticated = false;
   @Input() isOpen = false;
+  @Input() activeSection: 'overview' | 'core-modules' | 'public-tools' | 'internal-tools' = 'overview';
   @Output() closeRequested = new EventEmitter<void>();
   @Output() logoutRequested = new EventEmitter<void>();
 

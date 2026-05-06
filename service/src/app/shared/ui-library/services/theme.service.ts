@@ -1,10 +1,10 @@
 import { Injectable, signal, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-export type WrTheme = 'sh-dark' | 'sh-light';
+export type WrTheme = 'default-dark' | 'default-light';
 
 const STORAGE_KEY = 'wr-theme';
-const DEFAULT_THEME: WrTheme = 'sh-dark';
+const DEFAULT_THEME: WrTheme = 'default-dark';
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
@@ -25,7 +25,7 @@ export class ThemeService {
   }
 
   toggleTheme(): void {
-    const next: WrTheme = this.currentTheme() === 'sh-dark' ? 'sh-light' : 'sh-dark';
+    const next: WrTheme = this.currentTheme() === 'default-dark' ? 'default-light' : 'default-dark';
     this.setTheme(next);
   }
 

@@ -6,18 +6,19 @@
   ariaLabel="Menu mobile Wyrmrest"
   (closeEvent)="close()"
 >
-  <a nav class="wr-offcanvas__item is-active" href="#overview" aria-current="page" (click)="close()">Overview</a>
-  <a nav class="wr-offcanvas__item" href="#public-tools" (click)="close()">Tool pubblici</a>
-  <a nav class="wr-offcanvas__item" href="#internal-tools" (click)="close()">Tool interni</a>
-  <a nav class="wr-offcanvas__item" routerLink="/login" (click)="close()">Accesso</a>
+  <a nav class="wr-offcanvas__item" href="#overview" [class.is-active]="activeSection === 'overview'" [attr.aria-current]="activeSection === 'overview' ? 'page' : null" (click)="close()">Overview</a>
+  <a nav class="wr-offcanvas__item" href="#core-modules" [class.is-active]="activeSection === 'core-modules'" [attr.aria-current]="activeSection === 'core-modules' ? 'page' : null" (click)="close()">Moduli</a>
+  <a nav class="wr-offcanvas__item" href="#public-tools" [class.is-active]="activeSection === 'public-tools'" [attr.aria-current]="activeSection === 'public-tools' ? 'page' : null" (click)="close()">Tool pubblici</a>
+  <a nav class="wr-offcanvas__item" href="#internal-tools" [class.is-active]="activeSection === 'internal-tools'" [attr.aria-current]="activeSection === 'internal-tools' ? 'page' : null" (click)="close()">Tool interni</a>
 
   <div footer class="sidebar-access">
+    <p class="sidebar-kicker">Accesso rapido</p>
     @if (isAuthenticated && currentUser; as user) {
       <p class="sidebar-meta">{{ user.name }}</p>
       <p class="sidebar-submeta">{{ user.email }}</p>
-      <button type="button" class="wr-action wr-action--secondary" (click)="requestLogout()">Esci</button>
+      <button type="button" class="wr-button wr-button--secondary sidebar-action" (click)="requestLogout()">Esci</button>
     } @else {
-      <a class="wr-action wr-action--primary" routerLink="/login" (click)="close()">Accedi</a>
+      <a class="wr-button wr-button--primary sidebar-action" routerLink="/login" (click)="close()">Accedi</a>
     }
   </div>
 </ui-offcanvas>
