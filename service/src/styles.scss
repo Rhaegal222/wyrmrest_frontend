@@ -1,11 +1,55 @@
 /* ui-core.css è caricato prima da angular.json — non ridefinire reset o body */
 
+:root,
+[data-wr-theme="default-dark"] {
+  --wr-bg-canvas: rgb(6 14 12);
+  --wr-bg-surface: rgb(11 24 20);
+  --wr-bg-elevated: rgb(18 34 29);
+  --wr-border-subtle: rgb(79 108 86 / 40%);
+  --wr-border-strong: rgb(112 145 118 / 58%);
+  --wr-accent-primary: rgb(183 255 84);
+  --wr-accent-hover: rgb(213 255 146);
+  --wr-text-primary: rgb(245 248 242);
+  --wr-text-secondary: rgb(183 198 185);
+  --wr-text-disabled: rgb(124 145 129);
+  --wr-text-on-accent: rgb(14 20 10);
+  --wr-success: rgb(126 255 167);
+  --wr-warning: rgb(255 196 96);
+  --wr-danger: rgb(255 112 112);
+  --wr-info: rgb(124 222 255);
+}
+
+[data-wr-theme="default-light"] {
+  color-scheme: light;
+  --wr-bg-canvas: rgb(246 245 238);
+  --wr-bg-surface: rgb(255 255 251);
+  --wr-bg-elevated: rgb(239 236 224);
+  --wr-border-subtle: rgb(91 115 92 / 22%);
+  --wr-border-strong: rgb(62 89 64 / 34%);
+  --wr-accent-primary: rgb(41 117 67);
+  --wr-accent-hover: rgb(52 143 81);
+  --wr-text-primary: rgb(21 29 24);
+  --wr-text-secondary: rgb(75 88 80);
+  --wr-text-disabled: rgb(118 126 120);
+  --wr-text-on-accent: rgb(246 245 238);
+  --wr-success: rgb(36 146 83);
+  --wr-warning: rgb(201 129 28);
+  --wr-danger: rgb(191 67 67);
+  --wr-info: rgb(36 123 178);
+}
+
 html, body {
   min-height: 100%;
 }
 
 app-root {
   display: contents;
+}
+
+body {
+  transition:
+    background var(--wr-motion-slow),
+    color var(--wr-motion-base);
 }
 
 /* Ripple */
@@ -20,7 +64,7 @@ app-root {
 .ui-ripple {
   position: absolute;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--wr-text-primary) 12%, transparent);
+  background: color-mix(in srgb, var(--wr-color-text-primary) 12%, transparent);
   transform: scale(0);
   animation: wr-ripple 600ms ease-out forwards;
   pointer-events: none;
@@ -47,25 +91,4 @@ app-root {
 }
 
 /* Theme toggle button — positioned in header */
-.theme-toggle-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  padding: 0;
-  border: 1px solid var(--wr-color-border-strong);
-  border-radius: var(--wr-radius-md);
-  background: var(--wr-color-bg-elevated);
-  color: var(--wr-color-text-secondary);
-  cursor: pointer;
-  transition: border-color var(--wr-motion-base), color var(--wr-motion-base);
-  flex-shrink: 0;
-
-  &:hover {
-    border-color: var(--wr-color-accent-primary);
-    color: var(--wr-color-accent-primary);
-  }
-
-  svg { width: 15px; height: 15px; }
-}
+/* Theme toggle is implemented with .wr-icon-button in the header component. */
