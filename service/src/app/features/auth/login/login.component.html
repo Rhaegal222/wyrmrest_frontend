@@ -34,10 +34,13 @@
         </div>
       }
 
-      <label class="remember-row">
-        <input type="checkbox" formControlName="remember" />
-        <span>Ricordami</span>
-      </label>
+      <div class="login-options">
+        <label class="remember-row">
+          <input type="checkbox" formControlName="remember" />
+          <span>Ricordami</span>
+        </label>
+        <a class="login-forgot" href="#">Password dimenticata?</a>
+      </div>
 
       @if (error(); as message) {
         <div class="wr-form-error" role="alert">{{ message }}</div>
