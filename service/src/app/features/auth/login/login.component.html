@@ -1,64 +1,55 @@
 <page-shell>
+  <section class="login-shell">
+    <aside class="login-shell__aside">
+      <p class="eyebrow">Wyrmrest Hub</p>
+      <h1>Accesso area riservata</h1>
+      <p>Usa le credenziali del team per entrare nei moduli interni.</p>
+      <ul>
+        <li>Permessi centralizzati</li>
+        <li>2FA quando richiesto</li>
+        <li>Sessione coerente con il tuo ruolo</li>
+      </ul>
+    </aside>
 
-  <section class="login-panel">
-    <header class="login-header">
-      <div class="brand-lockup">
-        <div class="brand-logo" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4.5 6.5v11l3.5-4 3.5 4 3.5-4 3.5 4v-11"/>
-            <path d="M4.5 6.5c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 3.5 2"/>
-          </svg>
-        </div>
-        <div class="brand-text">
-          <p class="brand-eyebrow">Wyrmrest Hub</p>
-          <h1 class="brand-title">Accesso</h1>
-        </div>
-      </div>
-      <p class="login-subtitle">Entra per aprire i tool interni secondo il tuo profilo.</p>
-    </header>
+    <div class="login-shell__form-wrap">
+      <header class="login-head">
+        <h2>Accedi</h2>
+        <p>Inserisci le credenziali per continuare.</p>
+      </header>
 
-    <form class="wr-card login-form" (ngSubmit)="submit()" [formGroup]="form">
-      <div class="wr-form-group">
-        <label for="email">Email</label>
-        <input id="email" type="email" formControlName="email" autocomplete="email" required />
-      </div>
-
-      <div class="wr-form-group">
-        <label for="password">Password</label>
-        <input id="password" type="password" formControlName="password" autocomplete="current-password" required />
-      </div>
-
-      @if (twoFactorRequired()) {
+      <form class="wr-card login-form" (ngSubmit)="submit()" [formGroup]="form">
         <div class="wr-form-group">
-          <label for="code">Codice 2FA</label>
-          <input id="code" type="text" formControlName="code" inputmode="numeric" autocomplete="one-time-code" required />
+          <label for="email">Email</label>
+          <input id="email" type="email" formControlName="email" autocomplete="email" required />
         </div>
-      }
 
-      <div class="login-options">
+        <div class="wr-form-group">
+          <label for="password">Password</label>
+          <input id="password" type="password" formControlName="password" autocomplete="current-password" required />
+        </div>
+
+        @if (twoFactorRequired()) {
+          <div class="wr-form-group">
+            <label for="code">Codice 2FA</label>
+            <input id="code" type="text" formControlName="code" inputmode="numeric" autocomplete="one-time-code" required />
+          </div>
+        }
+
         <label class="remember-row">
           <input type="checkbox" formControlName="remember" />
-          <span>Ricordami</span>
+          <span>Ricordami su questo dispositivo</span>
         </label>
-        <a class="login-forgot" href="#">Password dimenticata?</a>
-      </div>
 
-      @if (error(); as message) {
-        <div class="wr-form-error" role="alert">{{ message }}</div>
-      }
-
-      <button type="submit" class="wr-button wr-button--primary login-submit" [disabled]="loading()">
-        @if (loading()) {
-          Attendi...
-        } @else if (twoFactorRequired()) {
-          Verifica 2FA
-        } @else {
-          Accedi
+        @if (error(); as message) {
+          <div class="wr-form-error" role="alert">{{ message }}</div>
         }
-      </button>
-    </form>
 
-    <a class="login-back" routerLink="/">Torna all'Hub</a>
+        <button type="submit" class="wr-button wr-button--primary login-submit" [disabled]="loading()">
+          @if (loading()) { Attendi... } @else if (twoFactorRequired()) { Verifica 2FA } @else { Accedi }
+        </button>
+      </form>
+
+      <a class="login-back" routerLink="/">Torna all'Hub</a>
+    </div>
   </section>
-
 </page-shell>

@@ -26,7 +26,7 @@
     width: min(1180px, 100%);
     margin: 0 auto;
     padding: 0 var(--wr-space-24);
-    min-height: 58px;
+    min-height: 62px;
 
     @media (max-width: 720px) {
       padding: 0 var(--wr-space-16);
@@ -84,8 +84,12 @@
     justify-content: center;
     gap: var(--wr-space-2);
     min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
 
-    @media (max-width: 900px) { display: none; }
+    &::-webkit-scrollbar { display: none; }
+
+    @media (max-width: 760px) { display: none; }
   }
 
   &__nav-item {

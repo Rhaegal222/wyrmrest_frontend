@@ -7,7 +7,6 @@ import { AuthService } from '../../shared/services/auth.service';
 import { ModalComponent } from '../../shared/ui-library/components/feedback/modal/modal.component';
 import { NavItem } from '../../shared/ui-library/components/layout/navbar/navbar.component';
 import { PageShellComponent } from '../../shared/layout/page-shell/page-shell.component';
-import { HubCatalogSectionComponent } from './components/hub-catalog-section/hub-catalog-section.component';
 import { HubMobileNavComponent } from './components/hub-mobile-nav/hub-mobile-nav.component';
 
 type HubFeature = {
@@ -27,12 +26,17 @@ type HubFaq = {
   answer: string;
 };
 
+type HubTestimonial = {
+  quote: string;
+  author: string;
+  role: string;
+};
+
 @Component({
   selector: 'app-hub',
   standalone: true,
   imports: [
     RouterLink,
-    HubCatalogSectionComponent,
     HubMobileNavComponent,
     ModalComponent,
     PageShellComponent,
@@ -61,7 +65,7 @@ export class HubComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly authError = this.auth.error;
   readonly navItems: NavItem[] = [
     { label: 'Overview', href: '#overview' },
-    { label: 'Moduli', href: '#core-modules' },
+    { label: 'Capacita', href: '#core-modules' },
     { label: 'Tool pubblici', href: '#public-tools' },
     { label: 'Area riservata', href: '#internal-tools' },
   ];
@@ -149,6 +153,23 @@ export class HubComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       question: 'Internal area',
       answer: 'Percorso chiaro verso login e workspace autenticato, senza spezzare la continuita della homepage.',
+    },
+  ];
+  readonly testimonials: HubTestimonial[] = [
+    {
+      quote: 'Il catalogo pubblico riduce i passaggi inutili e ci porta subito allo strumento giusto.',
+      author: 'Team Operations',
+      role: 'Wyrmrest',
+    },
+    {
+      quote: 'Navigazione e stato piattaforma sono finalmente coerenti tra utenti pubblici e autenticati.',
+      author: 'Team Engineering',
+      role: 'Wyrmrest',
+    },
+    {
+      quote: 'Login e area riservata sono chiari, senza frizioni nel passaggio dalla homepage.',
+      author: 'Team Product',
+      role: 'Wyrmrest',
     },
   ];
   private readonly internalAccessEffect = effect(() => {
@@ -248,5 +269,17 @@ export class HubComponent implements OnInit, AfterViewInit, OnDestroy {
 
   logout(): void {
     this.openLogoutModal();
+  }
+
+  platformBadgeLabel(platform: Platform): string {
+    if (platform.badge === 'live') return 'Live';
+    if (platform.badge === 'wip') return 'In sviluppo';
+    return 'Tool';
+  }
+
+  platformAccessLabel(platform: Platform): string {
+    if (platform.audience === 'public') return 'Accesso libero';
+    if (platform.auth_required) return 'Autenticazione';
+    return 'Riservato';
   }
 }
