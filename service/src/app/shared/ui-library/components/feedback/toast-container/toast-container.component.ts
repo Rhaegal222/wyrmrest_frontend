@@ -18,13 +18,5 @@ export class ToastContainerComponent {
     this.toastService.remove(id);
   }
 
-  getIcon(type: string): string {
-    const icons: Record<string, string> = {
-      success: '[OK]',
-      error: '[ERR]',
-      warning: '[!]',
-      info: '[i]'
-    };
-    return icons[type] || icons['info'];
-  }
+
 }

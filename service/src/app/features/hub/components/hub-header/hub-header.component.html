@@ -48,17 +48,26 @@
     <!-- Mobile section indicator -->
     <span class="section-indicator" aria-hidden="true">{{ activeSectionLabel }}</span>
 
-    <!-- Desktop: login CTA -->
-    <a
-      class="wr-button wr-button--primary topbar-login-cta"
-      routerLink="/login"
-      aria-label="Accedi all'area riservata"
-    >
-      Accedi
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M3 8h10"/><path d="m9 4 4 4-4 4"/>
-      </svg>
-    </a>
+    <!-- Desktop: user menu or login CTA -->
+    @if (auth.isAuthenticated(); as isAuth) {
+      @if (auth.user(); as user) {
+        <div class="topbar-user">
+          <span class="topbar-user__avatar" aria-hidden="true">{{ userInitials }}</span>
+          <span class="topbar-user__name">{{ user.name }}</span>
+        </div>
+      }
+    } @else {
+      <a
+        class="wr-button wr-button--primary topbar-login-cta"
+        routerLink="/login"
+        aria-label="Accedi all'area riservata"
+      >
+        Accedi
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 8h10"/><path d="m9 4 4 4-4 4"/>
+        </svg>
+      </a>
+    }
 
     <!-- Desktop: theme toggle -->
     <button

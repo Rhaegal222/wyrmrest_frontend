@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../../../shared/services/auth.service';
 import { ThemeService } from '../../../../shared/ui-library/services/theme.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class HubHeaderComponent {
   @Input() drawerOpen = false;
   @Output() menuRequested = new EventEmitter<void>();
 
+  protected readonly auth = inject(AuthService);
   protected readonly themeService = inject(ThemeService);
 
   get isDark(): boolean {
@@ -28,5 +30,11 @@ export class HubHeaderComponent {
       'internal-tools': 'Area riservata',
     };
     return labels[this.activeSection];
+  }
+
+  get userInitials(): string {
+    const user = this.auth.user();
+    if (!user) return '';
+    return user.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
   }
 }

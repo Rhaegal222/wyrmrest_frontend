@@ -15,13 +15,21 @@
     <span class="wr-badge" [class.count-pill--locked]="locked">{{ countLabel }}</span>
   </div>
 
-  @if (platforms.length > 0) {
+  @if (!loaded) {
+    <div class="tool-skeleton" aria-label="Caricamento in corso">
+      <div class="skeleton-card skeleton-card--wide"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+    </div>
+  } @else if (platforms.length > 0) {
     <div class="tool-grid">
       @for (p of platforms; track p.url) {
         <app-platform-card [platform]="p" />
       }
     </div>
-  } @else if (locked && loaded && authenticated) {
+  } @else if (locked && authenticated) {
     <div class="gated-area" role="status">
       <div class="gated-inner">
         <svg class="gated-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -42,6 +50,16 @@
         <h3 class="gated-title">Area riservata</h3>
         <p class="gated-desc">Accedi per vedere i tool interni disponibili per il tuo ruolo.</p>
         <a class="wr-button wr-button--primary gated-cta" routerLink="/login">Accedi</a>
+      </div>
+    </div>
+  } @else {
+    <div class="empty-area" role="status">
+      <div class="empty-inner">
+        <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+        <h3 class="empty-title">Nessun tool disponibile</h3>
+        <p class="empty-desc">Non ci sono strumenti in questa sezione al momento.</p>
       </div>
     </div>
   }

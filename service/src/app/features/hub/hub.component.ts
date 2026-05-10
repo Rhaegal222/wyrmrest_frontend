@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, OnDestroy, OnInit, computed, effect, inject, signal } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnDestroy, OnInit, computed, effect, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { catchError, finalize, of } from 'rxjs';
 import { Platform } from './platform.model';
@@ -132,6 +132,7 @@ export class HubComponent implements OnInit, AfterViewInit, OnDestroy {
       description: 'Angular, Laravel, deploy e infrastruttura non stanno sullo sfondo: informano direttamente tono e struttura della UI.',
     },
   ];
+  readonly showBackToTop = signal(false);
   readonly faqs: HubFaq[] = [
     {
       question: 'Tool pubblici',
@@ -243,5 +244,14 @@ export class HubComponent implements OnInit, AfterViewInit, OnDestroy {
 
   logout(): void {
     this.openLogoutModal();
+  }
+
+  @HostListener('window:scroll')
+  onScroll(): void {
+    this.showBackToTop.set(window.scrollY > 600);
+  }
+
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
