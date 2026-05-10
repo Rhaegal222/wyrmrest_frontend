@@ -7,6 +7,11 @@ export const routes: Routes = [
       import('./features/auth/login/login.component').then((m) => m.LoginComponent),
   },
   {
+    path: 'privacy',
+    loadComponent: () =>
+      import('./features/privacy/privacy.component').then((m) => m.PrivacyComponent),
+  },
+  {
     path: '',
     loadComponent: () =>
       import('./features/hub/hub.component').then((m) => m.HubComponent),
