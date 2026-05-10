@@ -7,6 +7,7 @@ services:
     build:
       context: ../
       dockerfile: wyrmrest_frontend/Dockerfile.staging
+    user: "1000:1000"
 
     # =============================================================================
     # 🌤 ENVIRONMENT
@@ -21,7 +22,7 @@ services:
       - wyrmrest_network
       - proxy
     expose:
-      - 80
+      - 8080
 
     labels:
       - traefik.enable=${TRAEFIK_ENABLE:-true}
@@ -31,7 +32,7 @@ services:
       - traefik.http.routers.wyrmrest-frontend.tls=true
       - traefik.http.routers.wyrmrest-frontend.priority=10
       - traefik.http.routers.wyrmrest-frontend.middlewares=redirect-to-it@docker,maintenance-error@docker
-      - traefik.http.services.wyrmrest-frontend.loadbalancer.server.port=80
+      - traefik.http.services.wyrmrest-frontend.loadbalancer.server.port=8080
 
     # =============================================================================
     # SECURITY OPTIONS
@@ -57,7 +58,7 @@ services:
     # 🏥 HEALTHCHECK
     # =============================================================================
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:80"]
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8080"]
       interval: 30s
       timeout: 10s
       retries: 3
