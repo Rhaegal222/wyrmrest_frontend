@@ -14,9 +14,19 @@ export class HubHeaderComponent {
   @Input() drawerOpen = false;
   @Output() menuRequested = new EventEmitter<void>();
 
-  protected themeService = inject(ThemeService);
+  protected readonly themeService = inject(ThemeService);
 
   get isDark(): boolean {
     return this.themeService.currentTheme() !== 'default-light';
+  }
+
+  get activeSectionLabel(): string {
+    const labels: Record<typeof this.activeSection, string> = {
+      'overview':       'Overview',
+      'core-modules':   'Moduli core',
+      'public-tools':   'Tool pubblici',
+      'internal-tools': 'Area riservata',
+    };
+    return labels[this.activeSection];
   }
 }
