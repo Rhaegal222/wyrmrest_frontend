@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnDestroy, OnInit, computed, effect, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { catchError, finalize, of } from 'rxjs';
 import { Platform } from './platform.model';
 import { AuthService } from '../../shared/services/auth.service';
@@ -30,6 +31,7 @@ type HubFaq = {
   selector: 'app-hub',
   standalone: true,
   imports: [
+    RouterLink,
     HubCatalogSectionComponent,
     HubFooterComponent,
     HubHeaderComponent,
