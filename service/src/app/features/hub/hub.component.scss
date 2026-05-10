@@ -1038,8 +1038,54 @@
   gap: var(--wr-space-8);
 }
 
+// ─── Back to top ──────────────────────────────────────────────────────────────
+.back-to-top {
+  position: fixed;
+  bottom: var(--wr-space-24);
+  right: var(--wr-space-24);
+  z-index: 90;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--wr-color-border-strong) 60%, transparent);
+  background: color-mix(in srgb, var(--wr-color-bg-elevated) 92%, transparent);
+  backdrop-filter: blur(12px);
+  color: var(--wr-color-text-secondary);
+  cursor: pointer;
+  box-shadow: var(--wr-shadow-2);
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition:
+    opacity var(--wr-motion-base),
+    transform var(--wr-motion-base),
+    color var(--wr-motion-base),
+    border-color var(--wr-motion-base),
+    background var(--wr-motion-base);
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  &:hover {
+    color: var(--wr-color-accent-primary);
+    border-color: color-mix(in srgb, var(--wr-color-accent-primary) 35%, var(--wr-color-border-strong));
+    background: color-mix(in srgb, var(--wr-color-bg-elevated) 100%, transparent);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--wr-color-accent-primary) 18%, transparent);
+  }
+}
+
 // ─── Reduced motion ──────────────────────────────────────────────────────────
 @media (prefers-reduced-motion: reduce) {
+  .back-to-top { transition: none; }
   .hero-orb,
   .hero-badge__pulse,
   .terminal__footer-dot,

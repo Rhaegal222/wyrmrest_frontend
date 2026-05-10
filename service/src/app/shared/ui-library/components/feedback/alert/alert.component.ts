@@ -17,16 +17,6 @@ export class AlertComponent {
   
   @Output() closed = new EventEmitter<void>();
 
-  get defaultIcon(): string {
-    const icons: Record<AlertType, string> = {
-      success: '[OK]',
-      error: '[ERR]',
-      warning: '[!]',
-      info: '[i]'
-    };
-    return this.icon || icons[this.type];
-  }
-
   close(): void {
     this.closed.emit();
   }
