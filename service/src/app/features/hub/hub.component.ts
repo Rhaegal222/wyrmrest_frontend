@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, HostListener, OnDestroy, OnInit, computed, effect, inject, signal } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, computed, effect, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { catchError, finalize, of } from 'rxjs';
 import { Platform } from './platform.model';
 import { AuthService } from '../../shared/services/auth.service';
 import { ModalComponent } from '../../shared/ui-library/components/feedback/modal/modal.component';
+import { NavItem } from '../../shared/ui-library/components/layout/navbar/navbar.component';
+import { PageShellComponent } from '../../shared/layout/page-shell/page-shell.component';
 import { HubCatalogSectionComponent } from './components/hub-catalog-section/hub-catalog-section.component';
-import { HubFooterComponent } from './components/hub-footer/hub-footer.component';
-import { HubHeaderComponent } from './components/hub-header/hub-header.component';
 import { HubMobileNavComponent } from './components/hub-mobile-nav/hub-mobile-nav.component';
 
 type HubFeature = {
@@ -33,10 +33,9 @@ type HubFaq = {
   imports: [
     RouterLink,
     HubCatalogSectionComponent,
-    HubFooterComponent,
-    HubHeaderComponent,
     HubMobileNavComponent,
     ModalComponent,
+    PageShellComponent,
   ],
   templateUrl: './hub.component.html',
   styleUrl: './hub.component.scss',
@@ -60,6 +59,12 @@ export class HubComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly canViewInternalTools = this.auth.canViewInternalTools;
   readonly isAuthenticated = this.auth.isAuthenticated;
   readonly authError = this.auth.error;
+  readonly navItems: NavItem[] = [
+    { label: 'Overview', href: '#overview' },
+    { label: 'Moduli', href: '#core-modules' },
+    { label: 'Tool pubblici', href: '#public-tools' },
+    { label: 'Area riservata', href: '#internal-tools' },
+  ];
   readonly partnerLogos = ['Angular', 'Laravel', 'Traefik', 'GitHub Actions', 'PostgreSQL'];
   readonly keyMetrics: HubMetric[] = [
     {
@@ -132,7 +137,6 @@ export class HubComponent implements OnInit, AfterViewInit, OnDestroy {
       description: 'Angular, Laravel, deploy e infrastruttura non stanno sullo sfondo: informano direttamente tono e struttura della UI.',
     },
   ];
-  readonly showBackToTop = signal(false);
   readonly faqs: HubFaq[] = [
     {
       question: 'Tool pubblici',
@@ -244,14 +248,5 @@ export class HubComponent implements OnInit, AfterViewInit, OnDestroy {
 
   logout(): void {
     this.openLogoutModal();
-  }
-
-  @HostListener('window:scroll')
-  onScroll(): void {
-    this.showBackToTop.set(window.scrollY > 600);
-  }
-
-  scrollToTop(): void {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

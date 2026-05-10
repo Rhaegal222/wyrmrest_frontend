@@ -1,0 +1,65 @@
+<header class="navbar" [class.navbar--scrolled]="scrolled()">
+  <div class="navbar__inner">
+    <a class="navbar__brand" routerLink="/" aria-label="Vai all'Hub">
+      <div class="navbar__logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4.5 6.5v11l3.5-4 3.5 4 3.5-4 3.5 4v-11"/>
+          <path d="M4.5 6.5c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 3.5 2"/>
+        </svg>
+      </div>
+      <span class="navbar__name">WYRMREST</span>
+    </a>
+
+    @if (navItems.length > 0) {
+      <nav class="navbar__nav" aria-label="Navigazione">
+        @for (item of navItems; track item.href) {
+          <a
+            class="navbar__nav-item"
+            [href]="item.href"
+            [class.is-active]="activeSection === item.href.replace('#', '')"
+          >{{ item.label }}</a>
+        }
+      </nav>
+    }
+
+    <div class="navbar__actions">
+      <button
+        type="button"
+        class="navbar__theme-btn"
+        (click)="themeService.toggleTheme()"
+        [attr.aria-label]="isDark ? 'Passa al tema chiaro' : 'Passa al tema scuro'"
+      >
+        @if (isDark) {
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        } @else {
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        }
+      </button>
+
+      @if (auth.isAuthenticated()) {
+        @let user = auth.user();
+        @if (user) {
+          <div class="navbar__user" [title]="user.name">
+            <span class="navbar__avatar">{{ userInitials }}</span>
+          </div>
+        }
+      } @else {
+        <a class="navbar__login-btn" routerLink="/login" aria-label="Accedi">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+            <polyline points="10 17 15 12 10 7"/>
+            <line x1="15" y1="12" x2="3" y2="12"/>
+          </svg>
+        </a>
+      }
+    </div>
+  </div>
+</header>
