@@ -1,9 +1,5 @@
 :host {
-  display: contents;
-}
-
-.nf-shell {
-  min-height: 100vh;
+  flex: 1;
   display: grid;
   place-items: center;
   padding: var(--wr-space-24);

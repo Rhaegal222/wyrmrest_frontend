@@ -1,0 +1,21 @@
+<a class="shell-skip-link" href="#shell-content">Salta al contenuto principale</a>
+
+<ui-navbar [navItems]="navItems" [activeSection]="activeSection" />
+
+<main class="shell-content" id="shell-content">
+  <ng-content />
+</main>
+
+<app-footer />
+
+<button
+  type="button"
+  class="shell-back-to-top"
+  (click)="scrollToTop()"
+  aria-label="Torna all'inizio"
+  [class.is-visible]="showBackToTop()"
+>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <polyline points="18 15 12 9 6 15"/>
+  </svg>
+</button>
