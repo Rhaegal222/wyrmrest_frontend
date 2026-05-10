@@ -2,11 +2,12 @@ import { Component, OnInit, effect, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../shared/services/auth.service';
+import { PageShellComponent } from '../../../shared/layout/page-shell/page-shell.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, PageShellComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })

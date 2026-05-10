@@ -1,32 +1,12 @@
 :host {
-  display: contents;
-}
-
-// ─── Skip link ───────────────────────────────────────────────────────────────
-.hub-skip-link {
-  position: absolute;
-  left: var(--wr-space-16);
-  top: var(--wr-space-16);
-  z-index: 220;
-  padding: var(--wr-space-8) var(--wr-space-12);
-  border-radius: var(--wr-radius-md);
-  border: 1px solid color-mix(in srgb, var(--wr-color-accent-primary) 52%, var(--wr-color-border-strong));
-  background: color-mix(in srgb, var(--wr-color-bg-surface) 96%, transparent);
-  color: var(--wr-color-text-primary);
-  text-decoration: none;
-  transform: translateY(-160%);
-  transition: transform var(--wr-motion-fast);
-
-  &:focus-visible { transform: translateY(0); }
-}
-
-// ─── Shell & layout ──────────────────────────────────────────────────────────
-.hub-shell {
   display: flex;
   flex-direction: column;
-  gap: var(--wr-space-24);
-  min-height: 100vh;
+  gap: clamp(3rem, 6vw, 5.5rem);
+  width: min(1180px, 100%);
+  margin: 0 auto;
   padding: var(--wr-space-24) var(--wr-space-16);
+  min-width: 0;
+  flex: 1;
   background:
     radial-gradient(ellipse 70% 55% at -5% 0%, color-mix(in srgb, var(--wr-color-accent-primary) 10%, transparent), transparent),
     radial-gradient(ellipse 50% 40% at 100% 5%, color-mix(in srgb, var(--wr-color-info) 7%, transparent), transparent),
@@ -35,13 +15,47 @@
   @media (max-width: 1100px) { padding: var(--wr-space-16); }
 }
 
-.hub-content {
-  width: min(1180px, 100%);
-  margin: 0 auto;
-  display: flex;
+// ─── Mobile hamburger menu button ─────────────────────────────────────────────
+.hub-menu-btn {
+  position: fixed;
+  top: var(--wr-space-12);
+  right: var(--wr-space-12);
+  z-index: 110;
+  width: 44px;
+  height: 44px;
+  display: none;
   flex-direction: column;
-  gap: clamp(3rem, 6vw, 5.5rem);
-  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border-radius: var(--wr-radius-lg);
+  border: 1px solid color-mix(in srgb, var(--wr-color-border-strong) 60%, transparent);
+  background: color-mix(in srgb, var(--wr-color-bg-elevated) 76%, transparent);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: background var(--wr-motion-base), border-color var(--wr-motion-base);
+
+  &:hover {
+    background: color-mix(in srgb, var(--wr-color-bg-elevated) 100%, transparent);
+    border-color: color-mix(in srgb, var(--wr-color-accent-primary) 36%, var(--wr-color-border-strong));
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--wr-color-accent-primary) 18%, transparent);
+  }
+
+  @media (max-width: 900px) { display: flex; }
+
+  span {
+    display: block;
+    height: 1.5px;
+    width: 18px;
+    border-radius: 999px;
+    background: var(--wr-color-text-primary);
+  }
+
+  span:nth-child(2) { width: 14px; }
 }
 
 // ─── Common ──────────────────────────────────────────────────────────────────
@@ -1038,54 +1052,8 @@
   gap: var(--wr-space-8);
 }
 
-// ─── Back to top ──────────────────────────────────────────────────────────────
-.back-to-top {
-  position: fixed;
-  bottom: var(--wr-space-24);
-  right: var(--wr-space-24);
-  z-index: 90;
-  width: 44px;
-  height: 44px;
-  display: grid;
-  place-items: center;
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--wr-color-border-strong) 60%, transparent);
-  background: color-mix(in srgb, var(--wr-color-bg-elevated) 92%, transparent);
-  backdrop-filter: blur(12px);
-  color: var(--wr-color-text-secondary);
-  cursor: pointer;
-  box-shadow: var(--wr-shadow-2);
-  opacity: 0;
-  transform: translateY(16px);
-  pointer-events: none;
-  transition:
-    opacity var(--wr-motion-base),
-    transform var(--wr-motion-base),
-    color var(--wr-motion-base),
-    border-color var(--wr-motion-base),
-    background var(--wr-motion-base);
-
-  &.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-
-  &:hover {
-    color: var(--wr-color-accent-primary);
-    border-color: color-mix(in srgb, var(--wr-color-accent-primary) 35%, var(--wr-color-border-strong));
-    background: color-mix(in srgb, var(--wr-color-bg-elevated) 100%, transparent);
-  }
-
-  &:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--wr-color-accent-primary) 18%, transparent);
-  }
-}
-
 // ─── Reduced motion ──────────────────────────────────────────────────────────
 @media (prefers-reduced-motion: reduce) {
-  .back-to-top { transition: none; }
   .hero-orb,
   .hero-badge__pulse,
   .terminal__footer-dot,

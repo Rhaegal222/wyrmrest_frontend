@@ -1,359 +1,342 @@
-<div class="hub-shell">
-  <a class="hub-skip-link" href="#main-content">Salta al contenuto principale</a>
+<page-shell [navItems]="navItems" [activeSection]="activeSection()">
 
-  <app-hub-header
-    [activeSection]="activeSection()"
-    [drawerOpen]="isDrawerOpen()"
-    (menuRequested)="openDrawer()"
-  />
+  <button type="button" class="hub-menu-btn" (click)="openDrawer()" aria-label="Apri menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 
-  <main class="hub-content" id="main-content">
+  <!-- ═══════════════════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════════════════ -->
+  <section class="landing-hero" id="overview">
 
-    <!-- ═══════════════════════════════════════════════════════════
-         HERO
-    ═══════════════════════════════════════════════════════════ -->
-    <section class="landing-hero" id="overview">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-orb hero-orb--1"></div>
+      <div class="hero-orb hero-orb--2"></div>
+      <div class="hero-orb hero-orb--3"></div>
+      <svg class="hero-grid-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" aria-hidden="true">
+        <defs>
+          <pattern id="dot-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+            <circle cx="1" cy="1" r="0.8" fill="currentColor"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#dot-grid)" />
+      </svg>
+    </div>
 
-      <div class="hero-bg" aria-hidden="true">
-        <div class="hero-orb hero-orb--1"></div>
-        <div class="hero-orb hero-orb--2"></div>
-        <div class="hero-orb hero-orb--3"></div>
-        <svg class="hero-grid-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" aria-hidden="true">
-          <defs>
-            <pattern id="dot-grid" width="32" height="32" patternUnits="userSpaceOnUse">
-              <circle cx="1" cy="1" r="0.8" fill="currentColor"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#dot-grid)" />
-        </svg>
+    <div class="landing-hero__copy">
+      <div class="hero-badge">
+        <span class="hero-badge__pulse" aria-hidden="true"></span>
+        <span>Platform operational</span>
       </div>
 
-      <div class="landing-hero__copy">
-        <div class="hero-badge">
-          <span class="hero-badge__pulse" aria-hidden="true"></span>
-          <span>Platform operational</span>
+      <h2 class="landing-title">
+        Software<br>
+        <em class="title-em">operativo</em><br>
+        per team tecnici.
+      </h2>
+
+      <p class="landing-summary">
+        Tool pubblici, workspace autenticati e moduli interni in un'unica superficie tecnica.
+        Accesso rapido, stato visibile, ruoli e permessi integrati fin dalla homepage.
+      </p>
+
+      <div class="landing-actions">
+        <a class="wr-button wr-button--primary hero-cta-primary" href="#public-tools">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+          Apri il catalogo
+        </a>
+        <a class="wr-button wr-button--secondary hero-cta-secondary" routerLink="/login">
+          Area riservata
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 8h10"/><path d="m9 4 4 4-4 4"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="hero-stack" aria-label="Core stack">
+        <span class="hero-stack__label">Built on</span>
+        <div class="hero-stack__pills">
+          @for (logo of partnerLogos; track logo) {
+            <span class="stack-pill">{{ logo }}</span>
+          }
         </div>
-
-        <h2 class="landing-title">
-          Software<br>
-          <em class="title-em">operativo</em><br>
-          per team tecnici.
-        </h2>
-
-        <p class="landing-summary">
-          Tool pubblici, workspace autenticati e moduli interni in un'unica superficie tecnica.
-          Accesso rapido, stato visibile, ruoli e permessi integrati fin dalla homepage.
-        </p>
-
-        <div class="landing-actions">
-          <a class="wr-button wr-button--primary hero-cta-primary" href="#public-tools">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-            </svg>
-            Apri il catalogo
-          </a>
-          <a class="wr-button wr-button--secondary hero-cta-secondary" routerLink="/login">
-            Area riservata
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 8h10"/><path d="m9 4 4 4-4 4"/>
-            </svg>
-          </a>
-        </div>
-
-        <div class="hero-stack" aria-label="Core stack">
-          <span class="hero-stack__label">Built on</span>
-          <div class="hero-stack__pills">
-            @for (logo of partnerLogos; track logo) {
-              <span class="stack-pill">{{ logo }}</span>
-            }
-          </div>
-        </div>
-      </div>
-
-      <!-- Terminal panel -->
-      <div class="landing-hero__terminal" aria-label="Platform status overview">
-        <div class="terminal">
-          <div class="terminal__chrome" aria-hidden="true">
-            <div class="terminal__dots">
-              <span></span><span></span><span></span>
-            </div>
-            <span class="terminal__path">wyrmrest.status</span>
-            <span class="terminal__live">LIVE</span>
-          </div>
-
-          <div class="terminal__body">
-            <div class="terminal__metrics">
-              <div class="t-metric">
-                <span class="t-metric__num">{{ publicCount() }}</span>
-                <span class="t-metric__label">public tools</span>
-              </div>
-              <div class="terminal__divider" aria-hidden="true"></div>
-              <div class="t-metric">
-                <span class="t-metric__num">{{ internalCount() }}</span>
-                <span class="t-metric__label">internal modules</span>
-              </div>
-            </div>
-
-            <div class="terminal__lines" aria-label="Service status">
-              <div class="t-line">
-                <span class="t-line__prompt" aria-hidden="true">›</span>
-                <code>frontend<span class="t-line__dot">.</span>angular</code>
-                <span class="t-line__badge t-line__badge--ok">active</span>
-              </div>
-              <div class="t-line">
-                <span class="t-line__prompt" aria-hidden="true">›</span>
-                <code>backend<span class="t-line__dot">.</span>laravel</code>
-                <span class="t-line__badge t-line__badge--ok">active</span>
-              </div>
-              <div class="t-line">
-                <span class="t-line__prompt" aria-hidden="true">›</span>
-                <code>auth<span class="t-line__dot">.</span>role-gated</code>
-                <span class="t-line__badge t-line__badge--ok">active</span>
-              </div>
-              <div class="t-line">
-                <span class="t-line__prompt" aria-hidden="true">›</span>
-                <code>deploy<span class="t-line__dot">.</span>actions</code>
-                <span class="t-line__badge t-line__badge--ok">active</span>
-              </div>
-            </div>
-
-            <div class="terminal__footer">
-              <span class="terminal__footer-dot" aria-hidden="true"></span>
-              <span>All systems operational</span>
-              <span class="terminal__cursor" aria-hidden="true">█</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════════
-         KEY METRICS — bento grid
-    ═══════════════════════════════════════════════════════════ -->
-    <section class="metrics-section" aria-labelledby="metrics-title">
-      <header class="section-intro">
-        <p class="section-eyebrow">Platform overview</p>
-        <h2 id="metrics-title">Una homepage che orienta, filtra e apre il percorso corretto fin dal primo scroll.</h2>
-      </header>
-
-      <div class="metrics-grid">
-        @for (metric of keyMetrics; track metric.label; let i = $index) {
-          <article class="metric-tile" [attr.data-i]="i">
-            <span class="metric-tile__num" aria-hidden="true">{{ metric.value }}</span>
-            <h3 class="metric-tile__title">{{ metric.label }}</h3>
-            <p class="metric-tile__body">{{ metric.detail }}</p>
-          </article>
-        }
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════════
-         CORE MODULES
-    ═══════════════════════════════════════════════════════════ -->
-    <section class="features-section" id="core-modules" aria-labelledby="core-modules-title">
-      <header class="section-intro">
-        <p class="section-eyebrow">Core modules</p>
-        <h2 id="core-modules-title">Capacita chiave della piattaforma, organizzate come una landing vera.</h2>
-        <p class="section-summary">
-          Ogni blocco ha un ruolo preciso: guidare ai tool, spiegare il valore dell'area protetta e mostrare
-          che il sistema e progettato per operare, non solo per presentarsi.
-        </p>
-      </header>
-
-      <div class="features-masonry">
-        @for (feature of featureCards; track feature.title; let i = $index) {
-          <article class="feature-tile" [attr.data-span]="i === 0 || i === 4 ? 'wide' : 'normal'">
-            <span class="feature-tile__idx" aria-hidden="true">{{ (i + 1).toString().padStart(2, '0') }}</span>
-            <p class="feature-tile__eyebrow">{{ feature.eyebrow }}</p>
-            <h3 class="feature-tile__title">{{ feature.title }}</h3>
-            <p class="feature-tile__body">{{ feature.description }}</p>
-            <div class="feature-tile__rail" aria-hidden="true"></div>
-          </article>
-        }
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════════
-         ARCHITECTURE BAND
-    ═══════════════════════════════════════════════════════════ -->
-    <div class="arch-band" aria-labelledby="arch-band-title">
-      <div class="arch-band__left">
-        <p class="section-eyebrow">Precision and control</p>
-        <h2 id="arch-band-title">Permessi, stato piattaforma e velocita di accesso in un'unica superficie operativa.</h2>
-        <p>
-          Wyrmrest deve sembrare affidabile prima ancora di essere esplorato: segnali visivi netti, superfici compatte,
-          gerarchia forte e transizioni misurate costruiscono questa percezione in ogni sezione.
-        </p>
-      </div>
-
-      <div class="arch-band__nodes">
-        <article class="arch-node">
-          <div class="arch-node__icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-            </svg>
-          </div>
-          <span class="arch-node__label">Status</span>
-          <strong class="arch-node__title">Operational visibility</strong>
-          <p>Stati, badge e rail restano leggibili anche quando la homepage attraversa aree con accessi diversi.</p>
-        </article>
-
-        <article class="arch-node">
-          <div class="arch-node__icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-            </svg>
-          </div>
-          <span class="arch-node__label">Navigation</span>
-          <strong class="arch-node__title">Guided navigation</strong>
-          <p>Header sticky, section tracking e CTA contestuali riducono il tempo necessario per raggiungere il modulo giusto.</p>
-        </article>
       </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         SERVICES — strip layout
-    ═══════════════════════════════════════════════════════════ -->
-    <section class="services-section" aria-labelledby="services-title">
-      <header class="section-intro">
-        <p class="section-eyebrow">What you can do here</p>
-        <h2 id="services-title">Dalla homepage si entra in strumenti reali, non in sezioni decorative.</h2>
-      </header>
+    <!-- Terminal panel -->
+    <div class="landing-hero__terminal" aria-label="Platform status overview">
+      <div class="terminal">
+        <div class="terminal__chrome" aria-hidden="true">
+          <div class="terminal__dots">
+            <span></span><span></span><span></span>
+          </div>
+          <span class="terminal__path">wyrmrest.status</span>
+          <span class="terminal__live">LIVE</span>
+        </div>
 
-      <div class="services-track">
-        @for (service of serviceCards; track service.title; let i = $index) {
-          <article class="service-strip">
-            <span class="service-strip__num" aria-hidden="true">{{ (i + 1).toString().padStart(2, '0') }}</span>
-            <div class="service-strip__content">
-              <p class="service-strip__eyebrow">{{ service.eyebrow }}</p>
-              <h3 class="service-strip__title">{{ service.title }}</h3>
-              <p class="service-strip__body">{{ service.description }}</p>
+        <div class="terminal__body">
+          <div class="terminal__metrics">
+            <div class="t-metric">
+              <span class="t-metric__num">{{ publicCount() }}</span>
+              <span class="t-metric__label">public tools</span>
             </div>
-            <div class="service-strip__arrow" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 10h12"/><path d="m11 5 5 5-5 5"/>
-              </svg>
+            <div class="terminal__divider" aria-hidden="true"></div>
+            <div class="t-metric">
+              <span class="t-metric__num">{{ internalCount() }}</span>
+              <span class="t-metric__label">internal modules</span>
             </div>
-          </article>
-        }
-      </div>
-    </section>
+          </div>
 
-    @if (authError(); as message) {
-      <div class="hub-error-alert" role="alert">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-        </svg>
-        <p>{{ message }}</p>
-      </div>
-    }
-
-    <!-- ═══════════════════════════════════════════════════════════
-         CATALOG SECTIONS
-    ═══════════════════════════════════════════════════════════ -->
-    <app-hub-catalog-section
-      anchorId="public-tools"
-      sectionId="public-tools-title"
-      title="Tool pubblici"
-      eyebrow="Catalogo"
-      description="Strumenti consultabili subito, pensati per accesso rapido e flussi operativi essenziali."
-      [countLabel]="publicCount() + ' disponibili'"
-      [platforms]="publicPlatforms()"
-      [loaded]="true"
-      [authenticated]="isAuthenticated()"
-    />
-
-    <app-hub-catalog-section
-      anchorId="internal-tools"
-      sectionId="internal-tools-title"
-      title="Tool interni"
-      eyebrow="Area gated"
-      description="Moduli riservati che richiedono autenticazione e permessi coerenti con il ruolo assegnato."
-      countLabel="Riservati"
-      [locked]="true"
-      [platforms]="internalPlatforms()"
-      [loaded]="internalLoaded()"
-      [authenticated]="isAuthenticated()"
-    />
-
-    <!-- ═══════════════════════════════════════════════════════════
-         ACCESS PATHS
-    ═══════════════════════════════════════════════════════════ -->
-    <section class="paths-section" aria-labelledby="paths-title">
-      <header class="section-intro section-intro--center">
-        <p class="section-eyebrow">Access paths</p>
-        <h2 id="paths-title">Tre direttrici chiare: consultazione pubblica, comprensione della piattaforma e accesso interno.</h2>
-      </header>
-
-      <div class="paths-grid">
-        @for (faq of faqs; track faq.question; let i = $index) {
-          <article class="path-card">
-            <div class="path-card__icon" aria-hidden="true">
-              @if (i === 0) {
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
-                </svg>
-              } @else if (i === 1) {
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
-                </svg>
-              } @else {
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="5" y="11" width="14" height="10" rx="2"/><path d="M7 11V8a5 5 0 0 1 10 0v3"/>
-                </svg>
-              }
+          <div class="terminal__lines" aria-label="Service status">
+            <div class="t-line">
+              <span class="t-line__prompt" aria-hidden="true">›</span>
+              <code>frontend<span class="t-line__dot">.</span>angular</code>
+              <span class="t-line__badge t-line__badge--ok">active</span>
             </div>
-            <h3 class="path-card__title">{{ faq.question }}</h3>
-            <p class="path-card__body">{{ faq.answer }}</p>
-          </article>
-        }
-      </div>
-    </section>
+            <div class="t-line">
+              <span class="t-line__prompt" aria-hidden="true">›</span>
+              <code>backend<span class="t-line__dot">.</span>laravel</code>
+              <span class="t-line__badge t-line__badge--ok">active</span>
+            </div>
+            <div class="t-line">
+              <span class="t-line__prompt" aria-hidden="true">›</span>
+              <code>auth<span class="t-line__dot">.</span>role-gated</code>
+              <span class="t-line__badge t-line__badge--ok">active</span>
+            </div>
+            <div class="t-line">
+              <span class="t-line__prompt" aria-hidden="true">›</span>
+              <code>deploy<span class="t-line__dot">.</span>actions</code>
+              <span class="t-line__badge t-line__badge--ok">active</span>
+            </div>
+          </div>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         CLOSING CTA
-    ═══════════════════════════════════════════════════════════ -->
-    <section class="closing-cta" aria-labelledby="closing-cta-title">
-      <div class="closing-cta__orbs" aria-hidden="true">
-        <div class="cta-orb cta-orb--1"></div>
-        <div class="cta-orb cta-orb--2"></div>
-      </div>
-
-      <div class="closing-cta__inner">
-        <p class="section-eyebrow">Ready to operate</p>
-        <h2 id="closing-cta-title">Apri il catalogo pubblico o accedi al workspace protetto.</h2>
-        <p class="closing-cta__sub">
-          Tool pubblici disponibili subito, senza autenticazione.
-          Workspace riservato con accesso role-gated.
-        </p>
-        <div class="closing-cta__actions">
-          <a class="wr-button wr-button--primary cta-primary" href="#public-tools">Apri tool pubblici</a>
-          <a class="wr-button wr-button--secondary cta-secondary" routerLink="/login">
-            Accedi
-            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 8h10"/><path d="m9 4 4 4-4 4"/>
-            </svg>
-          </a>
+          <div class="terminal__footer">
+            <span class="terminal__footer-dot" aria-hidden="true"></span>
+            <span>All systems operational</span>
+            <span class="terminal__cursor" aria-hidden="true">█</span>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <app-hub-footer [year]="year" />
-  </main>
+  </section>
 
-  <button
-    type="button"
-    class="back-to-top"
-    (click)="scrollToTop()"
-    aria-label="Torna all'inizio"
-    [class.is-visible]="showBackToTop()"
-  >
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <polyline points="18 15 12 9 6 15"/>
-    </svg>
-  </button>
-</div>
+  <!-- ═══════════════════════════════════════════════════════════
+       KEY METRICS — bento grid
+  ═══════════════════════════════════════════════════════════ -->
+  <section class="metrics-section" aria-labelledby="metrics-title">
+    <header class="section-intro">
+      <p class="section-eyebrow">Platform overview</p>
+      <h2 id="metrics-title">Una homepage che orienta, filtra e apre il percorso corretto fin dal primo scroll.</h2>
+    </header>
+
+    <div class="metrics-grid">
+      @for (metric of keyMetrics; track metric.label; let i = $index) {
+        <article class="metric-tile" [attr.data-i]="i">
+          <span class="metric-tile__num" aria-hidden="true">{{ metric.value }}</span>
+          <h3 class="metric-tile__title">{{ metric.label }}</h3>
+          <p class="metric-tile__body">{{ metric.detail }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CORE MODULES
+  ═══════════════════════════════════════════════════════════ -->
+  <section class="features-section" id="core-modules" aria-labelledby="core-modules-title">
+    <header class="section-intro">
+      <p class="section-eyebrow">Core modules</p>
+      <h2 id="core-modules-title">Capacita chiave della piattaforma, organizzate come una landing vera.</h2>
+      <p class="section-summary">
+        Ogni blocco ha un ruolo preciso: guidare ai tool, spiegare il valore dell'area protetta e mostrare
+        che il sistema e progettato per operare, non solo per presentarsi.
+      </p>
+    </header>
+
+    <div class="features-masonry">
+      @for (feature of featureCards; track feature.title; let i = $index) {
+        <article class="feature-tile" [attr.data-span]="i === 0 || i === 4 ? 'wide' : 'normal'">
+          <span class="feature-tile__idx" aria-hidden="true">{{ (i + 1).toString().padStart(2, '0') }}</span>
+          <p class="feature-tile__eyebrow">{{ feature.eyebrow }}</p>
+          <h3 class="feature-tile__title">{{ feature.title }}</h3>
+          <p class="feature-tile__body">{{ feature.description }}</p>
+          <div class="feature-tile__rail" aria-hidden="true"></div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ARCHITECTURE BAND
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="arch-band" aria-labelledby="arch-band-title">
+    <div class="arch-band__left">
+      <p class="section-eyebrow">Precision and control</p>
+      <h2 id="arch-band-title">Permessi, stato piattaforma e velocita di accesso in un'unica superficie operativa.</h2>
+      <p>
+        Wyrmrest deve sembrare affidabile prima ancora di essere esplorato: segnali visivi netti, superfici compatte,
+        gerarchia forte e transizioni misurate costruiscono questa percezione in ogni sezione.
+      </p>
+    </div>
+
+    <div class="arch-band__nodes">
+      <article class="arch-node">
+        <div class="arch-node__icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+        </div>
+        <span class="arch-node__label">Status</span>
+        <strong class="arch-node__title">Operational visibility</strong>
+        <p>Stati, badge e rail restano leggibili anche quando la homepage attraversa aree con accessi diversi.</p>
+      </article>
+
+      <article class="arch-node">
+        <div class="arch-node__icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <span class="arch-node__label">Navigation</span>
+        <strong class="arch-node__title">Guided navigation</strong>
+        <p>Header sticky, section tracking e CTA contestuali riducono il tempo necessario per raggiungere il modulo giusto.</p>
+      </article>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SERVICES — strip layout
+  ═══════════════════════════════════════════════════════════ -->
+  <section class="services-section" aria-labelledby="services-title">
+    <header class="section-intro">
+      <p class="section-eyebrow">What you can do here</p>
+      <h2 id="services-title">Dalla homepage si entra in strumenti reali, non in sezioni decorative.</h2>
+    </header>
+
+    <div class="services-track">
+      @for (service of serviceCards; track service.title; let i = $index) {
+        <article class="service-strip">
+          <span class="service-strip__num" aria-hidden="true">{{ (i + 1).toString().padStart(2, '0') }}</span>
+          <div class="service-strip__content">
+            <p class="service-strip__eyebrow">{{ service.eyebrow }}</p>
+            <h3 class="service-strip__title">{{ service.title }}</h3>
+            <p class="service-strip__body">{{ service.description }}</p>
+          </div>
+          <div class="service-strip__arrow" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 10h12"/><path d="m11 5 5 5-5 5"/>
+            </svg>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  @if (authError(); as message) {
+    <div class="hub-error-alert" role="alert">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      <p>{{ message }}</p>
+    </div>
+  }
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CATALOG SECTIONS
+  ═══════════════════════════════════════════════════════════ -->
+  <app-hub-catalog-section
+    anchorId="public-tools"
+    sectionId="public-tools-title"
+    title="Tool pubblici"
+    eyebrow="Catalogo"
+    description="Strumenti consultabili subito, pensati per accesso rapido e flussi operativi essenziali."
+    [countLabel]="publicCount() + ' disponibili'"
+    [platforms]="publicPlatforms()"
+    [loaded]="true"
+    [authenticated]="isAuthenticated()"
+  />
+
+  <app-hub-catalog-section
+    anchorId="internal-tools"
+    sectionId="internal-tools-title"
+    title="Tool interni"
+    eyebrow="Area gated"
+    description="Moduli riservati che richiedono autenticazione e permessi coerenti con il ruolo assegnato."
+    countLabel="Riservati"
+    [locked]="true"
+    [platforms]="internalPlatforms()"
+    [loaded]="internalLoaded()"
+    [authenticated]="isAuthenticated()"
+  />
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ACCESS PATHS
+  ═══════════════════════════════════════════════════════════ -->
+  <section class="paths-section" aria-labelledby="paths-title">
+    <header class="section-intro section-intro--center">
+      <p class="section-eyebrow">Access paths</p>
+      <h2 id="paths-title">Tre direttrici chiare: consultazione pubblica, comprensione della piattaforma e accesso interno.</h2>
+    </header>
+
+    <div class="paths-grid">
+      @for (faq of faqs; track faq.question; let i = $index) {
+        <article class="path-card">
+          <div class="path-card__icon" aria-hidden="true">
+            @if (i === 0) {
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+              </svg>
+            } @else if (i === 1) {
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
+              </svg>
+            } @else {
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="11" width="14" height="10" rx="2"/><path d="M7 11V8a5 5 0 0 1 10 0v3"/>
+              </svg>
+            }
+          </div>
+          <h3 class="path-card__title">{{ faq.question }}</h3>
+          <p class="path-card__body">{{ faq.answer }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CLOSING CTA
+  ═══════════════════════════════════════════════════════════ -->
+  <section class="closing-cta" aria-labelledby="closing-cta-title">
+    <div class="closing-cta__orbs" aria-hidden="true">
+      <div class="cta-orb cta-orb--1"></div>
+      <div class="cta-orb cta-orb--2"></div>
+    </div>
+
+    <div class="closing-cta__inner">
+      <p class="section-eyebrow">Ready to operate</p>
+      <h2 id="closing-cta-title">Apri il catalogo pubblico o accedi al workspace protetto.</h2>
+      <p class="closing-cta__sub">
+        Tool pubblici disponibili subito, senza autenticazione.
+        Workspace riservato con accesso role-gated.
+      </p>
+      <div class="closing-cta__actions">
+        <a class="wr-button wr-button--primary cta-primary" href="#public-tools">Apri tool pubblici</a>
+        <a class="wr-button wr-button--secondary cta-secondary" routerLink="/login">
+          Accedi
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 8h10"/><path d="m9 4 4 4-4 4"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</page-shell>
 
 <app-hub-mobile-nav
   [currentUser]="currentUser()"

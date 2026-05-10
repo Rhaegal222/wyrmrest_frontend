@@ -1,15 +1,11 @@
 :host {
-  display: contents;
-}
-
-.privacy-shell {
-  min-height: 100vh;
+  flex: 1;
+  display: flex;
+  justify-content: center;
   padding: var(--wr-space-24) var(--wr-space-16);
   background-color: var(--wr-color-bg-canvas);
   background-image:
     radial-gradient(ellipse at 50% -10%, color-mix(in srgb, var(--wr-color-accent-primary) 10%, transparent) 0%, transparent 55%);
-  display: flex;
-  justify-content: center;
 }
 
 .privacy-panel {

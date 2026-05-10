@@ -1,14 +1,9 @@
 :host {
-  display: contents;
-}
-
-.login-shell {
-  min-height: 100vh;
+  flex: 1;
   display: grid;
   place-items: center;
   padding: var(--wr-space-24);
   background-color: var(--wr-color-bg-canvas);
-  /* Atmospheric radial glow from top */
   background-image:
     radial-gradient(ellipse at 50% -10%, color-mix(in srgb, var(--wr-color-accent-primary) 10%, transparent) 0%, transparent 55%);
 }
